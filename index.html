@@ -143,13 +143,6 @@ img{max-width:100%;display:block}
 .nav-logo{display:flex;align-items:center;gap:10px}
 .nav-logo img{width:36px;height:36px;border-radius:9px}
 .nav-logo-text{font-size:16px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text)}
-.nav-logo-badge{
-  font-size:9px;font-weight:600;letter-spacing:2px;
-  color:var(--accent-light);
-  background:rgba(108,92,231,.12);
-  padding:3px 8px;border-radius:4px;
-  border:1px solid rgba(108,92,231,.2);
-}
 .nav-links{display:flex;align-items:center;gap:28px}
 .nav-links a{font-size:13px;font-weight:500;color:var(--text-dim);transition:color .3s}
 .nav-links a:hover{color:var(--text)}
@@ -177,6 +170,14 @@ img{max-width:100%;display:block}
 .mobile-menu.open{display:flex}
 .mobile-menu a{font-size:20px;font-weight:500;color:var(--text)}
 .mobile-menu-close{position:absolute;top:20px;right:24px;font-size:28px;color:var(--text);background:none;border:none;cursor:pointer}
+.mobile-lang{
+  padding:10px 28px;border-radius:10px;font-size:15px;font-weight:600;
+  background:var(--surface);color:var(--text-dim);
+  border:1px solid var(--border-light);cursor:pointer;
+  font-family:'Inter',sans-serif;letter-spacing:1px;
+  transition:all .3s;
+}
+.mobile-lang:hover{background:var(--surface-hover);color:var(--text)}
 
 @media(max-width:768px){
   .nav-links{display:none}
@@ -268,11 +269,10 @@ img{max-width:100%;display:block}
 /* Phone mockup */
 .phone-mockup{
   position:relative;
-  width:260px;
   flex-shrink:0;
   transition:transform .6s cubic-bezier(0.16,1,0.3,1);
 }
-.phone-mockup:hover{transform:translateY(-12px)}
+.phone-mockup:hover{transform:translateY(-8px)}
 .phone-frame{
   position:relative;
   border-radius:36px;
@@ -590,7 +590,9 @@ img{max-width:100%;display:block}
 }
 .cta-box .btn-primary{position:relative;z-index:1}
 
-/* App Store modal */
+/* ============================================
+   APP STORE MODAL
+   ============================================ */
 .modal-overlay{
   position:fixed;inset:0;z-index:10000;
   background:rgba(0,0,0,.7);backdrop-filter:blur(10px);
@@ -601,17 +603,22 @@ img{max-width:100%;display:block}
 .modal{
   background:var(--bg-alt);
   border:1px solid var(--border-light);
-  border-radius:var(--radius-lg);
+  border-radius:24px;
   padding:48px 40px;
-  max-width:440px;width:90%;
-  text-align:center;
+  max-width:580px;width:92%;
   box-shadow:0 40px 100px rgba(0,0,0,.6);
   transform:scale(.95);transition:transform .3s;
 }
 .modal-overlay.open .modal{transform:scale(1)}
-.modal-icon{font-size:48px;margin-bottom:20px}
-.modal h3{font-size:22px;font-weight:700;margin-bottom:12px}
-.modal p{font-size:14px;color:var(--text-dim);line-height:1.7;margin-bottom:28px}
+.modal-layout{display:flex;align-items:center;gap:36px}
+.modal-phone{flex-shrink:0}
+.modal-phone .phone-mockup{width:180px}
+.modal-phone .phone-frame{border-radius:28px}
+.modal-phone .phone-glow{width:140px;height:60px;bottom:-30px}
+.modal-info{text-align:center;flex:1}
+.modal-icon{font-size:44px;margin-bottom:16px}
+.modal-info h3{font-size:22px;font-weight:700;margin-bottom:10px}
+.modal-info p{font-size:14px;color:var(--text-dim);line-height:1.7;margin-bottom:24px}
 .modal-close{
   padding:12px 32px;border-radius:12px;font-size:14px;font-weight:600;
   background:linear-gradient(135deg,var(--accent),var(--accent-light));
@@ -619,6 +626,12 @@ img{max-width:100%;display:block}
   transition:transform .3s,box-shadow .3s;
 }
 .modal-close:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(108,92,231,.3)}
+
+@media(max-width:600px){
+  .modal{padding:32px 24px}
+  .modal-layout{flex-direction:column;gap:24px}
+  .modal-phone .phone-mockup{width:150px}
+}
 
 /* ============================================
    FOOTER
@@ -695,11 +708,12 @@ img{max-width:100%;display:block}
 <!-- Mobile Menu -->
 <div class="mobile-menu" id="mobileMenu">
   <button class="mobile-menu-close" onclick="toggleMobileMenu()">&times;</button>
-  <a href="#features" onclick="toggleMobileMenu()">Features</a>
-  <a href="#security" onclick="toggleMobileMenu()">Security</a>
-  <a href="#network" onclick="toggleMobileMenu()">Network</a>
-  <a href="#privacy" onclick="toggleMobileMenu()">Privacy</a>
-  <button class="btn-primary" onclick="toggleMobileMenu();openModal()">Download App</button>
+  <a href="#features" onclick="toggleMobileMenu()" data-en="Features" data-ru="Возможности">Features</a>
+  <a href="#security" onclick="toggleMobileMenu()" data-en="Security" data-ru="Безопасность">Security</a>
+  <a href="#network" onclick="toggleMobileMenu()" data-en="Network" data-ru="Сеть">Network</a>
+  <a href="#privacy" onclick="toggleMobileMenu()" data-en="Privacy" data-ru="Приватность">Privacy</a>
+  <button class="mobile-lang" onclick="toggleLang()" id="langBtnMobile">RU</button>
+  <button class="btn-primary" onclick="toggleMobileMenu();openModal()" data-en="Download App" data-ru="Скачать">Download App</button>
 </div>
 
 <!-- ==================== HERO ==================== -->
@@ -707,17 +721,17 @@ img{max-width:100%;display:block}
   <div class="hero-content">
     <div class="hero-badge">
       <span class="dot"></span>
-      iOS Native App
+      <span data-en="iOS Native App" data-ru="Нативное iOS-приложение">iOS Native App</span>
     </div>
-    <h1>Your Connection.<br><span class="gradient-text">Your Rules.</span></h1>
-    <p>Marshall is a powerful VPN client for iOS. Import your servers, monitor performance in real time, and connect securely — all in one elegant, privacy-first app.</p>
+    <h1 data-en="Your Connection.<br><span class='gradient-text'>Your Rules.</span>" data-ru="Ваше соединение.<br><span class='gradient-text'>Ваши правила.</span>">Your Connection.<br><span class="gradient-text">Your Rules.</span></h1>
+    <p data-en="Marshall is a powerful VPN client for iOS. Import your servers, monitor performance in real time, and connect securely — all in one elegant, privacy-first app." data-ru="Marshall — мощный VPN-клиент для iOS. Импортируйте серверы, отслеживайте производительность в реальном времени и подключайтесь безопасно — всё в одном элегантном приложении.">Marshall is a powerful VPN client for iOS. Import your servers, monitor performance in real time, and connect securely — all in one elegant, privacy-first app.</p>
     <div class="hero-actions">
       <button class="btn-primary" onclick="openModal()">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-        Download for iOS
+        <span data-en="Download for iOS" data-ru="Скачать для iOS">Download for iOS</span>
       </button>
       <a href="#features" class="btn-secondary">
-        Explore Features
+        <span data-en="Explore Features" data-ru="Возможности">Explore Features</span>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17l9.2-9.2M17 17V7.8H7.8"/></svg>
       </a>
     </div>
@@ -730,60 +744,50 @@ img{max-width:100%;display:block}
     <div class="reveal">
       <div class="section-label" data-en="Features" data-ru="Возможности">Features</div>
       <h2 class="section-title" data-en="Everything you need.<br><span class='gradient-text-accent'>Nothing you don't.</span>" data-ru="Всё что нужно.<br><span class='gradient-text-accent'>Ничего лишнего.</span>">Everything you need.<br><span class="gradient-text-accent">Nothing you don't.</span></h2>
-      <p class="section-desc" data-en="Designed for users who value control and simplicity. Marshall puts the power of your network configuration in your hands." data-ru="Создано для тех, кто ценит контроль и простоту. Marshall даёт вам полную власть над вашей сетевой конфигурацией.">Designed for users who value control and simplicity. Marshall puts the power of your network configuration in your hands.</p>
+      <p class="section-desc" data-en="Designed for users who value control and simplicity. Marshall puts the power of your network configuration in your hands." data-ru="Создано для тех, кто ценит контроль и простоту. Marshall даёт вам полную власть над сетевой конфигурацией.">Designed for users who value control and simplicity. Marshall puts the power of your network configuration in your hands.</p>
     </div>
-    <div class="features-layout">
-      <div class="features-grid">
-        <div class="feature-card reveal delay-1">
-          <div class="feature-icon feature-icon-purple">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-          </div>
-          <h3 data-en="Import Any Server" data-ru="Импорт серверов">Import Any Server</h3>
-          <p data-en="Paste your subscription link and instantly access your entire server fleet. Supports VLESS, VMess, Trojan, and Shadowsocks protocols." data-ru="Вставьте ссылку на подписку и мгновенно получите доступ к вашим серверам. Поддержка VLESS, VMess, Trojan и Shadowsocks.">Paste your subscription link and instantly access your entire server fleet. Supports VLESS, VMess, Trojan, and Shadowsocks protocols.</p>
+    <div class="features-grid">
+      <div class="feature-card reveal delay-1">
+        <div class="feature-icon feature-icon-purple">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
         </div>
-        <div class="feature-card reveal delay-2">
-          <div class="feature-icon feature-icon-green">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-          </div>
-          <h3 data-en="Real-Time Monitoring" data-ru="Мониторинг в реальном времени">Real-Time Monitoring</h3>
-          <p data-en="Check server latency, connection speed, and service availability at a glance. Know exactly how your network is performing." data-ru="Проверяйте задержку серверов, скорость соединения и доступность сервисов. Точная информация о вашей сети.">Check server latency, connection speed, and service availability at a glance. Know exactly how your network is performing.</p>
-        </div>
-        <div class="feature-card reveal delay-3">
-          <div class="feature-icon feature-icon-blue">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-          </div>
-          <h3 data-en="Auto Smart Select" data-ru="Умный автовыбор">Auto Smart Select</h3>
-          <p data-en="One tap to connect to the fastest server. Marshall automatically tests and selects the optimal connection for you." data-ru="Одно нажатие — и вы подключены к самому быстрому серверу. Marshall автоматически выбирает оптимальное соединение.">One tap to connect to the fastest server. Marshall automatically tests and selects the optimal connection for you.</p>
-        </div>
-        <div class="feature-card reveal delay-1">
-          <div class="feature-icon feature-icon-green">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          </div>
-          <h3 data-en="Military-Grade Encryption" data-ru="Шифрование военного уровня">Military-Grade Encryption</h3>
-          <p data-en="Built on the open-source sing-box engine with modern cryptographic protocols. Your traffic stays encrypted and private." data-ru="Построено на открытом движке sing-box с современными протоколами шифрования. Ваш трафик надёжно защищён.">Built on the open-source sing-box engine with modern cryptographic protocols. Your traffic stays encrypted and private.</p>
-        </div>
-        <div class="feature-card reveal delay-2">
-          <div class="feature-icon feature-icon-purple">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-          </div>
-          <h3 data-en="Service Checker" data-ru="Проверка сервисов">Service Checker</h3>
-          <p data-en="Verify access to popular platforms — YouTube, Instagram, Telegram, ChatGPT, and more — with a single tap." data-ru="Проверяйте доступность популярных платформ — YouTube, Instagram, Telegram, ChatGPT и других — одним нажатием.">Verify access to popular platforms — YouTube, Instagram, Telegram, ChatGPT, and more — with a single tap.</p>
-        </div>
-        <div class="feature-card reveal delay-3">
-          <div class="feature-icon feature-icon-blue">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-          </div>
-          <h3 data-en="Native iOS Experience" data-ru="Нативный iOS-опыт">Native iOS Experience</h3>
-          <p data-en="Built with SwiftUI for a buttery-smooth interface. Dark mode, fluid animations, and iOS integration done right." data-ru="Создано на SwiftUI с плавным интерфейсом. Тёмная тема, анимации и интеграция с iOS на высшем уровне.">Built with SwiftUI for a buttery-smooth interface. Dark mode, fluid animations, and iOS integration done right.</p>
-        </div>
+        <h3 data-en="Import Any Server" data-ru="Импорт серверов">Import Any Server</h3>
+        <p data-en="Paste your subscription link and instantly access your entire server fleet. Supports VLESS, VMess, Trojan, and Shadowsocks protocols." data-ru="Вставьте ссылку на подписку и мгновенно получите доступ к вашим серверам. Поддержка VLESS, VMess, Trojan и Shadowsocks.">Paste your subscription link and instantly access your entire server fleet. Supports VLESS, VMess, Trojan, and Shadowsocks protocols.</p>
       </div>
-      <div class="features-phone reveal-right">
-        <div class="phone-mockup">
-          <div class="phone-frame">
-            <img src="assets/screen-connected.jpg" alt="Marshall VPN — Connected" loading="lazy">
-          </div>
-          <div class="phone-glow"></div>
+      <div class="feature-card reveal delay-2">
+        <div class="feature-icon feature-icon-green">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
         </div>
+        <h3 data-en="Real-Time Monitoring" data-ru="Мониторинг в реальном времени">Real-Time Monitoring</h3>
+        <p data-en="Check server latency, connection speed, and service availability at a glance. Know exactly how your network is performing." data-ru="Проверяйте задержку серверов, скорость соединения и доступность сервисов. Точная информация о вашей сети.">Check server latency, connection speed, and service availability at a glance. Know exactly how your network is performing.</p>
+      </div>
+      <div class="feature-card reveal delay-3">
+        <div class="feature-icon feature-icon-blue">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        </div>
+        <h3 data-en="Auto Smart Select" data-ru="Умный автовыбор">Auto Smart Select</h3>
+        <p data-en="One tap to connect to the fastest server. Marshall automatically tests and selects the optimal connection for you." data-ru="Одно нажатие — и вы подключены к самому быстрому серверу. Marshall автоматически выбирает оптимальное соединение.">One tap to connect to the fastest server. Marshall automatically tests and selects the optimal connection for you.</p>
+      </div>
+      <div class="feature-card reveal delay-1">
+        <div class="feature-icon feature-icon-green">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3 data-en="Military-Grade Encryption" data-ru="Шифрование военного уровня">Military-Grade Encryption</h3>
+        <p data-en="Built on the open-source sing-box engine with modern cryptographic protocols. Your traffic stays encrypted and private." data-ru="Построено на открытом движке sing-box с современными протоколами шифрования. Ваш трафик надёжно защищён.">Built on the open-source sing-box engine with modern cryptographic protocols. Your traffic stays encrypted and private.</p>
+      </div>
+      <div class="feature-card reveal delay-2">
+        <div class="feature-icon feature-icon-purple">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <h3 data-en="Service Checker" data-ru="Проверка сервисов">Service Checker</h3>
+        <p data-en="Verify access to popular platforms — YouTube, Instagram, Telegram, ChatGPT, and more — with a single tap." data-ru="Проверяйте доступность популярных платформ — YouTube, Instagram, Telegram, ChatGPT и других — одним нажатием.">Verify access to popular platforms — YouTube, Instagram, Telegram, ChatGPT, and more — with a single tap.</p>
+      </div>
+      <div class="feature-card reveal delay-3">
+        <div class="feature-icon feature-icon-blue">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
+        <h3 data-en="Native iOS Experience" data-ru="Нативный iOS-опыт">Native iOS Experience</h3>
+        <p data-en="Built with SwiftUI for a buttery-smooth interface. Dark mode, fluid animations, and iOS integration done right." data-ru="Создано на SwiftUI с плавным интерфейсом. Тёмная тема, анимации и полная интеграция с iOS.">Built with SwiftUI for a buttery-smooth interface. Dark mode, fluid animations, and iOS integration done right.</p>
       </div>
     </div>
   </div>
@@ -795,26 +799,26 @@ img{max-width:100%;display:block}
 <section class="stats-section" id="security">
   <div class="container">
     <div style="text-align:center" class="reveal">
-      <div class="section-label" style="justify-content:center">Online Security</div>
-      <h2 class="section-title" style="margin-left:auto;margin-right:auto;max-width:700px">The internet is more vulnerable<br><span class="gradient-text-accent">than you think.</span></h2>
-      <p class="section-desc" style="margin-left:auto;margin-right:auto;text-align:center">Every day, millions of people expose their personal data without realizing it. A VPN is no longer optional — it's essential.</p>
+      <div class="section-label" style="justify-content:center" data-en="Online Security" data-ru="Онлайн-безопасность">Online Security</div>
+      <h2 class="section-title" style="margin-left:auto;margin-right:auto;max-width:700px" data-en="The internet is more vulnerable<br><span class='gradient-text-accent'>than you think.</span>" data-ru="Интернет уязвимее,<br><span class='gradient-text-accent'>чем вы думаете.</span>">The internet is more vulnerable<br><span class="gradient-text-accent">than you think.</span></h2>
+      <p class="section-desc" style="margin-left:auto;margin-right:auto;text-align:center" data-en="Every day, millions of people expose their personal data without realizing it. A VPN is no longer optional — it's essential." data-ru="Каждый день миллионы людей раскрывают свои личные данные, сами того не подозревая. VPN — это уже не опция, а необходимость.">Every day, millions of people expose their personal data without realizing it. A VPN is no longer optional — it's essential.</p>
     </div>
     <div class="stats-grid">
       <div class="stat-card reveal delay-1">
         <div class="stat-number gradient-text"><span class="counter" data-target="2200">0</span><span class="stat-suffix">+</span></div>
-        <div class="stat-label">Data breaches reported globally in the last year</div>
+        <div class="stat-label" data-en="Data breaches reported globally in the last year" data-ru="Утечек данных зафиксировано по всему миру за последний год">Data breaches reported globally in the last year</div>
       </div>
       <div class="stat-card reveal delay-2">
         <div class="stat-number gradient-text"><span class="counter" data-target="80">0</span><span class="stat-suffix">%</span></div>
-        <div class="stat-label">of users are concerned about their online privacy</div>
+        <div class="stat-label" data-en="of users are concerned about their online privacy" data-ru="пользователей обеспокоены своей конфиденциальностью в сети">of users are concerned about their online privacy</div>
       </div>
       <div class="stat-card reveal delay-3">
         <div class="stat-number gradient-text"><span class="counter" data-target="43">0</span><span class="stat-suffix">%</span></div>
-        <div class="stat-label">of cyberattacks target individuals on public networks</div>
+        <div class="stat-label" data-en="of cyberattacks target individuals on public networks" data-ru="кибератак нацелены на пользователей публичных сетей">of cyberattacks target individuals on public networks</div>
       </div>
       <div class="stat-card reveal delay-4">
         <div class="stat-number gradient-text">$<span class="counter" data-target="4.5" data-decimals="1">0</span><span class="stat-suffix">M</span></div>
-        <div class="stat-label">Average cost of a single data breach worldwide</div>
+        <div class="stat-label" data-en="Average cost of a single data breach worldwide" data-ru="Средняя стоимость одной утечки данных в мире">Average cost of a single data breach worldwide</div>
       </div>
     </div>
   </div>
@@ -824,37 +828,37 @@ img{max-width:100%;display:block}
 <section class="section">
   <div class="container">
     <div style="text-align:center" class="reveal">
-      <div class="section-label" style="justify-content:center">Why Use a VPN</div>
-      <h2 class="section-title" style="margin-left:auto;margin-right:auto;max-width:700px">Protect what matters most —<br><span class="gradient-text-accent">your digital life.</span></h2>
+      <div class="section-label" style="justify-content:center" data-en="Why Use a VPN" data-ru="Зачем нужен VPN">Why Use a VPN</div>
+      <h2 class="section-title" style="margin-left:auto;margin-right:auto;max-width:700px" data-en="Protect what matters most —<br><span class='gradient-text-accent'>your digital life.</span>" data-ru="Защитите самое важное —<br><span class='gradient-text-accent'>вашу цифровую жизнь.</span>">Protect what matters most —<br><span class="gradient-text-accent">your digital life.</span></h2>
     </div>
     <div class="why-grid">
       <div class="why-card reveal-left delay-1">
         <div class="why-card-number">01</div>
-        <h3>Public Wi-Fi Protection</h3>
-        <p>Coffee shops, airports, hotels — public Wi-Fi networks are prime targets for data interception. A VPN encrypts your connection, making it unreadable to anyone on the same network.</p>
+        <h3 data-en="Public Wi-Fi Protection" data-ru="Защита в публичных Wi-Fi">Public Wi-Fi Protection</h3>
+        <p data-en="Coffee shops, airports, hotels — public Wi-Fi networks are prime targets for data interception. A VPN encrypts your connection, making it unreadable to anyone on the same network." data-ru="Кафе, аэропорты, отели — публичные Wi-Fi сети являются главной целью для перехвата данных. VPN шифрует ваше соединение, делая его нечитаемым для других в той же сети.">Coffee shops, airports, hotels — public Wi-Fi networks are prime targets for data interception. A VPN encrypts your connection, making it unreadable to anyone on the same network.</p>
         <div class="highlight gradient-text">25%</div>
-        <p style="margin-top:4px;font-size:13px;color:var(--text-muted)">of public Wi-Fi hotspots lack basic encryption</p>
+        <p style="margin-top:4px;font-size:13px;color:var(--text-muted)" data-en="of public Wi-Fi hotspots lack basic encryption" data-ru="публичных Wi-Fi точек не имеют базового шифрования">of public Wi-Fi hotspots lack basic encryption</p>
       </div>
       <div class="why-card reveal-right delay-2">
         <div class="why-card-number">02</div>
-        <h3>Personal Data Privacy</h3>
-        <p>Your ISP, advertisers, and third-party trackers can monitor your online activity. A VPN masks your traffic, keeping your browsing habits truly private.</p>
+        <h3 data-en="Personal Data Privacy" data-ru="Конфиденциальность данных">Personal Data Privacy</h3>
+        <p data-en="Your ISP, advertisers, and third-party trackers can monitor your online activity. A VPN masks your traffic, keeping your browsing habits truly private." data-ru="Ваш провайдер, рекламодатели и сторонние трекеры могут отслеживать вашу активность в сети. VPN скрывает ваш трафик, сохраняя конфиденциальность.">Your ISP, advertisers, and third-party trackers can monitor your online activity. A VPN masks your traffic, keeping your browsing habits truly private.</p>
         <div class="highlight gradient-text">87%</div>
-        <p style="margin-top:4px;font-size:13px;color:var(--text-muted)">of websites use third-party tracking scripts</p>
+        <p style="margin-top:4px;font-size:13px;color:var(--text-muted)" data-en="of websites use third-party tracking scripts" data-ru="сайтов используют сторонние скрипты отслеживания">of websites use third-party tracking scripts</p>
       </div>
       <div class="why-card reveal-left delay-1">
         <div class="why-card-number">03</div>
-        <h3>Secure Communications</h3>
-        <p>Whether you're sending sensitive documents or making VoIP calls, a VPN adds an extra layer of end-to-end encryption to every piece of data leaving your device.</p>
+        <h3 data-en="Secure Communications" data-ru="Безопасные коммуникации">Secure Communications</h3>
+        <p data-en="Whether you're sending sensitive documents or making VoIP calls, a VPN adds an extra layer of end-to-end encryption to every piece of data leaving your device." data-ru="Отправляете ли вы важные документы или совершаете VoIP-звонки — VPN добавляет дополнительный уровень сквозного шифрования для каждого бита данных.">Whether you're sending sensitive documents or making VoIP calls, a VPN adds an extra layer of end-to-end encryption to every piece of data leaving your device.</p>
         <div class="highlight gradient-text">256-bit</div>
-        <p style="margin-top:4px;font-size:13px;color:var(--text-muted)">AES encryption standard used in modern VPNs</p>
+        <p style="margin-top:4px;font-size:13px;color:var(--text-muted)" data-en="AES encryption standard used in modern VPNs" data-ru="стандарт шифрования AES в современных VPN">AES encryption standard used in modern VPNs</p>
       </div>
       <div class="why-card reveal-right delay-2">
         <div class="why-card-number">04</div>
-        <h3>Identity Protection</h3>
-        <p>Every time you go online, your IP address reveals your approximate location and can be used to build a profile about you. A VPN keeps your identity confidential.</p>
+        <h3 data-en="Identity Protection" data-ru="Защита личности">Identity Protection</h3>
+        <p data-en="Every time you go online, your IP address reveals your approximate location and can be used to build a profile about you. A VPN keeps your identity confidential." data-ru="Каждый раз при выходе в сеть ваш IP-адрес раскрывает примерное местоположение и может использоваться для создания профиля о вас. VPN сохраняет вашу анонимность.">Every time you go online, your IP address reveals your approximate location and can be used to build a profile about you. A VPN keeps your identity confidential.</p>
         <div class="highlight gradient-text">100%</div>
-        <p style="margin-top:4px;font-size:13px;color:var(--text-muted)">of your traffic is encrypted through the VPN tunnel</p>
+        <p style="margin-top:4px;font-size:13px;color:var(--text-muted)" data-en="of your traffic is encrypted through the VPN tunnel" data-ru="вашего трафика шифруется через VPN-туннель">of your traffic is encrypted through the VPN tunnel</p>
       </div>
     </div>
   </div>
@@ -866,19 +870,19 @@ img{max-width:100%;display:block}
 <section class="map-section" id="network">
   <div class="container">
     <div style="text-align:center" class="reveal">
-      <div class="section-label" style="justify-content:center">Global Network</div>
-      <h2 class="section-title" style="margin-left:auto;margin-right:auto;max-width:700px">Worldwide coverage,<br><span class="gradient-text-accent">local speed.</span></h2>
-      <p class="section-desc" style="margin-left:auto;margin-right:auto;text-align:center">Explore our server presence across multiple continents. Toggle between server locations and internet restriction levels worldwide.</p>
+      <div class="section-label" style="justify-content:center" data-en="Global Network" data-ru="Глобальная сеть">Global Network</div>
+      <h2 class="section-title" style="margin-left:auto;margin-right:auto;max-width:700px" data-en="Worldwide coverage,<br><span class='gradient-text-accent'>local speed.</span>" data-ru="Мировое покрытие,<br><span class='gradient-text-accent'>локальная скорость.</span>">Worldwide coverage,<br><span class="gradient-text-accent">local speed.</span></h2>
+      <p class="section-desc" style="margin-left:auto;margin-right:auto;text-align:center" data-en="Explore our server presence across multiple continents. Toggle between server locations and internet restriction levels worldwide." data-ru="Узнайте о расположении серверов на разных континентах. Переключайтесь между расположением серверов и уровнем интернет-ограничений.">Explore our server presence across multiple continents. Toggle between server locations and internet restriction levels worldwide.</p>
     </div>
     <div class="map-wrapper reveal-scale">
       <div class="map-header">
         <div>
-          <h3 id="map-title">Server Network</h3>
-          <p id="map-subtitle">12 active locations worldwide</p>
+          <h3 id="map-title">Internet Restrictions</h3>
+          <p id="map-subtitle">Restriction intensity by country</p>
         </div>
         <div class="map-toggle">
-          <button id="btn-srv" class="active-srv" onclick="setMapMode('servers')">Servers</button>
-          <button id="btn-heat" onclick="setMapMode('heatmap')">Restrictions</button>
+          <button id="btn-srv" onclick="setMapMode('servers')" data-en="Servers" data-ru="Серверы">Servers</button>
+          <button id="btn-heat" class="active-heat" onclick="setMapMode('heatmap')" data-en="Restrictions" data-ru="Ограничения">Restrictions</button>
         </div>
       </div>
       <div id="map-container">
@@ -901,24 +905,24 @@ img{max-width:100%;display:block}
 <section class="section">
   <div class="container">
     <div style="text-align:center" class="reveal">
-      <div class="section-label" style="justify-content:center">How It Works</div>
-      <h2 class="section-title" style="margin-left:auto;margin-right:auto">Get started in <span class="gradient-text-accent">three simple steps.</span></h2>
+      <div class="section-label" style="justify-content:center" data-en="How It Works" data-ru="Как это работает">How It Works</div>
+      <h2 class="section-title" style="margin-left:auto;margin-right:auto" data-en="Get started in <span class='gradient-text-accent'>three simple steps.</span>" data-ru="Начните за <span class='gradient-text-accent'>три простых шага.</span>">Get started in <span class="gradient-text-accent">three simple steps.</span></h2>
     </div>
     <div class="steps-grid">
       <div class="step-card reveal delay-1">
         <div class="step-number">1</div>
-        <h3>Get Your Link</h3>
-        <p>Obtain a subscription link from your VPN provider. It contains all the server configurations you need.</p>
+        <h3 data-en="Get Your Link" data-ru="Получите ссылку">Get Your Link</h3>
+        <p data-en="Obtain a subscription link from your VPN provider. It contains all the server configurations you need." data-ru="Получите ссылку на подписку от вашего VPN-провайдера. Она содержит все необходимые конфигурации серверов.">Obtain a subscription link from your VPN provider. It contains all the server configurations you need.</p>
       </div>
       <div class="step-card reveal delay-2">
         <div class="step-number">2</div>
-        <h3>Paste & Import</h3>
-        <p>Open Marshall, paste your link, and tap Connect. Your servers are loaded and ready instantly.</p>
+        <h3 data-en="Paste & Import" data-ru="Вставьте и импортируйте">Paste & Import</h3>
+        <p data-en="Open Marshall, paste your link, and tap Connect. Your servers are loaded and ready instantly." data-ru="Откройте Marshall, вставьте ссылку и нажмите «Подключить». Серверы загрузятся мгновенно.">Open Marshall, paste your link, and tap Connect. Your servers are loaded and ready instantly.</p>
       </div>
       <div class="step-card reveal delay-3">
         <div class="step-number">3</div>
-        <h3>Stay Protected</h3>
-        <p>Choose a server or let Auto Select pick the best one. Enjoy fast, encrypted browsing with real-time monitoring.</p>
+        <h3 data-en="Stay Protected" data-ru="Оставайтесь защищены">Stay Protected</h3>
+        <p data-en="Choose a server or let Auto Select pick the best one. Enjoy fast, encrypted browsing with real-time monitoring." data-ru="Выберите сервер или доверьтесь автовыбору. Наслаждайтесь быстрым зашифрованным подключением с мониторингом.">Choose a server or let Auto Select pick the best one. Enjoy fast, encrypted browsing with real-time monitoring.</p>
       </div>
     </div>
   </div>
@@ -930,9 +934,9 @@ img{max-width:100%;display:block}
 <section class="privacy-section" id="privacy">
   <div class="container">
     <div style="text-align:center" class="reveal">
-      <div class="section-label" style="justify-content:center">Privacy First</div>
-      <h2 class="section-title" style="margin-left:auto;margin-right:auto;max-width:700px">Your data stays on<br><span class="gradient-text-accent">your device. Period.</span></h2>
-      <p class="section-desc" style="margin-left:auto;margin-right:auto;text-align:center">Marshall was built with a zero-knowledge architecture. We don't collect, store, or transmit any personal data.</p>
+      <div class="section-label" style="justify-content:center" data-en="Privacy First" data-ru="Приватность прежде всего">Privacy First</div>
+      <h2 class="section-title" style="margin-left:auto;margin-right:auto;max-width:700px" data-en="Your data stays on<br><span class='gradient-text-accent'>your device. Period.</span>" data-ru="Ваши данные остаются<br><span class='gradient-text-accent'>на вашем устройстве. Точка.</span>">Your data stays on<br><span class="gradient-text-accent">your device. Period.</span></h2>
+      <p class="section-desc" style="margin-left:auto;margin-right:auto;text-align:center" data-en="Marshall was built with a zero-knowledge architecture. We don't collect, store, or transmit any personal data." data-ru="Marshall построен по принципу нулевого знания. Мы не собираем, не храним и не передаём никакие личные данные.">Marshall was built with a zero-knowledge architecture. We don't collect, store, or transmit any personal data.</p>
     </div>
     <div class="privacy-card reveal-scale">
       <div class="privacy-items">
@@ -941,8 +945,8 @@ img{max-width:100%;display:block}
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           </div>
           <div>
-            <h4>No Data Collection</h4>
-            <p>Zero analytics, zero tracking SDKs, zero crash reporting. Not a single byte of your data reaches our servers.</p>
+            <h4 data-en="No Data Collection" data-ru="Без сбора данных">No Data Collection</h4>
+            <p data-en="Zero analytics, zero tracking SDKs, zero crash reporting. Not a single byte of your data reaches our servers." data-ru="Ноль аналитики, ноль трекинг-SDK, ноль отчётов об ошибках. Ни единый байт ваших данных не попадает на наши серверы.">Zero analytics, zero tracking SDKs, zero crash reporting. Not a single byte of your data reaches our servers.</p>
           </div>
         </div>
         <div class="privacy-item">
@@ -950,8 +954,8 @@ img{max-width:100%;display:block}
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
           </div>
           <div>
-            <h4>iOS Keychain Encryption</h4>
-            <p>Sensitive data is stored in Apple's hardware-backed encrypted Keychain. Even we can't access it.</p>
+            <h4 data-en="iOS Keychain Encryption" data-ru="Шифрование iOS Keychain">iOS Keychain Encryption</h4>
+            <p data-en="Sensitive data is stored in Apple's hardware-backed encrypted Keychain. Even we can't access it." data-ru="Конфиденциальные данные хранятся в аппаратно защищённом Keychain от Apple. Даже мы не можем получить к ним доступ.">Sensitive data is stored in Apple's hardware-backed encrypted Keychain. Even we can't access it.</p>
           </div>
         </div>
         <div class="privacy-item">
@@ -959,8 +963,8 @@ img{max-width:100%;display:block}
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
           </div>
           <div>
-            <h4>No Browsing Logs</h4>
-            <p>We never record your connection timestamps, browsing history, DNS queries, or traffic volume.</p>
+            <h4 data-en="No Browsing Logs" data-ru="Без логов просмотра">No Browsing Logs</h4>
+            <p data-en="We never record your connection timestamps, browsing history, DNS queries, or traffic volume." data-ru="Мы никогда не записываем время подключений, историю просмотров, DNS-запросы или объём трафика.">We never record your connection timestamps, browsing history, DNS queries, or traffic volume.</p>
           </div>
         </div>
         <div class="privacy-item">
@@ -968,8 +972,8 @@ img{max-width:100%;display:block}
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
           </div>
           <div>
-            <h4>Open-Source Engine</h4>
-            <p>The sing-box network engine is fully open-source. Transparency is built into our core architecture.</p>
+            <h4 data-en="Open-Source Engine" data-ru="Движок с открытым кодом">Open-Source Engine</h4>
+            <p data-en="The sing-box network engine is fully open-source. Transparency is built into our core architecture." data-ru="Сетевой движок sing-box полностью открыт. Прозрачность заложена в основу нашей архитектуры.">The sing-box network engine is fully open-source. Transparency is built into our core architecture.</p>
           </div>
         </div>
       </div>
@@ -981,11 +985,11 @@ img{max-width:100%;display:block}
 <section class="cta-section">
   <div class="container">
     <div class="cta-box reveal-scale">
-      <h2>Ready to take control<br>of your <span class="gradient-text">connection</span>?</h2>
-      <p>Download Marshall and experience the difference a truly private VPN client makes.</p>
+      <h2 data-en="Ready to take control<br>of your <span class='gradient-text'>connection</span>?" data-ru="Готовы взять контроль<br>над <span class='gradient-text'>соединением</span>?">Ready to take control<br>of your <span class="gradient-text">connection</span>?</h2>
+      <p data-en="Download Marshall and experience the difference a truly private VPN client makes." data-ru="Скачайте Marshall и почувствуйте разницу, которую даёт по-настоящему приватный VPN-клиент.">Download Marshall and experience the difference a truly private VPN client makes.</p>
       <button class="btn-primary" onclick="openModal()">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-        Download for iOS
+        <span data-en="Download for iOS" data-ru="Скачать для iOS">Download for iOS</span>
       </button>
     </div>
   </div>
@@ -999,44 +1003,55 @@ img{max-width:100%;display:block}
         <div class="nav-logo" style="margin-bottom:4px">
           <img src="assets/logo.png" alt="Marshall VPN" style="width:32px;height:32px;border-radius:8px">
           <span class="nav-logo-text" style="font-size:14px">Marshall</span>
-          <span class="nav-logo-badge">VPN</span>
         </div>
-        <p>A powerful, privacy-first VPN client for iOS. Your connection, your servers, your rules.</p>
+        <p data-en="A powerful, privacy-first VPN client for iOS. Your connection, your servers, your rules." data-ru="Мощный VPN-клиент для iOS с приоритетом конфиденциальности. Ваше соединение, ваши серверы, ваши правила.">A powerful, privacy-first VPN client for iOS. Your connection, your servers, your rules.</p>
       </div>
       <div class="footer-col">
-        <h4>Product</h4>
-        <a href="#features">Features</a>
-        <a href="#security">Security</a>
-        <a href="#network">Network</a>
-        <a href="#" onclick="openModal();return false">Download</a>
+        <h4 data-en="Product" data-ru="Продукт">Product</h4>
+        <a href="#features" data-en="Features" data-ru="Возможности">Features</a>
+        <a href="#security" data-en="Security" data-ru="Безопасность">Security</a>
+        <a href="#network" data-en="Network" data-ru="Сеть">Network</a>
+        <a href="#" onclick="openModal();return false" data-en="Download" data-ru="Скачать">Download</a>
       </div>
       <div class="footer-col">
-        <h4>Legal</h4>
-        <a href="privacy-policy.html">Privacy Policy</a>
-        <a href="terms-of-use.html">Terms of Use</a>
+        <h4 data-en="Legal" data-ru="Юридическое">Legal</h4>
+        <a href="https://marshallbe.online/privacy/" target="_blank" data-en="Privacy Policy" data-ru="Политика конфиденциальности">Privacy Policy</a>
+        <a href="terms-of-use.html" data-en="Terms of Use" data-ru="Условия использования">Terms of Use</a>
       </div>
       <div class="footer-col">
-        <h4>Contact</h4>
-        <a href="mailto:kalininyuraapple@gmail.com">Email Us</a>
+        <h4 data-en="Contact" data-ru="Контакты">Contact</h4>
+        <a href="mailto:kalininyuraapple@gmail.com" data-en="Email Us" data-ru="Написать нам">Email Us</a>
       </div>
     </div>
     <div class="footer-bottom">
       <span>&copy; 2026 Marshall VPN. All rights reserved.</span>
       <div>
-        <a href="privacy-policy.html">Privacy</a> &nbsp;&middot;&nbsp;
-        <a href="terms-of-use.html">Terms</a>
+        <a href="https://marshallbe.online/privacy/" target="_blank" data-en="Privacy" data-ru="Приватность">Privacy</a> &nbsp;&middot;&nbsp;
+        <a href="terms-of-use.html" data-en="Terms" data-ru="Условия">Terms</a>
       </div>
     </div>
   </div>
 </footer>
 
-<!-- App Store Modal -->
+<!-- App Store Modal with Phone Screenshot -->
 <div class="modal-overlay" id="appStoreModal" onclick="closeModal(event)">
   <div class="modal">
-    <div class="modal-icon">&#x1F680;</div>
-    <h3>Coming Soon</h3>
-    <p>Marshall VPN is currently undergoing the required review process before publication on the App Store. We're almost there — please check back soon.</p>
-    <button class="modal-close" onclick="document.getElementById('appStoreModal').classList.remove('open')">Got It</button>
+    <div class="modal-layout">
+      <div class="modal-phone">
+        <div class="phone-mockup">
+          <div class="phone-frame">
+            <img src="assets/screen-connected.jpg" alt="Marshall VPN" loading="lazy">
+          </div>
+          <div class="phone-glow"></div>
+        </div>
+      </div>
+      <div class="modal-info">
+        <div class="modal-icon">&#x1F680;</div>
+        <h3 data-en="Coming Soon" data-ru="Скоро в App Store">Coming Soon</h3>
+        <p data-en="Marshall VPN is currently undergoing the required review process before publication on the App Store. We're almost there — please check back soon." data-ru="Marshall VPN сейчас проходит проверку перед публикацией в App Store. Мы почти у цели — пожалуйста, загляните позже.">Marshall VPN is currently undergoing the required review process before publication on the App Store. We're almost there — please check back soon.</p>
+        <button class="modal-close" onclick="document.getElementById('appStoreModal').classList.remove('open')" data-en="Got It" data-ru="Понятно">Got It</button>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -1045,6 +1060,31 @@ img{max-width:100%;display:block}
 <script>
 (function(){
 'use strict';
+
+/* ============ LANGUAGE SWITCHER ============ */
+let currentLang='en';
+
+window.toggleLang=function(){
+  currentLang=currentLang==='en'?'ru':'en';
+  const btnLabel=currentLang==='en'?'RU':'EN';
+  document.getElementById('langBtn').textContent=btnLabel;
+  document.getElementById('langBtnMobile').textContent=btnLabel;
+  document.documentElement.lang=currentLang;
+
+  document.querySelectorAll('[data-en][data-ru]').forEach(el=>{
+    const text=el.getAttribute('data-'+currentLang);
+    if(text!==null){
+      if(el.tagName==='INPUT'||el.tagName==='TEXTAREA'){
+        el.placeholder=text;
+      }else{
+        el.innerHTML=text;
+      }
+    }
+  });
+
+  // Update map titles for current language
+  if(typeof updateMapLabels==='function') updateMapLabels();
+};
 
 /* ============ PARTICLES ============ */
 const canvas=document.getElementById('particles');
@@ -1129,16 +1169,23 @@ window.closeModal=function(e){if(e.target===e.currentTarget)e.currentTarget.clas
 const vpnR={156:5,408:5,795:5,364:5,112:5,368:5,104:5,643:4,784:4,512:4,818:4,792:4,682:4,192:4,760:4,232:4,860:4,356:3,586:3,704:3,360:3,398:3,762:3,800:3,862:3,12:3,434:3,729:3,48:3,634:3,414:3,231:3,76:2,764:2,458:2,504:2,788:2,50:2,144:2,116:2,418:2,400:2,834:2,404:2,887:2,410:2,566:2};
 const getL=id=>vpnR[+id]||1;
 const lLab={1:"Very Low",2:"Low",3:"Moderate",4:"High",5:"Very High"};
+const lLabRu={1:"\u041E\u0447\u0435\u043D\u044C \u043D\u0438\u0437\u043A\u0438\u0439",2:"\u041D\u0438\u0437\u043A\u0438\u0439",3:"\u0423\u043C\u0435\u0440\u0435\u043D\u043D\u044B\u0439",4:"\u0412\u044B\u0441\u043E\u043A\u0438\u0439",5:"\u041E\u0447\u0435\u043D\u044C \u0432\u044B\u0441\u043E\u043A\u0438\u0439"};
 const hCol={1:"#1a2540",2:"#1e5a8a",3:"#d4841e",4:"#e04535",5:"#ff2a5e"};
 const GREEN="#00d67e";
 
 const servers=[
-  {city:"Singapore",lat:1.35,lon:103.82,cid:702},{city:"Toronto",lat:43.65,lon:-79.38,cid:124},
-  {city:"Bangkok",lat:13.76,lon:100.50,cid:764},{city:"Helsinki",lat:60.17,lon:24.94,cid:246},
-  {city:"Nuremberg",lat:49.45,lon:11.08,cid:276},{city:"Amsterdam",lat:52.37,lon:4.90,cid:528},
-  {city:"Tokyo",lat:35.68,lon:139.65,cid:392},{city:"London",lat:51.51,lon:-0.13,cid:826},
-  {city:"Sydney",lat:-33.87,lon:151.21,cid:36},{city:"São Paulo",lat:-23.55,lon:-46.63,cid:76},
-  {city:"New York",lat:40.71,lon:-74.01,cid:840},{city:"Los Angeles",lat:34.05,lon:-118.24,cid:840}
+  {city:"Singapore",cityRu:"\u0421\u0438\u043D\u0433\u0430\u043F\u0443\u0440",lat:1.35,lon:103.82,cid:702},
+  {city:"Toronto",cityRu:"\u0422\u043E\u0440\u043E\u043D\u0442\u043E",lat:43.65,lon:-79.38,cid:124},
+  {city:"Bangkok",cityRu:"\u0411\u0430\u043D\u0433\u043A\u043E\u043A",lat:13.76,lon:100.50,cid:764},
+  {city:"Helsinki",cityRu:"\u0425\u0435\u043B\u044C\u0441\u0438\u043D\u043A\u0438",lat:60.17,lon:24.94,cid:246},
+  {city:"Nuremberg",cityRu:"\u041D\u044E\u0440\u043D\u0431\u0435\u0440\u0433",lat:49.45,lon:11.08,cid:276},
+  {city:"Amsterdam",cityRu:"\u0410\u043C\u0441\u0442\u0435\u0440\u0434\u0430\u043C",lat:52.37,lon:4.90,cid:528},
+  {city:"Tokyo",cityRu:"\u0422\u043E\u043A\u0438\u043E",lat:35.68,lon:139.65,cid:392},
+  {city:"London",cityRu:"\u041B\u043E\u043D\u0434\u043E\u043D",lat:51.51,lon:-0.13,cid:826},
+  {city:"Sydney",cityRu:"\u0421\u0438\u0434\u043D\u0435\u0439",lat:-33.87,lon:151.21,cid:36},
+  {city:"S\u00e3o Paulo",cityRu:"\u0421\u0430\u043D-\u041F\u0430\u0443\u043B\u0443",lat:-23.55,lon:-46.63,cid:76},
+  {city:"New York",cityRu:"\u041D\u044C\u044E-\u0419\u043E\u0440\u043A",lat:40.71,lon:-74.01,cid:840},
+  {city:"Los Angeles",cityRu:"\u041B\u043E\u0441-\u0410\u043D\u0434\u0436\u0435\u043B\u0435\u0441",lat:34.05,lon:-118.24,cid:840}
 ];
 const srvCids=new Set(servers.map(s=>s.cid));
 const conns=[[0,2],[0,6],[3,4],[3,5],[4,7],[1,10],[1,11],[10,7],[10,9],[6,8],[0,8],[5,4],[10,11]];
@@ -1151,10 +1198,22 @@ function topoF(t,n){
   return{type:"FeatureCollection",features:o.geometries.map(g=>({type:"Feature",id:g.id,properties:g.properties||{},geometry:dG(g)}))};
 }
 
-let mapMode="servers",geo=null;
+let mapMode="heatmap",geo=null;
 const svg=d3.select("#map-svg");
 const cont=document.getElementById("map-container");
 const tooltip=document.getElementById("map-tooltip");
+
+window.updateMapLabels=function(){
+  const isH=mapMode==="heatmap";
+  const L=currentLang;
+  if(isH){
+    document.getElementById("map-title").textContent=L==='ru'?"\u0418\u043D\u0442\u0435\u0440\u043D\u0435\u0442-\u043E\u0433\u0440\u0430\u043D\u0438\u0447\u0435\u043D\u0438\u044F":"Internet Restrictions";
+    document.getElementById("map-subtitle").textContent=L==='ru'?"\u0418\u043D\u0442\u0435\u043D\u0441\u0438\u0432\u043D\u043E\u0441\u0442\u044C \u043E\u0433\u0440\u0430\u043D\u0438\u0447\u0435\u043D\u0438\u0439 \u043F\u043E \u0441\u0442\u0440\u0430\u043D\u0430\u043C":"Restriction intensity by country";
+  }else{
+    document.getElementById("map-title").textContent=L==='ru'?"\u0421\u0435\u0440\u0432\u0435\u0440\u043D\u0430\u044F \u0441\u0435\u0442\u044C":"Server Network";
+    document.getElementById("map-subtitle").textContent=L==='ru'?"12 \u0430\u043A\u0442\u0438\u0432\u043D\u044B\u0445 \u043B\u043E\u043A\u0430\u0446\u0438\u0439 \u043F\u043E \u043C\u0438\u0440\u0443":"12 active locations worldwide";
+  }
+};
 
 function renderMap(){
   const w=cont.clientWidth,h=Math.max(w*.46,280);
@@ -1163,6 +1222,7 @@ function renderMap(){
   if(!geo)return;
 
   const isH=mapMode==="heatmap";
+  const L=currentLang;
   const proj=d3.geoNaturalEarth1().fitSize([w-28,h-28],{type:"Sphere"}).translate([w/2,h/2]);
   const path=d3.geoPath().projection(proj);
 
@@ -1189,6 +1249,7 @@ function renderMap(){
       .style("transition","fill .3s");
 
     if(isH){
+      const labelsMap=L==='ru'?lLabRu:lLab;
       p.style("cursor","pointer")
         .on("mouseenter",function(ev){
           d3.select(this).attr("stroke","rgba(255,255,255,.35)").attr("stroke-width",.8);
@@ -1197,7 +1258,7 @@ function renderMap(){
           tooltip.style.borderColor=col+"44";
           document.getElementById("tt-dot").style.background=col;
           document.getElementById("tt-dot").style.boxShadow=`0 0 5px ${col}88`;
-          document.getElementById("tt-val").textContent=lLab[lv];
+          document.getElementById("tt-val").textContent=labelsMap[lv];
           document.getElementById("tt-bar").style.width=`${lv*20}%`;
           document.getElementById("tt-bar").style.background=`linear-gradient(90deg,${col}88,${col})`;
         })
@@ -1261,21 +1322,23 @@ function renderMap(){
       pr.append("animate").attr("attributeName","opacity").attr("values",".2;0;.2").attr("dur",(3+i*.2)+"s").attr("repeatCount","indefinite");
       g.append("circle").attr("cx",px).attr("cy",py).attr("r",5).attr("fill",GREEN).attr("opacity",.08).attr("filter","url(#gl)");
       g.append("circle").attr("cx",px).attr("cy",py).attr("r",2.8).attr("fill",GREEN).attr("stroke","#0a1020").attr("stroke-width",.8);
+      const cityName=L==='ru'?s.cityRu:s.city;
       g.append("text").attr("x",px).attr("y",py-7).attr("text-anchor","middle").attr("fill",GREEN)
         .attr("font-size",7).attr("font-weight",600).attr("font-family","'Inter',-apple-system,sans-serif")
-        .style("text-shadow","0 0 8px rgba(0,0,0,.95),0 1px 3px rgba(0,0,0,.9)").text(s.city);
+        .style("text-shadow","0 0 8px rgba(0,0,0,.95),0 1px 3px rgba(0,0,0,.9)").text(cityName);
     });
   }
 
   const leg=document.getElementById("map-legend");
+  const labelsMap=L==='ru'?lLabRu:lLab;
   if(isH){
-    leg.innerHTML=[1,2,3,4,5].map(lv=>`<div class="map-legend-item"><div class="map-legend-dot" style="background:${hCol[lv]}"></div>${lLab[lv]}</div>`).join("");
+    leg.innerHTML=[1,2,3,4,5].map(lv=>`<div class="map-legend-item"><div class="map-legend-dot" style="background:${hCol[lv]}"></div>${labelsMap[lv]}</div>`).join("");
   }else{
-    leg.innerHTML=`<div class="map-legend-item"><div class="map-legend-dot map-legend-dot-round" style="background:${GREEN};box-shadow:0 0 5px rgba(0,214,126,.4)"></div>12 active servers</div>`;
+    const srvText=L==='ru'?"12 \u0430\u043A\u0442\u0438\u0432\u043D\u044B\u0445 \u0441\u0435\u0440\u0432\u0435\u0440\u043E\u0432":"12 active servers";
+    leg.innerHTML=`<div class="map-legend-item"><div class="map-legend-dot map-legend-dot-round" style="background:${GREEN};box-shadow:0 0 5px rgba(0,214,126,.4)"></div>${srvText}</div>`;
   }
 
-  document.getElementById("map-title").textContent=isH?"Internet Restrictions":"Server Network";
-  document.getElementById("map-subtitle").textContent=isH?"Restriction intensity by country":"12 active locations worldwide";
+  updateMapLabels();
 }
 
 window.setMapMode=function(m){
