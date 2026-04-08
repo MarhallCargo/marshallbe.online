@@ -1,0 +1,177 @@
+import SwiftUI
+
+struct PrivacyPolicyView: View {
+    @Environment(\.dismiss) private var dismiss
+    @Environment(\.colorScheme) private var colorScheme
+
+    private var theme: ThemeColors {
+        ThemeColors(colorScheme: colorScheme)
+    }
+
+    var body: some View {
+        NavigationStack {
+            ScrollView(.vertical, showsIndicators: true) {
+                VStack(alignment: .leading, spacing: 24) {
+                    header
+                    section(title: "1. Общие положения", content: generalProvisions)
+                    section(title: "2. Данные на вашем устройстве", content: dataOnDevice)
+                    section(title: "3. Сетевая активность", content: networkActivity)
+                    section(title: "4. Опциональная обратная связь", content: optionalFeedback)
+                    section(title: "5. Какие данные мы НЕ собираем", content: dataNotCollected)
+                    section(title: "6. Хранение и безопасность", content: dataStorage)
+                    section(title: "7. Сторонние серверы", content: thirdPartyServers)
+                    section(title: "8. Конфиденциальность детей", content: childrenPrivacy)
+                    section(title: "9. Права пользователя", content: userRights)
+                    section(title: "10. Изменения политики", content: policyChanges)
+                    section(title: "11. Контакты", content: contacts)
+
+                    Spacer().frame(height: 40)
+                }
+                .padding(.horizontal, 20)
+                .padding(.top, 16)
+            }
+            .background(Color(hex: 0x0A0A0F).ignoresSafeArea())
+            .navigationTitle("Privacy Policy")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "xmark.circle.fill")
+                            .font(.system(size: 20))
+                            .foregroundColor(theme.textMuted)
+                    }
+                }
+            }
+            .toolbarColorScheme(.dark, for: .navigationBar)
+        }
+    }
+
+    private var header: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text("Политика конфиденциальности")
+                .font(.system(size: 22, weight: .bold))
+                .foregroundColor(theme.text)
+
+            Text("Marshall — Privacy Policy")
+                .font(.system(size: 14))
+                .foregroundColor(.mvAccent)
+
+            Text("Последнее обновление: 8 апреля 2026 г.")
+                .font(.system(size: 12))
+                .foregroundColor(theme.textMuted)
+                .padding(.top, 4)
+        }
+    }
+
+    private func section(title: String, content: String) -> some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text(title)
+                .font(.system(size: 15, weight: .semibold))
+                .foregroundColor(theme.text)
+
+            Text(content)
+                .font(.system(size: 13))
+                .lineSpacing(5)
+                .foregroundColor(theme.factText)
+        }
+    }
+
+    // MARK: - Policy content
+
+    private var generalProvisions: String {
+        """
+        Marshall — это прокси-клиент, утилита сетевой конфигурации, которая позволяет импортировать ссылки на серверные подписки, управлять списком серверов и устанавливать защищённые сетевые соединения на устройствах iOS. Приложение не предоставляет и не управляет какими-либо серверами самостоятельно.
+
+        Используя Приложение, вы соглашаетесь с условиями настоящей Политики.
+
+        Разработчик: Калинин Юрий Глебович.
+        """
+    }
+
+    private var dataOnDevice: String {
+        """
+        Marshall хранит только данные, необходимые для работы. Все данные хранятся исключительно на вашем устройстве и никогда не передаются Разработчику:
+
+        • URL подписки — ссылка для импорта конфигурации серверов. Хранится в зашифрованном iOS Keychain.
+        • Конфигурация серверов — адреса, порты и параметры подключения. Хранятся в зашифрованном iOS Keychain.
+        • Настройки — выбранный сервер, язык, автовыбор. Хранятся локально в UserDefaults.
+        """
+    }
+
+    private var networkActivity: String {
+        """
+        Приложение выполняет следующие сетевые запросы:
+
+        • Загрузка подписки — загружает конфигурацию по указанному вами URL напрямую с вашего устройства.
+        • Проверка серверов — TCP-тесты задержки и HTTP-тесты скорости напрямую между вашим устройством и серверами из подписки.
+        • Проверка доступности сервисов — опциональные HTTP HEAD-запросы к популярным сервисам напрямую с устройства.
+        • Сетевой туннель — используется iOS NetworkExtension и движок sing-box для маршрутизации трафика через выбранный сервер. Управляется полностью на устройстве.
+
+        Ни одно из этих действий не логируется и не передаётся Разработчику.
+        """
+    }
+
+    private var optionalFeedback: String {
+        """
+        Приложение содержит опциональную форму обратной связи. Если вы решите отправить отзыв, введённый текст отправляется на сервер Разработчика. Обратная связь полностью анонимна — никакие персональные идентификаторы, данные об устройстве или IP-адрес не прикрепляются. Использование этой функции не обязательно.
+        """
+    }
+
+    private var dataNotCollected: String {
+        """
+        Разработчик НЕ собирает, НЕ записывает и НЕ хранит:
+
+        • Персональную информацию (имя, email, телефон)
+        • IP-адреса или географическое местоположение
+        • Историю просмотров, DNS-запросы или содержимое трафика
+        • Журналы подключений, длительность сеансов или объём трафика
+        • Идентификаторы устройства (IDFA, IDFV) для отслеживания
+        • Аналитику использования или поведенческие данные
+
+        Приложение не содержит рекламных SDK, аналитических фреймворков или стороннего кода отслеживания.
+        """
+    }
+
+    private var dataStorage: String {
+        """
+        • Конфиденциальные данные защищены iOS Keychain с уровнем kSecAttrAccessibleAfterFirstUnlock.
+        • Некритичные настройки хранятся в изолированном локальном хранилище.
+        • На серверах Разработчика не хранятся данные пользователей.
+        • Удаление Приложения удаляет все локальные данные.
+        """
+    }
+
+    private var thirdPartyServers: String {
+        """
+        Marshall — клиентское приложение. Серверы, к которым вы подключаетесь, определяются предоставленной вами ссылкой подписки. Разработчик не контролирует сторонние серверы и не несёт ответственности за их практики обработки данных. Ознакомьтесь с политикой конфиденциальности вашего провайдера подписки.
+        """
+    }
+
+    private var childrenPrivacy: String {
+        """
+        Приложение не предназначено для детей младше 13 лет. Мы сознательно не собираем персональную информацию детей.
+        """
+    }
+
+    private var userRights: String {
+        """
+        • Удалить все данные Приложения, удалив его с устройства.
+        • Удалить VPN-конфигурации через Настройки iOS.
+        • Сбросить данные подписки через «Сменить подписку».
+        """
+    }
+
+    private var policyChanges: String {
+        """
+        Настоящая Политика может быть обновлена. О существенных изменениях пользователи будут уведомлены через обновление Приложения.
+        """
+    }
+
+    private var contacts: String {
+        """
+        Email: kalininyuraapple@gmail.com
+        """
+    }
+}
