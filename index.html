@@ -112,6 +112,12 @@ img{max-width:100%;display:block}
   50%{transform:translate(-20px,30px) scale(0.95)}
   75%{transform:translate(40px,20px) scale(1.02)}
 }
+@keyframes mobileMenuFlow{
+  0%,100%{transform:translate3d(0,0,0) scale(1);opacity:.55}
+  25%{transform:translate3d(4%,-3%,0) scale(1.06);opacity:.78}
+  50%{transform:translate3d(-3%,4%,0) scale(.98);opacity:.68}
+  75%{transform:translate3d(3%,2%,0) scale(1.04);opacity:.82}
+}
 
 /* ============================================
    PARTICLES
@@ -158,27 +164,45 @@ img{max-width:100%;display:block}
   transition:all .3s;font-family:'Inter',sans-serif;letter-spacing:1px;
 }
 .nav-lang:hover{background:var(--surface-hover);color:var(--text)}
-.nav-mobile{display:none;cursor:pointer;background:none;border:none;padding:8px}
-.nav-mobile span{display:block;width:22px;height:2px;background:var(--text);margin:5px 0;border-radius:2px;transition:all .3s}
+.nav-mobile-right{display:none;align-items:center;gap:10px}
+.nav-mobile-lang{
+  padding:5px 12px;border-radius:7px;font-size:11px;font-weight:600;
+  background:rgba(255,255,255,.05);color:var(--text-dim);
+  border:1px solid rgba(255,255,255,.12);cursor:pointer;
+  transition:all .3s;font-family:'Inter',sans-serif;letter-spacing:1px;
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+}
+.nav-mobile-lang:hover{background:rgba(255,255,255,.08);color:var(--text)}
+.nav-mobile-burger{cursor:pointer;background:none;border:none;padding:8px}
+.nav-mobile-burger span{display:block;width:22px;height:2px;background:var(--text);margin:5px 0;border-radius:2px;transition:all .3s}
 .mobile-menu{
   display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:999;
-  background:rgba(10,10,15,.98);backdrop-filter:blur(20px);
   flex-direction:column;align-items:center;justify-content:center;gap:28px;
+  overflow:hidden;
+}
+.mobile-menu::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(160deg,#0A0A0F 0%,#0f0a1e 30%,#0a0f1a 60%,#0A0A0F 100%);
+  z-index:0;
+}
+.mobile-menu::after{
+  content:'';position:absolute;inset:-18%;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(circle at 18% 22%, rgba(108,92,231,.34), transparent 28%),
+    radial-gradient(circle at 82% 18%, rgba(168,85,247,.26), transparent 24%),
+    radial-gradient(circle at 72% 78%, rgba(0,210,160,.16), transparent 24%),
+    radial-gradient(circle at 28% 84%, rgba(108,92,231,.18), transparent 22%);
+  filter:blur(46px);
+  animation:mobileMenuFlow 14s ease-in-out infinite;
 }
 .mobile-menu.open{display:flex}
+.mobile-menu a,.mobile-menu button{position:relative;z-index:1}
 .mobile-menu a{font-size:20px;font-weight:500;color:var(--text)}
-.mobile-menu-close{position:absolute;top:20px;right:24px;font-size:28px;color:var(--text);background:none;border:none;cursor:pointer}
-.mobile-lang{
-  padding:10px 28px;border-radius:10px;font-size:15px;font-weight:600;
-  background:var(--surface);color:var(--text-dim);
-  border:1px solid var(--border-light);cursor:pointer;
-  font-family:'Inter',sans-serif;letter-spacing:1px;
-  transition:all .3s;
-}
+.mobile-menu-close{position:absolute;top:20px;right:24px;font-size:28px;color:var(--text);background:none;border:none;cursor:pointer;z-index:1}
 
 @media(max-width:768px){
   .nav-links{display:none}
-  .nav-mobile{display:block}
+  .nav-mobile-right{display:flex}
 }
 
 /* ============================================
@@ -334,7 +358,11 @@ img{max-width:100%;display:block}
 .stat-label{font-size:13px;color:var(--text-dim);line-height:1.5;max-width:200px;margin:0 auto}
 
 @media(max-width:900px){.stats-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:500px){.stats-grid{grid-template-columns:1fr;max-width:320px;margin-left:auto;margin-right:auto}}
+@media(max-width:500px){
+  .stats-grid{grid-template-columns:repeat(2,minmax(0,1fr));max-width:none;margin-left:0;margin-right:0;gap:14px}
+  .stat-card{padding:26px 14px}
+  .stat-label{font-size:12px}
+}
 
 /* ============================================
    WHY MARSHALL SECTION
@@ -557,7 +585,11 @@ img{max-width:100%;display:block}
   .footer-inner{grid-template-columns:1fr 1fr;gap:28px}
 }
 @media(max-width:500px){
-  .footer-inner{grid-template-columns:1fr}
+  .footer-inner{grid-template-columns:1fr 1fr;gap:24px 20px;align-items:start}
+  .footer-brand{grid-column:1 / -1}
+  .footer-inner > .footer-col:nth-child(2){grid-column:1;grid-row:2 / span 2}
+  .footer-inner > .footer-col:nth-child(3){grid-column:2;grid-row:2}
+  .footer-inner > .footer-col:nth-child(4){grid-column:2;grid-row:3}
 }
 
 /* ============================================
@@ -598,9 +630,12 @@ img{max-width:100%;display:block}
       <button class="nav-cta" onclick="openModal()" data-en="Download" data-ru="Скачать">Download</button>
       <button class="nav-lang" onclick="toggleLang()" id="langBtn">RU</button>
     </div>
-    <button class="nav-mobile" onclick="toggleMobileMenu()" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
+    <div class="nav-mobile-right">
+      <button class="nav-mobile-lang" onclick="toggleLang()" id="langBtnMobile">RU</button>
+      <button class="nav-mobile-burger" onclick="toggleMobileMenu()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </div>
 </nav>
 
@@ -612,7 +647,6 @@ img{max-width:100%;display:block}
   <a href="#network" onclick="toggleMobileMenu()" data-en="Network" data-ru="Сеть">Network</a>
   <a href="#privacy" onclick="toggleMobileMenu()" data-en="Privacy" data-ru="Приватность">Privacy</a>
   <button class="btn-primary" onclick="toggleMobileMenu();openModal()" data-en="Download App" data-ru="Скачать">Download App</button>
-  <button class="mobile-lang" onclick="toggleLang()" id="langBtnMobile">RU</button>
 </div>
 
 <!-- ==================== HERO ==================== -->
@@ -876,8 +910,10 @@ let currentLang='en';
 window.toggleLang=function(){
   currentLang=currentLang==='en'?'ru':'en';
   const btnLabel=currentLang==='en'?'RU':'EN';
-  document.getElementById('langBtn').textContent=btnLabel;
-  document.getElementById('langBtnMobile').textContent=btnLabel;
+  const langBtn=document.getElementById('langBtn');
+  const langBtnMobile=document.getElementById('langBtnMobile');
+  if(langBtn) langBtn.textContent=btnLabel;
+  if(langBtnMobile) langBtnMobile.textContent=btnLabel;
   document.documentElement.lang=currentLang;
 
   document.querySelectorAll('[data-en][data-ru]').forEach(el=>{
