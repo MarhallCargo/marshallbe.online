@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="Marshall VPN Terms of Use — Terms and conditions for using the Marshall VPN app.">
+<meta name="theme-color" content="#0A0A0F">
+<title>Terms of Use — Marshall VPN</title>
+<link rel="icon" type="image/png" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0A0A0F;--surface:rgba(255,255,255,0.04);--border:rgba(255,255,255,0.06);
+  --border-light:rgba(255,255,255,0.10);--text:#E8E8ED;--text-dim:rgba(255,255,255,0.45);
+  --text-muted:rgba(255,255,255,0.25);--accent:#6C5CE7;--accent-light:#A855F7;
+  --success:#00D2A0;--radius-lg:20px;--radius-md:14px;
+}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,sans-serif;line-height:1.7}
+a{color:var(--accent-light);text-decoration:none;transition:color .3s}
+a:hover{color:#c084fc}
+
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  padding:16px 0;
+  background:rgba(10,10,15,0.85);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:800px;margin:0 auto;padding:0 24px}
+.nav-logo{display:flex;align-items:center;gap:10px}
+.nav-logo img{width:32px;height:32px;border-radius:8px}
+.nav-logo-text{font-size:14px;font-weight:700;letter-spacing:2px;text-transform:uppercase}
+.nav-logo-badge{font-size:9px;font-weight:600;letter-spacing:2px;color:var(--accent-light);background:rgba(108,92,231,.12);padding:3px 8px;border-radius:4px;border:1px solid rgba(108,92,231,.2)}
+.nav-back{font-size:13px;font-weight:500;color:var(--text-dim);display:flex;align-items:center;gap:6px}
+.nav-back:hover{color:var(--text)}
+
+.content{max-width:800px;margin:0 auto;padding:120px 24px 80px}
+
+.page-header{margin-bottom:48px}
+.page-header h1{font-size:clamp(28px,4vw,40px);font-weight:800;letter-spacing:-0.03em;margin-bottom:8px}
+.page-header .accent{color:var(--accent-light)}
+.page-header .meta{font-size:13px;color:var(--text-muted);margin-top:8px}
+
+.section{margin-bottom:40px}
+.section h2{font-size:18px;font-weight:700;margin-bottom:12px;color:var(--text)}
+.section p,.section li{font-size:14px;color:var(--text-dim);line-height:1.8}
+.section ul,.section ol{padding:0;margin-top:8px;list-style:none}
+.section ul li,.section ol li{padding:4px 0 4px 20px;position:relative}
+.section ul li::before,.section ol li::before{content:'';position:absolute;left:0;top:12px;width:6px;height:6px;border-radius:50%;background:var(--accent);opacity:.5}
+
+.highlight-box{
+  padding:20px 24px;border-radius:var(--radius-md);
+  background:rgba(108,92,231,.06);border:1px solid rgba(108,92,231,.15);
+  margin:20px 0;
+}
+.highlight-box p{font-size:14px;color:var(--accent-light);font-weight:500;line-height:1.7}
+
+.footer{
+  padding:32px 0;border-top:1px solid var(--border);
+  max-width:800px;margin:0 auto;padding-left:24px;padding-right:24px;
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;
+  font-size:12px;color:var(--text-muted);
+}
+.footer a{color:var(--text-muted)}
+.footer a:hover{color:var(--text-dim)}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="assets/logo.png" alt="Marshall VPN">
+      <span class="nav-logo-text">Marshall</span>
+      <span class="nav-logo-badge">VPN</span>
+    </a>
+    <a href="index.html" class="nav-back">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Back to Home
+    </a>
+  </div>
+</nav>
+
+<main class="content">
+  <div class="page-header">
+    <h1>Terms of <span class="accent">Use</span></h1>
+    <p class="meta">Last updated: April 8, 2026</p>
+  </div>
+
+  <div class="section">
+    <p>Please read these Terms of Use ("Terms") carefully before using the Marshall VPN application ("App"). By downloading, installing, or using the App, you agree to be bound by these Terms. If you do not agree to these Terms, do not use the App.</p>
+  </div>
+
+  <div class="section">
+    <h2>1. Description of the App</h2>
+    <p>Marshall is a proxy client application for iOS that functions as a network configuration utility. The App allows users to:</p>
+    <ul>
+      <li>Import server configurations via subscription links</li>
+      <li>View and manage a list of proxy servers</li>
+      <li>Test server latency and service availability</li>
+      <li>Establish encrypted network connections using the iOS NetworkExtension framework and the open-source sing-box engine</li>
+    </ul>
+    <div class="highlight-box">
+      <p>Marshall is a client-only application. The Developer does not provide, operate, host, or control any proxy servers. All servers are provided by third-party subscription providers chosen by the user.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>2. Eligibility</h2>
+    <p>You must be at least 13 years of age (or the minimum age required in your jurisdiction) to use the App. By using the App, you represent and warrant that you meet this age requirement.</p>
+  </div>
+
+  <div class="section">
+    <h2>3. Acceptable Use</h2>
+    <p>You agree to use the App only for lawful purposes and in compliance with all applicable local, national, and international laws and regulations. You shall not use the App to:</p>
+    <ul>
+      <li>Engage in any activity that violates applicable laws or regulations in your jurisdiction</li>
+      <li>Transmit malware, viruses, or other harmful code</li>
+      <li>Conduct unauthorized access to networks, systems, or data</li>
+      <li>Engage in fraud, identity theft, or any form of deception</li>
+      <li>Infringe upon the intellectual property rights of others</li>
+      <li>Harass, abuse, or harm other individuals</li>
+      <li>Distribute illegal content of any kind</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>4. Third-Party Servers and Services</h2>
+    <p>The proxy servers you connect to through the App are operated by third parties, not by the Developer. The Developer:</p>
+    <ul>
+      <li>Has no control over, and assumes no responsibility for, the content, privacy policies, or practices of third-party servers</li>
+      <li>Does not endorse, verify, or guarantee the security, reliability, or performance of any third-party server</li>
+      <li>Is not responsible for any data handling, logging, or security practices of third-party server operators</li>
+    </ul>
+    <p style="margin-top:12px">You acknowledge that your use of third-party servers is at your own risk, and you are responsible for reviewing the terms and privacy policies of your subscription provider.</p>
+  </div>
+
+  <div class="section">
+    <h2>5. Intellectual Property</h2>
+    <p>The App, including its design, interface, code, graphics, and branding (excluding open-source components), is the intellectual property of the Developer and is protected by applicable intellectual property laws. You may not:</p>
+    <ul>
+      <li>Copy, modify, distribute, or create derivative works of the App</li>
+      <li>Reverse engineer, decompile, or disassemble the App (except to the extent permitted by applicable law)</li>
+      <li>Use the Marshall name, logo, or branding without prior written consent</li>
+    </ul>
+    <p style="margin-top:12px">The sing-box (Libbox) component is licensed under its own open-source license terms.</p>
+  </div>
+
+  <div class="section">
+    <h2>6. User Responsibility</h2>
+    <p>You are solely responsible for:</p>
+    <ul>
+      <li>The subscription links you import and the servers you connect to</li>
+      <li>Ensuring your use of the App complies with all applicable laws in your jurisdiction</li>
+      <li>Any content you access or transmit through connections established via the App</li>
+      <li>Maintaining the security of your device and subscription credentials</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>7. Disclaimer of Warranties</h2>
+    <p>The App is provided "AS IS" and "AS AVAILABLE" without warranties of any kind, either express or implied, including but not limited to:</p>
+    <ul>
+      <li>Implied warranties of merchantability, fitness for a particular purpose, and non-infringement</li>
+      <li>Warranties regarding the availability, reliability, or performance of the App</li>
+      <li>Warranties that the App will be error-free or uninterrupted</li>
+    </ul>
+    <p style="margin-top:12px">The Developer does not warrant the quality, speed, reliability, or availability of any third-party server accessed through the App.</p>
+  </div>
+
+  <div class="section">
+    <h2>8. Limitation of Liability</h2>
+    <p>To the maximum extent permitted by applicable law, the Developer shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to:</p>
+    <ul>
+      <li>Loss of data, profits, or business opportunities</li>
+      <li>Service interruptions or connection failures</li>
+      <li>Actions taken by third-party server operators</li>
+      <li>Unauthorized access to your data due to third-party server vulnerabilities</li>
+    </ul>
+    <p style="margin-top:12px">In no event shall the Developer's total liability exceed the amount you paid for the App (if any).</p>
+  </div>
+
+  <div class="section">
+    <h2>9. Indemnification</h2>
+    <p>You agree to indemnify, defend, and hold harmless the Developer from any claims, damages, obligations, losses, liabilities, costs, or expenses arising from:</p>
+    <ul>
+      <li>Your use of the App</li>
+      <li>Your violation of these Terms</li>
+      <li>Your violation of any applicable law or regulation</li>
+      <li>Your use of any third-party servers accessed through the App</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>10. App Updates and Modifications</h2>
+    <p>The Developer reserves the right to modify, update, or discontinue the App (or any part of it) at any time without prior notice. The Developer is not liable for any modification, suspension, or discontinuation of the App.</p>
+  </div>
+
+  <div class="section">
+    <h2>11. Termination</h2>
+    <p>These Terms remain in effect until terminated. You may terminate these Terms at any time by uninstalling the App and ceasing all use. The Developer reserves the right to terminate or suspend your access to the App if you violate these Terms.</p>
+  </div>
+
+  <div class="section">
+    <h2>12. Changes to These Terms</h2>
+    <p>The Developer may update these Terms from time to time. Significant changes will be communicated through an app update or notice within the App. Your continued use of the App after changes constitutes acceptance of the revised Terms.</p>
+  </div>
+
+  <div class="section">
+    <h2>13. Governing Law</h2>
+    <p>These Terms shall be governed by and construed in accordance with applicable law. Any disputes arising from these Terms or your use of the App shall be resolved through good-faith negotiation or, if necessary, through the competent courts of the Developer's jurisdiction.</p>
+  </div>
+
+  <div class="section">
+    <h2>14. Severability</h2>
+    <p>If any provision of these Terms is found to be unenforceable or invalid, that provision shall be limited or eliminated to the minimum extent necessary, and the remaining provisions shall remain in full force and effect.</p>
+  </div>
+
+  <div class="section">
+    <h2>15. Contact</h2>
+    <p>For questions about these Terms of Use:</p>
+    <p style="margin-top:8px"><strong>Email:</strong> <a href="mailto:kalininyuraapple@gmail.com">kalininyuraapple@gmail.com</a></p>
+  </div>
+</main>
+
+<div class="footer">
+  <span>&copy; 2026 Marshall VPN. All rights reserved.</span>
+  <div>
+    <a href="privacy-policy.html">Privacy</a> &nbsp;&middot;&nbsp;
+    <a href="terms-of-use.html">Terms</a> &nbsp;&middot;&nbsp;
+    <a href="index.html">Home</a>
+  </div>
+</div>
+
+</body>
+</html>
