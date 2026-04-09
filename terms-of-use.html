@@ -13,7 +13,7 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#0A0A0F;--surface:rgba(255,255,255,0.04);--border:rgba(255,255,255,0.06);
+  --bg:#0A0A0F;--bg-alt:#0D0D16;--surface:rgba(255,255,255,0.04);--border:rgba(255,255,255,0.06);
   --border-light:rgba(255,255,255,0.10);--text:#E8E8ED;--text-dim:rgba(255,255,255,0.45);
   --text-muted:rgba(255,255,255,0.25);--accent:#6C5CE7;--accent-light:#A855F7;
   --success:#00D2A0;--radius-lg:20px;--radius-md:14px;
@@ -25,7 +25,7 @@ a:hover{color:#c084fc}
 
 .nav{
   position:fixed;top:0;left:0;right:0;z-index:1000;
-  padding:16px 0;
+  padding:14px 0;
   background:rgba(10,10,15,0.85);
   backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
   border-bottom:1px solid rgba(255,255,255,0.06);
@@ -34,39 +34,43 @@ a:hover{color:#c084fc}
 .nav-logo{display:flex;align-items:center;gap:10px}
 .nav-logo img{width:32px;height:32px;border-radius:8px}
 .nav-logo-text{font-size:14px;font-weight:700;letter-spacing:2px;text-transform:uppercase}
-.nav-logo-badge{font-size:9px;font-weight:600;letter-spacing:2px;color:var(--accent-light);background:rgba(108,92,231,.12);padding:3px 8px;border-radius:4px;border:1px solid rgba(108,92,231,.2)}
+.nav-right{display:flex;align-items:center;gap:16px}
 .nav-back{font-size:13px;font-weight:500;color:var(--text-dim);display:flex;align-items:center;gap:6px}
 .nav-back:hover{color:var(--text)}
+.nav-lang{
+  padding:5px 12px;border-radius:7px;font-size:11px;font-weight:600;
+  background:var(--surface);color:var(--text-dim);
+  border:1px solid var(--border-light);cursor:pointer;
+  transition:all .3s;font-family:'Inter',sans-serif;letter-spacing:1px;
+}
+.nav-lang:hover{background:rgba(255,255,255,0.07);color:var(--text)}
 
-.content{max-width:800px;margin:0 auto;padding:120px 24px 80px}
+.content{max-width:800px;margin:0 auto;padding:100px 24px 60px}
 
-.page-header{margin-bottom:48px}
+.page-header{margin-bottom:40px}
 .page-header h1{font-size:clamp(28px,4vw,40px);font-weight:800;letter-spacing:-0.03em;margin-bottom:8px}
 .page-header .accent{color:var(--accent-light)}
 .page-header .meta{font-size:13px;color:var(--text-muted);margin-top:8px}
 
-.section{margin-bottom:40px}
-.section h2{font-size:18px;font-weight:700;margin-bottom:12px;color:var(--text)}
+.section{margin-bottom:36px}
+.section h2{font-size:17px;font-weight:700;margin-bottom:10px;color:var(--text)}
 .section p,.section li{font-size:14px;color:var(--text-dim);line-height:1.8}
 .section ul,.section ol{padding:0;margin-top:8px;list-style:none}
 .section ul li,.section ol li{padding:4px 0 4px 20px;position:relative}
 .section ul li::before,.section ol li::before{content:'';position:absolute;left:0;top:12px;width:6px;height:6px;border-radius:50%;background:var(--accent);opacity:.5}
 
 .highlight-box{
-  padding:20px 24px;border-radius:var(--radius-md);
+  padding:18px 22px;border-radius:var(--radius-md);
   background:rgba(108,92,231,.06);border:1px solid rgba(108,92,231,.15);
-  margin:20px 0;
+  margin:16px 0;
 }
 .highlight-box p{font-size:14px;color:var(--accent-light);font-weight:500;line-height:1.7}
 
 .footer{
-  padding:32px 0;border-top:1px solid var(--border);
+  padding:24px 0;border-top:1px solid var(--border);
   max-width:800px;margin:0 auto;padding-left:24px;padding-right:24px;
-  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;
-  font-size:12px;color:var(--text-muted);
+  font-size:11px;color:var(--text-muted);line-height:1.6;
 }
-.footer a{color:var(--text-muted)}
-.footer a:hover{color:var(--text-dim)}
 </style>
 </head>
 <body>
@@ -76,165 +80,177 @@ a:hover{color:#c084fc}
     <a href="index.html" class="nav-logo">
       <img src="assets/logo.png" alt="Marshall VPN">
       <span class="nav-logo-text">Marshall</span>
-      <span class="nav-logo-badge">VPN</span>
     </a>
-    <a href="index.html" class="nav-back">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-      Back to Home
-    </a>
+    <div class="nav-right">
+      <a href="index.html" class="nav-back">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        <span data-en="Back to Home" data-ru="На главную">Back to Home</span>
+      </a>
+      <button class="nav-lang" onclick="toggleLang()" id="langBtn">RU</button>
+    </div>
   </div>
 </nav>
 
 <main class="content">
   <div class="page-header">
-    <h1>Terms of <span class="accent">Use</span></h1>
-    <p class="meta">Last updated: April 8, 2026</p>
+    <h1 data-en="Terms of <span class='accent'>Use</span>" data-ru="Условия <span class='accent'>использования</span>">Terms of <span class="accent">Use</span></h1>
+    <p class="meta" data-en="Last updated: April 8, 2026" data-ru="Последнее обновление: 8 апреля 2026">Last updated: April 8, 2026</p>
   </div>
 
   <div class="section">
-    <p>Please read these Terms of Use ("Terms") carefully before using the Marshall VPN application ("App"). By downloading, installing, or using the App, you agree to be bound by these Terms. If you do not agree to these Terms, do not use the App.</p>
+    <p data-en="Please read these Terms of Use (&quot;Terms&quot;) carefully before using the Marshall VPN application (&quot;App&quot;). By downloading, installing, or using the App, you agree to be bound by these Terms. If you do not agree to these Terms, do not use the App." data-ru="Пожалуйста, внимательно прочитайте настоящие Условия использования (&laquo;Условия&raquo;) перед использованием приложения Marshall VPN (&laquo;Приложение&raquo;). Скачивая, устанавливая или используя Приложение, вы соглашаетесь с данными Условиями. Если вы не согласны — не используйте Приложение.">Please read these Terms of Use ("Terms") carefully before using the Marshall VPN application ("App"). By downloading, installing, or using the App, you agree to be bound by these Terms. If you do not agree to these Terms, do not use the App.</p>
   </div>
 
   <div class="section">
-    <h2>1. Description of the App</h2>
-    <p>Marshall is a proxy client application for iOS that functions as a network configuration utility. The App allows users to:</p>
+    <h2 data-en="1. Description of the App" data-ru="1. Описание приложения">1. Description of the App</h2>
+    <p data-en="Marshall is a proxy client application for iOS that functions as a network configuration utility. The App allows users to:" data-ru="Marshall — это прокси-клиент для iOS, выполняющий функции сетевой утилиты. Приложение позволяет:">Marshall is a proxy client application for iOS that functions as a network configuration utility. The App allows users to:</p>
     <ul>
-      <li>Import server configurations via subscription links</li>
-      <li>View and manage a list of proxy servers</li>
-      <li>Test server latency and service availability</li>
-      <li>Establish encrypted network connections using the iOS NetworkExtension framework and the open-source sing-box engine</li>
+      <li data-en="Import server configurations via subscription links" data-ru="Импортировать конфигурации серверов через ссылки на подписку">Import server configurations via subscription links</li>
+      <li data-en="View and manage a list of proxy servers" data-ru="Просматривать и управлять списком прокси-серверов">View and manage a list of proxy servers</li>
+      <li data-en="Test server latency and service availability" data-ru="Тестировать задержку серверов и доступность сервисов">Test server latency and service availability</li>
+      <li data-en="Establish encrypted network connections using the iOS NetworkExtension framework and the open-source sing-box engine" data-ru="Устанавливать зашифрованные сетевые соединения с использованием iOS NetworkExtension и открытого движка sing-box">Establish encrypted network connections using the iOS NetworkExtension framework and the open-source sing-box engine</li>
     </ul>
     <div class="highlight-box">
-      <p>Marshall is a client-only application. The Developer does not provide, operate, host, or control any proxy servers. All servers are provided by third-party subscription providers chosen by the user.</p>
+      <p data-en="Marshall is a client-only application. The Developer does not provide, operate, host, or control any proxy servers. All servers are provided by third-party subscription providers chosen by the user." data-ru="Marshall — это исключительно клиентское приложение. Разработчик не предоставляет, не управляет и не контролирует прокси-серверы. Все серверы предоставляются сторонними провайдерами, выбранными пользователем.">Marshall is a client-only application. The Developer does not provide, operate, host, or control any proxy servers. All servers are provided by third-party subscription providers chosen by the user.</p>
     </div>
   </div>
 
   <div class="section">
-    <h2>2. Eligibility</h2>
-    <p>You must be at least 13 years of age (or the minimum age required in your jurisdiction) to use the App. By using the App, you represent and warrant that you meet this age requirement.</p>
+    <h2 data-en="2. Eligibility" data-ru="2. Право использования">2. Eligibility</h2>
+    <p data-en="You must be at least 13 years of age (or the minimum age required in your jurisdiction) to use the App. By using the App, you represent and warrant that you meet this age requirement." data-ru="Для использования Приложения вам должно быть не менее 13 лет (или минимальный возраст, установленный в вашей юрисдикции). Используя Приложение, вы подтверждаете соответствие этому требованию.">You must be at least 13 years of age (or the minimum age required in your jurisdiction) to use the App. By using the App, you represent and warrant that you meet this age requirement.</p>
   </div>
 
   <div class="section">
-    <h2>3. Acceptable Use</h2>
-    <p>You agree to use the App only for lawful purposes and in compliance with all applicable local, national, and international laws and regulations. You shall not use the App to:</p>
+    <h2 data-en="3. Acceptable Use" data-ru="3. Допустимое использование">3. Acceptable Use</h2>
+    <p data-en="You agree to use the App only for lawful purposes and in compliance with all applicable local, national, and international laws and regulations. You shall not use the App to:" data-ru="Вы обязуетесь использовать Приложение только в законных целях и в соответствии со всеми применимыми законами. Запрещается использовать Приложение для:">You agree to use the App only for lawful purposes and in compliance with all applicable local, national, and international laws and regulations. You shall not use the App to:</p>
     <ul>
-      <li>Engage in any activity that violates applicable laws or regulations in your jurisdiction</li>
-      <li>Transmit malware, viruses, or other harmful code</li>
-      <li>Conduct unauthorized access to networks, systems, or data</li>
-      <li>Engage in fraud, identity theft, or any form of deception</li>
-      <li>Infringe upon the intellectual property rights of others</li>
-      <li>Harass, abuse, or harm other individuals</li>
-      <li>Distribute illegal content of any kind</li>
+      <li data-en="Engage in any activity that violates applicable laws or regulations in your jurisdiction" data-ru="Осуществления деятельности, нарушающей применимые законы вашей юрисдикции">Engage in any activity that violates applicable laws or regulations in your jurisdiction</li>
+      <li data-en="Transmit malware, viruses, or other harmful code" data-ru="Передачи вредоносного ПО, вирусов или иного вредоносного кода">Transmit malware, viruses, or other harmful code</li>
+      <li data-en="Conduct unauthorized access to networks, systems, or data" data-ru="Несанкционированного доступа к сетям, системам или данным">Conduct unauthorized access to networks, systems, or data</li>
+      <li data-en="Engage in fraud, identity theft, or any form of deception" data-ru="Мошенничества, кражи личных данных или иных форм обмана">Engage in fraud, identity theft, or any form of deception</li>
+      <li data-en="Infringe upon the intellectual property rights of others" data-ru="Нарушения прав интеллектуальной собственности третьих лиц">Infringe upon the intellectual property rights of others</li>
+      <li data-en="Harass, abuse, or harm other individuals" data-ru="Преследования, оскорбления или причинения вреда другим лицам">Harass, abuse, or harm other individuals</li>
+      <li data-en="Distribute illegal content of any kind" data-ru="Распространения нелегального контента любого рода">Distribute illegal content of any kind</li>
     </ul>
   </div>
 
   <div class="section">
-    <h2>4. Third-Party Servers and Services</h2>
-    <p>The proxy servers you connect to through the App are operated by third parties, not by the Developer. The Developer:</p>
+    <h2 data-en="4. Third-Party Servers and Services" data-ru="4. Сторонние серверы и сервисы">4. Third-Party Servers and Services</h2>
+    <p data-en="The proxy servers you connect to through the App are operated by third parties, not by the Developer. The Developer:" data-ru="Прокси-серверы, к которым вы подключаетесь через Приложение, управляются третьими лицами, а не Разработчиком. Разработчик:">The proxy servers you connect to through the App are operated by third parties, not by the Developer. The Developer:</p>
     <ul>
-      <li>Has no control over, and assumes no responsibility for, the content, privacy policies, or practices of third-party servers</li>
-      <li>Does not endorse, verify, or guarantee the security, reliability, or performance of any third-party server</li>
-      <li>Is not responsible for any data handling, logging, or security practices of third-party server operators</li>
+      <li data-en="Has no control over, and assumes no responsibility for, the content, privacy policies, or practices of third-party servers" data-ru="Не контролирует и не несёт ответственности за содержание, политики конфиденциальности или практики сторонних серверов">Has no control over, and assumes no responsibility for, the content, privacy policies, or practices of third-party servers</li>
+      <li data-en="Does not endorse, verify, or guarantee the security, reliability, or performance of any third-party server" data-ru="Не одобряет, не проверяет и не гарантирует безопасность, надёжность или производительность сторонних серверов">Does not endorse, verify, or guarantee the security, reliability, or performance of any third-party server</li>
+      <li data-en="Is not responsible for any data handling, logging, or security practices of third-party server operators" data-ru="Не несёт ответственности за обработку данных, ведение логов или практики безопасности операторов сторонних серверов">Is not responsible for any data handling, logging, or security practices of third-party server operators</li>
     </ul>
-    <p style="margin-top:12px">You acknowledge that your use of third-party servers is at your own risk, and you are responsible for reviewing the terms and privacy policies of your subscription provider.</p>
+    <p style="margin-top:12px" data-en="You acknowledge that your use of third-party servers is at your own risk, and you are responsible for reviewing the terms and privacy policies of your subscription provider." data-ru="Вы признаёте, что использование сторонних серверов осуществляется на ваш собственный риск, и вы обязаны ознакомиться с условиями и политикой конфиденциальности вашего провайдера.">You acknowledge that your use of third-party servers is at your own risk, and you are responsible for reviewing the terms and privacy policies of your subscription provider.</p>
   </div>
 
   <div class="section">
-    <h2>5. Intellectual Property</h2>
-    <p>The App, including its design, interface, code, graphics, and branding (excluding open-source components), is the intellectual property of the Developer and is protected by applicable intellectual property laws. You may not:</p>
+    <h2 data-en="5. Intellectual Property" data-ru="5. Интеллектуальная собственность">5. Intellectual Property</h2>
+    <p data-en="The App, including its design, interface, code, graphics, and branding (excluding open-source components), is the intellectual property of the Developer and is protected by applicable intellectual property laws. You may not:" data-ru="Приложение, включая дизайн, интерфейс, код, графику и брендинг (за исключением компонентов с открытым кодом), является интеллектуальной собственностью Разработчика. Запрещается:">The App, including its design, interface, code, graphics, and branding (excluding open-source components), is the intellectual property of the Developer and is protected by applicable intellectual property laws. You may not:</p>
     <ul>
-      <li>Copy, modify, distribute, or create derivative works of the App</li>
-      <li>Reverse engineer, decompile, or disassemble the App (except to the extent permitted by applicable law)</li>
-      <li>Use the Marshall name, logo, or branding without prior written consent</li>
+      <li data-en="Copy, modify, distribute, or create derivative works of the App" data-ru="Копировать, изменять, распространять или создавать производные работы на основе Приложения">Copy, modify, distribute, or create derivative works of the App</li>
+      <li data-en="Reverse engineer, decompile, or disassemble the App (except to the extent permitted by applicable law)" data-ru="Осуществлять обратную разработку, декомпиляцию или дизассемблирование Приложения (кроме случаев, разрешённых законом)">Reverse engineer, decompile, or disassemble the App (except to the extent permitted by applicable law)</li>
+      <li data-en="Use the Marshall name, logo, or branding without prior written consent" data-ru="Использовать название Marshall, логотип или брендинг без предварительного письменного согласия">Use the Marshall name, logo, or branding without prior written consent</li>
     </ul>
-    <p style="margin-top:12px">The sing-box (Libbox) component is licensed under its own open-source license terms.</p>
+    <p style="margin-top:12px" data-en="The sing-box (Libbox) component is licensed under its own open-source license terms." data-ru="Компонент sing-box (Libbox) распространяется под собственной лицензией с открытым кодом.">The sing-box (Libbox) component is licensed under its own open-source license terms.</p>
   </div>
 
   <div class="section">
-    <h2>6. User Responsibility</h2>
-    <p>You are solely responsible for:</p>
+    <h2 data-en="6. User Responsibility" data-ru="6. Ответственность пользователя">6. User Responsibility</h2>
+    <p data-en="You are solely responsible for:" data-ru="Вы несёте полную ответственность за:">You are solely responsible for:</p>
     <ul>
-      <li>The subscription links you import and the servers you connect to</li>
-      <li>Ensuring your use of the App complies with all applicable laws in your jurisdiction</li>
-      <li>Any content you access or transmit through connections established via the App</li>
-      <li>Maintaining the security of your device and subscription credentials</li>
-    </ul>
-  </div>
-
-  <div class="section">
-    <h2>7. Disclaimer of Warranties</h2>
-    <p>The App is provided "AS IS" and "AS AVAILABLE" without warranties of any kind, either express or implied, including but not limited to:</p>
-    <ul>
-      <li>Implied warranties of merchantability, fitness for a particular purpose, and non-infringement</li>
-      <li>Warranties regarding the availability, reliability, or performance of the App</li>
-      <li>Warranties that the App will be error-free or uninterrupted</li>
-    </ul>
-    <p style="margin-top:12px">The Developer does not warrant the quality, speed, reliability, or availability of any third-party server accessed through the App.</p>
-  </div>
-
-  <div class="section">
-    <h2>8. Limitation of Liability</h2>
-    <p>To the maximum extent permitted by applicable law, the Developer shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to:</p>
-    <ul>
-      <li>Loss of data, profits, or business opportunities</li>
-      <li>Service interruptions or connection failures</li>
-      <li>Actions taken by third-party server operators</li>
-      <li>Unauthorized access to your data due to third-party server vulnerabilities</li>
-    </ul>
-    <p style="margin-top:12px">In no event shall the Developer's total liability exceed the amount you paid for the App (if any).</p>
-  </div>
-
-  <div class="section">
-    <h2>9. Indemnification</h2>
-    <p>You agree to indemnify, defend, and hold harmless the Developer from any claims, damages, obligations, losses, liabilities, costs, or expenses arising from:</p>
-    <ul>
-      <li>Your use of the App</li>
-      <li>Your violation of these Terms</li>
-      <li>Your violation of any applicable law or regulation</li>
-      <li>Your use of any third-party servers accessed through the App</li>
+      <li data-en="The subscription links you import and the servers you connect to" data-ru="Ссылки на подписки, которые вы импортируете, и серверы, к которым подключаетесь">The subscription links you import and the servers you connect to</li>
+      <li data-en="Ensuring your use of the App complies with all applicable laws in your jurisdiction" data-ru="Соблюдение всех применимых законов вашей юрисдикции при использовании Приложения">Ensuring your use of the App complies with all applicable laws in your jurisdiction</li>
+      <li data-en="Any content you access or transmit through connections established via the App" data-ru="Любой контент, к которому вы получаете доступ или передаёте через соединения Приложения">Any content you access or transmit through connections established via the App</li>
+      <li data-en="Maintaining the security of your device and subscription credentials" data-ru="Поддержание безопасности вашего устройства и учётных данных подписки">Maintaining the security of your device and subscription credentials</li>
     </ul>
   </div>
 
   <div class="section">
-    <h2>10. App Updates and Modifications</h2>
-    <p>The Developer reserves the right to modify, update, or discontinue the App (or any part of it) at any time without prior notice. The Developer is not liable for any modification, suspension, or discontinuation of the App.</p>
+    <h2 data-en="7. Disclaimer of Warranties" data-ru="7. Отказ от гарантий">7. Disclaimer of Warranties</h2>
+    <p data-en="The App is provided &quot;AS IS&quot; and &quot;AS AVAILABLE&quot; without warranties of any kind, either express or implied, including but not limited to:" data-ru="Приложение предоставляется &laquo;КАК ЕСТЬ&raquo; и &laquo;ПО МЕРЕ ДОСТУПНОСТИ&raquo; без каких-либо гарантий, явных или подразумеваемых, включая, но не ограничиваясь:">The App is provided "AS IS" and "AS AVAILABLE" without warranties of any kind, either express or implied, including but not limited to:</p>
+    <ul>
+      <li data-en="Implied warranties of merchantability, fitness for a particular purpose, and non-infringement" data-ru="Подразумеваемые гарантии товарной пригодности, соответствия определённой цели и ненарушения прав">Implied warranties of merchantability, fitness for a particular purpose, and non-infringement</li>
+      <li data-en="Warranties regarding the availability, reliability, or performance of the App" data-ru="Гарантии доступности, надёжности или производительности Приложения">Warranties regarding the availability, reliability, or performance of the App</li>
+      <li data-en="Warranties that the App will be error-free or uninterrupted" data-ru="Гарантии бесперебойной и безошибочной работы Приложения">Warranties that the App will be error-free or uninterrupted</li>
+    </ul>
+    <p style="margin-top:12px" data-en="The Developer does not warrant the quality, speed, reliability, or availability of any third-party server accessed through the App." data-ru="Разработчик не гарантирует качество, скорость, надёжность или доступность сторонних серверов, доступных через Приложение.">The Developer does not warrant the quality, speed, reliability, or availability of any third-party server accessed through the App.</p>
   </div>
 
   <div class="section">
-    <h2>11. Termination</h2>
-    <p>These Terms remain in effect until terminated. You may terminate these Terms at any time by uninstalling the App and ceasing all use. The Developer reserves the right to terminate or suspend your access to the App if you violate these Terms.</p>
+    <h2 data-en="8. Limitation of Liability" data-ru="8. Ограничение ответственности">8. Limitation of Liability</h2>
+    <p data-en="To the maximum extent permitted by applicable law, the Developer shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to:" data-ru="В максимальной степени, допустимой законом, Разработчик не несёт ответственности за косвенные, случайные, особые, последующие или штрафные убытки, включая:">To the maximum extent permitted by applicable law, the Developer shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to:</p>
+    <ul>
+      <li data-en="Loss of data, profits, or business opportunities" data-ru="Потерю данных, прибыли или деловых возможностей">Loss of data, profits, or business opportunities</li>
+      <li data-en="Service interruptions or connection failures" data-ru="Перебои в обслуживании или сбои соединения">Service interruptions or connection failures</li>
+      <li data-en="Actions taken by third-party server operators" data-ru="Действия операторов сторонних серверов">Actions taken by third-party server operators</li>
+      <li data-en="Unauthorized access to your data due to third-party server vulnerabilities" data-ru="Несанкционированный доступ к данным из-за уязвимостей сторонних серверов">Unauthorized access to your data due to third-party server vulnerabilities</li>
+    </ul>
+    <p style="margin-top:12px" data-en="In no event shall the Developer's total liability exceed the amount you paid for the App (if any)." data-ru="Совокупная ответственность Разработчика ни при каких обстоятельствах не превышает сумму, уплаченную вами за Приложение (если таковая имеется).">In no event shall the Developer's total liability exceed the amount you paid for the App (if any).</p>
   </div>
 
   <div class="section">
-    <h2>12. Changes to These Terms</h2>
-    <p>The Developer may update these Terms from time to time. Significant changes will be communicated through an app update or notice within the App. Your continued use of the App after changes constitutes acceptance of the revised Terms.</p>
+    <h2 data-en="9. Indemnification" data-ru="9. Возмещение убытков">9. Indemnification</h2>
+    <p data-en="You agree to indemnify, defend, and hold harmless the Developer from any claims, damages, obligations, losses, liabilities, costs, or expenses arising from:" data-ru="Вы обязуетесь возместить и оградить Разработчика от любых претензий, убытков, обязательств, расходов, возникающих в связи с:">You agree to indemnify, defend, and hold harmless the Developer from any claims, damages, obligations, losses, liabilities, costs, or expenses arising from:</p>
+    <ul>
+      <li data-en="Your use of the App" data-ru="Вашим использованием Приложения">Your use of the App</li>
+      <li data-en="Your violation of these Terms" data-ru="Нарушением вами настоящих Условий">Your violation of these Terms</li>
+      <li data-en="Your violation of any applicable law or regulation" data-ru="Нарушением вами применимых законов или нормативных актов">Your violation of any applicable law or regulation</li>
+      <li data-en="Your use of any third-party servers accessed through the App" data-ru="Использованием вами сторонних серверов через Приложение">Your use of any third-party servers accessed through the App</li>
+    </ul>
   </div>
 
   <div class="section">
-    <h2>13. Governing Law</h2>
-    <p>These Terms shall be governed by and construed in accordance with applicable law. Any disputes arising from these Terms or your use of the App shall be resolved through good-faith negotiation or, if necessary, through the competent courts of the Developer's jurisdiction.</p>
+    <h2 data-en="10. App Updates and Modifications" data-ru="10. Обновления и изменения">10. App Updates and Modifications</h2>
+    <p data-en="The Developer reserves the right to modify, update, or discontinue the App (or any part of it) at any time without prior notice. The Developer is not liable for any modification, suspension, or discontinuation of the App." data-ru="Разработчик оставляет за собой право изменять, обновлять или прекращать работу Приложения (или любой его части) в любое время без предварительного уведомления.">The Developer reserves the right to modify, update, or discontinue the App (or any part of it) at any time without prior notice. The Developer is not liable for any modification, suspension, or discontinuation of the App.</p>
   </div>
 
   <div class="section">
-    <h2>14. Severability</h2>
-    <p>If any provision of these Terms is found to be unenforceable or invalid, that provision shall be limited or eliminated to the minimum extent necessary, and the remaining provisions shall remain in full force and effect.</p>
+    <h2 data-en="11. Termination" data-ru="11. Прекращение действия">11. Termination</h2>
+    <p data-en="These Terms remain in effect until terminated. You may terminate these Terms at any time by uninstalling the App and ceasing all use. The Developer reserves the right to terminate or suspend your access to the App if you violate these Terms." data-ru="Настоящие Условия действуют до их прекращения. Вы можете прекратить действие Условий в любое время, удалив Приложение. Разработчик оставляет за собой право прекратить ваш доступ при нарушении Условий.">These Terms remain in effect until terminated. You may terminate these Terms at any time by uninstalling the App and ceasing all use. The Developer reserves the right to terminate or suspend your access to the App if you violate these Terms.</p>
   </div>
 
   <div class="section">
-    <h2>15. Contact</h2>
-    <p>For questions about these Terms of Use:</p>
+    <h2 data-en="12. Changes to These Terms" data-ru="12. Изменение Условий">12. Changes to These Terms</h2>
+    <p data-en="The Developer may update these Terms from time to time. Significant changes will be communicated through an app update or notice within the App. Your continued use of the App after changes constitutes acceptance of the revised Terms." data-ru="Разработчик может обновлять Условия время от времени. О существенных изменениях будет сообщено через обновление Приложения. Продолжение использования означает принятие обновлённых Условий.">The Developer may update these Terms from time to time. Significant changes will be communicated through an app update or notice within the App. Your continued use of the App after changes constitutes acceptance of the revised Terms.</p>
+  </div>
+
+  <div class="section">
+    <h2 data-en="13. Governing Law" data-ru="13. Применимое право">13. Governing Law</h2>
+    <p data-en="These Terms shall be governed by and construed in accordance with applicable law. Any disputes arising from these Terms or your use of the App shall be resolved through good-faith negotiation or, if necessary, through the competent courts of the Developer's jurisdiction." data-ru="Настоящие Условия регулируются и толкуются в соответствии с применимым правом. Споры разрешаются путём добросовестных переговоров или, при необходимости, в компетентных судах юрисдикции Разработчика.">These Terms shall be governed by and construed in accordance with applicable law. Any disputes arising from these Terms or your use of the App shall be resolved through good-faith negotiation or, if necessary, through the competent courts of the Developer's jurisdiction.</p>
+  </div>
+
+  <div class="section">
+    <h2 data-en="14. Severability" data-ru="14. Делимость положений">14. Severability</h2>
+    <p data-en="If any provision of these Terms is found to be unenforceable or invalid, that provision shall be limited or eliminated to the minimum extent necessary, and the remaining provisions shall remain in full force and effect." data-ru="Если какое-либо положение настоящих Условий будет признано недействительным, оно ограничивается или исключается в минимально необходимой степени, а остальные положения сохраняют полную силу.">If any provision of these Terms is found to be unenforceable or invalid, that provision shall be limited or eliminated to the minimum extent necessary, and the remaining provisions shall remain in full force and effect.</p>
+  </div>
+
+  <div class="section">
+    <h2 data-en="15. Contact" data-ru="15. Контакты">15. Contact</h2>
+    <p data-en="For questions about these Terms of Use:" data-ru="По вопросам об Условиях использования:">For questions about these Terms of Use:</p>
     <p style="margin-top:8px"><strong>Email:</strong> <a href="mailto:kalininyuraapple@gmail.com">kalininyuraapple@gmail.com</a></p>
   </div>
 </main>
 
 <div class="footer">
-  <span>&copy; 2026 Marshall VPN. All rights reserved.</span>
-  <div>
-    <a href="privacy-policy.html">Privacy</a> &nbsp;&middot;&nbsp;
-    <a href="terms-of-use.html">Terms</a> &nbsp;&middot;&nbsp;
-    <a href="index.html">Home</a>
-  </div>
+  &copy; 2026 Marshall Relay Ltd. All rights reserved. Unit 2A, 17/F, Glenealy Tower, No.1 Glenealy Central, Hong Kong S.A.R
 </div>
 
+<script>
+(function(){
+'use strict';
+let currentLang='en';
+window.toggleLang=function(){
+  currentLang=currentLang==='en'?'ru':'en';
+  document.getElementById('langBtn').textContent=currentLang==='en'?'RU':'EN';
+  document.documentElement.lang=currentLang;
+  document.querySelectorAll('[data-en][data-ru]').forEach(el=>{
+    const text=el.getAttribute('data-'+currentLang);
+    if(text!==null) el.innerHTML=text;
+  });
+};
+})();
+</script>
 </body>
 </html>
