@@ -109,7 +109,7 @@ img{max-width:100%;display:block}
 .phone-frame{position:relative;border-radius:36px;overflow:hidden;background:#111;border:2px solid rgba(255,255,255,.08);box-shadow:0 0 0 1px rgba(255,255,255,.03),0 40px 80px rgba(0,0,0,.6),0 0 120px rgba(108,92,231,.08)}
 .phone-frame img{width:100%;display:block}
 .phone-glow{position:absolute;bottom:-40px;left:50%;transform:translateX(-50%);width:200px;height:80px;background:radial-gradient(ellipse,rgba(108,92,231,.2),transparent 70%);filter:blur(20px);pointer-events:none}
-@media(max-width:900px){.hero-inner{grid-template-columns:1fr;text-align:center}.hero-content{order:1}.hero-visual{order:0}.hero p{margin-left:auto;margin-right:auto}.hero-actions{justify-content:center}.phone-mockup{width:220px}}
+@media(max-width:900px){.hero-inner{grid-template-columns:1fr;text-align:center}.hero-content{order:1}.hero-visual{order:0;display:none}.hero p{margin-left:auto;margin-right:auto}.hero-actions{justify-content:center}.phone-mockup{width:220px}}
 
 /* Section common */
 .section{position:relative;z-index:2;padding:80px 0}
@@ -128,21 +128,29 @@ img{max-width:100%;display:block}
 .benefit-icon-green{background:rgba(0,210,160,.1);color:var(--success)}
 .benefit-icon-blue{background:rgba(56,189,248,.1);color:#38bdf8}
 .benefit-icon-amber{background:rgba(251,191,36,.1);color:#fbbf24}
-.benefit-number{font-size:clamp(28px,3vw,36px);font-weight:800;letter-spacing:-.03em;margin-bottom:4px}
-.benefit-label{font-size:13px;color:var(--text-dim);line-height:1.5}
-@media(max-width:900px){.benefits-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:500px){.benefits-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.benefit-card{padding:24px 14px}}
+.benefit-number{font-size:clamp(22px,2.8vw,32px);font-weight:800;letter-spacing:-.03em;margin-bottom:4px}
+.benefit-label{font-size:12px;color:var(--text-dim);line-height:1.45}
+@media(max-width:900px){.benefits-grid{grid-template-columns:repeat(2,1fr);gap:12px;margin-top:36px}.benefit-card{padding:22px 14px}.benefit-icon{width:48px;height:48px;border-radius:14px;margin-bottom:12px;font-size:20px}.benefit-number{font-size:clamp(18px,4vw,26px)}.benefit-label{font-size:11px}}
+@media(max-width:500px){.benefit-card{padding:18px 12px}.benefit-label{font-size:10px;line-height:1.35}}
 
-/* How it works */
-.steps-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;margin-top:48px}
-.step-card{padding:32px 24px;border-radius:var(--radius-lg);background:var(--surface);border:1px solid var(--border);text-align:center;transition:all .4s;position:relative}
-.step-card:hover{border-color:var(--border-light);transform:translateY(-3px);box-shadow:0 16px 48px rgba(0,0,0,.3)}
-.step-num{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:18px;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent-light));color:#fff}
-.step-card h3{font-size:17px;font-weight:700;margin-bottom:8px}
-.step-card p{font-size:13px;color:var(--text-dim);line-height:1.6}
-.step-arrow{display:none;position:absolute;top:50%;right:-16px;color:var(--text-muted);font-size:20px}
-@media(min-width:901px){.step-arrow{display:block}}
-@media(max-width:900px){.steps-grid{grid-template-columns:1fr;max-width:400px;margin-left:auto;margin-right:auto}}
+/* Stats (online security) — distinct from benefit tiles */
+.stats-section{position:relative;z-index:2;padding:70px 0;background:linear-gradient(180deg,transparent,rgba(108,92,231,.04),transparent)}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:48px}
+.stat-card{
+  position:relative;text-align:left;padding:26px 20px 28px 22px;border-radius:14px;
+  background:rgba(8,10,18,.72);border:1px solid rgba(255,255,255,.07);
+  border-left:4px solid rgba(100,120,180,.35);transition:all .35s;box-shadow:inset 0 1px 0 rgba(255,255,255,.04)
+}
+.stats-grid .stat-card:nth-child(1){border-left-color:rgba(168,85,247,.55)}
+.stats-grid .stat-card:nth-child(2){border-left-color:rgba(108,92,231,.55)}
+.stats-grid .stat-card:nth-child(3){border-left-color:rgba(0,210,160,.45)}
+.stats-grid .stat-card:nth-child(4){border-left-color:rgba(251,191,36,.45)}
+.stat-card:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.06);border-color:rgba(255,255,255,.1)}
+.stat-number{font-size:clamp(32px,3.5vw,44px);font-weight:800;letter-spacing:-.03em;line-height:1;margin-bottom:12px;font-variant-numeric:tabular-nums}
+.stat-suffix{font-size:.5em;font-weight:600}
+.stat-label{font-size:13px;color:var(--text-dim);line-height:1.45;max-width:none;margin:0}
+@media(max-width:900px){.stats-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:500px){.stats-grid{gap:12px}.stat-card{padding:22px 16px 24px 18px}.stat-label{font-size:12px}}
 
 /* App showcase */
 .showcase{position:relative;z-index:2;padding:80px 0}
@@ -154,12 +162,13 @@ img{max-width:100%;display:block}
 .showcase-feature h4{font-size:14px;font-weight:600;margin-bottom:3px}
 .showcase-feature p{font-size:12px;color:var(--text-dim);line-height:1.5}
 .showcase-visual{display:flex;justify-content:center}
-@media(max-width:900px){.showcase-inner{grid-template-columns:1fr}.showcase-visual{order:-1}}
+@media(max-width:900px){.showcase-inner{grid-template-columns:1fr}}
 
 /* Map */
 .map-section{position:relative;z-index:2;padding:80px 0 60px}
 .map-wrapper{margin-top:40px;border-radius:var(--radius-lg);overflow:hidden;background:linear-gradient(180deg,#0a0f1a,#0f1628,#0a0f1a);border:1px solid var(--border);box-shadow:0 40px 80px rgba(0,0,0,.4)}
-.map-header{padding:20px 24px 0;display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.map-header{padding:20px 24px 0;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px}
+.map-header-text{display:none}
 .map-header h3{margin:0;font-size:18px;font-weight:700;letter-spacing:-.02em;color:#f0f4f8}
 .map-header p{margin:4px 0 0;font-size:11px;color:#5a7a9f;letter-spacing:.03em}
 .map-toggle{display:flex;gap:3px;background:rgba(15,22,40,.8);border-radius:10px;padding:3px;border:1px solid rgba(100,130,180,.08)}
@@ -229,7 +238,8 @@ img{max-width:100%;display:block}
 .encrypt-item-icon{width:32px;height:32px;border-radius:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:14px;background:rgba(0,210,160,.1);color:var(--success)}
 .encrypt-item h4{font-size:13px;font-weight:600;margin-bottom:2px}
 .encrypt-item p{font-size:11px;color:var(--text-dim);line-height:1.5}
-@media(max-width:700px){.encrypt-grid{grid-template-columns:1fr;padding:20px 16px 24px}.encrypt-visual{height:160px}}
+@media(max-width:700px){.encrypt-grid{grid-template-columns:1fr;padding:18px 14px 22px;gap:10px}.encrypt-visual{height:200px}.encrypt-item{padding:10px}.encrypt-item h4{font-size:12px}.encrypt-item p{font-size:10px}.tunnel-label{font-size:8px;padding:5px 8px;letter-spacing:.06em;line-height:1.2}.tunnel-label-left{left:4%;max-width:36%;white-space:normal;text-align:center;transform:translateY(-50%)}.tunnel-label-right{right:4%;max-width:36%;white-space:normal;text-align:center;transform:translateY(-50%)}.tunnel-label-center{max-width:min(94%,200px);padding:4px 8px;font-size:7px;white-space:normal;text-align:center;line-height:1.25}.tunnel-line,.tunnel-glow{left:7%;right:7%}}
+@media(max-width:480px){.encrypt-visual{height:220px}.tunnel-label-center{font-size:6px;padding:4px 6px}}
 
 /* CTA */
 .cta-section{position:relative;z-index:2;padding:60px 0;text-align:center}
@@ -250,7 +260,13 @@ img{max-width:100%;display:block}
 .footer-col a:hover{color:var(--text)}
 .footer-bottom{padding-top:20px;border-top:1px solid var(--border);font-size:11px;color:var(--text-muted);line-height:1.6}
 @media(max-width:768px){.footer-inner{grid-template-columns:1fr 1fr;gap:28px}}
-@media(max-width:500px){.footer-inner{grid-template-columns:1fr 1fr;gap:24px 20px;align-items:start}.footer-brand{grid-column:1 / -1}}
+@media(max-width:500px){
+  .footer-inner{grid-template-columns:1fr 1fr;gap:24px 20px;align-items:start;grid-template-rows:auto auto}
+  .footer-brand{display:none}
+  .footer-col--product{grid-column:1;grid-row:1}
+  .footer-col--legal{grid-column:2;grid-row:1}
+  .footer-col--contact{grid-column:2;grid-row:2}
+}
 
 /* Responsive */
 @media(max-width:768px){
@@ -261,6 +277,7 @@ img{max-width:100%;display:block}
   .encrypt-section{padding:60px 0}
   .cta-section{padding:40px 0}
   .showcase{padding:60px 0}
+  .stats-section{padding:50px 0}
 }
 </style>
 </head>
@@ -279,7 +296,7 @@ img{max-width:100%;display:block}
     </a>
     <div class="nav-links">
       <a href="#benefits" data-en="Features" data-ru="Возможности">Features</a>
-      <a href="#how" data-en="How It Works" data-ru="Как работает">How It Works</a>
+      <a href="#stats" data-en="Online Security" data-ru="Онлайн-безопасность">Online Security</a>
       <a href="#network" data-en="Network" data-ru="Сеть">Network</a>
       <a href="#pricing" data-en="Pricing" data-ru="Тарифы">Pricing</a>
       <a href="#security" data-en="Security" data-ru="Безопасность">Security</a>
@@ -297,7 +314,7 @@ img{max-width:100%;display:block}
 <div class="mobile-menu" id="mobileMenu">
   <button class="mobile-menu-close" onclick="toggleMobileMenu()">&times;</button>
   <a href="#benefits" onclick="toggleMobileMenu()" data-en="Features" data-ru="Возможности">Features</a>
-  <a href="#how" onclick="toggleMobileMenu()" data-en="How It Works" data-ru="Как работает">How It Works</a>
+  <a href="#stats" onclick="toggleMobileMenu()" data-en="Online Security" data-ru="Онлайн-безопасность">Online Security</a>
   <a href="#network" onclick="toggleMobileMenu()" data-en="Network" data-ru="Сеть">Network</a>
   <a href="#pricing" onclick="toggleMobileMenu()" data-en="Pricing" data-ru="Тарифы">Pricing</a>
   <a href="#security" onclick="toggleMobileMenu()" data-en="Security" data-ru="Безопасность">Security</a>
@@ -345,28 +362,28 @@ img{max-width:100%;display:block}
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
         </div>
         <div class="benefit-number gradient-text" data-en="10 Gbps" data-ru="10 Гбит/с">10 Gbps</div>
-        <div class="benefit-label" data-en="High-speed servers for streaming, downloads, and everyday use" data-ru="Быстрые серверы для стриминга, загрузок и повседневного использования">High-speed servers for streaming, downloads, and everyday use</div>
+        <div class="benefit-label" data-en="Backbone capacity" data-ru="Мощность магистрали">Backbone capacity</div>
       </div>
       <div class="benefit-card reveal delay-2">
         <div class="benefit-icon benefit-icon-green">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
         </div>
-        <div class="benefit-number gradient-text">12</div>
-        <div class="benefit-label" data-en="Server locations across the globe — choose the closest for lowest latency" data-ru="Серверных локаций по всему миру — выбирайте ближайшую для минимальной задержки">Server locations across the globe — choose the closest for lowest latency</div>
+        <div class="benefit-number gradient-text">TLS 1.3</div>
+        <div class="benefit-label" data-en="Modern encryption" data-ru="Современное шифрование">Modern encryption</div>
       </div>
       <div class="benefit-card reveal delay-3">
         <div class="benefit-icon benefit-icon-blue">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v6M15 1v6M9 17v6M15 17v6M1 9h6M17 9h6M1 15h6M17 15h6"/></svg>
         </div>
-        <div class="benefit-number gradient-text" data-en="30 Days" data-ru="30 дней">30 Days</div>
-        <div class="benefit-label" data-en="Free full-access trial — no credit card, no commitments" data-ru="Бесплатный полный доступ — без карты, без обязательств">Free full-access trial — no credit card, no commitments</div>
+        <div class="benefit-number gradient-text" data-en="Powerful CPU" data-ru="Мощный CPU">Powerful CPU</div>
+        <div class="benefit-label" data-en="Low load on servers" data-ru="Низкая нагрузка на сервер">Low load on servers</div>
       </div>
       <div class="benefit-card reveal delay-4">
         <div class="benefit-icon benefit-icon-amber">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
         </div>
         <div class="benefit-number gradient-text">24/7</div>
-        <div class="benefit-label" data-en="Instant support via Telegram — real help, anytime you need it" data-ru="Мгновенная поддержка в Telegram — реальная помощь в любое время">Instant support via Telegram — real help, anytime you need it</div>
+        <div class="benefit-label" data-en="24/7 support" data-ru="Поддержка 24/7">24/7 support</div>
       </div>
     </div>
   </div>
@@ -374,30 +391,95 @@ img{max-width:100%;display:block}
 
 <div class="section-divider"></div>
 
-<!-- ============ BLOCK 3: HOW IT WORKS ============ -->
-<section class="section" id="how">
+<!-- ============ BLOCK 3: ONLINE SECURITY STATS ============ -->
+<section class="stats-section" id="stats">
   <div class="container">
     <div style="text-align:center" class="reveal">
-      <div class="section-label" style="justify-content:center" data-en="How It Works" data-ru="Как это работает">How It Works</div>
-      <h2 class="section-title" style="margin-left:auto;margin-right:auto;max-width:680px" data-en="Up and running<br><span class='gradient-text-accent'>in under a minute.</span>" data-ru="Подключение<br><span class='gradient-text-accent'>менее чем за минуту.</span>">Up and running<br><span class="gradient-text-accent">in under a minute.</span></h2>
+      <div class="section-label" style="justify-content:center" data-en="Online Security" data-ru="Онлайн-безопасность">Online Security</div>
+      <h2 class="section-title" style="margin-left:auto;margin-right:auto;max-width:680px" data-en="The internet is more vulnerable<br><span class='gradient-text-accent'>than you think.</span>" data-ru="Интернет уязвимее,<br><span class='gradient-text-accent'>чем вы думаете.</span>">The internet is more vulnerable<br><span class="gradient-text-accent">than you think.</span></h2>
+      <p class="section-desc" style="margin-left:auto;margin-right:auto;text-align:center" data-en="Every day, millions of people expose their personal data without realizing it. A VPN is no longer optional — it's essential." data-ru="Каждый день миллионы людей раскрывают свои личные данные, сами того не подозревая. VPN — это уже не опция, а необходимость.">Every day, millions of people expose their personal data without realizing it. A VPN is no longer optional — it's essential.</p>
     </div>
-    <div class="steps-grid">
-      <div class="step-card reveal delay-1">
-        <div class="step-num">1</div>
-        <h3 data-en="Download the App" data-ru="Скачайте приложение">Download the App</h3>
-        <p data-en="Get Marshall VPN from the App Store. Free to download, no account needed." data-ru="Скачайте Marshall VPN из App Store. Бесплатно, без регистрации.">Get Marshall VPN from the App Store. Free to download, no account needed.</p>
-        <span class="step-arrow">→</span>
+    <div class="stats-grid">
+      <div class="stat-card reveal delay-1">
+        <div class="stat-number gradient-text"><span class="counter" data-target="73">0</span><span class="stat-suffix">%</span></div>
+        <div class="stat-label" data-en="have already faced an online attack or fraud" data-ru="уже сталкивались с онлайн-атакой или мошенничеством">have already faced an online attack or fraud</div>
       </div>
-      <div class="step-card reveal delay-2">
-        <div class="step-num">2</div>
-        <h3 data-en="Get Your Key" data-ru="Получите ключ">Get Your Key</h3>
-        <p data-en="Tap 'My Key' to generate your personal VPN access — instant and automatic." data-ru="Нажмите «Мой ключ» для генерации персонального VPN-доступа — мгновенно и автоматически.">Tap "My Key" to generate your personal VPN access — instant and automatic.</p>
-        <span class="step-arrow">→</span>
+      <div class="stat-card reveal delay-2">
+        <div class="stat-number gradient-text"><span class="counter" data-target="80">0</span><span class="stat-suffix">%</span></div>
+        <div class="stat-label" data-en="of users are concerned about their online privacy" data-ru="пользователей обеспокоены своей конфиденциальностью в сети">of users are concerned about their online privacy</div>
       </div>
-      <div class="step-card reveal delay-3">
-        <div class="step-num">3</div>
-        <h3 data-en="Connect" data-ru="Подключитесь">Connect</h3>
-        <p data-en="Choose a server and tap Connect. Your traffic is now encrypted and private." data-ru="Выберите сервер и нажмите «Подключить». Ваш трафик теперь зашифрован и защищён.">Choose a server and tap Connect. Your traffic is now encrypted and private.</p>
+      <div class="stat-card reveal delay-3">
+        <div class="stat-number gradient-text"><span class="counter" data-target="43">0</span><span class="stat-suffix">%</span></div>
+        <div class="stat-label" data-en="of cyberattacks target individuals on public networks" data-ru="кибератак нацелены на пользователей публичных сетей">of cyberattacks target individuals on public networks</div>
+      </div>
+      <div class="stat-card reveal delay-4">
+        <div class="stat-number gradient-text"><span class="counter" data-target="29">0</span><span class="stat-suffix">%</span></div>
+        <div class="stat-label" data-en="have lost access to a personal account at least once" data-ru="хотя бы раз теряли доступ к личному аккаунту">have lost access to a personal account at least once</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ============ BLOCK: SECURITY (after stats) ============ -->
+<section class="encrypt-section" id="security">
+  <div class="container">
+    <div style="text-align:center" class="reveal">
+      <div class="section-label" style="justify-content:center" data-en="Security" data-ru="Безопасность">Security</div>
+      <h2 class="section-title" style="margin-left:auto;margin-right:auto;max-width:680px" data-en="Your traffic, fully<br><span class='gradient-text-accent'>encrypted.</span>" data-ru="Ваш трафик полностью<br><span class='gradient-text-accent'>зашифрован.</span>">Your traffic, fully<br><span class="gradient-text-accent">encrypted.</span></h2>
+      <p class="section-desc" style="margin-left:auto;margin-right:auto;text-align:center" data-en="Your tunnel uses industry-standard building blocks — details below." data-ru="Ваш туннель строится на проверенных технологиях — подробности ниже.">Your tunnel uses industry-standard building blocks — details below.</p>
+    </div>
+    <div class="encrypt-card reveal-scale">
+      <div class="encrypt-visual">
+        <div class="encrypt-tunnel">
+          <div class="tunnel-glow"></div>
+          <div class="tunnel-line"></div>
+          <div class="tunnel-label tunnel-label-left" data-en="Your Device" data-ru="Ваше устройство">Your Device</div>
+          <div class="tunnel-label tunnel-label-center" data-en="VLESS + Reality · TLS 1.3" data-ru="VLESS + Reality · TLS 1.3">VLESS + Reality · TLS 1.3</div>
+          <div class="tunnel-label tunnel-label-right" data-en="Internet" data-ru="Интернет">Internet</div>
+          <div class="packet packet-1"></div>
+          <div class="packet packet-2"></div>
+          <div class="packet packet-3"></div>
+        </div>
+      </div>
+      <div class="encrypt-grid">
+        <div class="encrypt-item">
+          <div class="encrypt-item-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div>
+            <h4 data-en="No Logs. Ever." data-ru="Без логов. Никогда.">No Logs. Ever.</h4>
+            <p data-en="Zero analytics, zero tracking. We don't record your activity, traffic, or connections." data-ru="Ноль аналитики, ноль отслеживания. Мы не записываем вашу активность, трафик или подключения.">Zero analytics, zero tracking. We don't record your activity, traffic, or connections.</p>
+          </div>
+        </div>
+        <div class="encrypt-item">
+          <div class="encrypt-item-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          </div>
+          <div>
+            <h4 data-en="VLESS · Reality · TLS 1.3" data-ru="VLESS · Reality · TLS 1.3">VLESS · Reality · TLS 1.3</h4>
+            <p data-en="Marshall tunnels traffic with VLESS and Reality, wrapped in TLS 1.3. To observers, your VPN session resembles ordinary HTTPS — hard to fingerprint or block at the wire." data-ru="Marshall строит туннель на VLESS и Reality в оболочке TLS 1.3. Для внешнего наблюдателя сессия похожа на обычный HTTPS — её сложнее отличить или заблокировать на уровне сети.">Marshall tunnels traffic with VLESS and Reality, wrapped in TLS 1.3. To observers, your VPN session resembles ordinary HTTPS — hard to fingerprint or block at the wire.</p>
+          </div>
+        </div>
+        <div class="encrypt-item">
+          <div class="encrypt-item-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <div>
+            <h4 data-en="iOS Keychain" data-ru="iOS Keychain">iOS Keychain</h4>
+            <p data-en="Credentials stored in Apple's hardware-encrypted keychain. Even we can't access them." data-ru="Учётные данные хранятся в аппаратно зашифрованном хранилище Apple. Даже мы не имеем к ним доступа.">Credentials stored in Apple's hardware-encrypted keychain. Even we can't access them.</p>
+          </div>
+        </div>
+        <div class="encrypt-item">
+          <div class="encrypt-item-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+          </div>
+          <div>
+            <h4 data-en="Open-Source Engine" data-ru="Открытый движок">Open-Source Engine</h4>
+            <p data-en="Built on sing-box — fully open-source, community-audited, and transparent." data-ru="Построен на sing-box — полностью открытый, проверенный сообществом и прозрачный.">Built on sing-box — fully open-source, community-audited, and transparent.</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -474,23 +556,23 @@ img{max-width:100%;display:block}
     <div style="text-align:center" class="reveal">
       <div class="section-label" style="justify-content:center" data-en="Global Network" data-ru="Глобальная сеть">Global Network</div>
       <h2 class="section-title" style="margin-left:auto;margin-right:auto;max-width:680px" data-en="Your privacy depends<br><span class='gradient-text-accent'>on where you are.</span>" data-ru="Ваша приватность зависит<br><span class='gradient-text-accent'>от того, где вы находитесь.</span>">Your privacy depends<br><span class="gradient-text-accent">on where you are.</span></h2>
-      <p class="section-desc" style="margin-left:auto;margin-right:auto;text-align:center" data-en="Not all networks are equally safe. See where users face the highest data exposure risks — and where Marshall keeps you protected." data-ru="Не все сети одинаково безопасны. Узнайте, где пользователи подвержены наибольшим рискам утечки данных — и где Marshall обеспечит вашу защиту.">Not all networks are equally safe. See where users face the highest data exposure risks — and where Marshall keeps you protected.</p>
+      <p class="section-desc" style="margin-left:auto;margin-right:auto;text-align:center" data-en="Compare how internet access is shaped by policy in each region — then switch to our servers to see where Marshall is present." data-ru="Сравните, как в разных странах устроен доступ к интернету и контроль трафика — затем переключитесь на наши серверы, чтобы увидеть покрытие Marshall.">Compare how internet access is shaped by policy in each region — then switch to our servers to see where Marshall is present.</p>
     </div>
     <div class="map-wrapper reveal-scale">
       <div class="map-header">
-        <div>
+        <div class="map-header-text">
           <h3 id="map-title" data-en="Privacy Risk Map" data-ru="Карта рисков приватности">Privacy Risk Map</h3>
           <p id="map-subtitle" data-en="Data exposure risk by region" data-ru="Риск утечки данных по регионам">Data exposure risk by region</p>
         </div>
         <div class="map-toggle">
           <button id="btn-srv" onclick="setMapMode('servers')" data-en="Our Servers" data-ru="Наши серверы">Our Servers</button>
-          <button id="btn-heat" class="active-heat" onclick="setMapMode('heatmap')" data-en="Privacy Risk" data-ru="Риски приватности">Privacy Risk</button>
+          <button id="btn-heat" class="active-heat" onclick="setMapMode('heatmap')" data-en="Restrictions" data-ru="Ограничения">Restrictions</button>
         </div>
       </div>
       <div id="map-container">
         <svg id="map-svg"></svg>
         <div class="map-tooltip" id="map-tooltip">
-          <div class="map-tooltip-label" data-en="Privacy Risk" data-ru="Уровень риска">Privacy Risk</div>
+          <div class="map-tooltip-label" data-en="Exposure index" data-ru="Индекс экспозиции">Exposure index</div>
           <div class="map-tooltip-row">
             <div class="map-tooltip-dot" id="tt-dot"></div>
             <span class="map-tooltip-val" id="tt-val"></span>
@@ -573,69 +655,6 @@ img{max-width:100%;display:block}
 
 <div class="section-divider"></div>
 
-<!-- ============ BLOCK 7: ENCRYPTION + TRUST ============ -->
-<section class="encrypt-section" id="security">
-  <div class="container">
-    <div style="text-align:center" class="reveal">
-      <div class="section-label" style="justify-content:center" data-en="Security" data-ru="Безопасность">Security</div>
-      <h2 class="section-title" style="margin-left:auto;margin-right:auto;max-width:680px" data-en="Your traffic, fully<br><span class='gradient-text-accent'>encrypted.</span>" data-ru="Ваш трафик полностью<br><span class='gradient-text-accent'>зашифрован.</span>">Your traffic, fully<br><span class="gradient-text-accent">encrypted.</span></h2>
-      <p class="section-desc" style="margin-left:auto;margin-right:auto;text-align:center" data-en="Marshall uses VLESS + Reality protocol with TLS 1.3. Your connection looks like regular HTTPS traffic — invisible, untraceable." data-ru="Marshall использует протокол VLESS + Reality с TLS 1.3. Ваше соединение выглядит как обычный HTTPS-трафик — невидимое, неотслеживаемое.">Marshall uses VLESS + Reality protocol with TLS 1.3. Your connection looks like regular HTTPS traffic — invisible, untraceable.</p>
-    </div>
-    <div class="encrypt-card reveal-scale">
-      <div class="encrypt-visual">
-        <div class="encrypt-tunnel">
-          <div class="tunnel-glow"></div>
-          <div class="tunnel-line"></div>
-          <div class="tunnel-label tunnel-label-left" data-en="Your Device" data-ru="Ваше устройство">Your Device</div>
-          <div class="tunnel-label tunnel-label-center" data-en="VLESS + Reality · TLS 1.3" data-ru="VLESS + Reality · TLS 1.3">VLESS + Reality · TLS 1.3</div>
-          <div class="tunnel-label tunnel-label-right" data-en="Internet" data-ru="Интернет">Internet</div>
-          <div class="packet packet-1"></div>
-          <div class="packet packet-2"></div>
-          <div class="packet packet-3"></div>
-        </div>
-      </div>
-      <div class="encrypt-grid">
-        <div class="encrypt-item">
-          <div class="encrypt-item-icon">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          </div>
-          <div>
-            <h4 data-en="No Logs. Ever." data-ru="Без логов. Никогда.">No Logs. Ever.</h4>
-            <p data-en="Zero analytics, zero tracking. We don't record your activity, traffic, or connections." data-ru="Ноль аналитики, ноль отслеживания. Мы не записываем вашу активность, трафик или подключения.">Zero analytics, zero tracking. We don't record your activity, traffic, or connections.</p>
-          </div>
-        </div>
-        <div class="encrypt-item">
-          <div class="encrypt-item-icon">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-          </div>
-          <div>
-            <h4 data-en="iOS Keychain" data-ru="iOS Keychain">iOS Keychain</h4>
-            <p data-en="Credentials stored in Apple's hardware-encrypted keychain. Even we can't access them." data-ru="Учётные данные хранятся в аппаратно зашифрованном хранилище Apple. Даже мы не имеем к ним доступа.">Credentials stored in Apple's hardware-encrypted keychain. Even we can't access them.</p>
-          </div>
-        </div>
-        <div class="encrypt-item">
-          <div class="encrypt-item-icon">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
-          </div>
-          <div>
-            <h4 data-en="Open-Source Engine" data-ru="Открытый движок">Open-Source Engine</h4>
-            <p data-en="Built on sing-box — fully open-source, community-audited, and transparent." data-ru="Построен на sing-box — полностью открытый, проверенный сообществом и прозрачный.">Built on sing-box — fully open-source, community-audited, and transparent.</p>
-          </div>
-        </div>
-        <div class="encrypt-item">
-          <div class="encrypt-item-icon">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M3 7v1a3 3 0 0 0 6 0V7m0 0a3 3 0 0 0 6 0v1a3 3 0 0 0 6 0V7H3z"/><path d="M5 21V10.87M19 21V10.87"/></svg>
-          </div>
-          <div>
-            <h4 data-en="Marshall Relay Ltd." data-ru="Marshall Relay Ltd.">Marshall Relay Ltd.</h4>
-            <p data-en="A real company registered in Hong Kong. Accountable, legitimate, and transparent." data-ru="Реальная компания, зарегистрированная в Гонконге. Ответственная, легитимная и прозрачная.">A real company registered in Hong Kong. Accountable, legitimate, and transparent.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ============ BLOCK 8: CTA ============ -->
 <section class="cta-section" id="cta">
   <div class="container">
@@ -667,19 +686,19 @@ img{max-width:100%;display:block}
         </div>
         <p data-en="Fast, private VPN for iOS. Your connection, your rules." data-ru="Быстрый и приватный VPN для iOS. Ваше соединение, ваши правила.">Fast, private VPN for iOS. Your connection, your rules.</p>
       </div>
-      <div class="footer-col">
+      <div class="footer-col footer-col--product">
         <h4 data-en="Product" data-ru="Продукт">Product</h4>
         <a href="#benefits" data-en="Features" data-ru="Возможности">Features</a>
         <a href="#pricing" data-en="Pricing" data-ru="Тарифы">Pricing</a>
         <a href="#network" data-en="Network" data-ru="Сеть">Network</a>
         <a href="#cta" data-en="Download" data-ru="Скачать">Download</a>
       </div>
-      <div class="footer-col">
+      <div class="footer-col footer-col--legal">
         <h4 data-en="Legal" data-ru="Юридическое">Legal</h4>
         <a href="privacy/" data-en="Privacy Policy" data-ru="Конфиденциальность">Privacy Policy</a>
         <a href="terms-of-use.html" data-en="Terms of Use" data-ru="Условия использования">Terms of Use</a>
       </div>
-      <div class="footer-col">
+      <div class="footer-col footer-col--contact">
         <h4 data-en="Contact" data-ru="Контакты">Contact</h4>
         <a href="mailto:support@marshallbe.online" data-en="Email Us" data-ru="Написать нам">Email Us</a>
         <a href="https://t.me/MarshallVPNBot" target="_blank">Telegram</a>
@@ -732,6 +751,28 @@ for(let i=0;i<50;i++)parts.push(new P());
 const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:.15,rootMargin:'0px 0px -50px 0px'});
 document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.reveal-scale').forEach(el=>obs.observe(el));
 
+const counterObserver=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const el=e.target;
+      const target=parseFloat(el.dataset.target);
+      const decimals=parseInt(el.dataset.decimals||'0',10);
+      const duration=2000;
+      const start=performance.now();
+      function step(now){
+        const progress=Math.min((now-start)/duration,1);
+        const eased=1-Math.pow(1-progress,4);
+        el.textContent=(target*eased).toFixed(decimals);
+        if(progress<1)requestAnimationFrame(step);
+        else el.textContent=target.toFixed(decimals);
+      }
+      requestAnimationFrame(step);
+      counterObserver.unobserve(el);
+    }
+  });
+},{threshold:.5});
+document.querySelectorAll('.counter').forEach(el=>counterObserver.observe(el));
+
 /* ===== NAV ===== */
 addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('scrolled',scrollY>50)});
 window.toggleMobileMenu=function(){document.getElementById('mobileMenu').classList.toggle('open')};
@@ -747,8 +788,8 @@ window.switchPricing=function(tab){
 /* ===== MAP ===== */
 const vpnR={156:5,408:5,795:5,364:5,112:5,368:5,104:5,643:4,784:4,512:4,818:4,792:4,682:4,192:4,760:4,232:4,860:4,356:3,586:3,704:3,360:3,398:3,762:3,800:3,862:3,12:3,434:3,729:3,48:3,634:3,414:3,231:3,76:2,764:2,458:2,504:2,788:2,50:2,144:2,116:2,418:2,400:2,834:2,404:2,887:2,410:2,566:2};
 const getL=id=>vpnR[+id]||1;
-const lLab={1:"Very Low",2:"Low",3:"Moderate",4:"High",5:"Very High"};
-const lLabRu={1:"Очень низкий",2:"Низкий",3:"Умеренный",4:"Высокий",5:"Очень высокий"};
+const lLab={1:"Lowest exposure",2:"Low",3:"Moderate",4:"High",5:"Severe"};
+const lLabRu={1:"Минимальная",2:"Низкая",3:"Средняя",4:"Высокая",5:"Критическая"};
 const hCol={1:"#1a2540",2:"#3b5998",3:"#d4841e",4:"#e04535",5:"#ff2a5e"};
 const GREEN="#00d67e";
 
@@ -756,7 +797,8 @@ const servers=[
   {lat:49.45,lon:11.08},{lat:48.86,lon:2.35},{lat:60.17,lon:24.94},
   {lat:52.37,lon:4.90},{lat:1.35,lon:103.82},{lat:43.65,lon:-79.38},
   {lat:13.76,lon:100.50},{lat:35.68,lon:139.65},{lat:-33.87,lon:151.21},
-  {lat:40.71,lon:-74.01},{lat:51.51,lon:-0.13},{lat:55.75,lon:37.62}
+  {lat:40.71,lon:-74.01},{lat:51.51,lon:-0.13},{lat:55.75,lon:37.62},
+  {lat:-23.55,lon:-46.63}
 ];
 
 function topoF(t,n){
@@ -773,14 +815,9 @@ const cont=document.getElementById("map-container");
 const tooltip=document.getElementById("map-tooltip");
 
 window.updateMapLabels=function(){
-  const isH=mapMode==="heatmap",L=currentLang;
-  if(isH){
-    document.getElementById("map-title").textContent=L==='ru'?"Карта рисков приватности":"Privacy Risk Map";
-    document.getElementById("map-subtitle").textContent=L==='ru'?"Риск утечки данных по регионам":"Data exposure risk by region";
-  }else{
-    document.getElementById("map-title").textContent=L==='ru'?"Серверная сеть":"Server Network";
-    document.getElementById("map-subtitle").textContent=L==='ru'?"12 локаций по всему миру":"12 locations worldwide";
-  }
+  const mt=document.getElementById("map-title"),ms=document.getElementById("map-subtitle");
+  if(mt)mt.textContent="";
+  if(ms)ms.textContent="";
 };
 
 function renderMap(){
@@ -846,7 +883,7 @@ function renderMap(){
   if(isH){
     leg.innerHTML=[1,2,3,4,5].map(lv=>`<div class="map-legend-item"><div class="map-legend-dot" style="background:${hCol[lv]}"></div>${labelsMap[lv]}</div>`).join("");
   }else{
-    const srvText=L==='ru'?"12 активных локаций":"12 active locations";
+    const srvText=L==='ru'?"Наши серверы":"Our servers";
     leg.innerHTML=`<div class="map-legend-item"><div class="map-legend-dot map-legend-dot-round" style="background:${GREEN};box-shadow:0 0 5px rgba(0,214,126,.4)"></div>${srvText}</div>`;
   }
   updateMapLabels();
