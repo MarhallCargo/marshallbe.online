@@ -120,47 +120,50 @@ img{max-width:100%;display:block}
 .section-desc{font-size:clamp(15px,1.6vw,17px);color:var(--text-dim);line-height:1.7;max-width:540px}
 .section-divider{width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--border-light),transparent)}
 
-/* Benefits */
-.benefits-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:48px}
-.benefit-card{text-align:center;padding:32px 20px;border-radius:var(--radius-lg);background:var(--surface);border:1px solid var(--border);transition:all .4s;position:relative;overflow:hidden}
-.benefit-card:hover{border-color:var(--border-light);transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,.3)}
-.benefit-icon{width:56px;height:56px;border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:24px}
-.benefit-icon-purple{background:rgba(108,92,231,.12);color:var(--accent-light)}
-.benefit-icon-green{background:rgba(0,210,160,.1);color:var(--success)}
-.benefit-icon-blue{background:rgba(56,189,248,.1);color:#38bdf8}
-.benefit-icon-amber{background:rgba(251,191,36,.1);color:#fbbf24}
-.benefit-number{font-size:clamp(22px,2.8vw,32px);font-weight:800;letter-spacing:-.03em;margin-bottom:4px}
-.benefit-label{font-size:12px;color:var(--text-dim);line-height:1.45}
-@media(max-width:900px){
-  .benefits-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin-top:32px}
-  .benefit-card{padding:12px 6px;border-radius:var(--radius-md)}
-  .benefit-icon{width:36px;height:36px;border-radius:11px;margin-bottom:6px;font-size:16px}
-  .benefit-number{font-size:clamp(11px,3.2vw,16px);margin-bottom:2px;line-height:1.15}
-  .benefit-label{font-size:9px;line-height:1.25}
-  .benefit-hint{display:none!important}
+/* Protocol comparison (replaces former 4-card benefits) */
+.proto-section{overflow:hidden}
+.proto-matrix{margin-top:44px;position:relative}
+.proto-cols,.proto-row{display:grid;grid-template-columns:1.45fr repeat(4,1fr);gap:0}
+.proto-cols{border-radius:var(--radius-lg) var(--radius-lg) 0 0;overflow:hidden;border:1px solid var(--border);border-bottom:none}
+.proto-body{border-radius:0 0 var(--radius-lg) var(--radius-lg);overflow:hidden;border:1px solid var(--border);border-top:none}
+.proto-col-header{padding:20px 14px;text-align:center;font-size:12px;font-weight:700;border-bottom:2px solid var(--border);background:var(--surface);line-height:1.25}
+.proto-col-header:first-child{text-align:left;padding-left:22px;font-size:10px;letter-spacing:1.4px;text-transform:uppercase;color:var(--text-muted);font-weight:600}
+.proto-col-header--marshall{background:linear-gradient(180deg,rgba(108,92,231,.14),rgba(108,92,231,.05));color:var(--accent-light);position:relative}
+.proto-col-header--marshall::after{content:'';position:absolute;bottom:0;left:12%;right:12%;height:2px;background:linear-gradient(90deg,transparent,var(--accent-light),transparent)}
+.proto-col-header--wg{color:#38bdf8}
+.proto-col-header--ovpn{color:#22c55e}
+.proto-col-header--ike{color:#f59e0b}
+.proto-logo{font-size:9px;font-weight:500;color:var(--text-muted);margin-top:4px;letter-spacing:.2px;line-height:1.3}
+.proto-row{transition:background .25s}
+.proto-row:hover{background:rgba(255,255,255,.025)}
+.proto-row:nth-child(even){background:rgba(255,255,255,.018)}
+.proto-row:nth-child(even):hover{background:rgba(255,255,255,.04)}
+.proto-cell{padding:13px 12px;display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--border);font-size:12px;text-align:center;line-height:1.35}
+.proto-row:last-child .proto-cell{border-bottom:none}
+.proto-cell:first-child{justify-content:flex-start;padding-left:22px;font-weight:500;color:var(--text);gap:10px;text-align:left}
+.proto-cell--marshall{background:rgba(108,92,231,.04)}
+.proto-cell-icon{width:26px;height:26px;border-radius:7px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.proto-badge{display:inline-flex;align-items:center;justify-content:center;padding:4px 8px;border-radius:6px;font-size:10px;font-weight:600;letter-spacing:.2px;line-height:1.25}
+.proto-badge--best{background:rgba(0,210,160,.12);color:var(--success)}
+.proto-badge--good{background:rgba(56,189,248,.1);color:#38bdf8}
+.proto-badge--mid{background:rgba(251,191,36,.1);color:#fbbf24}
+.proto-badge--bad{background:rgba(255,77,106,.1);color:#FF4D6A}
+@media(max-width:860px){
+  .proto-cols,.proto-row{grid-template-columns:1.15fr repeat(4,1fr)}
+  .proto-cell{padding:10px 5px;font-size:10px}
+  .proto-cell:first-child{padding-left:10px;gap:6px}
+  .proto-col-header{padding:14px 6px;font-size:10px}
+  .proto-badge{font-size:8px;padding:3px 5px}
+  .proto-cell-icon{width:22px;height:22px;border-radius:5px}
+  .proto-logo{font-size:8px}
+}
+@media(max-width:520px){
+  .proto-cols,.proto-row{grid-template-columns:1fr repeat(4,minmax(0,1fr))}
+  .proto-cell:first-child{font-size:9px}
+  .proto-col-header{font-size:8px;padding:10px 3px}
 }
 @media(min-width:901px){
   #benefits.section{padding-top:clamp(8px,1.2vw,16px)}
-  #benefits .reveal{opacity:1!important;transform:none!important;transition:none}
-  .benefits-grid{margin-top:36px;gap:14px}
-  .benefit-card{
-    padding:18px 14px 16px;border-radius:var(--radius-lg);
-    background:rgba(255,255,255,.04);border:1px solid rgba(108,92,231,.22);
-    box-shadow:0 0 0 1px rgba(108,92,231,.07),0 0 16px rgba(108,92,231,.06);
-    animation:benefitFramePulse 5.5s ease-in-out infinite
-  }
-  .benefit-card:nth-child(2){animation-delay:-1.2s}
-  .benefit-card:nth-child(3){animation-delay:-2.4s}
-  .benefit-card:nth-child(4){animation-delay:-3.6s}
-  @keyframes benefitFramePulse{
-    0%,100%{box-shadow:0 0 0 1px rgba(108,92,231,.12),0 0 12px rgba(108,92,231,.05);border-color:rgba(108,92,231,.2)}
-    50%{box-shadow:0 0 0 1px rgba(168,85,247,.32),0 0 22px rgba(108,92,231,.12);border-color:rgba(168,85,247,.28)}
-  }
-  .benefit-card:hover{border-color:rgba(168,85,247,.4);transform:translateY(-3px);box-shadow:0 16px 44px rgba(0,0,0,.28)}
-  .benefit-icon{width:48px;height:48px;border-radius:14px;margin-bottom:11px;font-size:22px}
-  .benefit-number{font-size:clamp(20px,2.3vw,28px);margin-bottom:3px}
-  .benefit-label{font-size:11px;margin-bottom:5px}
-  .benefit-hint{display:block;font-size:10.5px;color:var(--text-dim);line-height:1.42;max-width:210px;margin:0 auto;opacity:.92}
 }
 
 /* Stats (online security) — distinct from benefit tiles */
@@ -270,29 +273,26 @@ img{max-width:100%;display:block}
 @media(max-width:700px){.pricing-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:420px){.pricing-grid{grid-template-columns:1fr 1fr;gap:10px}.pricing-card{padding:22px 12px}}
 
-/* Encryption animation */
+/* Encryption animation (matrix stream + flow labels) */
 .encrypt-section{position:relative;z-index:2;padding:80px 0}
 .encrypt-card{margin-top:40px;padding:0;border-radius:var(--radius-lg);background:linear-gradient(135deg,rgba(108,92,231,.06),rgba(0,210,160,.03));border:1px solid rgba(108,92,231,.12);position:relative;overflow:hidden}
-.encrypt-visual{position:relative;height:200px;overflow:hidden;border-radius:var(--radius-lg) var(--radius-lg) 0 0;display:flex;align-items:center;justify-content:center;padding:0}
-.encrypt-tunnel{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;min-height:0}
-.tunnel-line{position:absolute;top:50%;left:10%;right:10%;height:2px;background:linear-gradient(90deg,rgba(168,85,247,.1),rgba(108,92,231,.4) 30%,rgba(0,210,160,.4) 70%,rgba(0,210,160,.1));transform:translateY(-1px)}
-.tunnel-glow{position:absolute;top:50%;left:10%;right:10%;height:40px;transform:translateY(-50%);background:linear-gradient(90deg,transparent,rgba(108,92,231,.06) 30%,rgba(0,210,160,.06) 70%,transparent);border-radius:20px;border:1px solid rgba(108,92,231,.08)}
-.tunnel-label{position:absolute;top:50%;transform:translateY(-50%);padding:6px 14px;border-radius:8px;font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;backdrop-filter:blur(10px)}
-.tunnel-label-left{left:2%;background:rgba(168,85,247,.12);color:#c084fc;border:1px solid rgba(168,85,247,.2)}
-.tunnel-label-center{left:50%;transform:translate(-50%,-50%);background:rgba(108,92,231,.15);color:#a78bfa;border:1px solid rgba(108,92,231,.25);z-index:2}
-.tunnel-label-right{right:2%;background:rgba(0,210,160,.12);color:#00D2A0;border:1px solid rgba(0,210,160,.2)}
-.packet{position:absolute;top:50%;width:8px;height:8px;border-radius:50%;transform:translateY(-50%);animation:packetFlow 4s linear infinite}
-.packet-1{background:#A855F7;box-shadow:0 0 12px rgba(168,85,247,.6);animation-delay:0s;left:10%}
-.packet-2{background:#6C5CE7;box-shadow:0 0 12px rgba(108,92,231,.6);animation-delay:-1.3s;left:10%}
-.packet-3{background:#00D2A0;box-shadow:0 0 12px rgba(0,210,160,.6);animation-delay:-2.6s;left:10%}
-@keyframes packetFlow{0%{left:10%;opacity:0;width:6px;height:6px}5%{opacity:1}30%{background:#6C5CE7;width:10px;height:10px;box-shadow:0 0 16px rgba(108,92,231,.8)}50%{width:8px;height:8px}70%{background:#00D2A0;box-shadow:0 0 12px rgba(0,210,160,.6)}95%{opacity:1}100%{left:88%;opacity:0}}
+.encrypt-visual{position:relative;height:200px;overflow:hidden;border-radius:var(--radius-lg) var(--radius-lg) 0 0;padding:0}
+.encrypt-matrix-wrap{position:relative;width:100%;height:100%;background:linear-gradient(165deg,rgba(12,8,28,.95) 0%,rgba(8,12,22,.98) 50%,rgba(6,14,18,.96) 100%);min-height:0}
+.encrypt-matrix-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:1}
+.encrypt-matrix-ui{position:absolute;inset:0;z-index:2;display:flex;align-items:center;justify-content:space-between;padding:0 10px;pointer-events:none}
+.encrypt-matrix-node{padding:6px 12px;border-radius:8px;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);white-space:nowrap;max-width:28%}
+.encrypt-matrix-node--left{background:rgba(168,85,247,.14);color:#c084fc;border:1px solid rgba(168,85,247,.22)}
+.encrypt-matrix-node--right{background:rgba(0,210,160,.12);color:#00D2A0;border:1px solid rgba(0,210,160,.2)}
+.encrypt-matrix-core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);text-align:center;z-index:3;max-width:min(92%,420px);padding:0 8px}
+.encrypt-matrix-title{font-size:clamp(13px,2.8vw,17px);font-weight:700;letter-spacing:-.02em;line-height:1.25;margin:0}
+.encrypt-matrix-sub{font-size:11px;color:rgba(224,224,232,.55);margin-top:6px;font-weight:500;letter-spacing:.02em}
 .encrypt-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;padding:28px 32px 32px}
 .encrypt-item{display:flex;align-items:flex-start;gap:12px;padding:12px;border-radius:var(--radius-md);background:rgba(0,0,0,.2)}
 .encrypt-item-icon{width:32px;height:32px;border-radius:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:14px;background:rgba(0,210,160,.1);color:var(--success)}
 .encrypt-item h4{font-size:13px;font-weight:600;margin-bottom:2px}
 .encrypt-item p{font-size:11px;color:var(--text-dim);line-height:1.5}
-@media(max-width:700px){.encrypt-section .encrypt-card{margin-top:28px}.encrypt-grid{grid-template-columns:1fr;padding:8px 14px 16px;gap:10px}.encrypt-visual{height:108px;min-height:0}.encrypt-item{padding:10px}.encrypt-item h4{font-size:12px}.encrypt-item p{font-size:10px}.tunnel-label{font-size:8px;padding:4px 8px;letter-spacing:.06em;line-height:1.15}.tunnel-label-left{left:4%;max-width:36%;white-space:normal;text-align:center;transform:translateY(-50%)}.tunnel-label-right{right:4%;max-width:36%;white-space:normal;text-align:center;transform:translateY(-50%)}.tunnel-label-center{max-width:min(94%,200px);padding:3px 8px;font-size:7px;white-space:normal;text-align:center;line-height:1.2}.tunnel-line,.tunnel-glow{left:7%;right:7%}.tunnel-glow{height:28px}}
-@media(max-width:480px){.encrypt-visual{height:112px}.tunnel-label-center{font-size:6px;padding:3px 6px}}
+@media(max-width:700px){.encrypt-section .encrypt-card{margin-top:28px}.encrypt-grid{grid-template-columns:1fr;padding:8px 14px 16px;gap:10px}.encrypt-visual{height:148px;min-height:0}.encrypt-item{padding:10px}.encrypt-item h4{font-size:12px}.encrypt-item p{font-size:10px}.encrypt-matrix-node{font-size:8px;padding:4px 8px;letter-spacing:.06em;max-width:26%}.encrypt-matrix-title{font-size:11px}.encrypt-matrix-sub{font-size:9px;margin-top:4px}}
+@media(max-width:480px){.encrypt-visual{height:152px}.encrypt-matrix-core{max-width:96%}.encrypt-matrix-title{font-size:10px;line-height:1.2}.encrypt-matrix-node{max-width:30%}}
 
 /* CTA */
 .cta-section{position:relative;z-index:2;padding:60px 0;text-align:center}
@@ -322,6 +322,145 @@ img{max-width:100%;display:block}
   .footer-bottom{padding-top:12px}
 }
 
+/* Theme toggle button */
+.nav-theme{
+  position:relative;width:34px;height:34px;border-radius:10px;
+  background:var(--surface);border:1px solid var(--border-light);
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:all .4s cubic-bezier(.16,1,.3,1);overflow:hidden;flex-shrink:0
+}
+.nav-theme:hover{background:var(--surface-hover);border-color:rgba(168,85,247,.3);box-shadow:0 0 16px rgba(108,92,231,.15)}
+.theme-icon{position:absolute;transition:opacity .4s,transform .4s cubic-bezier(.16,1,.3,1);color:var(--text-dim)}
+.theme-icon--sun{opacity:1;transform:rotate(0deg) scale(1)}
+.theme-icon--moon{opacity:0;transform:rotate(-90deg) scale(.5)}
+[data-theme="light"] .theme-icon--sun{opacity:0;transform:rotate(90deg) scale(.5)}
+[data-theme="light"] .theme-icon--moon{opacity:1;transform:rotate(0deg) scale(1)}
+.nav-mobile-theme{width:30px;height:30px;border-radius:8px}
+
+/* ===== LIGHT THEME (muted lavender — less “clinical white”) ===== */
+[data-theme="light"]{
+  --bg:#C9C0DC;
+  --bg-alt:#BFB6D4;
+  --surface:rgba(88,72,120,0.09);
+  --surface-hover:rgba(88,72,120,0.14);
+  --border:rgba(72,58,110,0.16);
+  --border-light:rgba(72,58,110,0.24);
+  --text:#16142A;
+  --text-dim:rgba(22,20,42,0.58);
+  --text-muted:rgba(22,20,42,0.34);
+  --accent:#5B4FC9;
+  --accent-light:#6D3AB8;
+  --accent-glow:rgba(91,79,201,0.22);
+  --success:#00996E;
+  --green:#008858;
+}
+[data-theme="light"] body{
+  background:
+    radial-gradient(ellipse 120% 80% at 50% -20%,rgba(180,160,220,.35),transparent 55%),
+    linear-gradient(168deg,#C4B8D8 0%,#BEB3D2 18%,#B8AECC 42%,#C1B6D6 68%,#C9C0DC 100%);
+  background-attachment:fixed;
+}
+[data-theme="light"] .bg-glow .orb{filter:blur(140px)}
+[data-theme="light"] .bg-glow .orb-1{background:linear-gradient(135deg,#c4b5fd,#a78bfa);opacity:.18;width:650px;height:650px}
+[data-theme="light"] .bg-glow .orb-2{background:linear-gradient(135deg,#c084fc,#e879f9);opacity:.12;width:550px;height:550px}
+[data-theme="light"] .bg-glow .orb-3{background:linear-gradient(135deg,#6ee7b7,#34d399);opacity:.10;width:450px;height:450px}
+[data-theme="light"] .nav{background:rgba(185,175,210,.42);border-bottom-color:rgba(72,58,110,.12);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px)}
+[data-theme="light"] .nav.scrolled{background:rgba(175,165,205,.58);border-bottom-color:rgba(72,58,110,.16)}
+[data-theme="light"] .nav-logo-text{color:var(--text)}
+[data-theme="light"] .gradient-text{background:linear-gradient(135deg,#6D3AB8 0%,#5B4FC9 42%,#008F68 100%);-webkit-background-clip:text;background-clip:text}
+[data-theme="light"] .gradient-text-accent{background:linear-gradient(135deg,#5B4FC9 0%,#6D3AB8 100%);-webkit-background-clip:text;background-clip:text}
+[data-theme="light"] .proto-cols,[data-theme="light"] .proto-body{border-color:rgba(72,58,110,.14)}
+[data-theme="light"] .proto-col-header{background:rgba(255,255,255,.22);border-bottom-color:rgba(72,58,110,.12)}
+[data-theme="light"] .proto-col-header--marshall{background:linear-gradient(180deg,rgba(91,79,201,.16),rgba(91,79,201,.06))}
+[data-theme="light"] .proto-cell{border-bottom-color:rgba(72,58,110,.1);color:var(--text)}
+[data-theme="light"] .proto-cell--marshall{background:rgba(91,79,201,.07)}
+[data-theme="light"] .proto-row:nth-child(even){background:rgba(255,255,255,.12)}
+[data-theme="light"] .proto-row:hover{background:rgba(91,79,201,.06)}
+[data-theme="light"] .proto-logo{color:rgba(22,20,42,.38)}
+[data-theme="light"] .stat-card{
+  background:rgba(255,255,255,.28);border-color:rgba(72,58,110,.12);
+  box-shadow:0 2px 14px rgba(50,40,80,.08),inset 0 1px 0 rgba(255,255,255,.35);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)
+}
+[data-theme="light"] .encrypt-card{
+  background:linear-gradient(145deg,rgba(255,255,255,.32),rgba(200,190,225,.25));
+  border-color:rgba(72,58,110,.14);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)
+}
+[data-theme="light"] .encrypt-item{background:rgba(255,255,255,.34);border:1px solid rgba(72,58,110,.1)}
+[data-theme="light"] .encrypt-matrix-wrap{background:linear-gradient(165deg,rgba(22,18,38,.94) 0%,rgba(14,20,32,.96) 50%,rgba(12,22,28,.94) 100%)}
+[data-theme="light"] .encrypt-matrix-sub{color:rgba(224,224,232,.52)}
+[data-theme="light"] .showcase-feature{
+  background:rgba(255,255,255,.26);border-color:rgba(72,58,110,.14);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  box-shadow:0 2px 12px rgba(50,40,80,.07)
+}
+[data-theme="light"] .map-wrapper{
+  background:linear-gradient(180deg,rgba(200,192,222,.75),rgba(188,180,212,.82),rgba(200,192,222,.75));
+  border-color:rgba(72,58,110,.12);box-shadow:0 4px 28px rgba(50,40,80,.08)
+}
+[data-theme="light"] .map-toggle{background:rgba(255,255,255,.3);border-color:rgba(72,58,110,.12)}
+[data-theme="light"] .map-toggle button{color:rgba(26,26,46,.45)}
+[data-theme="light"] .map-tooltip{background:rgba(248,245,255,.88);border:1px solid rgba(72,58,110,.14);box-shadow:0 8px 24px rgba(40,32,70,.1);backdrop-filter:blur(12px)}
+[data-theme="light"] .map-tooltip-label{color:rgba(26,26,46,.4)}
+[data-theme="light"] .map-tooltip-val{color:var(--text)}
+[data-theme="light"] .map-tooltip-bar{background:rgba(108,92,231,.08)}
+[data-theme="light"] .map-legend-item{color:rgba(26,26,46,.5)}
+[data-theme="light"] .pricing-tabs{background:rgba(255,255,255,.28);border-color:rgba(72,58,110,.12);backdrop-filter:blur(8px)}
+[data-theme="light"] .pricing-tab{color:rgba(26,26,46,.4)}
+[data-theme="light"] .pricing-tab:hover:not(.active){color:var(--text)}
+[data-theme="light"] .pricing-card,[data-theme="light"] .pricing-card-alt{
+  background:rgba(255,255,255,.3);border-color:rgba(72,58,110,.12);
+  box-shadow:0 2px 16px rgba(50,40,80,.07),0 1px 3px rgba(0,0,0,.04);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)
+}
+[data-theme="light"] .pricing-card:hover,[data-theme="light"] .pricing-card-alt:hover{
+  box-shadow:0 8px 28px rgba(50,40,80,.12),0 2px 6px rgba(0,0,0,.05);
+  border-color:rgba(91,79,201,.22)
+}
+[data-theme="light"] .pricing-card.featured{
+  background:linear-gradient(135deg,rgba(91,79,201,.12),rgba(109,58,184,.06));
+  border-color:rgba(91,79,201,.22);
+  box-shadow:0 4px 22px rgba(50,40,80,.1)
+}
+[data-theme="light"] .pricing-card-alt.featured-alt{
+  border-color:rgba(217,150,50,.35);
+  background:linear-gradient(135deg,rgba(251,191,36,.12),rgba(245,158,11,.06))
+}
+[data-theme="light"] .cta-box{
+  background:linear-gradient(135deg,rgba(255,255,255,.32),rgba(200,190,225,.28));
+  border-color:rgba(72,58,110,.14);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)
+}
+[data-theme="light"] .cta-box::before{background:radial-gradient(ellipse at top,rgba(91,79,201,.1),transparent 58%)}
+[data-theme="light"] .footer{border-top-color:rgba(72,58,110,.1)}
+[data-theme="light"] .section-divider{background:linear-gradient(90deg,transparent,rgba(72,58,110,.14),transparent)}
+[data-theme="light"] .mobile-menu::before{background:linear-gradient(160deg,#C9C0DC 0%,#BEB3D2 35%,#C4B8D8 100%)}
+[data-theme="light"] .mobile-menu::after{
+  background:
+    radial-gradient(circle at 18% 22%,rgba(196,181,253,.4),transparent 32%),
+    radial-gradient(circle at 82% 18%,rgba(192,132,252,.3),transparent 28%),
+    radial-gradient(circle at 72% 78%,rgba(110,231,183,.2),transparent 28%),
+    radial-gradient(circle at 30% 70%,rgba(167,139,250,.2),transparent 24%)
+}
+[data-theme="light"] .mobile-menu a{color:var(--text)}
+[data-theme="light"] .phone-frame{
+  background:rgba(255,255,255,.45);border-color:rgba(72,58,110,.12);
+  box-shadow:0 0 0 1px rgba(72,58,110,.06),0 20px 56px rgba(50,40,80,.12),0 4px 16px rgba(0,0,0,.05)
+}
+[data-theme="light"] .nav-mobile-burger span{background:var(--text)}
+[data-theme="light"] .btn-secondary{
+  background:rgba(255,255,255,.32);color:var(--text);border-color:rgba(72,58,110,.14);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)
+}
+[data-theme="light"] .btn-secondary:hover{background:rgba(255,255,255,.48);border-color:rgba(91,79,201,.22)}
+[data-theme="light"] .btn-telegram{background:rgba(0,136,204,.08);border-color:rgba(0,136,204,.15)}
+[data-theme="light"] .btn-telegram:hover{background:rgba(0,136,204,.14);border-color:rgba(0,136,204,.25)}
+[data-theme="light"] .hero p{color:rgba(22,20,42,.56)}
+[data-theme="light"] .stats-section{background:linear-gradient(180deg,transparent,rgba(91,79,201,.07),transparent)}
+[data-theme="light"] .nav-lang,[data-theme="light"] .nav-mobile-lang{background:rgba(255,255,255,.22);border-color:rgba(72,58,110,.14);color:rgba(22,20,42,.55)}
+[data-theme="light"] .nav-lang:hover,[data-theme="light"] .nav-mobile-lang:hover{background:rgba(255,255,255,.38);color:var(--text)}
+
 /* Responsive */
 @media(max-width:768px){
   .hero{padding:100px 20px 12px;min-height:auto}
@@ -350,16 +489,19 @@ img{max-width:100%;display:block}
       <span class="nav-logo-text">Marshall</span>
     </a>
     <div class="nav-links">
-      <a href="#benefits" data-en="Features" data-ru="Возможности">Features</a>
-      <a href="#stats" data-en="Online Security" data-ru="Онлайн-безопасность">Online Security</a>
-      <a href="#network" data-en="Network" data-ru="Сеть">Network</a>
-      <a href="#pricing" data-en="Pricing" data-ru="Тарифы">Pricing</a>
-      <a href="#security" data-en="Security" data-ru="Безопасность">Security</a>
       <button class="nav-cta" onclick="smoothScrollTo('#cta')" data-en="Get Started" data-ru="Начать">Get Started</button>
       <button class="nav-lang" onclick="toggleLang()" id="langBtn">RU</button>
+      <button class="nav-theme" onclick="toggleTheme()" id="themeBtn" aria-label="Toggle theme">
+        <svg class="theme-icon theme-icon--sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="theme-icon theme-icon--moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
     </div>
     <div class="nav-mobile-right">
       <button class="nav-mobile-lang" onclick="toggleLang()" id="langBtnMobile">RU</button>
+      <button class="nav-theme nav-mobile-theme" onclick="toggleTheme()" id="themeBtnMobile" aria-label="Toggle theme">
+        <svg class="theme-icon theme-icon--sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="theme-icon theme-icon--moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
       <button class="nav-mobile-burger" onclick="toggleMobileMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
   </div>
@@ -369,8 +511,6 @@ img{max-width:100%;display:block}
 <div class="mobile-menu" id="mobileMenu">
   <button class="mobile-menu-close" onclick="toggleMobileMenu()">&times;</button>
   <a href="#benefits" onclick="toggleMobileMenu()" data-en="Features" data-ru="Возможности">Features</a>
-  <a href="#stats" onclick="toggleMobileMenu()" data-en="Online Security" data-ru="Онлайн-безопасность">Online Security</a>
-  <a href="#network" onclick="toggleMobileMenu()" data-en="Network" data-ru="Сеть">Network</a>
   <a href="#pricing" onclick="toggleMobileMenu()" data-en="Pricing" data-ru="Тарифы">Pricing</a>
   <a href="#security" onclick="toggleMobileMenu()" data-en="Security" data-ru="Безопасность">Security</a>
   <button class="btn-primary" onclick="toggleMobileMenu();smoothScrollTo('#cta')" data-en="Get Started" data-ru="Начать">Get Started</button>
@@ -404,45 +544,73 @@ img{max-width:100%;display:block}
   </div>
 </section>
 
-<!-- ============ BLOCK 2: KEY BENEFITS ============ -->
-<section class="section" id="benefits">
+<!-- ============ BLOCK 2: PROTOCOL COMPARISON (replaces “Why Marshall” cards) ============ -->
+<section class="section proto-section" id="benefits">
   <div class="container">
     <div style="text-align:center" class="reveal">
-      <div class="section-label" style="justify-content:center" data-en="Why Marshall" data-ru="Почему Marshall">Why Marshall</div>
-      <h2 class="section-title" style="margin-left:auto;margin-right:auto;max-width:680px" data-en="Built for speed,<br><span class='gradient-text-accent'>designed for privacy.</span>" data-ru="Создан для скорости<br><span class='gradient-text-accent'>спроектирован для приватности.</span>">Built for speed,<br><span class="gradient-text-accent">designed for privacy.</span></h2>
+      <div class="section-label" style="justify-content:center" data-en="Protocol stack" data-ru="Стек протокола">Protocol stack</div>
+      <h2 class="section-title" style="margin-left:auto;margin-right:auto;max-width:720px" data-en="The <span class='gradient-text-accent'>Xray</span> difference — not just another tunnel." data-ru="Почему <span class='gradient-text-accent'>Xray</span>: не просто ещё один туннель.">The <span class="gradient-text-accent">Xray</span> difference — not just another tunnel.</h2>
+      <p class="section-desc" style="margin-left:auto;margin-right:auto;text-align:center;max-width:640px" data-en="Five pillars of Marshall’s design: how traffic looks on the wire, the full stack from Xray to TLS 1.3, real-world speed, and open code — next to the VPN protocols people already know." data-ru="Пять опор Marshall: как выглядит трафик в сети, полный стек от Xray до TLS 1.3, скорость в реальных условиях и открытый код — рядом с привычными VPN-протоколами.">Five pillars of Marshall’s design: how traffic looks on the wire, the full stack from Xray to TLS 1.3, real-world speed, and open code — next to the VPN protocols people already know.</p>
     </div>
-    <div class="benefits-grid">
-      <div class="benefit-card">
-        <div class="benefit-icon benefit-icon-purple">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-        </div>
-        <div class="benefit-number gradient-text" data-en="10 Gbps" data-ru="10 Гбит/с">10 Gbps</div>
-        <div class="benefit-label" data-en="Speed" data-ru="Скорость">Speed</div>
-        <p class="benefit-hint" data-en="High-capacity backbone across regions." data-ru="Мощная магистраль между регионами.">High-capacity backbone across regions.</p>
+    <div class="proto-matrix reveal-scale">
+      <div class="proto-cols">
+        <div class="proto-col-header" data-en="Capability" data-ru="Критерий">Capability</div>
+        <div class="proto-col-header proto-col-header--marshall">VLESS + Reality<div class="proto-logo" data-en="Xray · sing-box · TLS 1.3" data-ru="Xray · sing-box · TLS 1.3">Xray · sing-box · TLS 1.3</div></div>
+        <div class="proto-col-header proto-col-header--wg">WireGuard<div class="proto-logo" data-en="Kernel / UDP" data-ru="Ядро / UDP">Kernel / UDP</div></div>
+        <div class="proto-col-header proto-col-header--ovpn">OpenVPN<div class="proto-logo" data-en="SSL/TLS" data-ru="SSL/TLS">SSL/TLS</div></div>
+        <div class="proto-col-header proto-col-header--ike">IKEv2<div class="proto-logo" data-en="IPsec" data-ru="IPsec">IPsec</div></div>
       </div>
-      <div class="benefit-card">
-        <div class="benefit-icon benefit-icon-green">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      <div class="proto-body">
+        <div class="proto-row">
+          <div class="proto-cell">
+            <div class="proto-cell-icon" style="background:rgba(108,92,231,.12);color:var(--accent-light)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/></svg></div>
+            <span data-en="Traffic on the wire" data-ru="Трафик «на проводе»">Traffic on the wire</span>
+          </div>
+          <div class="proto-cell proto-cell--marshall"><span class="proto-badge proto-badge--best" data-en="HTTPS-like · TCP 443" data-ru="Как HTTPS · TCP 443">HTTPS-like · TCP 443</span></div>
+          <div class="proto-cell"><span class="proto-badge proto-badge--bad" data-en="Distinct UDP" data-ru="Узнаваемый UDP">Distinct UDP</span></div>
+          <div class="proto-cell"><span class="proto-badge proto-badge--mid" data-en="Custom TLS" data-ru="Свой TLS">Custom TLS</span></div>
+          <div class="proto-cell"><span class="proto-badge proto-badge--mid" data-en="IPsec pattern" data-ru="Паттерн IPsec">IPsec pattern</span></div>
         </div>
-        <div class="benefit-number gradient-text">TLS 1.3</div>
-        <div class="benefit-label" data-en="Security" data-ru="Безопасность">Security</div>
-        <p class="benefit-hint" data-en="Modern encryption for every session." data-ru="Современное шифрование для каждой сессии.">Modern encryption for every session.</p>
-      </div>
-      <div class="benefit-card">
-        <div class="benefit-icon benefit-icon-blue">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+        <div class="proto-row">
+          <div class="proto-cell">
+            <div class="proto-cell-icon" style="background:rgba(0,210,160,.1);color:var(--success)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+            <span data-en="Core protocol stack" data-ru="Основной стек">Core protocol stack</span>
+          </div>
+          <div class="proto-cell proto-cell--marshall"><span class="proto-badge proto-badge--best" data-en="Xray · VLESS · Reality · TLS 1.3" data-ru="Xray · VLESS · Reality · TLS 1.3">Xray · VLESS · Reality · TLS 1.3</span></div>
+          <div class="proto-cell"><span class="proto-badge proto-badge--good" data-en="ChaCha20-Poly1305" data-ru="ChaCha20-Poly1305">ChaCha20-Poly1305</span></div>
+          <div class="proto-cell"><span class="proto-badge proto-badge--good" data-en="OpenSSL stack" data-ru="Стек OpenSSL">OpenSSL stack</span></div>
+          <div class="proto-cell"><span class="proto-badge proto-badge--mid" data-en="IKE + AES" data-ru="IKE + AES">IKE + AES</span></div>
         </div>
-        <div class="benefit-number gradient-text" data-en="No log" data-ru="No log">No log</div>
-        <div class="benefit-label" data-en="Privacy" data-ru="Приватность">Privacy</div>
-        <p class="benefit-hint" data-en="We don’t keep activity or connection logs." data-ru="Не ведём журналы активности и подключений.">We don’t keep activity or connection logs.</p>
-      </div>
-      <div class="benefit-card">
-        <div class="benefit-icon benefit-icon-amber">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        <div class="proto-row">
+          <div class="proto-cell">
+            <div class="proto-cell-icon" style="background:rgba(251,191,36,.1);color:#fbbf24"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+            <span data-en="Throughput &amp; efficiency" data-ru="Пропускная способность">Throughput &amp; efficiency</span>
+          </div>
+          <div class="proto-cell proto-cell--marshall"><span class="proto-badge proto-badge--best" data-en="10 Gbps-class · XTLS Vision" data-ru="Класс 10 Гбит/с · XTLS Vision">10 Gbps-class · XTLS Vision</span></div>
+          <div class="proto-cell"><span class="proto-badge proto-badge--best" data-en="Very high" data-ru="Очень высокая">Very high</span></div>
+          <div class="proto-cell"><span class="proto-badge proto-badge--mid" data-en="Medium" data-ru="Средняя">Medium</span></div>
+          <div class="proto-cell"><span class="proto-badge proto-badge--good" data-en="High" data-ru="Высокая">High</span></div>
         </div>
-        <div class="benefit-number gradient-text">24/7</div>
-        <div class="benefit-label" data-en="Support" data-ru="Поддержка">Support</div>
-        <p class="benefit-hint" data-en="Help when you need it, any time." data-ru="Помощь тогда, когда она нужна.">Help when you need it, any time.</p>
+        <div class="proto-row">
+          <div class="proto-cell">
+            <div class="proto-cell-icon" style="background:rgba(56,189,248,.1);color:#38bdf8"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <span data-en="TLS / browser fingerprint" data-ru="TLS / отпечаток браузера">TLS / browser fingerprint</span>
+          </div>
+          <div class="proto-cell proto-cell--marshall"><span class="proto-badge proto-badge--best" data-en="uTLS (Chrome-class)" data-ru="uTLS (как Chrome)">uTLS (Chrome-class)</span></div>
+          <div class="proto-cell"><span class="proto-badge proto-badge--bad" data-en="Noise (not TLS)" data-ru="Noise, не TLS">Noise (not TLS)</span></div>
+          <div class="proto-cell"><span class="proto-badge proto-badge--mid" data-en="TLS (VPN)" data-ru="TLS (VPN)">TLS (VPN)</span></div>
+          <div class="proto-cell"><span class="proto-badge proto-badge--bad" data-en="Not HTTPS" data-ru="Не HTTPS">Not HTTPS</span></div>
+        </div>
+        <div class="proto-row">
+          <div class="proto-cell">
+            <div class="proto-cell-icon" style="background:rgba(168,85,247,.12);color:#c084fc"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div>
+            <span data-en="Open, auditable clients" data-ru="Открытые клиенты">Open, auditable clients</span>
+          </div>
+          <div class="proto-cell proto-cell--marshall"><span class="proto-badge proto-badge--best" data-en="sing-box + Xray" data-ru="sing-box + Xray">sing-box + Xray</span></div>
+          <div class="proto-cell"><span class="proto-badge proto-badge--best" data-en="Open source" data-ru="Открытый код">Open source</span></div>
+          <div class="proto-cell"><span class="proto-badge proto-badge--best" data-en="Open source" data-ru="Открытый код">Open source</span></div>
+          <div class="proto-cell"><span class="proto-badge proto-badge--mid" data-en="Often closed" data-ru="Часто закрыты">Often closed</span></div>
+        </div>
       </div>
     </div>
   </div>
@@ -491,15 +659,16 @@ img{max-width:100%;display:block}
     </div>
     <div class="encrypt-card reveal-scale">
       <div class="encrypt-visual">
-        <div class="encrypt-tunnel">
-          <div class="tunnel-glow"></div>
-          <div class="tunnel-line"></div>
-          <div class="tunnel-label tunnel-label-left" data-en="Your Device" data-ru="Телефон">Your Device</div>
-          <div class="tunnel-label tunnel-label-center" data-en="VLESS + Reality · TLS 1.3" data-ru="VLESS + Reality · TLS 1.3">VLESS + Reality · TLS 1.3</div>
-          <div class="tunnel-label tunnel-label-right" data-en="Internet" data-ru="Интернет">Internet</div>
-          <div class="packet packet-1"></div>
-          <div class="packet packet-2"></div>
-          <div class="packet packet-3"></div>
+        <div class="encrypt-matrix-wrap">
+          <canvas class="encrypt-matrix-canvas" id="encryptMatrixCanvas" aria-hidden="true"></canvas>
+          <div class="encrypt-matrix-ui">
+            <span class="encrypt-matrix-node encrypt-matrix-node--left" data-en="Your Device" data-ru="Телефон">Your Device</span>
+            <span class="encrypt-matrix-node encrypt-matrix-node--right" data-en="Internet" data-ru="Интернет">Internet</span>
+          </div>
+          <div class="encrypt-matrix-core">
+            <p class="encrypt-matrix-title gradient-text" data-en="TLS 1.3 + XTLS · Vision" data-ru="TLS 1.3 + XTLS · Vision">TLS 1.3 + XTLS · Vision</p>
+            <p class="encrypt-matrix-sub" data-en="End-to-end" data-ru="Сквозное шифрование">End-to-end</p>
+          </div>
         </div>
       </div>
       <div class="encrypt-grid">
@@ -794,12 +963,32 @@ window.smoothScrollTo=function(sel){
   if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
 };
 
+/* ===== THEME ===== */
+let currentTheme=localStorage.getItem('mvpn-theme')||'dark';
+function applyTheme(t){
+  currentTheme=t;
+  document.documentElement.setAttribute('data-theme',t);
+  localStorage.setItem('mvpn-theme',t);
+  document.querySelector('meta[name="theme-color"]').setAttribute('content',t==='light'?'#C9C0DC':'#0A0A0F');
+}
+applyTheme(currentTheme);
+window.toggleTheme=function(){
+  applyTheme(currentTheme==='dark'?'light':'dark');
+  if(geo)renderMap();
+  parts.forEach(p=>{p.o=Math.random()*(currentTheme==='light'?.22:.3)+.05});
+};
+
 /* ===== PARTICLES ===== */
 const canvas=document.getElementById('particles'),ctx=canvas.getContext('2d');
 let parts=[];
 function rC(){canvas.width=innerWidth;canvas.height=innerHeight}
 rC();addEventListener('resize',rC);
-class P{constructor(){this.r()}r(){this.x=Math.random()*canvas.width;this.y=Math.random()*canvas.height;this.s=Math.random()*1.5+.5;this.dx=(Math.random()-.5)*.3;this.dy=(Math.random()-.5)*.3;this.o=Math.random()*.3+.05}u(){this.x+=this.dx;this.y+=this.dy;if(this.x<0||this.x>canvas.width||this.y<0||this.y>canvas.height)this.r()}d(){ctx.beginPath();ctx.arc(this.x,this.y,this.s,0,Math.PI*2);ctx.fillStyle=`rgba(108,92,231,${this.o})`;ctx.fill()}}
+const pColors=[
+  ()=>currentTheme==='light'?'167,139,250':'108,92,231',
+  ()=>currentTheme==='light'?'192,132,252':'168,85,247',
+  ()=>currentTheme==='light'?'110,231,183':'0,210,160'
+];
+class P{constructor(){this.r()}r(){this.x=Math.random()*canvas.width;this.y=Math.random()*canvas.height;this.s=Math.random()*1.5+.5;this.dx=(Math.random()-.5)*.3;this.dy=(Math.random()-.5)*.3;this.o=Math.random()*(currentTheme==='light'?.22:.3)+.05;this.ci=Math.floor(Math.random()*pColors.length)}u(){this.x+=this.dx;this.y+=this.dy;if(this.x<0||this.x>canvas.width||this.y<0||this.y>canvas.height)this.r()}d(){ctx.beginPath();ctx.arc(this.x,this.y,this.s,0,Math.PI*2);ctx.fillStyle=`rgba(${pColors[this.ci]()},${this.o})`;ctx.fill()}}
 for(let i=0;i<50;i++)parts.push(new P());
 (function aP(){ctx.clearRect(0,0,canvas.width,canvas.height);parts.forEach(p=>{p.u();p.d()});requestAnimationFrame(aP)})();
 
@@ -828,6 +1017,175 @@ const counterObserver=new IntersectionObserver((entries)=>{
   });
 },{threshold:.5});
 document.querySelectorAll('.counter').forEach(el=>counterObserver.observe(el));
+
+/* ===== Security block: matrix + vertical columns + drifting lines (cipher style) ===== */
+(function(){
+  const cvs=document.getElementById('encryptMatrixCanvas');
+  if(!cvs)return;
+  const wrap=cvs.closest('.encrypt-matrix-wrap');
+  const ctx=cvs.getContext('2d');
+  let W=0,H=0,dpr=1,running=false,rafId=0;
+  const chars='0123456789ABCDEFabcdef';
+  const streams=[];
+  const denseStreams=[];
+  let plainParts=[];
+  let cipherParts=[];
+  function streamCount(){
+    return Math.max(28,Math.min(48,Math.floor((W||innerWidth)/18)));
+  }
+  function denseCount(){
+    return Math.max(18,Math.min(36,Math.floor((W||innerWidth)/22)));
+  }
+  function initPlainCipher(){
+    plainParts=[];cipherParts=[];
+    if(W<8)return;
+    const plainT=['GET /index.html','Host: cdn.example','TLS_AES_256_GCM','ClientHello','Cookie: session=','User-Agent: Chrome','X-Forwarded-For:'];
+    for(let i=0;i<8;i++){
+      plainParts.push({
+        x:W*0.02+Math.random()*W*0.34,y:Math.random()*H,text:plainT[i%plainT.length],
+        alpha:0.07+Math.random()*0.07,speed:0.18+Math.random()*0.38
+      });
+    }
+    for(let i=0;i<8;i++){
+      let t='';for(let j=0;j<20;j++)t+=chars[Math.floor(Math.random()*chars.length)];
+      cipherParts.push({
+        x:W*0.58+Math.random()*W*0.38,y:Math.random()*H,text:t,
+        alpha:0.07+Math.random()*0.06,speed:0.16+Math.random()*0.34
+      });
+    }
+  }
+  function initStreams(){
+    streams.length=0;
+    denseStreams.length=0;
+    const n=streamCount();
+    for(let i=0;i<n;i++){
+      streams.push({
+        x:0,y:0,speed:0,chars:[],len:0,
+        reset(){
+          if(W<8)return;
+          this.x=Math.random()*W;
+          this.y=-Math.random()*H*0.55;
+          this.speed=0.28+Math.random()*0.95;
+          this.len=6+Math.floor(Math.random()*12);
+          this.chars=[];
+          for(let j=0;j<this.len;j++)this.chars.push(chars[Math.floor(Math.random()*chars.length)]);
+        }
+      });
+    }
+    streams.forEach(s=>s.reset());
+    const dn=denseCount();
+    const step=W/(dn+1);
+    for(let i=0;i<dn;i++){
+      denseStreams.push({
+        x:step*(i+1)+(Math.random()-0.5)*8,y:0,speed:0,chars:[],len:0,
+        reset(){
+          if(W<8)return;
+          this.x=Math.max(4,Math.min(W-4,step*(i+1)+(Math.random()-0.5)*10));
+          this.y=-Math.random()*H*0.7;
+          this.speed=0.45+Math.random()*1.15;
+          this.len=8+Math.floor(Math.random()*14);
+          this.chars=[];
+          for(let j=0;j<this.len;j++)this.chars.push(chars[Math.floor(Math.random()*chars.length)]);
+        }
+      });
+    }
+    denseStreams.forEach(s=>s.reset());
+    initPlainCipher();
+  }
+  function resize(){
+    if(!wrap)return;
+    const r=wrap.getBoundingClientRect();
+    dpr=window.devicePixelRatio||1;
+    W=r.width;H=r.height;
+    if(W<2||H<2)return;
+    cvs.width=W*dpr;cvs.height=H*dpr;
+    cvs.style.width=W+'px';cvs.style.height=H+'px';
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    initStreams();
+  }
+  function drawFrame(){
+    if(W<2)return;
+    ctx.clearRect(0,0,W,H);
+    const grd=ctx.createLinearGradient(0,0,W,0);
+    grd.addColorStop(0,'rgba(168,85,247,0.035)');
+    grd.addColorStop(0.5,'rgba(108,92,231,0.045)');
+    grd.addColorStop(1,'rgba(0,210,160,0.035)');
+    ctx.fillStyle=grd;ctx.fillRect(0,0,W,H);
+    ctx.font='500 9px ui-monospace,Menlo,Consolas,monospace';
+    plainParts.forEach(p=>{
+      p.y+=p.speed;
+      if(p.y>H+24){p.y=-14;p.x=W*0.02+Math.random()*W*0.34}
+      ctx.fillStyle=`rgba(168,130,230,${p.alpha})`;
+      ctx.fillText(p.text,p.x,p.y);
+    });
+    cipherParts.forEach(p=>{
+      p.y+=p.speed;
+      if(p.y>H+24){
+        p.y=-14;p.x=W*0.58+Math.random()*W*0.38;
+        let t='';for(let j=0;j<20;j++)t+=chars[Math.floor(Math.random()*chars.length)];p.text=t;
+      }
+      ctx.fillStyle=`rgba(0,200,155,${p.alpha})`;
+      ctx.fillText(p.text,p.x,p.y);
+    });
+    const my=H*0.5;
+    const beam=ctx.createLinearGradient(W*0.08,0,W*0.92,0);
+    beam.addColorStop(0,'rgba(168,85,247,0.22)');
+    beam.addColorStop(0.5,'rgba(108,92,231,0.42)');
+    beam.addColorStop(1,'rgba(0,210,160,0.28)');
+    ctx.strokeStyle=beam;ctx.lineWidth=1.25;ctx.beginPath();
+    ctx.moveTo(W*0.08,my);ctx.lineTo(W*0.92,my);ctx.stroke();
+    ctx.font='500 11px ui-monospace,Menlo,Consolas,"Courier New",monospace';
+    streams.forEach(s=>{
+      s.y+=s.speed;
+      if(s.y>H+s.len*14)s.reset();
+      s.chars.forEach((ch,j)=>{
+        const cy=s.y+j*14;
+        if(cy<-14||cy>H+14)return;
+        const headDist=j/Math.max(1,s.len-1);
+        const alpha=j===0?0.5:Math.max(0,0.26-headDist*0.3);
+        const isLeft=s.x<W/2;
+        ctx.fillStyle=isLeft?`rgba(145,125,235,${alpha})`:`rgba(0,205,158,${alpha})`;
+        ctx.fillText(ch,s.x,cy);
+      });
+      if(Math.random()<0.055)s.chars[0]=chars[Math.floor(Math.random()*chars.length)];
+    });
+    ctx.font='500 9px ui-monospace,Menlo,Consolas,monospace';
+    denseStreams.forEach(s=>{
+      s.y+=s.speed;
+      if(s.y>H+s.len*11)s.reset();
+      s.chars.forEach((ch,j)=>{
+        const cy=s.y+j*11;
+        if(cy<-11||cy>H+11)return;
+        const headDist=j/Math.max(1,s.len-1);
+        const alpha=j===0?0.42:Math.max(0,0.2-headDist*0.28);
+        const isLeft=s.x<W/2;
+        ctx.fillStyle=isLeft?`rgba(155,135,240,${alpha})`:`rgba(0,195,150,${alpha})`;
+        ctx.fillText(ch,s.x,cy);
+      });
+      if(Math.random()<0.06)s.chars[0]=chars[Math.floor(Math.random()*chars.length)];
+    });
+  }
+  function loop(){
+    if(!running)return;
+    drawFrame();
+    rafId=requestAnimationFrame(loop);
+  }
+  resize();
+  window.addEventListener('resize',()=>{resize();});
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        running=true;
+        resize();
+        if(!rafId)rafId=requestAnimationFrame(loop);
+      }else{
+        running=false;
+        if(rafId){cancelAnimationFrame(rafId);rafId=0;}
+      }
+    });
+  },{threshold:0.08,rootMargin:'60px'});
+  if(wrap)io.observe(wrap);
+})();
 
 /* ===== STATS: scroll-linked slide-in (keeps counter observer on .counter) ===== */
 (function(){
@@ -919,26 +1277,33 @@ function renderMap(){
   const w=cont.clientWidth,h=Math.max(w*.46,280);
   svg.attr("viewBox",`0 0 ${w} ${h}`);svg.selectAll("*").remove();
   if(!geo)return;
-  const isH=mapMode==="heatmap",L=currentLang;
+  const isH=mapMode==="heatmap",L=currentLang,isLight=currentTheme==='light';
   const proj=d3.geoNaturalEarth1().fitSize([w-28,h-28],{type:"Sphere"}).translate([w/2,h/2]);
   const path=d3.geoPath().projection(proj);
   const defs=svg.append("defs");
-  defs.append("radialGradient").attr("id","ocean").attr("cx","50%").attr("cy","42%").html('<stop offset="0%" stop-color="#111d30"/><stop offset="100%" stop-color="#0a1020"/>');
+  const oc1=isLight?'#d0d6e4':'#111d30',oc2=isLight?'#c4cad8':'#0a1020';
+  defs.append("radialGradient").attr("id","ocean").attr("cx","50%").attr("cy","42%").html(`<stop offset="0%" stop-color="${oc1}"/><stop offset="100%" stop-color="${oc2}"/>`);
   defs.append("filter").attr("id","gl").html('<feGaussianBlur stdDeviation="1.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>');
-  defs.append("linearGradient").attr("id","cFill").attr("x1","0%").attr("y1","0%").attr("x2","100%").attr("y2","100%").html('<stop offset="0%" stop-color="#1a2a45"/><stop offset="100%" stop-color="#152238"/>');
-  svg.append("path").attr("d",path({type:"Sphere"})).attr("fill","url(#ocean)").attr("stroke",isH?"#1c1525":"#1e3050").attr("stroke-width",.5);
-  svg.append("path").attr("d",path(d3.geoGraticule10())).attr("fill","none").attr("stroke",isH?"rgba(255,255,255,.01)":"rgba(100,160,220,.025)").attr("stroke-width",.3);
+  const cf1=isLight?'#e0e4f0':'#1a2a45',cf2=isLight?'#d8dce8':'#152238';
+  defs.append("linearGradient").attr("id","cFill").attr("x1","0%").attr("y1","0%").attr("x2","100%").attr("y2","100%").html(`<stop offset="0%" stop-color="${cf1}"/><stop offset="100%" stop-color="${cf2}"/>`);
+  const sphereStroke=isLight?(isH?'#b8b0c8':'#a0b0cc'):(isH?'#1c1525':'#1e3050');
+  svg.append("path").attr("d",path({type:"Sphere"})).attr("fill","url(#ocean)").attr("stroke",sphereStroke).attr("stroke-width",.5);
+  const gratStroke=isLight?(isH?'rgba(0,0,0,.04)':'rgba(60,90,140,.06)'):(isH?'rgba(255,255,255,.01)':'rgba(100,160,220,.025)');
+  svg.append("path").attr("d",path(d3.geoGraticule10())).attr("fill","none").attr("stroke",gratStroke).attr("stroke-width",.3);
 
+  const countryStrokeH=isLight?'#c8c4d4':'#0c1018';
+  const countryStrokeS=isLight?'rgba(80,100,140,.15)':'rgba(40,60,95,.2)';
   geo.features.forEach(f=>{
     const d=path(f);if(!d)return;
     const lv=getL(f.id);
     let fill=isH?hCol[lv]:"url(#cFill)";
-    const p=svg.append("path").attr("d",d).attr("fill",fill).attr("stroke",isH?"#0c1018":"rgba(40,60,95,.2)").attr("stroke-width",isH?.2:.15).style("transition","fill .3s");
+    const p=svg.append("path").attr("d",d).attr("fill",fill).attr("stroke",isH?countryStrokeH:countryStrokeS).attr("stroke-width",isH?.2:.15).style("transition","fill .3s");
     if(isH){
       const labelsMap=L==='ru'?lLabRu:lLab;
+      const hoverStroke=isLight?'rgba(0,0,0,.3)':'rgba(255,255,255,.35)';
       p.style("cursor","pointer")
         .on("mouseenter",function(ev){
-          d3.select(this).attr("stroke","rgba(255,255,255,.35)").attr("stroke-width",.8);
+          d3.select(this).attr("stroke",hoverStroke).attr("stroke-width",.8);
           const col=hCol[lv];tooltip.style.display="block";tooltip.style.borderColor=col+"44";
           document.getElementById("tt-dot").style.background=col;
           document.getElementById("tt-dot").style.boxShadow=`0 0 5px ${col}88`;
@@ -947,13 +1312,15 @@ function renderMap(){
           document.getElementById("tt-bar").style.background=`linear-gradient(90deg,${col}88,${col})`;
         })
         .on("mousemove",function(ev){const r=cont.getBoundingClientRect();tooltip.style.left=Math.min(ev.clientX-r.left+14,w-140)+"px";tooltip.style.top=(ev.clientY-r.top-8)+"px"})
-        .on("mouseleave",function(){d3.select(this).attr("stroke","#0c1018").attr("stroke-width",.2);tooltip.style.display="none"});
+        .on("mouseleave",function(){d3.select(this).attr("stroke",countryStrokeH).attr("stroke-width",.2);tooltip.style.display="none"});
     }else{
-      p.on("mouseenter",function(){d3.select(this).attr("fill","#1e3555").attr("stroke","rgba(100,160,220,.4)").attr("stroke-width",.6)})
-       .on("mouseleave",function(){d3.select(this).attr("fill","url(#cFill)").attr("stroke","rgba(40,60,95,.2)").attr("stroke-width",.15)});
+      const hFill=isLight?'#ccd4e6':'#1e3555';
+      p.on("mouseenter",function(){d3.select(this).attr("fill",hFill).attr("stroke",isLight?'rgba(80,100,180,.3)':'rgba(100,160,220,.4)').attr("stroke-width",.6)})
+       .on("mouseleave",function(){d3.select(this).attr("fill","url(#cFill)").attr("stroke",countryStrokeS).attr("stroke-width",.15)});
     }
   });
 
+  const dotBg=isLight?'#c4cad8':'#0a1020';
   if(!isH){
     servers.forEach((s,i)=>{
       const[px,py]=proj([s.lon,s.lat]);const g=svg.append("g");
@@ -961,7 +1328,7 @@ function renderMap(){
       pr.append("animate").attr("attributeName","r").attr("values","4;9;4").attr("dur",(3+i*.2)+"s").attr("repeatCount","indefinite");
       pr.append("animate").attr("attributeName","opacity").attr("values",".2;0;.2").attr("dur",(3+i*.2)+"s").attr("repeatCount","indefinite");
       g.append("circle").attr("cx",px).attr("cy",py).attr("r",5).attr("fill",GREEN).attr("opacity",.08).attr("filter","url(#gl)");
-      g.append("circle").attr("cx",px).attr("cy",py).attr("r",2.8).attr("fill",GREEN).attr("stroke","#0a1020").attr("stroke-width",.8);
+      g.append("circle").attr("cx",px).attr("cy",py).attr("r",2.8).attr("fill",GREEN).attr("stroke",dotBg).attr("stroke-width",.8);
     });
   }
 
