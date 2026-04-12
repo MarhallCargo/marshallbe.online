@@ -120,12 +120,17 @@ img{max-width:100%;display:block}
 .section-desc{font-size:clamp(15px,1.6vw,17px);color:var(--text-dim);line-height:1.7;max-width:540px}
 .section-divider{width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--border-light),transparent)}
 
-/* Protocol comparison (replaces former 4-card benefits) */
+/* Protocol comparison — desktop grid + mobile stacked cards */
 .proto-section{overflow:hidden}
-.proto-matrix{margin-top:44px;position:relative}
-.proto-cols,.proto-row{display:grid;grid-template-columns:1.45fr repeat(4,1fr);gap:0}
-.proto-cols{border-radius:var(--radius-lg) var(--radius-lg) 0 0;overflow:hidden;border:1px solid var(--border);border-bottom:none}
+.proto-lead-mobile{display:none;text-align:center;font-size:13px;color:var(--text-dim);max-width:520px;margin:-8px auto 20px;line-height:1.55;padding:0 8px}
+.proto-matrix{margin-top:40px;position:relative}
+.proto-cols{display:grid;grid-template-columns:1.45fr repeat(4,1fr);gap:0;border-radius:var(--radius-lg) var(--radius-lg) 0 0;overflow:hidden;border:1px solid var(--border);border-bottom:none}
 .proto-body{border-radius:0 0 var(--radius-lg) var(--radius-lg);overflow:hidden;border:1px solid var(--border);border-top:none}
+.proto-row{display:grid;grid-template-columns:1.45fr repeat(4,1fr);gap:0;transition:background .25s}
+.proto-compare-row{display:contents}
+.proto-row:hover{background:rgba(255,255,255,.025)}
+.proto-row:nth-child(even){background:rgba(255,255,255,.018)}
+.proto-row:nth-child(even):hover{background:rgba(255,255,255,.04)}
 .proto-col-header{padding:20px 14px;text-align:center;font-size:12px;font-weight:700;border-bottom:2px solid var(--border);background:var(--surface);line-height:1.25}
 .proto-col-header:first-child{text-align:left;padding-left:22px;font-size:10px;letter-spacing:1.4px;text-transform:uppercase;color:var(--text-muted);font-weight:600}
 .proto-col-header--marshall{background:linear-gradient(180deg,rgba(108,92,231,.14),rgba(108,92,231,.05));color:var(--accent-light);position:relative}
@@ -134,36 +139,65 @@ img{max-width:100%;display:block}
 .proto-col-header--ovpn{color:#22c55e}
 .proto-col-header--ike{color:#f59e0b}
 .proto-logo{font-size:9px;font-weight:500;color:var(--text-muted);margin-top:4px;letter-spacing:.2px;line-height:1.3}
-.proto-row{transition:background .25s}
-.proto-row:hover{background:rgba(255,255,255,.025)}
-.proto-row:nth-child(even){background:rgba(255,255,255,.018)}
-.proto-row:nth-child(even):hover{background:rgba(255,255,255,.04)}
 .proto-cell{padding:13px 12px;display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--border);font-size:12px;text-align:center;line-height:1.35}
-.proto-row:last-child .proto-cell{border-bottom:none}
-.proto-cell:first-child{justify-content:flex-start;padding-left:22px;font-weight:500;color:var(--text);gap:10px;text-align:left}
+.proto-row:last-child .proto-pair{border-bottom:none}
+.proto-cell--title{justify-content:flex-start;padding-left:22px;font-weight:500;color:var(--text);gap:10px;text-align:left}
 .proto-cell--marshall{background:rgba(108,92,231,.04)}
+.proto-pair{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:13px 10px;border-bottom:1px solid var(--border);min-height:52px;gap:6px}
+.proto-pair-lbl{display:none;font-size:9px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted);line-height:1.2;text-align:center}
+.proto-pair--marshall .proto-pair-lbl{color:var(--accent-light)}
+.proto-pair--wg .proto-pair-lbl{color:#38bdf8}
+.proto-pair--ovpn .proto-pair-lbl{color:#22c55e}
+.proto-pair--ike .proto-pair-lbl{color:#f59e0b}
+.proto-pair .proto-cell{padding:0;border:none;min-height:0;background:transparent!important}
+.proto-cell--title{border-bottom:1px solid var(--border)}
+@media(min-width:701px){
+  .proto-row:last-child .proto-cell--title{border-bottom:none}
+}
 .proto-cell-icon{width:26px;height:26px;border-radius:7px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
-.proto-badge{display:inline-flex;align-items:center;justify-content:center;padding:4px 8px;border-radius:6px;font-size:10px;font-weight:600;letter-spacing:.2px;line-height:1.25}
+.proto-badge{display:inline-flex;align-items:center;justify-content:center;padding:4px 8px;border-radius:6px;font-size:10px;font-weight:600;letter-spacing:.2px;line-height:1.25;max-width:100%}
 .proto-badge--best{background:rgba(0,210,160,.12);color:var(--success)}
 .proto-badge--good{background:rgba(56,189,248,.1);color:#38bdf8}
 .proto-badge--mid{background:rgba(251,191,36,.1);color:#fbbf24}
 .proto-badge--bad{background:rgba(255,77,106,.1);color:#FF4D6A}
 @media(max-width:860px){
-  .proto-cols,.proto-row{grid-template-columns:1.15fr repeat(4,1fr)}
-  .proto-cell{padding:10px 5px;font-size:10px}
-  .proto-cell:first-child{padding-left:10px;gap:6px}
-  .proto-col-header{padding:14px 6px;font-size:10px}
-  .proto-badge{font-size:8px;padding:3px 5px}
-  .proto-cell-icon{width:22px;height:22px;border-radius:5px}
-  .proto-logo{font-size:8px}
+  .proto-col-header{padding:14px 8px;font-size:11px}
+  .proto-badge{font-size:9px;padding:3px 6px}
+  .proto-cell,.proto-pair{font-size:11px}
+  .proto-cell--title{padding-left:14px}
 }
-@media(max-width:520px){
-  .proto-cols,.proto-row{grid-template-columns:1fr repeat(4,minmax(0,1fr))}
-  .proto-cell:first-child{font-size:9px}
-  .proto-col-header{font-size:8px;padding:10px 3px}
-}
-@media(min-width:901px){
+@media(min-width:701px){
   #benefits.section{padding-top:clamp(8px,1.2vw,16px)}
+}
+@media(max-width:700px){
+  .proto-lead-mobile{display:block}
+  .proto-cols{display:none}
+  .proto-body{border-radius:var(--radius-lg);border:1px solid var(--border);background:var(--surface);padding:4px 0 8px}
+  .proto-row{
+    display:flex;flex-direction:column;
+    margin:0 12px 12px;padding:0;overflow:hidden;border-radius:14px;
+    border:1px solid var(--border);background:rgba(0,0,0,.12);
+  }
+  [data-theme="light"] .proto-row{background:rgba(255,255,255,.35);border-color:rgba(72,58,110,.14)}
+  .proto-row:last-child{margin-bottom:4px}
+  .proto-compare-row{
+    display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:10px 10px 12px;width:100%;
+  }
+  .proto-pair{
+    align-items:stretch;padding:10px 8px;border:1px solid var(--border);border-radius:11px;
+    background:rgba(0,0,0,.18);min-height:auto
+  }
+  [data-theme="light"] .proto-pair{background:rgba(255,255,255,.45);border-color:rgba(72,58,110,.12)}
+  .proto-pair-lbl{display:block}
+  .proto-pair .proto-cell{justify-content:center}
+  .proto-pair--marshall{background:rgba(108,92,231,.1);border-color:rgba(108,92,231,.22)}
+  [data-theme="light"] .proto-pair--marshall{background:rgba(91,79,201,.1)}
+  .proto-cell--title{
+    padding:14px 14px;border-bottom:1px solid var(--border);
+    background:rgba(108,92,231,.08);font-size:13px;font-weight:600
+  }
+  [data-theme="light"] .proto-cell--title{background:rgba(91,79,201,.09)}
+  .proto-badge{font-size:8px;padding:5px 6px}
 }
 
 /* Stats (online security) — distinct from benefit tiles */
@@ -396,16 +430,19 @@ img{max-width:100%;display:block}
   box-shadow:0 2px 12px rgba(50,40,80,.07)
 }
 [data-theme="light"] .map-wrapper{
-  background:linear-gradient(180deg,rgba(200,192,222,.75),rgba(188,180,212,.82),rgba(200,192,222,.75));
-  border-color:rgba(72,58,110,.12);box-shadow:0 4px 28px rgba(50,40,80,.08)
+  background:linear-gradient(180deg,#1a2238 0%,#141c2e 45%,#121a2c 100%);
+  border-color:rgba(72,58,110,.35);
+  box-shadow:0 8px 40px rgba(25,20,45,.25),inset 0 1px 0 rgba(255,255,255,.06)
 }
-[data-theme="light"] .map-toggle{background:rgba(255,255,255,.3);border-color:rgba(72,58,110,.12)}
-[data-theme="light"] .map-toggle button{color:rgba(26,26,46,.45)}
+[data-theme="light"] .map-header h3{color:#e8ecf4}
+[data-theme="light"] .map-header p{color:#8aa4c8}
+[data-theme="light"] .map-toggle{background:rgba(12,18,32,.85);border-color:rgba(100,130,180,.2)}
+[data-theme="light"] .map-toggle button{color:#9bb0d0}
+[data-theme="light"] .map-legend-item{color:#c5d0e5}
 [data-theme="light"] .map-tooltip{background:rgba(248,245,255,.88);border:1px solid rgba(72,58,110,.14);box-shadow:0 8px 24px rgba(40,32,70,.1);backdrop-filter:blur(12px)}
 [data-theme="light"] .map-tooltip-label{color:rgba(26,26,46,.4)}
 [data-theme="light"] .map-tooltip-val{color:var(--text)}
 [data-theme="light"] .map-tooltip-bar{background:rgba(108,92,231,.08)}
-[data-theme="light"] .map-legend-item{color:rgba(26,26,46,.5)}
 [data-theme="light"] .pricing-tabs{background:rgba(255,255,255,.28);border-color:rgba(72,58,110,.12);backdrop-filter:blur(8px)}
 [data-theme="light"] .pricing-tab{color:rgba(26,26,46,.4)}
 [data-theme="light"] .pricing-tab:hover:not(.active){color:var(--text)}
@@ -433,7 +470,11 @@ img{max-width:100%;display:block}
   backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)
 }
 [data-theme="light"] .cta-box::before{background:radial-gradient(ellipse at top,rgba(91,79,201,.1),transparent 58%)}
-[data-theme="light"] .footer{border-top-color:rgba(72,58,110,.1)}
+[data-theme="light"] .footer{border-top-color:rgba(72,58,110,.18)}
+[data-theme="light"] .footer-col a{color:rgba(22,20,42,.72)}
+[data-theme="light"] .footer-col a:hover{color:var(--text)}
+[data-theme="light"] .footer-col h4{color:rgba(22,20,42,.45)}
+[data-theme="light"] .footer-bottom{color:rgba(22,20,42,.42)}
 [data-theme="light"] .section-divider{background:linear-gradient(90deg,transparent,rgba(72,58,110,.14),transparent)}
 [data-theme="light"] .mobile-menu::before{background:linear-gradient(160deg,#C9C0DC 0%,#BEB3D2 35%,#C4B8D8 100%)}
 [data-theme="light"] .mobile-menu::after{
@@ -454,8 +495,15 @@ img{max-width:100%;display:block}
   backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)
 }
 [data-theme="light"] .btn-secondary:hover{background:rgba(255,255,255,.48);border-color:rgba(91,79,201,.22)}
-[data-theme="light"] .btn-telegram{background:rgba(0,136,204,.08);border-color:rgba(0,136,204,.15)}
-[data-theme="light"] .btn-telegram:hover{background:rgba(0,136,204,.14);border-color:rgba(0,136,204,.25)}
+[data-theme="light"] .btn-telegram{
+  background:linear-gradient(180deg,#0098d4,#0088c2);color:#fff;border:1px solid rgba(0,90,130,.35);
+  box-shadow:0 4px 14px rgba(0,120,180,.25)
+}
+[data-theme="light"] .btn-telegram:hover{
+  background:linear-gradient(180deg,#00a8e8,#0098d4);border-color:rgba(0,80,120,.4);
+  box-shadow:0 6px 20px rgba(0,120,180,.32);transform:translateY(-2px)
+}
+[data-theme="light"] .btn-telegram svg{opacity:.95}
 [data-theme="light"] .hero p{color:rgba(22,20,42,.56)}
 [data-theme="light"] .stats-section{background:linear-gradient(180deg,transparent,rgba(91,79,201,.07),transparent)}
 [data-theme="light"] .nav-lang,[data-theme="light"] .nav-mobile-lang{background:rgba(255,255,255,.22);border-color:rgba(72,58,110,.14);color:rgba(22,20,42,.55)}
@@ -463,7 +511,7 @@ img{max-width:100%;display:block}
 
 /* Responsive */
 @media(max-width:768px){
-  .hero{padding:100px 20px 12px;min-height:auto}
+  .hero{padding:100px 20px 36px;min-height:auto}
   #benefits.section{padding-top:14px}
   .section{padding:60px 0}
   .map-section{padding:60px 0 40px}
@@ -527,7 +575,7 @@ img{max-width:100%;display:block}
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
           <span data-en="Download for iOS" data-ru="Скачать для iOS">Download for iOS</span>
         </button>
-        <a href="#benefits" class="btn-secondary">
+        <a href="#stats" class="btn-secondary">
           <span data-en="Learn More" data-ru="Узнать больше">Learn More</span>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17l9.2-9.2M17 17V7.8H7.8"/></svg>
         </a>
@@ -544,81 +592,7 @@ img{max-width:100%;display:block}
   </div>
 </section>
 
-<!-- ============ BLOCK 2: PROTOCOL COMPARISON (replaces “Why Marshall” cards) ============ -->
-<section class="section proto-section" id="benefits">
-  <div class="container">
-    <div style="text-align:center" class="reveal">
-      <div class="section-label" style="justify-content:center" data-en="Protocol stack" data-ru="Стек протокола">Protocol stack</div>
-      <h2 class="section-title" style="margin-left:auto;margin-right:auto;max-width:720px" data-en="The <span class='gradient-text-accent'>Xray</span> difference — not just another tunnel." data-ru="Почему <span class='gradient-text-accent'>Xray</span>: не просто ещё один туннель.">The <span class="gradient-text-accent">Xray</span> difference — not just another tunnel.</h2>
-      <p class="section-desc" style="margin-left:auto;margin-right:auto;text-align:center;max-width:640px" data-en="Five pillars of Marshall’s design: how traffic looks on the wire, the full stack from Xray to TLS 1.3, real-world speed, and open code — next to the VPN protocols people already know." data-ru="Пять опор Marshall: как выглядит трафик в сети, полный стек от Xray до TLS 1.3, скорость в реальных условиях и открытый код — рядом с привычными VPN-протоколами.">Five pillars of Marshall’s design: how traffic looks on the wire, the full stack from Xray to TLS 1.3, real-world speed, and open code — next to the VPN protocols people already know.</p>
-    </div>
-    <div class="proto-matrix reveal-scale">
-      <div class="proto-cols">
-        <div class="proto-col-header" data-en="Capability" data-ru="Критерий">Capability</div>
-        <div class="proto-col-header proto-col-header--marshall">VLESS + Reality<div class="proto-logo" data-en="Xray · sing-box · TLS 1.3" data-ru="Xray · sing-box · TLS 1.3">Xray · sing-box · TLS 1.3</div></div>
-        <div class="proto-col-header proto-col-header--wg">WireGuard<div class="proto-logo" data-en="Kernel / UDP" data-ru="Ядро / UDP">Kernel / UDP</div></div>
-        <div class="proto-col-header proto-col-header--ovpn">OpenVPN<div class="proto-logo" data-en="SSL/TLS" data-ru="SSL/TLS">SSL/TLS</div></div>
-        <div class="proto-col-header proto-col-header--ike">IKEv2<div class="proto-logo" data-en="IPsec" data-ru="IPsec">IPsec</div></div>
-      </div>
-      <div class="proto-body">
-        <div class="proto-row">
-          <div class="proto-cell">
-            <div class="proto-cell-icon" style="background:rgba(108,92,231,.12);color:var(--accent-light)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/></svg></div>
-            <span data-en="Traffic on the wire" data-ru="Трафик «на проводе»">Traffic on the wire</span>
-          </div>
-          <div class="proto-cell proto-cell--marshall"><span class="proto-badge proto-badge--best" data-en="HTTPS-like · TCP 443" data-ru="Как HTTPS · TCP 443">HTTPS-like · TCP 443</span></div>
-          <div class="proto-cell"><span class="proto-badge proto-badge--bad" data-en="Distinct UDP" data-ru="Узнаваемый UDP">Distinct UDP</span></div>
-          <div class="proto-cell"><span class="proto-badge proto-badge--mid" data-en="Custom TLS" data-ru="Свой TLS">Custom TLS</span></div>
-          <div class="proto-cell"><span class="proto-badge proto-badge--mid" data-en="IPsec pattern" data-ru="Паттерн IPsec">IPsec pattern</span></div>
-        </div>
-        <div class="proto-row">
-          <div class="proto-cell">
-            <div class="proto-cell-icon" style="background:rgba(0,210,160,.1);color:var(--success)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
-            <span data-en="Core protocol stack" data-ru="Основной стек">Core protocol stack</span>
-          </div>
-          <div class="proto-cell proto-cell--marshall"><span class="proto-badge proto-badge--best" data-en="Xray · VLESS · Reality · TLS 1.3" data-ru="Xray · VLESS · Reality · TLS 1.3">Xray · VLESS · Reality · TLS 1.3</span></div>
-          <div class="proto-cell"><span class="proto-badge proto-badge--good" data-en="ChaCha20-Poly1305" data-ru="ChaCha20-Poly1305">ChaCha20-Poly1305</span></div>
-          <div class="proto-cell"><span class="proto-badge proto-badge--good" data-en="OpenSSL stack" data-ru="Стек OpenSSL">OpenSSL stack</span></div>
-          <div class="proto-cell"><span class="proto-badge proto-badge--mid" data-en="IKE + AES" data-ru="IKE + AES">IKE + AES</span></div>
-        </div>
-        <div class="proto-row">
-          <div class="proto-cell">
-            <div class="proto-cell-icon" style="background:rgba(251,191,36,.1);color:#fbbf24"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
-            <span data-en="Throughput &amp; efficiency" data-ru="Пропускная способность">Throughput &amp; efficiency</span>
-          </div>
-          <div class="proto-cell proto-cell--marshall"><span class="proto-badge proto-badge--best" data-en="10 Gbps-class · XTLS Vision" data-ru="Класс 10 Гбит/с · XTLS Vision">10 Gbps-class · XTLS Vision</span></div>
-          <div class="proto-cell"><span class="proto-badge proto-badge--best" data-en="Very high" data-ru="Очень высокая">Very high</span></div>
-          <div class="proto-cell"><span class="proto-badge proto-badge--mid" data-en="Medium" data-ru="Средняя">Medium</span></div>
-          <div class="proto-cell"><span class="proto-badge proto-badge--good" data-en="High" data-ru="Высокая">High</span></div>
-        </div>
-        <div class="proto-row">
-          <div class="proto-cell">
-            <div class="proto-cell-icon" style="background:rgba(56,189,248,.1);color:#38bdf8"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-            <span data-en="TLS / browser fingerprint" data-ru="TLS / отпечаток браузера">TLS / browser fingerprint</span>
-          </div>
-          <div class="proto-cell proto-cell--marshall"><span class="proto-badge proto-badge--best" data-en="uTLS (Chrome-class)" data-ru="uTLS (как Chrome)">uTLS (Chrome-class)</span></div>
-          <div class="proto-cell"><span class="proto-badge proto-badge--bad" data-en="Noise (not TLS)" data-ru="Noise, не TLS">Noise (not TLS)</span></div>
-          <div class="proto-cell"><span class="proto-badge proto-badge--mid" data-en="TLS (VPN)" data-ru="TLS (VPN)">TLS (VPN)</span></div>
-          <div class="proto-cell"><span class="proto-badge proto-badge--bad" data-en="Not HTTPS" data-ru="Не HTTPS">Not HTTPS</span></div>
-        </div>
-        <div class="proto-row">
-          <div class="proto-cell">
-            <div class="proto-cell-icon" style="background:rgba(168,85,247,.12);color:#c084fc"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div>
-            <span data-en="Open, auditable clients" data-ru="Открытые клиенты">Open, auditable clients</span>
-          </div>
-          <div class="proto-cell proto-cell--marshall"><span class="proto-badge proto-badge--best" data-en="sing-box + Xray" data-ru="sing-box + Xray">sing-box + Xray</span></div>
-          <div class="proto-cell"><span class="proto-badge proto-badge--best" data-en="Open source" data-ru="Открытый код">Open source</span></div>
-          <div class="proto-cell"><span class="proto-badge proto-badge--best" data-en="Open source" data-ru="Открытый код">Open source</span></div>
-          <div class="proto-cell"><span class="proto-badge proto-badge--mid" data-en="Often closed" data-ru="Часто закрыты">Often closed</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="section-divider"></div>
-
-<!-- ============ BLOCK 3: ONLINE SECURITY STATS ============ -->
+<!-- ============ BLOCK 2: ONLINE SECURITY STATS (context before technical protocol block) ============ -->
 <section class="stats-section" id="stats">
   <div class="container">
     <div style="text-align:center" class="reveal">
@@ -642,6 +616,151 @@ img{max-width:100%;display:block}
       <div class="stat-card stat-card--scroll stat-card--from-right">
         <div class="stat-number gradient-text"><span class="counter" data-target="29">0</span><span class="stat-suffix">%</span></div>
         <div class="stat-label" data-en="have lost access to a personal account at least once" data-ru="хотя бы раз теряли доступ к личному аккаунту">have lost access to a personal account at least once</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ============ BLOCK 3: PROTOCOL COMPARISON ============ -->
+<section class="section proto-section" id="benefits">
+  <div class="container">
+    <div style="text-align:center" class="reveal">
+      <div class="section-label" style="justify-content:center" data-en="Protocol stack" data-ru="Стек протокола">Protocol stack</div>
+      <h2 class="section-title" style="margin-left:auto;margin-right:auto;max-width:720px" data-en="The <span class='gradient-text-accent'>Xray</span> difference — not just another tunnel." data-ru="Почему <span class='gradient-text-accent'>Xray</span>: не просто ещё один туннель.">The <span class="gradient-text-accent">Xray</span> difference — not just another tunnel.</h2>
+      <p class="section-desc" style="margin-left:auto;margin-right:auto;text-align:center;max-width:640px" data-en="Five pillars of Marshall’s design: how traffic looks on the wire, the full stack from Xray to TLS 1.3, real-world speed, and open code — next to the VPN protocols people already know." data-ru="Пять опор Marshall: как выглядит трафик в сети, полный стек от Xray до TLS 1.3, скорость в реальных условиях и открытый код — рядом с привычными VPN-протоколами.">Five pillars of Marshall’s design: how traffic looks on the wire, the full stack from Xray to TLS 1.3, real-world speed, and open code — next to the VPN protocols people already know.</p>
+    </div>
+    <p class="proto-lead-mobile reveal" data-en="Swipe cards below — same comparison as on desktop, formatted for your screen." data-ru="Листайте карточки ниже — тот же сравнительный блок, что и на большом экране.">Swipe cards below — same comparison as on desktop, formatted for your screen.</p>
+    <div class="proto-matrix reveal-scale">
+      <div class="proto-cols">
+        <div class="proto-col-header" data-en="Capability" data-ru="Критерий">Capability</div>
+        <div class="proto-col-header proto-col-header--marshall">VLESS + Reality<div class="proto-logo" data-en="Xray · sing-box · TLS 1.3" data-ru="Xray · sing-box · TLS 1.3">Xray · sing-box · TLS 1.3</div></div>
+        <div class="proto-col-header proto-col-header--wg">WireGuard<div class="proto-logo" data-en="Kernel / UDP" data-ru="Ядро / UDP">Kernel / UDP</div></div>
+        <div class="proto-col-header proto-col-header--ovpn">OpenVPN<div class="proto-logo" data-en="SSL/TLS" data-ru="SSL/TLS">SSL/TLS</div></div>
+        <div class="proto-col-header proto-col-header--ike">IKEv2<div class="proto-logo" data-en="IPsec" data-ru="IPsec">IPsec</div></div>
+      </div>
+      <div class="proto-body">
+        <div class="proto-row">
+          <div class="proto-cell proto-cell--title">
+            <div class="proto-cell-icon" style="background:rgba(108,92,231,.12);color:var(--accent-light)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/></svg></div>
+            <span data-en="Traffic on the wire" data-ru="Трафик «на проводе»">Traffic on the wire</span>
+          </div>
+          <div class="proto-compare-row">
+            <div class="proto-pair proto-pair--marshall">
+              <span class="proto-pair-lbl" data-en="VLESS + Reality" data-ru="VLESS + Reality">VLESS + Reality</span>
+              <div class="proto-cell proto-cell--marshall"><span class="proto-badge proto-badge--best" data-en="HTTPS-like · TCP 443" data-ru="Как HTTPS · TCP 443">HTTPS-like · TCP 443</span></div>
+            </div>
+            <div class="proto-pair proto-pair--wg">
+              <span class="proto-pair-lbl" data-en="WireGuard" data-ru="WireGuard">WireGuard</span>
+              <div class="proto-cell"><span class="proto-badge proto-badge--bad" data-en="Distinct UDP" data-ru="Узнаваемый UDP">Distinct UDP</span></div>
+            </div>
+            <div class="proto-pair proto-pair--ovpn">
+              <span class="proto-pair-lbl" data-en="OpenVPN" data-ru="OpenVPN">OpenVPN</span>
+              <div class="proto-cell"><span class="proto-badge proto-badge--mid" data-en="Custom TLS" data-ru="Свой TLS">Custom TLS</span></div>
+            </div>
+            <div class="proto-pair proto-pair--ike">
+              <span class="proto-pair-lbl" data-en="IKEv2" data-ru="IKEv2">IKEv2</span>
+              <div class="proto-cell"><span class="proto-badge proto-badge--mid" data-en="IPsec pattern" data-ru="Паттерн IPsec">IPsec pattern</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="proto-row">
+          <div class="proto-cell proto-cell--title">
+            <div class="proto-cell-icon" style="background:rgba(0,210,160,.1);color:var(--success)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+            <span data-en="Core protocol stack" data-ru="Основной стек">Core protocol stack</span>
+          </div>
+          <div class="proto-compare-row">
+            <div class="proto-pair proto-pair--marshall">
+              <span class="proto-pair-lbl" data-en="VLESS + Reality" data-ru="VLESS + Reality">VLESS + Reality</span>
+              <div class="proto-cell proto-cell--marshall"><span class="proto-badge proto-badge--best" data-en="Xray · VLESS · Reality · TLS 1.3" data-ru="Xray · VLESS · Reality · TLS 1.3">Xray · VLESS · Reality · TLS 1.3</span></div>
+            </div>
+            <div class="proto-pair proto-pair--wg">
+              <span class="proto-pair-lbl" data-en="WireGuard" data-ru="WireGuard">WireGuard</span>
+              <div class="proto-cell"><span class="proto-badge proto-badge--good" data-en="ChaCha20-Poly1305" data-ru="ChaCha20-Poly1305">ChaCha20-Poly1305</span></div>
+            </div>
+            <div class="proto-pair proto-pair--ovpn">
+              <span class="proto-pair-lbl" data-en="OpenVPN" data-ru="OpenVPN">OpenVPN</span>
+              <div class="proto-cell"><span class="proto-badge proto-badge--good" data-en="OpenSSL stack" data-ru="Стек OpenSSL">OpenSSL stack</span></div>
+            </div>
+            <div class="proto-pair proto-pair--ike">
+              <span class="proto-pair-lbl" data-en="IKEv2" data-ru="IKEv2">IKEv2</span>
+              <div class="proto-cell"><span class="proto-badge proto-badge--mid" data-en="IKE + AES" data-ru="IKE + AES">IKE + AES</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="proto-row">
+          <div class="proto-cell proto-cell--title">
+            <div class="proto-cell-icon" style="background:rgba(251,191,36,.1);color:#fbbf24"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+            <span data-en="Throughput &amp; efficiency" data-ru="Пропускная способность">Throughput &amp; efficiency</span>
+          </div>
+          <div class="proto-compare-row">
+            <div class="proto-pair proto-pair--marshall">
+              <span class="proto-pair-lbl" data-en="VLESS + Reality" data-ru="VLESS + Reality">VLESS + Reality</span>
+              <div class="proto-cell proto-cell--marshall"><span class="proto-badge proto-badge--best" data-en="10 Gbps-class · XTLS Vision" data-ru="Класс 10 Гбит/с · XTLS Vision">10 Gbps-class · XTLS Vision</span></div>
+            </div>
+            <div class="proto-pair proto-pair--wg">
+              <span class="proto-pair-lbl" data-en="WireGuard" data-ru="WireGuard">WireGuard</span>
+              <div class="proto-cell"><span class="proto-badge proto-badge--best" data-en="Very high" data-ru="Очень высокая">Very high</span></div>
+            </div>
+            <div class="proto-pair proto-pair--ovpn">
+              <span class="proto-pair-lbl" data-en="OpenVPN" data-ru="OpenVPN">OpenVPN</span>
+              <div class="proto-cell"><span class="proto-badge proto-badge--mid" data-en="Medium" data-ru="Средняя">Medium</span></div>
+            </div>
+            <div class="proto-pair proto-pair--ike">
+              <span class="proto-pair-lbl" data-en="IKEv2" data-ru="IKEv2">IKEv2</span>
+              <div class="proto-cell"><span class="proto-badge proto-badge--good" data-en="High" data-ru="Высокая">High</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="proto-row">
+          <div class="proto-cell proto-cell--title">
+            <div class="proto-cell-icon" style="background:rgba(56,189,248,.1);color:#38bdf8"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <span data-en="TLS / browser fingerprint" data-ru="TLS / отпечаток браузера">TLS / browser fingerprint</span>
+          </div>
+          <div class="proto-compare-row">
+            <div class="proto-pair proto-pair--marshall">
+              <span class="proto-pair-lbl" data-en="VLESS + Reality" data-ru="VLESS + Reality">VLESS + Reality</span>
+              <div class="proto-cell proto-cell--marshall"><span class="proto-badge proto-badge--best" data-en="uTLS (Chrome-class)" data-ru="uTLS (как Chrome)">uTLS (Chrome-class)</span></div>
+            </div>
+            <div class="proto-pair proto-pair--wg">
+              <span class="proto-pair-lbl" data-en="WireGuard" data-ru="WireGuard">WireGuard</span>
+              <div class="proto-cell"><span class="proto-badge proto-badge--bad" data-en="Noise (not TLS)" data-ru="Noise, не TLS">Noise (not TLS)</span></div>
+            </div>
+            <div class="proto-pair proto-pair--ovpn">
+              <span class="proto-pair-lbl" data-en="OpenVPN" data-ru="OpenVPN">OpenVPN</span>
+              <div class="proto-cell"><span class="proto-badge proto-badge--mid" data-en="TLS (VPN)" data-ru="TLS (VPN)">TLS (VPN)</span></div>
+            </div>
+            <div class="proto-pair proto-pair--ike">
+              <span class="proto-pair-lbl" data-en="IKEv2" data-ru="IKEv2">IKEv2</span>
+              <div class="proto-cell"><span class="proto-badge proto-badge--bad" data-en="Not HTTPS" data-ru="Не HTTPS">Not HTTPS</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="proto-row">
+          <div class="proto-cell proto-cell--title">
+            <div class="proto-cell-icon" style="background:rgba(168,85,247,.12);color:#c084fc"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div>
+            <span data-en="Open, auditable clients" data-ru="Открытые клиенты">Open, auditable clients</span>
+          </div>
+          <div class="proto-compare-row">
+            <div class="proto-pair proto-pair--marshall">
+              <span class="proto-pair-lbl" data-en="VLESS + Reality" data-ru="VLESS + Reality">VLESS + Reality</span>
+              <div class="proto-cell proto-cell--marshall"><span class="proto-badge proto-badge--best" data-en="sing-box + Xray" data-ru="sing-box + Xray">sing-box + Xray</span></div>
+            </div>
+            <div class="proto-pair proto-pair--wg">
+              <span class="proto-pair-lbl" data-en="WireGuard" data-ru="WireGuard">WireGuard</span>
+              <div class="proto-cell"><span class="proto-badge proto-badge--best" data-en="Open source" data-ru="Открытый код">Open source</span></div>
+            </div>
+            <div class="proto-pair proto-pair--ovpn">
+              <span class="proto-pair-lbl" data-en="OpenVPN" data-ru="OpenVPN">OpenVPN</span>
+              <div class="proto-cell"><span class="proto-badge proto-badge--best" data-en="Open source" data-ru="Открытый код">Open source</span></div>
+            </div>
+            <div class="proto-pair proto-pair--ike">
+              <span class="proto-pair-lbl" data-en="IKEv2" data-ru="IKEv2">IKEv2</span>
+              <div class="proto-cell"><span class="proto-badge proto-badge--mid" data-en="Often closed" data-ru="Часто закрыты">Often closed</span></div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1277,22 +1396,20 @@ function renderMap(){
   const w=cont.clientWidth,h=Math.max(w*.46,280);
   svg.attr("viewBox",`0 0 ${w} ${h}`);svg.selectAll("*").remove();
   if(!geo)return;
-  const isH=mapMode==="heatmap",L=currentLang,isLight=currentTheme==='light';
+  const isH=mapMode==="heatmap",L=currentLang;
   const proj=d3.geoNaturalEarth1().fitSize([w-28,h-28],{type:"Sphere"}).translate([w/2,h/2]);
   const path=d3.geoPath().projection(proj);
   const defs=svg.append("defs");
-  const oc1=isLight?'#d0d6e4':'#111d30',oc2=isLight?'#c4cad8':'#0a1020';
-  defs.append("radialGradient").attr("id","ocean").attr("cx","50%").attr("cy","42%").html(`<stop offset="0%" stop-color="${oc1}"/><stop offset="100%" stop-color="${oc2}"/>`);
+  defs.append("radialGradient").attr("id","ocean").attr("cx","50%").attr("cy","42%").html('<stop offset="0%" stop-color="#111d30"/><stop offset="100%" stop-color="#0a1020"/>');
   defs.append("filter").attr("id","gl").html('<feGaussianBlur stdDeviation="1.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>');
-  const cf1=isLight?'#e0e4f0':'#1a2a45',cf2=isLight?'#d8dce8':'#152238';
-  defs.append("linearGradient").attr("id","cFill").attr("x1","0%").attr("y1","0%").attr("x2","100%").attr("y2","100%").html(`<stop offset="0%" stop-color="${cf1}"/><stop offset="100%" stop-color="${cf2}"/>`);
-  const sphereStroke=isLight?(isH?'#b8b0c8':'#a0b0cc'):(isH?'#1c1525':'#1e3050');
+  defs.append("linearGradient").attr("id","cFill").attr("x1","0%").attr("y1","0%").attr("x2","100%").attr("y2","100%").html('<stop offset="0%" stop-color="#1a2a45"/><stop offset="100%" stop-color="#152238"/>');
+  const sphereStroke=isH?'#1c1525':'#1e3050';
   svg.append("path").attr("d",path({type:"Sphere"})).attr("fill","url(#ocean)").attr("stroke",sphereStroke).attr("stroke-width",.5);
-  const gratStroke=isLight?(isH?'rgba(0,0,0,.04)':'rgba(60,90,140,.06)'):(isH?'rgba(255,255,255,.01)':'rgba(100,160,220,.025)');
+  const gratStroke=isH?'rgba(255,255,255,.01)':'rgba(100,160,220,.025)';
   svg.append("path").attr("d",path(d3.geoGraticule10())).attr("fill","none").attr("stroke",gratStroke).attr("stroke-width",.3);
 
-  const countryStrokeH=isLight?'#c8c4d4':'#0c1018';
-  const countryStrokeS=isLight?'rgba(80,100,140,.15)':'rgba(40,60,95,.2)';
+  const countryStrokeH='#0c1018';
+  const countryStrokeS='rgba(40,60,95,.2)';
   geo.features.forEach(f=>{
     const d=path(f);if(!d)return;
     const lv=getL(f.id);
@@ -1300,7 +1417,7 @@ function renderMap(){
     const p=svg.append("path").attr("d",d).attr("fill",fill).attr("stroke",isH?countryStrokeH:countryStrokeS).attr("stroke-width",isH?.2:.15).style("transition","fill .3s");
     if(isH){
       const labelsMap=L==='ru'?lLabRu:lLab;
-      const hoverStroke=isLight?'rgba(0,0,0,.3)':'rgba(255,255,255,.35)';
+      const hoverStroke='rgba(255,255,255,.35)';
       p.style("cursor","pointer")
         .on("mouseenter",function(ev){
           d3.select(this).attr("stroke",hoverStroke).attr("stroke-width",.8);
@@ -1314,13 +1431,13 @@ function renderMap(){
         .on("mousemove",function(ev){const r=cont.getBoundingClientRect();tooltip.style.left=Math.min(ev.clientX-r.left+14,w-140)+"px";tooltip.style.top=(ev.clientY-r.top-8)+"px"})
         .on("mouseleave",function(){d3.select(this).attr("stroke",countryStrokeH).attr("stroke-width",.2);tooltip.style.display="none"});
     }else{
-      const hFill=isLight?'#ccd4e6':'#1e3555';
-      p.on("mouseenter",function(){d3.select(this).attr("fill",hFill).attr("stroke",isLight?'rgba(80,100,180,.3)':'rgba(100,160,220,.4)').attr("stroke-width",.6)})
+      const hFill='#1e3555';
+      p.on("mouseenter",function(){d3.select(this).attr("fill",hFill).attr("stroke",'rgba(100,160,220,.4)').attr("stroke-width",.6)})
        .on("mouseleave",function(){d3.select(this).attr("fill","url(#cFill)").attr("stroke",countryStrokeS).attr("stroke-width",.15)});
     }
   });
 
-  const dotBg=isLight?'#c4cad8':'#0a1020';
+  const dotBg='#0a1020';
   if(!isH){
     servers.forEach((s,i)=>{
       const[px,py]=proj([s.lon,s.lat]);const g=svg.append("g");
