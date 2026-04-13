@@ -215,23 +215,27 @@ img{max-width:100%;display:block}
   #hero .hero-layout--mobile .hero-benefits .benefit-icon svg{width:13px;height:13px}
   #hero .hero-layout--mobile .hero-benefits .benefit-number{font-size:9px;margin-bottom:1px;line-height:1.1}
   #hero .hero-layout--mobile .hero-benefits .benefit-label{font-size:7.5px;line-height:1.2}
-  /* Полоса из 4 пунктов: на всю ширину колонки, равномерно; не зависит от выравнивания текста над ней */
+  /* Полоса из 4 пунктов: равномерно; колонка — иконка по центру над строками текста, без тени у квадратов */
   #hero .hero-layout--mobile .hero-benefits-strip{
-    display:flex!important;flex-direction:row;flex-wrap:nowrap;justify-content:space-between;align-items:flex-end;gap:clamp(2px,1.2vw,8px);
+    display:flex!important;flex-direction:row;flex-wrap:nowrap;justify-content:space-between;align-items:stretch;gap:clamp(2px,1.2vw,8px);
     width:100%;max-width:100%;margin:0;padding:0;align-self:stretch;animation:fadeInUp .8s ease-out .32s both
   }
   #hero .hero-layout--mobile .hero-benefits-strip .benefit-card{
-    flex:1 1 0;min-width:0;background:transparent!important;border:none!important;box-shadow:none!important;
+    flex:1 1 0;min-width:0;display:flex;flex-direction:column;align-items:center;text-align:center;
+    background:transparent!important;border:none!important;box-shadow:none!important;
     padding:6px 1px!important;border-radius:0!important
   }
   #hero .hero-layout--mobile .hero-benefits-strip .benefit-card:hover{border:none!important;transform:none!important;box-shadow:none!important}
   #hero .hero-layout--mobile .hero-benefits-strip .benefit-icon{
-    width:clamp(28px,7.5vw,38px);height:clamp(28px,7.5vw,38px);border-radius:10px;margin:0 auto 6px
+    width:clamp(30px,8vw,42px);height:clamp(30px,8vw,42px);border-radius:10px;margin:0 0 6px;flex-shrink:0;
+    box-shadow:none!important;filter:none;box-sizing:border-box
   }
-  #hero .hero-layout--mobile .hero-benefits-strip .benefit-icon svg{width:clamp(15px,4.2vw,20px);height:clamp(15px,4.2vw,20px)}
-  #hero .hero-layout--mobile .hero-benefits-strip .benefit-number{font-size:clamp(8px,2.2vw,11px);margin-bottom:2px;line-height:1.2}
+  #hero .hero-layout--mobile .hero-benefits-strip .benefit-icon svg{width:clamp(16px,4.5vw,22px);height:clamp(16px,4.5vw,22px)}
+  #hero .hero-layout--mobile .hero-benefits-strip .benefit-number{
+    font-size:clamp(8px,2.2vw,11px);margin-bottom:2px;line-height:1.2;width:100%;text-align:center
+  }
   #hero .hero-layout--mobile .hero-benefits-strip .benefit-label{
-    font-size:clamp(7px,1.9vw,9px);color:var(--text-dim);line-height:1.2;font-weight:500;margin:0
+    font-size:clamp(7px,1.9vw,9px);color:var(--text-dim);line-height:1.2;font-weight:500;margin:0;width:100%;text-align:center
   }
   #hero .hero-layout--mobile .hero-benefits-strip .benefit-icon-purple{background:rgba(108,92,231,.12);color:var(--accent-light)}
   #hero .hero-layout--mobile .hero-benefits-strip .benefit-icon-green{background:rgba(0,210,160,.1);color:var(--success)}
@@ -886,7 +890,7 @@ img{max-width:100%;display:block}
               </div>
               <div class="showcase-m-feature-copy">
                 <h4 data-en="Smart Server Selection" data-ru="Умный выбор сервера">Smart Server Selection</h4>
-                <p data-en="Auto mode picks the fastest server. Or choose manually with real-time ping." data-ru="Авто-режим выбирает самый быстрый сервер. Или выберите вручную с пингом в реальном времени.">Auto mode picks the fastest server. Or choose manually with real-time ping.</p>
+                <p data-en="Auto mode picks the fastest server. Or choose manually with real-time ping." data-ru="Авто-режим выбирает самый быстрый сервер.">Auto mode picks the fastest server. Or choose manually with real-time ping.</p>
               </div>
             </div>
             <div class="showcase-m-feature reveal-left delay-2">
@@ -895,7 +899,7 @@ img{max-width:100%;display:block}
               </div>
               <div class="showcase-m-feature-copy">
                 <h4 data-en="Service Checker" data-ru="Проверка сервисов">Service Checker</h4>
-                <p data-en="Instantly verify access to YouTube, Instagram, Telegram, ChatGPT, and more." data-ru="Мгновенная проверка доступа к YouTube, Instagram, Telegram, ChatGPT и другим сервисам.">Instantly verify access to YouTube, Instagram, Telegram, ChatGPT, and more.</p>
+                <p data-en="Instantly verify access to YouTube, Instagram, Telegram, ChatGPT, and more." data-ru="Проверка доступа к Instagram и другим сервисам.">Instantly verify access to YouTube, Instagram, Telegram, ChatGPT, and more.</p>
               </div>
             </div>
             <div class="showcase-m-feature reveal-left delay-3">
@@ -904,7 +908,7 @@ img{max-width:100%;display:block}
               </div>
               <div class="showcase-m-feature-copy">
                 <h4 data-en="Multi-Protocol Support" data-ru="Мультипротокольность">Multi-Protocol Support</h4>
-                <p data-en="VLESS, VMess, Trojan, Shadowsocks — works with any modern configuration." data-ru="VLESS, VMess, Trojan, Shadowsocks — работает с любой современной конфигурацией.">VLESS, VMess, Trojan, Shadowsocks — works with any modern configuration.</p>
+                <p data-en="VLESS, VMess, Trojan, Shadowsocks — works with any modern configuration." data-ru="VLESS, VMess, Trojan, Shadowsocks — работает с любой конфигурацией.">VLESS, VMess, Trojan, Shadowsocks — works with any modern configuration.</p>
               </div>
             </div>
             <div class="showcase-m-feature reveal-left delay-4">
@@ -913,7 +917,7 @@ img{max-width:100%;display:block}
               </div>
               <div class="showcase-m-feature-copy">
                 <h4 data-en="Import Your Own Servers" data-ru="Импорт своих серверов">Import Your Own Servers</h4>
-                <p data-en="Paste any subscription URL or config — use Marshall as a client for your own infrastructure." data-ru="Вставьте любую ссылку подписки или конфиг — используйте Marshall как клиент для своей инфраструктуры.">Paste any subscription URL or config — use Marshall as a client for your own infrastructure.</p>
+                <p data-en="Paste any subscription URL or config — use Marshall as a client for your own infrastructure." data-ru="Ссылка подписки или конфиг — Marshall как клиент для вашей инфраструктуры.">Paste any subscription URL or config — use Marshall as a client for your own infrastructure.</p>
               </div>
             </div>
           </div>
@@ -925,7 +929,7 @@ img{max-width:100%;display:block}
       <div class="showcase-desktop-phone reveal-scale">
         <div class="phone-mockup phone-mockup--desktop-app">
           <div class="phone-frame">
-            <img src="assets/screen-import.png" alt="Marshall VPN — Connect" loading="lazy" width="560" height="1218">
+            <img src="assets/screen-home.png" alt="Marshall VPN app" loading="lazy" width="560" height="1218" onerror="this.src='assets/screen-import.png'">
           </div>
           <div class="phone-glow"></div>
         </div>
