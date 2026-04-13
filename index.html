@@ -221,26 +221,32 @@ img{max-width:100%;display:block}
     width:100%;max-width:100%;margin:0;padding:0;align-self:stretch;animation:fadeInUp .8s ease-out .32s both
   }
   #hero .hero-layout--mobile .hero-benefits-strip .benefit-card{
-    flex:1 1 0;min-width:0;display:flex;flex-direction:column;align-items:center;text-align:center;
+    flex:1 1 0;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;text-align:center;
     background:transparent!important;border:none!important;box-shadow:none!important;
-    padding:6px 1px!important;border-radius:0!important
+    padding:4px 1px 6px!important;border-radius:0!important
   }
   #hero .hero-layout--mobile .hero-benefits-strip .benefit-card:hover{border:none!important;transform:none!important;box-shadow:none!important}
+  /* Только контур SVG, без цветного квадрата / «тени»; крупнее и ниже по отношению к подписи */
   #hero .hero-layout--mobile .hero-benefits-strip .benefit-icon{
-    width:clamp(30px,8vw,42px);height:clamp(30px,8vw,42px);border-radius:10px;margin:0 0 6px;flex-shrink:0;
-    box-shadow:none!important;filter:none;box-sizing:border-box
+    display:flex;align-items:center;justify-content:center;
+    width:auto;height:auto;min-width:clamp(34px,9vw,48px);min-height:clamp(34px,9vw,48px);
+    margin:clamp(8px,2.4vw,16px) 0 clamp(3px,1vw,6px);padding:0;border-radius:0;flex-shrink:0;
+    background:transparent!important;border:none!important;box-shadow:none!important;filter:none!important;
+    box-sizing:content-box
   }
-  #hero .hero-layout--mobile .hero-benefits-strip .benefit-icon svg{width:clamp(16px,4.5vw,22px);height:clamp(16px,4.5vw,22px)}
+  #hero .hero-layout--mobile .hero-benefits-strip .benefit-icon svg{
+    width:clamp(20px,5.2vw,28px);height:clamp(20px,5.2vw,28px);display:block
+  }
+  #hero .hero-layout--mobile .hero-benefits-strip .benefit-icon-purple{color:var(--accent-light)}
+  #hero .hero-layout--mobile .hero-benefits-strip .benefit-icon-green{color:var(--success)}
+  #hero .hero-layout--mobile .hero-benefits-strip .benefit-icon-blue{color:#38bdf8}
+  #hero .hero-layout--mobile .hero-benefits-strip .benefit-icon-amber{color:#fbbf24}
   #hero .hero-layout--mobile .hero-benefits-strip .benefit-number{
     font-size:clamp(8px,2.2vw,11px);margin-bottom:2px;line-height:1.2;width:100%;text-align:center
   }
   #hero .hero-layout--mobile .hero-benefits-strip .benefit-label{
     font-size:clamp(7px,1.9vw,9px);color:var(--text-dim);line-height:1.2;font-weight:500;margin:0;width:100%;text-align:center
   }
-  #hero .hero-layout--mobile .hero-benefits-strip .benefit-icon-purple{background:rgba(108,92,231,.12);color:var(--accent-light)}
-  #hero .hero-layout--mobile .hero-benefits-strip .benefit-icon-green{background:rgba(0,210,160,.1);color:var(--success)}
-  #hero .hero-layout--mobile .hero-benefits-strip .benefit-icon-blue{background:rgba(56,189,248,.1);color:#38bdf8}
-  #hero .hero-layout--mobile .hero-benefits-strip .benefit-icon-amber{background:rgba(251,191,36,.1);color:#fbbf24}
 }
 @media(max-width:768px){
   .proto-desktop-only{display:none!important}
