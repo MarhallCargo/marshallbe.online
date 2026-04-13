@@ -115,9 +115,9 @@ img{max-width:100%;display:block}
 .hero-layout--mobile .hero-top{position:relative;z-index:2;text-align:center}
 .hero-layout--mobile .hero-top h1{font-size:clamp(28px,8vw,44px);font-weight:800;line-height:1.05;letter-spacing:-.03em;margin-bottom:0;animation:fadeInUp .8s ease-out .1s both}
 .hero-layout--mobile .hero-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;animation:fadeInUp .8s ease-out .35s both}
-.hero-mobile-below{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:clamp(10px,3vw,20px);align-items:start;animation:fadeInUp .8s ease-out .22s both}
-.hero-mobile-left{min-width:0;display:flex;flex-direction:column;gap:clamp(12px,2.5vw,18px)}
-.hero-layout--mobile .hero-visual--mobile{display:flex;justify-content:flex-end;align-items:flex-start;padding-top:2px}
+.hero-mobile-below{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:clamp(10px,3vw,20px);align-items:stretch;animation:fadeInUp .8s ease-out .22s both}
+.hero-mobile-left{min-width:0;display:flex;flex-direction:column;justify-content:flex-end;gap:clamp(8px,2vw,14px)}
+.hero-layout--mobile .hero-visual--mobile{display:flex;justify-content:flex-end;align-items:flex-end;padding-top:0}
 .hero-layout--mobile .hero-benefits{text-align:left;min-width:0}
 .hero-mobile-actions{margin-top:0}
 .phone-mockup--compact{width:min(132px,36vw);max-width:140px}
@@ -173,17 +173,27 @@ img{max-width:100%;display:block}
 #hero .hero-layout--mobile .hero-benefits .benefit-hint{display:none!important}
 /* Mobile hero — overrides above; must follow base #hero tile rules */
 @media(max-width:900px){
-  .hero-mobile-below{grid-template-columns:minmax(0,1fr) auto;align-items:start}
+  .hero-layout--mobile .hero-inner{gap:clamp(14px,3.5vw,22px)}
+  .hero-mobile-below{grid-template-columns:minmax(0,1fr) auto;align-items:stretch}
+  .hero-layout--mobile .hero-mobile-left{justify-content:flex-end}
   .hero-layout--mobile .hero-top{text-align:center}
-  .hero-layout--mobile .hero-top h1{font-size:clamp(36px,10vw,54px);line-height:1.04}
+  .hero-layout--mobile .hero-top h1{
+    font-size:clamp(36px,10vw,54px);line-height:1.04;
+    padding:clamp(10px,2.8vw,18px) 0;margin:0
+  }
   .hero-layout--mobile .hero-benefits{text-align:left}
   .hero-layout--mobile .hero-actions.hero-mobile-actions{
-    flex-direction:row;flex-wrap:nowrap;justify-content:stretch;align-items:stretch;gap:8px;width:100%;max-width:100%
+    flex-direction:column;flex-wrap:nowrap;align-items:stretch;justify-content:flex-start;
+    gap:clamp(10px,2.5vw,14px);width:100%;max-width:min(400px,100%);margin:0 auto;
+    animation:fadeInUp .8s ease-out .4s both
   }
-  .hero-mobile-actions .btn-primary,.hero-mobile-actions .btn-secondary{
-    flex:1;min-width:0;justify-content:center;padding:9px 10px;font-size:12px;font-weight:600;border-radius:10px;gap:6px
+  .hero-layout--mobile .hero-mobile-actions .btn-primary,.hero-layout--mobile .hero-mobile-actions .btn-secondary{
+    width:100%;justify-content:center;box-sizing:border-box;
+    padding:clamp(16px,4vw,20px) clamp(20px,5vw,28px);font-size:clamp(14px,3.8vw,16px);font-weight:600;
+    border-radius:14px;gap:10px;min-height:0
   }
-  .hero-mobile-actions .btn-primary svg,.hero-mobile-actions .btn-secondary svg{width:15px;height:15px;flex-shrink:0}
+  .hero-layout--mobile .hero-mobile-actions .btn-primary svg{width:22px;height:22px;flex-shrink:0}
+  .hero-layout--mobile .hero-mobile-actions .btn-secondary svg{width:18px;height:18px;flex-shrink:0}
   #hero .hero-layout--mobile .hero-benefits-title{
     font-size:clamp(20px,5.2vw,26px);margin-bottom:clamp(8px,2vw,12px);line-height:1.18
   }
@@ -195,10 +205,6 @@ img{max-width:100%;display:block}
   #hero .hero-layout--mobile .hero-benefits .benefit-icon svg{width:13px;height:13px}
   #hero .hero-layout--mobile .hero-benefits .benefit-number{font-size:9px;margin-bottom:1px;line-height:1.1}
   #hero .hero-layout--mobile .hero-benefits .benefit-label{font-size:7.5px;line-height:1.2}
-}
-@media(max-width:360px){
-  .hero-mobile-actions .btn-primary,.hero-mobile-actions .btn-secondary{padding:8px 6px;font-size:11px;gap:4px}
-  .hero-mobile-actions .btn-primary svg,.hero-mobile-actions .btn-secondary svg{width:14px;height:14px}
 }
 @media(max-width:768px){
   .proto-desktop-only{display:none!important}
@@ -522,16 +528,6 @@ img{max-width:100%;display:block}
               </div>
             </div>
           </div>
-          <div class="hero-actions hero-mobile-actions">
-            <button class="btn-primary" onclick="smoothScrollTo('#cta')">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-              <span data-en="Download for iOS" data-ru="Скачать для iOS">Download for iOS</span>
-            </button>
-            <a href="#stats" class="btn-secondary">
-              <span data-en="Learn More" data-ru="Узнать больше">Learn More</span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17l9.2-9.2M17 17V7.8H7.8"/></svg>
-            </a>
-          </div>
         </div>
         <div class="hero-visual hero-visual--mobile">
           <div class="phone-mockup phone-mockup--compact">
@@ -541,6 +537,16 @@ img{max-width:100%;display:block}
             <div class="phone-glow"></div>
           </div>
         </div>
+      </div>
+      <div class="hero-actions hero-mobile-actions">
+        <button class="btn-primary" onclick="smoothScrollTo('#cta')">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          <span data-en="Download for iOS" data-ru="Скачать для iOS">Download for iOS</span>
+        </button>
+        <a href="#stats" class="btn-secondary">
+          <span data-en="Learn More" data-ru="Узнать больше">Learn More</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17l9.2-9.2M17 17V7.8H7.8"/></svg>
+        </a>
       </div>
     </div>
   </div>
