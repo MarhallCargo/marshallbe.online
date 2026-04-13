@@ -414,13 +414,27 @@ img{max-width:100%;display:block}
   #security{scroll-margin-top:clamp(72px,18vw,96px)}
 }
 
-/* Performance benchmark (desktop only — блок из new-blocks Performance, без шапки секции) */
-.perf-section-desktop{display:none}
-@media(min-width:901px){
-  .perf-section-desktop{display:block}
+/* Performance benchmark (под Pricing, перед CTA — десктоп + мобильная вёрстка) */
+#performance-benchmark.speed-section{padding:56px 0 72px;position:relative;z-index:2;overflow-x:clip}
+#performance-benchmark .perf-intro{margin-bottom:0}
+#performance-benchmark .perf-intro .section-label{justify-content:center}
+#performance-benchmark .speed-inner{
+  display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,5vw,60px);align-items:center;
+  margin-top:clamp(28px,4vw,48px)
 }
-.speed-section.perf-section-desktop{padding:56px 0 72px}
-.speed-inner{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,5vw,60px);align-items:center;margin-top:0}
+@media(max-width:900px){
+  #performance-benchmark{scroll-margin-top:clamp(72px,18vw,96px)}
+  #performance-benchmark.speed-section{padding:42px 0 52px}
+  #performance-benchmark .perf-intro .section-title{font-size:clamp(24px,6.8vw,36px);padding:0 4px}
+  #performance-benchmark .perf-intro .section-desc{font-size:clamp(14px,3.6vw,16px);max-width:100%!important;padding:0 8px}
+  #performance-benchmark .speed-inner{grid-template-columns:1fr;gap:clamp(22px,5vw,32px);margin-top:clamp(22px,5vw,36px)}
+  #performance-benchmark .speed-inner>*{min-width:0}
+  #performance-benchmark .speed-bar-value{font-size:clamp(17px,4.5vw,20px)}
+  #performance-benchmark .speed-info{padding:0}
+  #performance-benchmark .speed-info h3{font-size:clamp(16px,4.2vw,18px)}
+  #performance-benchmark .speed-info p{font-size:clamp(13px,3.4vw,15px)}
+  #performance-benchmark .speed-info-item{font-size:clamp(12px,3.2vw,14px)}
+}
 .speed-bars{display:flex;flex-direction:column;gap:28px}
 .speed-bar-group{position:relative}
 .speed-bar-label{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
@@ -1098,9 +1112,14 @@ img{max-width:100%;display:block}
 
 <div class="section-divider"></div>
 
-<!-- Performance (desktop only): нижний блок из секции Performance в new-blocks.html — под Pricing, перед CTA -->
-<section class="speed-section perf-section-desktop" id="performance-benchmark">
+<!-- Performance: шапка + метрики + XTLS (как в new-blocks.html) — под Pricing, перед CTA; адаптив -->
+<section class="speed-section" id="performance-benchmark">
   <div class="container">
+    <div class="perf-intro reveal" style="text-align:center">
+      <div class="section-label" style="justify-content:center" data-en="Performance" data-ru="Производительность">Performance</div>
+      <h2 class="section-title" style="margin-left:auto;margin-right:auto;max-width:720px" data-en="Invisible doesn't mean <span class='gradient-text-accent'>slow.</span>" data-ru="Невидимый — не значит <span class='gradient-text-accent'>медленный.</span>">Invisible doesn't mean <span class="gradient-text-accent">slow.</span></h2>
+      <p class="section-desc" style="margin-left:auto;margin-right:auto;text-align:center;max-width:560px" data-en="XTLS Vision eliminates double encryption overhead. You get censorship resistance without sacrificing speed." data-ru="XTLS Vision устраняет двойное шифрование. Вы получаете защиту от цензуры без потери скорости.">XTLS Vision eliminates double encryption overhead. You get censorship resistance without sacrificing speed.</p>
+    </div>
     <div class="speed-inner">
       <div class="speed-bars reveal-left">
         <div class="speed-bar-group" data-fill="88">
@@ -1505,7 +1524,7 @@ document.querySelectorAll('.counter').forEach(el=>counterObserver.observe(el));
 
 /* ===== Performance benchmark bars (desktop section) ===== */
 (function(){
-  const root=document.querySelector('.perf-section-desktop');
+  const root=document.querySelector('#performance-benchmark');
   if(!root)return;
   const groups=root.querySelectorAll('.speed-bar-group');
   const barObs=new IntersectionObserver(es=>{
