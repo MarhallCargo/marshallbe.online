@@ -31,8 +31,8 @@
   --radius-md:14px;
   --radius-sm:8px;
 }
-html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
-body{background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,'Helvetica Neue',sans-serif;overflow-x:hidden;line-height:1.6}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:clip;max-width:100%}
+body{background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,'Helvetica Neue',sans-serif;overflow-x:clip;line-height:1.6;max-width:100%;position:relative}
 a{color:var(--accent-light);text-decoration:none;transition:color .3s}
 a:hover{color:#c084fc}
 img{max-width:100%;display:block}
@@ -125,7 +125,7 @@ img{max-width:100%;display:block}
 .hero-layout--mobile .hero-top h1{font-size:clamp(28px,8vw,44px);font-weight:800;line-height:1.05;letter-spacing:-.03em;margin-bottom:0;animation:fadeInUp .8s ease-out .1s both}
 .hero-layout--mobile .hero-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;animation:fadeInUp .8s ease-out .35s both}
 .hero-mobile-below{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:clamp(10px,3vw,20px);align-items:stretch;animation:fadeInUp .8s ease-out .22s both}
-.hero-mobile-left{min-width:0;display:flex;flex-direction:column;justify-content:flex-end;gap:clamp(8px,2vw,14px)}
+.hero-mobile-left{min-width:0;display:flex;flex-direction:column;justify-content:space-between;align-items:stretch;gap:clamp(10px,2.5vw,16px);min-height:0}
 .hero-layout--mobile .hero-visual--mobile{display:flex;justify-content:flex-end;align-items:flex-end;padding-top:0}
 .hero-layout--mobile .hero-benefits{text-align:left;min-width:0}
 .hero-mobile-actions{margin-top:0}
@@ -184,7 +184,7 @@ img{max-width:100%;display:block}
 @media(max-width:900px){
   .hero-layout--mobile .hero-inner{gap:clamp(14px,3.5vw,22px)}
   .hero-mobile-below{grid-template-columns:minmax(0,1fr) auto;align-items:stretch}
-  .hero-layout--mobile .hero-mobile-left{justify-content:flex-end}
+  .hero-layout--mobile .hero-inner{overflow-x:clip}
   .hero-layout--mobile .hero-top{text-align:center}
   .hero-layout--mobile .hero-top h1{
     font-size:clamp(36px,10vw,54px);line-height:1.04;
@@ -214,10 +214,10 @@ img{max-width:100%;display:block}
   #hero .hero-layout--mobile .hero-benefits .benefit-icon svg{width:13px;height:13px}
   #hero .hero-layout--mobile .hero-benefits .benefit-number{font-size:9px;margin-bottom:1px;line-height:1.1}
   #hero .hero-layout--mobile .hero-benefits .benefit-label{font-size:7.5px;line-height:1.2}
-  /* Одна полоса из 4 пунктов над кнопками: без рамок, в ряд */
+  /* Полоса из 4 пунктов слева от телефона, у нижнего края колонки: только иконка + цифра/подпись */
   #hero .hero-layout--mobile .hero-benefits-strip{
-    display:flex!important;flex-direction:row;flex-wrap:nowrap;justify-content:space-between;align-items:flex-start;gap:4px 6px;
-    width:100%;max-width:100%;margin:0;padding:0;animation:fadeInUp .8s ease-out .32s both
+    display:flex!important;flex-direction:row;flex-wrap:nowrap;justify-content:space-between;align-items:flex-end;gap:3px 4px;
+    width:100%;max-width:100%;margin:0;margin-top:auto;padding:0;align-self:stretch;animation:fadeInUp .8s ease-out .32s both
   }
   #hero .hero-layout--mobile .hero-benefits-strip .benefit-card{
     flex:1 1 0;min-width:0;background:transparent!important;border:none!important;box-shadow:none!important;
@@ -228,8 +228,7 @@ img{max-width:100%;display:block}
     width:clamp(26px,7vw,34px);height:clamp(26px,7vw,34px);border-radius:10px;margin:0 auto 5px
   }
   #hero .hero-layout--mobile .hero-benefits-strip .benefit-icon svg{width:clamp(14px,4vw,18px);height:clamp(14px,4vw,18px)}
-  #hero .hero-layout--mobile .hero-benefits-strip .benefit-number{font-size:clamp(9px,2.4vw,11px);margin-bottom:2px;line-height:1.15}
-  #hero .hero-layout--mobile .hero-benefits-strip .benefit-label{font-size:clamp(7px,2vw,9px);line-height:1.2}
+  #hero .hero-layout--mobile .hero-benefits-strip .benefit-number{font-size:clamp(8px,2.2vw,11px);margin-bottom:0;line-height:1.2}
   #hero .hero-layout--mobile .hero-benefits-strip .benefit-icon-purple{background:rgba(108,92,231,.12);color:var(--accent-light)}
   #hero .hero-layout--mobile .hero-benefits-strip .benefit-icon-green{background:rgba(0,210,160,.1);color:var(--success)}
   #hero .hero-layout--mobile .hero-benefits-strip .benefit-icon-blue{background:rgba(56,189,248,.1);color:#38bdf8}
@@ -284,7 +283,7 @@ img{max-width:100%;display:block}
   #benefits.section{padding-top:clamp(8px,1.2vw,16px)}
 }
 /* Stats (online security) — distinct from benefit tiles */
-.stats-section{position:relative;z-index:2;padding:70px 0;background:linear-gradient(180deg,transparent,rgba(108,92,231,.04),transparent)}
+.stats-section{position:relative;z-index:2;padding:70px 0;background:linear-gradient(180deg,transparent,rgba(108,92,231,.04),transparent);overflow-x:clip}
 .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:48px}
 .stat-card{
   position:relative;text-align:left;padding:26px 20px 28px 22px;border-radius:14px;
@@ -314,7 +313,7 @@ img{max-width:100%;display:block}
 @media(max-width:500px){.stats-grid{gap:12px}.stat-card{padding:22px 16px 24px 18px}.stat-label{font-size:12px}}
 
 /* App showcase */
-.showcase{position:relative;z-index:2;padding:80px 0}
+.showcase{position:relative;z-index:2;padding:80px 0;overflow-x:clip}
 .showcase-inner{display:grid;grid-template-columns:1fr;gap:0;align-items:start;max-width:720px;margin:0 auto}
 .showcase-features{display:flex;flex-direction:column;gap:11px}
 .showcase-feature{
@@ -422,7 +421,7 @@ img{max-width:100%;display:block}
 @media(max-width:420px){.pricing-grid{grid-template-columns:1fr 1fr;gap:10px}.pricing-card{padding:22px 12px}}
 
 /* Encryption animation (matrix stream + flow labels) */
-.encrypt-section{position:relative;z-index:2;padding:80px 0}
+.encrypt-section{position:relative;z-index:2;padding:80px 0;overflow-x:clip}
 .encrypt-card{margin-top:40px;padding:0;border-radius:var(--radius-lg);background:linear-gradient(135deg,rgba(108,92,231,.06),rgba(0,210,160,.03));border:1px solid rgba(108,92,231,.12);position:relative;overflow:hidden}
 .encrypt-visual{position:relative;height:200px;overflow:hidden;border-radius:var(--radius-lg) var(--radius-lg) 0 0;padding:0}
 .encrypt-matrix-wrap{position:relative;width:100%;height:100%;background:linear-gradient(165deg,rgba(12,8,28,.95) 0%,rgba(8,12,22,.98) 50%,rgba(6,14,18,.96) 100%);min-height:0}
@@ -481,6 +480,15 @@ img{max-width:100%;display:block}
   .cta-section{padding:40px 0}
   .showcase{padding:60px 0}
   .stats-section{padding:50px 0}
+}
+/* Мобильная вёрстка: меньше зазоров hero → Security → App; слабее сдвиг reveal (без «уезжания» влево при pinch) */
+@media(max-width:900px){
+  #hero.hero{padding-bottom:10px}
+  .encrypt-section{padding-top:36px!important;padding-bottom:52px!important}
+  .showcase{padding-top:32px!important}
+  .site-reorder-mobile{overflow-x:clip}
+  .reveal-left:not(.visible){transform:translate3d(-18px,0,0)}
+  .reveal-right:not(.visible){transform:translate3d(18px,0,0)}
 }
 </style>
 </head>
@@ -555,6 +563,32 @@ img{max-width:100%;display:block}
           <div class="hero-benefits reveal">
             <h2 class="hero-benefits-title" data-en="Built for speed,<br><span class='gradient-text-accent'>designed for privacy.</span>" data-ru="Создан для скорости,<br><span class='gradient-text-accent'>спроектирован для приватности.</span>">Built for speed,<br><span class="gradient-text-accent">designed for privacy.</span></h2>
           </div>
+          <div class="benefits-grid hero-benefits-grid hero-benefits-strip reveal">
+            <div class="benefit-card">
+              <div class="benefit-icon benefit-icon-purple">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+              </div>
+              <div class="benefit-number gradient-text" data-en="10 Gbps" data-ru="10 Гбит/с">10 Gbps</div>
+            </div>
+            <div class="benefit-card">
+              <div class="benefit-icon benefit-icon-green">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              </div>
+              <div class="benefit-number gradient-text">TLS 1.3</div>
+            </div>
+            <div class="benefit-card">
+              <div class="benefit-icon benefit-icon-blue">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+              </div>
+              <div class="benefit-number gradient-text" data-en="No log" data-ru="No log">No log</div>
+            </div>
+            <div class="benefit-card">
+              <div class="benefit-icon benefit-icon-amber">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              </div>
+              <div class="benefit-number gradient-text">24/7</div>
+            </div>
+          </div>
         </div>
         <div class="hero-visual hero-visual--mobile">
           <div class="phone-mockup phone-mockup--compact">
@@ -563,40 +597,6 @@ img{max-width:100%;display:block}
             </div>
             <div class="phone-glow"></div>
           </div>
-        </div>
-      </div>
-      <div class="benefits-grid hero-benefits-grid hero-benefits-strip reveal">
-        <div class="benefit-card reveal-left delay-1">
-          <div class="benefit-icon benefit-icon-purple">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-          </div>
-          <div class="benefit-number gradient-text" data-en="10 Gbps" data-ru="10 Гбит/с">10 Gbps</div>
-          <div class="benefit-label" data-en="Speed" data-ru="Скорость">Speed</div>
-          <p class="benefit-hint" data-en="High-capacity backbone across regions." data-ru="Мощная магистраль между регионами.">High-capacity backbone across regions.</p>
-        </div>
-        <div class="benefit-card reveal-right delay-2">
-          <div class="benefit-icon benefit-icon-green">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-          </div>
-          <div class="benefit-number gradient-text">TLS 1.3</div>
-          <div class="benefit-label" data-en="Security" data-ru="Безопасность">Security</div>
-          <p class="benefit-hint" data-en="Modern encryption for every session." data-ru="Современное шифрование для каждой сессии.">Modern encryption for every session.</p>
-        </div>
-        <div class="benefit-card reveal-left delay-3">
-          <div class="benefit-icon benefit-icon-blue">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
-          </div>
-          <div class="benefit-number gradient-text" data-en="No log" data-ru="No log">No log</div>
-          <div class="benefit-label" data-en="Privacy" data-ru="Приватность">Privacy</div>
-          <p class="benefit-hint" data-en="We don’t keep activity or connection logs." data-ru="Не ведём журналы активности и подключений.">We don’t keep activity or connection logs.</p>
-        </div>
-        <div class="benefit-card reveal-right delay-4">
-          <div class="benefit-icon benefit-icon-amber">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-          </div>
-          <div class="benefit-number gradient-text">24/7</div>
-          <div class="benefit-label" data-en="Support" data-ru="Поддержка">Support</div>
-          <p class="benefit-hint" data-en="Help when you need it, any time." data-ru="Помощь тогда, когда она нужна.">Help when you need it, any time.</p>
         </div>
       </div>
       <div class="hero-actions hero-mobile-actions">
@@ -1331,7 +1331,7 @@ document.querySelectorAll('.counter').forEach(el=>counterObserver.observe(el));
       const s=i*0.11;
       let u=Math.max(0,Math.min(1,(t-s)/(1-s+1e-6)));
       u=u*u*(3-2*u);
-      const dist=110;
+      const dist=window.innerWidth<=900?58:110;
       card.style.setProperty('--stat-tx',((1-u)*dist*dir)+'px');
       card.style.setProperty('--stat-op',String(0.06+0.94*u));
       card.style.setProperty('--stat-sc',String(0.76+0.24*u));
