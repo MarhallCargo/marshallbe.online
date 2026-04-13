@@ -95,8 +95,6 @@ img{max-width:100%;display:block}
 .hero-content{position:relative;z-index:2}
 .hero h1{font-size:clamp(38px,6vw,72px);font-weight:800;line-height:1.05;letter-spacing:-.03em;margin-bottom:20px;animation:fadeInUp .8s ease-out .1s both}
 .hero-phone-inline{display:none}
-.hero-phone-inline img{border-radius:22px;box-shadow:0 16px 48px rgba(0,0,0,.35),0 0 80px rgba(108,92,231,.1);border:2px solid rgba(255,255,255,.08)}
-[data-theme="light"] .hero-phone-inline img{border-color:rgba(72,58,110,.16);box-shadow:0 16px 48px rgba(50,40,80,.18),0 0 60px rgba(91,79,201,.08)}
 .hero p{font-size:clamp(15px,2vw,18px);color:var(--text-dim);line-height:1.7;max-width:520px;margin-bottom:32px;animation:fadeInUp .8s ease-out .2s both}
 @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
 .hero-actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap;animation:fadeInUp .8s ease-out .3s both}
@@ -116,10 +114,8 @@ img{max-width:100%;display:block}
   .hero-inner{grid-template-columns:1fr;text-align:center}
   .hero-content{order:1}
   .hero-visual{order:0;display:none}
-  .hero p{display:none}
+  .hero p{display:block;margin-bottom:24px;margin-left:auto;margin-right:auto}
   .hero h1{margin-bottom:14px}
-  .hero-phone-inline{display:flex;justify-content:center;margin:0 auto 20px;animation:fadeInUp .8s ease-out .18s both}
-  .hero-phone-inline img{width:130px;height:auto}
   .hero-actions{justify-content:center}
   .phone-mockup{width:220px}
 }
@@ -135,8 +131,34 @@ img{max-width:100%;display:block}
 
 /* Protocol comparison — desktop grid + mobile stacked cards */
 .proto-section{overflow:hidden}
-.proto-lead-mobile{display:none;text-align:center;font-size:13px;color:var(--text-dim);max-width:520px;margin:-8px auto 20px;line-height:1.55;padding:0 8px}
+.proto-lead-mobile{display:none}
+.proto-head-mobile{display:none;text-align:center}
+.proto-desktop-only{display:block}
+.proto-mobile-only{display:none}
 .proto-matrix{margin-top:40px;position:relative}
+.proto-mark{display:inline-flex;align-items:center;justify-content:center;min-width:32px;height:32px;padding:0 6px;border-radius:999px;font-size:15px;font-weight:800;line-height:1}
+.proto-mark--yes{background:rgba(0,210,160,.16);color:var(--success);box-shadow:0 0 0 1px rgba(0,210,160,.2)}
+.proto-mark--no{background:rgba(255,255,255,.04);color:rgba(255,255,255,.22);box-shadow:0 0 0 1px rgba(255,255,255,.06)}
+.why-mini{margin-top:8px}
+.why-mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:28px}
+.why-mini-card{
+  padding:18px 14px;border-radius:16px;text-align:left;
+  background:rgba(255,255,255,.035);border:1px solid rgba(108,92,231,.18);
+  box-shadow:0 0 0 1px rgba(108,92,231,.06)
+}
+.why-mini-icon{
+  width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;
+  background:rgba(108,92,231,.14);color:var(--accent-light)
+}
+.why-mini-card h3{font-size:14px;font-weight:700;margin-bottom:8px;line-height:1.25;letter-spacing:-.02em}
+.why-mini-card p{font-size:12px;color:var(--text-dim);line-height:1.5}
+@media(max-width:768px){
+  .proto-desktop-only,.proto-head-desktop{display:none!important}
+  .proto-mobile-only,.proto-head-mobile{display:block!important}
+}
+@media(min-width:769px){
+  .proto-mobile-only,.proto-head-mobile{display:none!important}
+}
 .proto-cols{display:grid;grid-template-columns:1.45fr repeat(4,1fr);gap:0;border-radius:var(--radius-lg) var(--radius-lg) 0 0;overflow:hidden;border:1px solid var(--border);border-bottom:none}
 .proto-body{border-radius:0 0 var(--radius-lg) var(--radius-lg);overflow:hidden;border:1px solid var(--border);border-top:none}
 .proto-row{display:grid;grid-template-columns:1.45fr repeat(4,1fr);gap:0;transition:background .25s}
@@ -182,24 +204,6 @@ img{max-width:100%;display:block}
 @media(min-width:701px){
   #benefits.section{padding-top:clamp(8px,1.2vw,16px)}
 }
-@media(max-width:700px){
-  .proto-lead-mobile{display:block}
-  .proto-matrix{margin-top:24px;overflow-x:auto;-webkit-overflow-scrolling:touch;margin-left:-12px;margin-right:-12px;padding:0 12px}
-  .proto-cols,.proto-body{min-width:360px}
-  .proto-cols{grid-template-columns:1.2fr repeat(4,1fr)}
-  .proto-col-header{padding:10px 3px;font-size:8.5px;font-weight:700;line-height:1.2;word-break:break-word}
-  .proto-col-header:first-child{padding-left:6px;font-size:7.5px;letter-spacing:.8px}
-  .proto-logo{font-size:6.5px;margin-top:2px}
-  .proto-row{grid-template-columns:1.2fr repeat(4,1fr)}
-  .proto-cell{padding:7px 3px;font-size:8.5px;line-height:1.2}
-  .proto-pair{padding:7px 3px;min-height:36px;gap:2px}
-  .proto-cell--title{padding-left:6px;gap:4px;font-size:9px}
-  .proto-cell-icon{width:18px;height:18px;border-radius:4px}
-  .proto-cell-icon svg{width:9px;height:9px}
-  .proto-badge{font-size:6.5px;padding:2px 3px;letter-spacing:-.01em;line-height:1.15;word-break:break-word;hyphens:auto;text-align:center}
-  .proto-col-header--marshall::after{left:4%;right:4%}
-}
-
 /* Stats (online security) — distinct from benefit tiles */
 .stats-section{position:relative;z-index:2;padding:70px 0;background:linear-gradient(180deg,transparent,rgba(108,92,231,.04),transparent)}
 .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:48px}
@@ -232,7 +236,7 @@ img{max-width:100%;display:block}
 
 /* App showcase */
 .showcase{position:relative;z-index:2;padding:80px 0}
-.showcase-inner{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.showcase-inner{display:grid;grid-template-columns:1fr;gap:0;align-items:start;max-width:720px;margin:0 auto}
 .showcase-features{display:flex;flex-direction:column;gap:11px}
 .showcase-feature{
   display:flex;align-items:flex-start;gap:11px;padding:11px 13px;border-radius:var(--radius-md);
@@ -251,8 +255,7 @@ img{max-width:100%;display:block}
 .showcase-feature-icon{width:34px;height:34px;border-radius:9px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:15px;background:rgba(108,92,231,.1);color:var(--accent-light)}
 .showcase-feature h4{font-size:13px;font-weight:600;margin-bottom:2px}
 .showcase-feature p{font-size:11px;color:var(--text-dim);line-height:1.45}
-.showcase-visual{display:flex;justify-content:center}
-@media(max-width:900px){.showcase-inner{grid-template-columns:1fr}}
+@media(max-width:900px){.showcase-inner{max-width:none}}
 
 /* Map */
 .map-section{position:relative;z-index:2;padding:80px 0 60px}
@@ -417,6 +420,9 @@ img{max-width:100%;display:block}
 [data-theme="light"] .proto-badge--good{background:rgba(14,165,233,.12);color:#0369a1}
 [data-theme="light"] .proto-badge--mid{background:rgba(217,119,6,.12);color:#b45309}
 [data-theme="light"] .proto-badge--bad{background:rgba(220,38,38,.1);color:#dc2626}
+[data-theme="light"] .proto-mark--no{background:rgba(22,20,42,.06);color:rgba(22,20,42,.28);box-shadow:0 0 0 1px rgba(72,58,110,.12)}
+[data-theme="light"] .why-mini-card{background:rgba(255,255,255,.32);border-color:rgba(72,58,110,.14)}
+[data-theme="light"] .why-mini-icon{background:rgba(91,79,201,.12)}
 [data-theme="light"] .stat-card{
   background:rgba(255,255,255,.35);border-color:rgba(72,58,110,.16);
   box-shadow:0 4px 20px rgba(50,40,80,.12),inset 0 1px 0 rgba(255,255,255,.45);
@@ -578,9 +584,6 @@ img{max-width:100%;display:block}
   <div class="hero-inner">
     <div class="hero-content">
       <h1 data-en="Your Connection.<br><span class='gradient-text'>Your Rules.</span>" data-ru="Ваше соединение.<br><span class='gradient-text'>Ваши правила.</span>">Your Connection.<br><span class="gradient-text">Your Rules.</span></h1>
-      <div class="hero-phone-inline">
-        <img src="assets/screen-import.png" alt="Marshall VPN" loading="eager">
-      </div>
       <p data-en="Fast, private VPN for iOS. Our servers worldwide, modern encryption, and 30 days free — no credit card required." data-ru="Быстрый и приватный VPN для iOS. Наши серверы по всему миру, современное шифрование и 30 дней бесплатно — без привязки карты.">Fast, private VPN for iOS. Our servers worldwide, modern encryption, and 30 days free — no credit card required.</p>
       <div class="hero-actions">
         <button class="btn-primary" onclick="smoothScrollTo('#cta')">
@@ -635,143 +638,110 @@ img{max-width:100%;display:block}
 
 <div class="section-divider"></div>
 
-<!-- ============ BLOCK 3: PROTOCOL COMPARISON ============ -->
+<!-- ============ BLOCK 3: PROTOCOL (desktop: yes/no table) | mobile: Why Marshall ============ -->
 <section class="section proto-section" id="benefits">
   <div class="container">
-    <div style="text-align:center" class="reveal">
-      <div class="section-label" style="justify-content:center" data-en="Why this protocol" data-ru="Почему этот протокол">Why this protocol</div>
-      <h2 class="section-title" style="margin-left:auto;margin-right:auto;max-width:720px" data-en="Marshall runs on <span class='gradient-text-accent'>Xray</span> — here's why it matters." data-ru="Marshall работает на <span class='gradient-text-accent'>Xray</span> — и вот почему это важно.">Marshall runs on <span class="gradient-text-accent">Xray</span> — here's why it matters.</h2>
-      <p class="section-desc" style="margin-left:auto;margin-right:auto;text-align:center;max-width:640px" data-en="Our servers use VLESS + Reality over Xray — traffic that looks like normal HTTPS, a TLS 1.3 stack, 10 Gbps throughput, and fully open-source clients. See how it compares." data-ru="Наши серверы используют VLESS + Reality на базе Xray — трафик неотличим от обычного HTTPS, стек TLS 1.3, пропускная способность 10 Гбит/с и полностью открытый код. Сравните сами.">Our servers use VLESS + Reality over Xray — traffic that looks like normal HTTPS, a TLS 1.3 stack, 10 Gbps throughput, and fully open-source clients. See how it compares.</p>
+    <div class="proto-head-desktop reveal" style="text-align:center">
+      <div class="section-label" style="justify-content:center" data-en="Protocol" data-ru="Протокол">Protocol</div>
+      <h2 class="section-title" style="margin-left:auto;margin-right:auto;max-width:720px" data-en="<span class='gradient-text-accent'>Marshall</span> vs other VPN stacks — yes or no" data-ru="<span class='gradient-text-accent'>Marshall</span> и другие VPN — да или нет"><span class="gradient-text-accent">Marshall</span> vs other VPN stacks — yes or no</h2>
+      <p class="section-desc" style="margin:12px auto 0;max-width:560px;text-align:center" data-en="Same job — encrypt your traffic. These rows show what each stack actually gives you as a real VPN tunnel." data-ru="Задача одна — шифровать трафик. Строки показывают, что реально есть у каждого стека в роли VPN-туннеля.">Same job — encrypt your traffic. These rows show what each stack actually gives you as a real VPN tunnel.</p>
     </div>
-    <p class="proto-lead-mobile reveal" data-en="Marshall's protocol vs popular VPN alternatives — tap to scroll." data-ru="Протокол Marshall в сравнении с популярными VPN — прокрутите таблицу.">Marshall's protocol vs popular VPN alternatives — tap to scroll.</p>
-    <div class="proto-matrix reveal-scale">
+    <div class="proto-head-mobile reveal" style="text-align:center">
+      <div class="section-label" style="justify-content:center" data-en="Why Marshall" data-ru="Почему Marshall">Why Marshall</div>
+      <h2 class="section-title" style="margin-left:auto;margin-right:auto;max-width:680px" data-en="Protect what matters most —<br><span class='gradient-text-accent'>your digital life.</span>" data-ru="Защитите самое важное —<br><span class='gradient-text-accent'>вашу цифровую жизнь.</span>">Protect what matters most —<br><span class="gradient-text-accent">your digital life.</span></h2>
+    </div>
+    <div class="proto-matrix proto-desktop-only reveal-scale">
       <div class="proto-cols">
-        <div class="proto-col-header" data-en="Capability" data-ru="Критерий">Capability</div>
-        <div class="proto-col-header proto-col-header--marshall">VLESS + Reality<div class="proto-logo" data-en="Xray · sing-box · TLS 1.3" data-ru="Xray · sing-box · TLS 1.3">Xray · sing-box · TLS 1.3</div></div>
-        <div class="proto-col-header proto-col-header--wg">WireGuard<div class="proto-logo" data-en="Kernel / UDP" data-ru="Ядро / UDP">Kernel / UDP</div></div>
-        <div class="proto-col-header proto-col-header--ovpn">OpenVPN<div class="proto-logo" data-en="SSL/TLS" data-ru="SSL/TLS">SSL/TLS</div></div>
-        <div class="proto-col-header proto-col-header--ike">IKEv2<div class="proto-logo" data-en="IPsec" data-ru="IPsec">IPsec</div></div>
+        <div class="proto-col-header" data-en="Feature" data-ru="Критерий">Feature</div>
+        <div class="proto-col-header proto-col-header--marshall">VLESS + Reality</div>
+        <div class="proto-col-header proto-col-header--wg">WireGuard</div>
+        <div class="proto-col-header proto-col-header--ovpn">OpenVPN</div>
+        <div class="proto-col-header proto-col-header--ike">IKEv2</div>
       </div>
       <div class="proto-body">
         <div class="proto-row">
           <div class="proto-cell proto-cell--title">
             <div class="proto-cell-icon" style="background:rgba(108,92,231,.12);color:var(--accent-light)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/></svg></div>
-            <span data-en="Traffic on the wire" data-ru="Трафик «на проводе»">Traffic on the wire</span>
+            <span data-en="HTTPS-style tunnel" data-ru="Туннель как HTTPS">HTTPS-style tunnel</span>
           </div>
           <div class="proto-compare-row">
-            <div class="proto-pair proto-pair--marshall">
-              <span class="proto-pair-lbl" data-en="VLESS + Reality" data-ru="VLESS + Reality">VLESS + Reality</span>
-              <div class="proto-cell proto-cell--marshall"><span class="proto-badge proto-badge--best" data-en="HTTPS-like · TCP 443" data-ru="Как HTTPS · TCP 443">HTTPS-like · TCP 443</span></div>
-            </div>
-            <div class="proto-pair proto-pair--wg">
-              <span class="proto-pair-lbl" data-en="WireGuard" data-ru="WireGuard">WireGuard</span>
-              <div class="proto-cell"><span class="proto-badge proto-badge--bad" data-en="Distinct UDP" data-ru="Узнаваемый UDP">Distinct UDP</span></div>
-            </div>
-            <div class="proto-pair proto-pair--ovpn">
-              <span class="proto-pair-lbl" data-en="OpenVPN" data-ru="OpenVPN">OpenVPN</span>
-              <div class="proto-cell"><span class="proto-badge proto-badge--mid" data-en="Custom TLS" data-ru="Свой TLS">Custom TLS</span></div>
-            </div>
-            <div class="proto-pair proto-pair--ike">
-              <span class="proto-pair-lbl" data-en="IKEv2" data-ru="IKEv2">IKEv2</span>
-              <div class="proto-cell"><span class="proto-badge proto-badge--mid" data-en="IPsec pattern" data-ru="Паттерн IPsec">IPsec pattern</span></div>
-            </div>
+            <div class="proto-pair proto-pair--marshall"><span class="proto-pair-lbl">VLESS + Reality</span><div class="proto-cell proto-cell--marshall"><span class="proto-mark proto-mark--yes" title="Yes">✓</span></div></div>
+            <div class="proto-pair proto-pair--wg"><span class="proto-pair-lbl">WireGuard</span><div class="proto-cell"><span class="proto-mark proto-mark--no" title="No">✕</span></div></div>
+            <div class="proto-pair proto-pair--ovpn"><span class="proto-pair-lbl">OpenVPN</span><div class="proto-cell"><span class="proto-mark proto-mark--no" title="No">✕</span></div></div>
+            <div class="proto-pair proto-pair--ike"><span class="proto-pair-lbl">IKEv2</span><div class="proto-cell"><span class="proto-mark proto-mark--no" title="No">✕</span></div></div>
           </div>
         </div>
         <div class="proto-row">
           <div class="proto-cell proto-cell--title">
-            <div class="proto-cell-icon" style="background:rgba(0,210,160,.1);color:var(--success)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
-            <span data-en="Core protocol stack" data-ru="Основной стек">Core protocol stack</span>
+            <div class="proto-cell-icon" style="background:rgba(168,85,247,.12);color:#c084fc"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <span data-en="Reality camouflage" data-ru="Маскировка Reality">Reality camouflage</span>
           </div>
           <div class="proto-compare-row">
-            <div class="proto-pair proto-pair--marshall">
-              <span class="proto-pair-lbl" data-en="VLESS + Reality" data-ru="VLESS + Reality">VLESS + Reality</span>
-              <div class="proto-cell proto-cell--marshall"><span class="proto-badge proto-badge--best" data-en="Xray · VLESS · Reality · TLS 1.3" data-ru="Xray · VLESS · Reality · TLS 1.3">Xray · VLESS · Reality · TLS 1.3</span></div>
-            </div>
-            <div class="proto-pair proto-pair--wg">
-              <span class="proto-pair-lbl" data-en="WireGuard" data-ru="WireGuard">WireGuard</span>
-              <div class="proto-cell"><span class="proto-badge proto-badge--good" data-en="ChaCha20-Poly1305" data-ru="ChaCha20-Poly1305">ChaCha20-Poly1305</span></div>
-            </div>
-            <div class="proto-pair proto-pair--ovpn">
-              <span class="proto-pair-lbl" data-en="OpenVPN" data-ru="OpenVPN">OpenVPN</span>
-              <div class="proto-cell"><span class="proto-badge proto-badge--good" data-en="OpenSSL stack" data-ru="Стек OpenSSL">OpenSSL stack</span></div>
-            </div>
-            <div class="proto-pair proto-pair--ike">
-              <span class="proto-pair-lbl" data-en="IKEv2" data-ru="IKEv2">IKEv2</span>
-              <div class="proto-cell"><span class="proto-badge proto-badge--mid" data-en="IKE + AES" data-ru="IKE + AES">IKE + AES</span></div>
-            </div>
+            <div class="proto-pair proto-pair--marshall"><span class="proto-pair-lbl">VLESS + Reality</span><div class="proto-cell proto-cell--marshall"><span class="proto-mark proto-mark--yes" title="Yes">✓</span></div></div>
+            <div class="proto-pair proto-pair--wg"><span class="proto-pair-lbl">WireGuard</span><div class="proto-cell"><span class="proto-mark proto-mark--no" title="No">✕</span></div></div>
+            <div class="proto-pair proto-pair--ovpn"><span class="proto-pair-lbl">OpenVPN</span><div class="proto-cell"><span class="proto-mark proto-mark--no" title="No">✕</span></div></div>
+            <div class="proto-pair proto-pair--ike"><span class="proto-pair-lbl">IKEv2</span><div class="proto-cell"><span class="proto-mark proto-mark--no" title="No">✕</span></div></div>
+          </div>
+        </div>
+        <div class="proto-row">
+          <div class="proto-cell proto-cell--title">
+            <div class="proto-cell-icon" style="background:rgba(56,189,248,.1);color:#38bdf8"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div>
+            <span data-en="Browser TLS (uTLS)" data-ru="TLS браузера (uTLS)">Browser TLS (uTLS)</span>
+          </div>
+          <div class="proto-compare-row">
+            <div class="proto-pair proto-pair--marshall"><span class="proto-pair-lbl">VLESS + Reality</span><div class="proto-cell proto-cell--marshall"><span class="proto-mark proto-mark--yes" title="Yes">✓</span></div></div>
+            <div class="proto-pair proto-pair--wg"><span class="proto-pair-lbl">WireGuard</span><div class="proto-cell"><span class="proto-mark proto-mark--no" title="No">✕</span></div></div>
+            <div class="proto-pair proto-pair--ovpn"><span class="proto-pair-lbl">OpenVPN</span><div class="proto-cell"><span class="proto-mark proto-mark--no" title="No">✕</span></div></div>
+            <div class="proto-pair proto-pair--ike"><span class="proto-pair-lbl">IKEv2</span><div class="proto-cell"><span class="proto-mark proto-mark--no" title="No">✕</span></div></div>
           </div>
         </div>
         <div class="proto-row">
           <div class="proto-cell proto-cell--title">
             <div class="proto-cell-icon" style="background:rgba(251,191,36,.1);color:#fbbf24"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
-            <span data-en="Throughput &amp; efficiency" data-ru="Пропускная способность">Throughput &amp; efficiency</span>
+            <span data-en="Speed for streaming &amp; large downloads" data-ru="Скорость для стриминга и больших файлов">Speed for streaming &amp; large downloads</span>
           </div>
           <div class="proto-compare-row">
-            <div class="proto-pair proto-pair--marshall">
-              <span class="proto-pair-lbl" data-en="VLESS + Reality" data-ru="VLESS + Reality">VLESS + Reality</span>
-              <div class="proto-cell proto-cell--marshall"><span class="proto-badge proto-badge--best" data-en="10 Gbps-class · XTLS Vision" data-ru="Класс 10 Гбит/с · XTLS Vision">10 Gbps-class · XTLS Vision</span></div>
-            </div>
-            <div class="proto-pair proto-pair--wg">
-              <span class="proto-pair-lbl" data-en="WireGuard" data-ru="WireGuard">WireGuard</span>
-              <div class="proto-cell"><span class="proto-badge proto-badge--best" data-en="Very high" data-ru="Очень высокая">Very high</span></div>
-            </div>
-            <div class="proto-pair proto-pair--ovpn">
-              <span class="proto-pair-lbl" data-en="OpenVPN" data-ru="OpenVPN">OpenVPN</span>
-              <div class="proto-cell"><span class="proto-badge proto-badge--mid" data-en="Medium" data-ru="Средняя">Medium</span></div>
-            </div>
-            <div class="proto-pair proto-pair--ike">
-              <span class="proto-pair-lbl" data-en="IKEv2" data-ru="IKEv2">IKEv2</span>
-              <div class="proto-cell"><span class="proto-badge proto-badge--good" data-en="High" data-ru="Высокая">High</span></div>
-            </div>
+            <div class="proto-pair proto-pair--marshall"><span class="proto-pair-lbl">VLESS + Reality</span><div class="proto-cell proto-cell--marshall"><span class="proto-mark proto-mark--yes" title="Yes">✓</span></div></div>
+            <div class="proto-pair proto-pair--wg"><span class="proto-pair-lbl">WireGuard</span><div class="proto-cell"><span class="proto-mark proto-mark--no" title="No">✕</span></div></div>
+            <div class="proto-pair proto-pair--ovpn"><span class="proto-pair-lbl">OpenVPN</span><div class="proto-cell"><span class="proto-mark proto-mark--no" title="No">✕</span></div></div>
+            <div class="proto-pair proto-pair--ike"><span class="proto-pair-lbl">IKEv2</span><div class="proto-cell"><span class="proto-mark proto-mark--no" title="No">✕</span></div></div>
           </div>
         </div>
         <div class="proto-row">
           <div class="proto-cell proto-cell--title">
-            <div class="proto-cell-icon" style="background:rgba(56,189,248,.1);color:#38bdf8"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-            <span data-en="TLS / browser fingerprint" data-ru="TLS / отпечаток браузера">TLS / browser fingerprint</span>
+            <div class="proto-cell-icon" style="background:rgba(0,210,160,.1);color:var(--success)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M12 18v-6"/><path d="M9 15l3-3 3 3"/></svg></div>
+            <span data-en="Open-source client" data-ru="Открытый код клиента">Open-source client</span>
           </div>
           <div class="proto-compare-row">
-            <div class="proto-pair proto-pair--marshall">
-              <span class="proto-pair-lbl" data-en="VLESS + Reality" data-ru="VLESS + Reality">VLESS + Reality</span>
-              <div class="proto-cell proto-cell--marshall"><span class="proto-badge proto-badge--best" data-en="uTLS (Chrome-class)" data-ru="uTLS (как Chrome)">uTLS (Chrome-class)</span></div>
-            </div>
-            <div class="proto-pair proto-pair--wg">
-              <span class="proto-pair-lbl" data-en="WireGuard" data-ru="WireGuard">WireGuard</span>
-              <div class="proto-cell"><span class="proto-badge proto-badge--bad" data-en="Noise (not TLS)" data-ru="Noise, не TLS">Noise (not TLS)</span></div>
-            </div>
-            <div class="proto-pair proto-pair--ovpn">
-              <span class="proto-pair-lbl" data-en="OpenVPN" data-ru="OpenVPN">OpenVPN</span>
-              <div class="proto-cell"><span class="proto-badge proto-badge--mid" data-en="TLS (VPN)" data-ru="TLS (VPN)">TLS (VPN)</span></div>
-            </div>
-            <div class="proto-pair proto-pair--ike">
-              <span class="proto-pair-lbl" data-en="IKEv2" data-ru="IKEv2">IKEv2</span>
-              <div class="proto-cell"><span class="proto-badge proto-badge--bad" data-en="Not HTTPS" data-ru="Не HTTPS">Not HTTPS</span></div>
-            </div>
+            <div class="proto-pair proto-pair--marshall"><span class="proto-pair-lbl">VLESS + Reality</span><div class="proto-cell proto-cell--marshall"><span class="proto-mark proto-mark--yes" title="Yes">✓</span></div></div>
+            <div class="proto-pair proto-pair--wg"><span class="proto-pair-lbl">WireGuard</span><div class="proto-cell"><span class="proto-mark proto-mark--yes" title="Yes">✓</span></div></div>
+            <div class="proto-pair proto-pair--ovpn"><span class="proto-pair-lbl">OpenVPN</span><div class="proto-cell"><span class="proto-mark proto-mark--yes" title="Yes">✓</span></div></div>
+            <div class="proto-pair proto-pair--ike"><span class="proto-pair-lbl">IKEv2</span><div class="proto-cell"><span class="proto-mark proto-mark--no" title="No">✕</span></div></div>
           </div>
         </div>
-        <div class="proto-row">
-          <div class="proto-cell proto-cell--title">
-            <div class="proto-cell-icon" style="background:rgba(168,85,247,.12);color:#c084fc"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div>
-            <span data-en="Open, auditable clients" data-ru="Открытые клиенты">Open, auditable clients</span>
-          </div>
-          <div class="proto-compare-row">
-            <div class="proto-pair proto-pair--marshall">
-              <span class="proto-pair-lbl" data-en="VLESS + Reality" data-ru="VLESS + Reality">VLESS + Reality</span>
-              <div class="proto-cell proto-cell--marshall"><span class="proto-badge proto-badge--best" data-en="sing-box + Xray" data-ru="sing-box + Xray">sing-box + Xray</span></div>
-            </div>
-            <div class="proto-pair proto-pair--wg">
-              <span class="proto-pair-lbl" data-en="WireGuard" data-ru="WireGuard">WireGuard</span>
-              <div class="proto-cell"><span class="proto-badge proto-badge--best" data-en="Open source" data-ru="Открытый код">Open source</span></div>
-            </div>
-            <div class="proto-pair proto-pair--ovpn">
-              <span class="proto-pair-lbl" data-en="OpenVPN" data-ru="OpenVPN">OpenVPN</span>
-              <div class="proto-cell"><span class="proto-badge proto-badge--best" data-en="Open source" data-ru="Открытый код">Open source</span></div>
-            </div>
-            <div class="proto-pair proto-pair--ike">
-              <span class="proto-pair-lbl" data-en="IKEv2" data-ru="IKEv2">IKEv2</span>
-              <div class="proto-cell"><span class="proto-badge proto-badge--mid" data-en="Often closed" data-ru="Часто закрыты">Often closed</span></div>
-            </div>
-          </div>
+      </div>
+    </div>
+    <div class="why-mini proto-mobile-only">
+      <div class="why-mini-grid">
+        <div class="why-mini-card reveal-left delay-1">
+          <div class="why-mini-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg></div>
+          <h3 data-en="Public Wi‑Fi" data-ru="Публичный Wi‑Fi">Public Wi‑Fi</h3>
+          <p data-en="Encrypts traffic on hotspots so snoops can’t read it." data-ru="Шифрует трафик в кафе и аэропортах — перехват бессмыслен.">Encrypts traffic on hotspots so snoops can’t read it.</p>
+        </div>
+        <div class="why-mini-card reveal-right delay-2">
+          <div class="why-mini-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+          <h3 data-en="Privacy" data-ru="Приватность">Privacy</h3>
+          <p data-en="Hides what you do from ISP and trackers on the path." data-ru="Скрывает активность от провайдера и трекеров по пути.">Hides what you do from ISP and trackers on the path.</p>
+        </div>
+        <div class="why-mini-card reveal-left delay-3">
+          <div class="why-mini-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <h3 data-en="Secure tunnel" data-ru="Защищённый туннель">Secure tunnel</h3>
+          <p data-en="Real VPN: your apps’ traffic goes through an encrypted tunnel to the exit." data-ru="Настоящий VPN: трафик приложений идёт через зашифрованный туннель к выходу.">Real VPN: your apps’ traffic goes through an encrypted tunnel to the exit.</p>
+        </div>
+        <div class="why-mini-card reveal-right delay-4">
+          <div class="why-mini-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+          <h3 data-en="Identity" data-ru="Личность">Identity</h3>
+          <p data-en="Masks your IP so sites see the VPN exit, not your home line." data-ru="Меняет IP: сайты видят выход VPN, а не ваш домашний адрес.">Masks your IP so sites see the VPN exit, not your home line.</p>
         </div>
       </div>
     </div>
@@ -893,14 +863,6 @@ img{max-width:100%;display:block}
               <p data-en="Paste any subscription URL or config — use Marshall as a client for your own infrastructure." data-ru="Вставьте любую ссылку подписки или конфиг — используйте Marshall как клиент для своей инфраструктуры.">Paste any subscription URL or config — use Marshall as a client for your own infrastructure.</p>
             </div>
           </div>
-        </div>
-      </div>
-      <div class="showcase-visual reveal-right">
-        <div class="phone-mockup" style="width:260px">
-          <div class="phone-frame">
-            <img src="assets/screen-home.png" alt="Marshall VPN App" loading="lazy">
-          </div>
-          <div class="phone-glow"></div>
         </div>
       </div>
     </div>
