@@ -139,19 +139,18 @@ img{max-width:100%;display:block}
 .proto-mark{display:inline-flex;align-items:center;justify-content:center;min-width:32px;height:32px;padding:0 6px;border-radius:999px;font-size:15px;font-weight:800;line-height:1}
 .proto-mark--yes{background:rgba(0,210,160,.16);color:var(--success);box-shadow:0 0 0 1px rgba(0,210,160,.2)}
 .proto-mark--no{background:rgba(255,255,255,.04);color:rgba(255,255,255,.22);box-shadow:0 0 0 1px rgba(255,255,255,.06)}
-.why-mini{margin-top:8px}
-.why-mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:28px}
-.why-mini-card{
-  padding:18px 14px;border-radius:16px;text-align:left;
-  background:rgba(255,255,255,.035);border:1px solid rgba(108,92,231,.18);
-  box-shadow:0 0 0 1px rgba(108,92,231,.06)
-}
-.why-mini-icon{
-  width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;
-  background:rgba(108,92,231,.14);color:var(--accent-light)
-}
-.why-mini-card h3{font-size:14px;font-weight:700;margin-bottom:8px;line-height:1.25;letter-spacing:-.02em}
-.why-mini-card p{font-size:12px;color:var(--text-dim);line-height:1.5}
+/* Why Marshall — 4 tiles (Old.html layout for phones; block is mobile-only in index) */
+#benefits .benefits-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin-top:28px}
+#benefits .benefit-card{text-align:center;padding:12px 6px;border-radius:var(--radius-md);background:var(--surface);border:1px solid var(--border);transition:all .35s;position:relative;overflow:hidden}
+#benefits .benefit-card:hover{border-color:var(--border-light);transform:translateY(-2px);box-shadow:0 12px 36px rgba(0,0,0,.22)}
+#benefits .benefit-icon{width:36px;height:36px;border-radius:11px;display:flex;align-items:center;justify-content:center;margin:0 auto 6px;font-size:16px}
+#benefits .benefit-icon-purple{background:rgba(108,92,231,.12);color:var(--accent-light)}
+#benefits .benefit-icon-green{background:rgba(0,210,160,.1);color:var(--success)}
+#benefits .benefit-icon-blue{background:rgba(56,189,248,.1);color:#38bdf8}
+#benefits .benefit-icon-amber{background:rgba(251,191,36,.1);color:#fbbf24}
+#benefits .benefit-number{font-size:clamp(11px,3.2vw,16px);font-weight:800;letter-spacing:-.03em;margin-bottom:2px;line-height:1.15}
+#benefits .benefit-label{font-size:9px;color:var(--text-dim);line-height:1.25}
+#benefits .benefit-hint{display:none!important}
 @media(max-width:768px){
   .proto-desktop-only,.proto-head-desktop{display:none!important}
   .proto-mobile-only,.proto-head-mobile{display:block!important}
@@ -421,8 +420,7 @@ img{max-width:100%;display:block}
 [data-theme="light"] .proto-badge--mid{background:rgba(217,119,6,.12);color:#b45309}
 [data-theme="light"] .proto-badge--bad{background:rgba(220,38,38,.1);color:#dc2626}
 [data-theme="light"] .proto-mark--no{background:rgba(22,20,42,.06);color:rgba(22,20,42,.28);box-shadow:0 0 0 1px rgba(72,58,110,.12)}
-[data-theme="light"] .why-mini-card{background:rgba(255,255,255,.32);border-color:rgba(72,58,110,.14)}
-[data-theme="light"] .why-mini-icon{background:rgba(91,79,201,.12)}
+[data-theme="light"] #benefits .benefit-card{background:rgba(255,255,255,.28);border-color:rgba(72,58,110,.12)}
 [data-theme="light"] .stat-card{
   background:rgba(255,255,255,.35);border-color:rgba(72,58,110,.16);
   box-shadow:0 4px 20px rgba(50,40,80,.12),inset 0 1px 0 rgba(255,255,255,.45);
@@ -648,7 +646,7 @@ img{max-width:100%;display:block}
     </div>
     <div class="proto-head-mobile reveal" style="text-align:center">
       <div class="section-label" style="justify-content:center" data-en="Why Marshall" data-ru="Почему Marshall">Why Marshall</div>
-      <h2 class="section-title" style="margin-left:auto;margin-right:auto;max-width:680px" data-en="Protect what matters most —<br><span class='gradient-text-accent'>your digital life.</span>" data-ru="Защитите самое важное —<br><span class='gradient-text-accent'>вашу цифровую жизнь.</span>">Protect what matters most —<br><span class="gradient-text-accent">your digital life.</span></h2>
+      <h2 class="section-title" style="margin-left:auto;margin-right:auto;max-width:680px" data-en="Built for speed,<br><span class='gradient-text-accent'>designed for privacy.</span>" data-ru="Создан для скорости<br><span class='gradient-text-accent'>спроектирован для приватности.</span>">Built for speed,<br><span class="gradient-text-accent">designed for privacy.</span></h2>
     </div>
     <div class="proto-matrix proto-desktop-only reveal-scale">
       <div class="proto-cols">
@@ -721,27 +719,39 @@ img{max-width:100%;display:block}
         </div>
       </div>
     </div>
-    <div class="why-mini proto-mobile-only">
-      <div class="why-mini-grid">
-        <div class="why-mini-card reveal-left delay-1">
-          <div class="why-mini-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg></div>
-          <h3 data-en="Public Wi‑Fi" data-ru="Публичный Wi‑Fi">Public Wi‑Fi</h3>
-          <p data-en="Encrypts traffic on hotspots so snoops can’t read it." data-ru="Шифрует трафик в кафе и аэропортах — перехват бессмыслен.">Encrypts traffic on hotspots so snoops can’t read it.</p>
+    <div class="proto-mobile-only">
+      <div class="benefits-grid">
+        <div class="benefit-card reveal-left delay-1">
+          <div class="benefit-icon benefit-icon-purple">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          </div>
+          <div class="benefit-number gradient-text" data-en="10 Gbps" data-ru="10 Гбит/с">10 Gbps</div>
+          <div class="benefit-label" data-en="Speed" data-ru="Скорость">Speed</div>
+          <p class="benefit-hint" data-en="High-capacity backbone across regions." data-ru="Мощная магистраль между регионами.">High-capacity backbone across regions.</p>
         </div>
-        <div class="why-mini-card reveal-right delay-2">
-          <div class="why-mini-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
-          <h3 data-en="Privacy" data-ru="Приватность">Privacy</h3>
-          <p data-en="Hides what you do from ISP and trackers on the path." data-ru="Скрывает активность от провайдера и трекеров по пути.">Hides what you do from ISP and trackers on the path.</p>
+        <div class="benefit-card reveal-right delay-2">
+          <div class="benefit-icon benefit-icon-green">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <div class="benefit-number gradient-text">TLS 1.3</div>
+          <div class="benefit-label" data-en="Security" data-ru="Безопасность">Security</div>
+          <p class="benefit-hint" data-en="Modern encryption for every session." data-ru="Современное шифрование для каждой сессии.">Modern encryption for every session.</p>
         </div>
-        <div class="why-mini-card reveal-left delay-3">
-          <div class="why-mini-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-          <h3 data-en="Secure tunnel" data-ru="Защищённый туннель">Secure tunnel</h3>
-          <p data-en="Real VPN: your apps’ traffic goes through an encrypted tunnel to the exit." data-ru="Настоящий VPN: трафик приложений идёт через зашифрованный туннель к выходу.">Real VPN: your apps’ traffic goes through an encrypted tunnel to the exit.</p>
+        <div class="benefit-card reveal-left delay-3">
+          <div class="benefit-icon benefit-icon-blue">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+          </div>
+          <div class="benefit-number gradient-text" data-en="No log" data-ru="No log">No log</div>
+          <div class="benefit-label" data-en="Privacy" data-ru="Приватность">Privacy</div>
+          <p class="benefit-hint" data-en="We don’t keep activity or connection logs." data-ru="Не ведём журналы активности и подключений.">We don’t keep activity or connection logs.</p>
         </div>
-        <div class="why-mini-card reveal-right delay-4">
-          <div class="why-mini-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
-          <h3 data-en="Identity" data-ru="Личность">Identity</h3>
-          <p data-en="Masks your IP so sites see the VPN exit, not your home line." data-ru="Меняет IP: сайты видят выход VPN, а не ваш домашний адрес.">Masks your IP so sites see the VPN exit, not your home line.</p>
+        <div class="benefit-card reveal-right delay-4">
+          <div class="benefit-icon benefit-icon-amber">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <div class="benefit-number gradient-text">24/7</div>
+          <div class="benefit-label" data-en="Support" data-ru="Поддержка">Support</div>
+          <p class="benefit-hint" data-en="Help when you need it, any time." data-ru="Помощь тогда, когда она нужна.">Help when you need it, any time.</p>
         </div>
       </div>
     </div>
