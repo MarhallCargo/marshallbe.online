@@ -165,10 +165,10 @@ img{max-width:100%;display:block}
 .proto-mark{display:inline-flex;align-items:center;justify-content:center;min-width:32px;height:32px;padding:0 6px;border-radius:999px;font-size:15px;font-weight:800;line-height:1}
 .proto-mark--yes{background:rgba(0,210,160,.16);color:var(--success);box-shadow:0 0 0 1px rgba(0,210,160,.2)}
 .proto-mark--no{background:rgba(255,255,255,.04);color:rgba(255,255,255,.22);box-shadow:0 0 0 1px rgba(255,255,255,.06)}
-/* Hero mobile — 4 tiles next to phone */
-#hero .hero-layout--mobile .hero-benefits-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+/* Hero mobile — 4 tiles (legacy grid beside phone; strip uses .hero-benefits-strip) */
+#hero .hero-layout--mobile .hero-benefits-grid:not(.hero-benefits-strip){display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
 @media(max-width:520px){
-  #hero .hero-layout--mobile .hero-benefits-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  #hero .hero-layout--mobile .hero-benefits-grid:not(.hero-benefits-strip){grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
 }
 #hero .hero-layout--mobile .hero-benefits .benefit-card{text-align:center;padding:14px 8px;border-radius:var(--radius-md);background:var(--surface);border:1px solid var(--border);transition:all .35s;position:relative;overflow:hidden}
 #hero .hero-layout--mobile .hero-benefits .benefit-card:hover{border-color:var(--border-light);transform:translateY(-2px);box-shadow:0 12px 36px rgba(0,0,0,.22)}
@@ -206,7 +206,7 @@ img{max-width:100%;display:block}
   #hero .hero-layout--mobile .hero-benefits-title{
     font-size:clamp(20px,5.2vw,26px);margin-bottom:clamp(8px,2vw,12px);line-height:1.18
   }
-  #hero .hero-layout--mobile .hero-benefits-grid{gap:4px}
+  #hero .hero-layout--mobile .hero-benefits-grid:not(.hero-benefits-strip){gap:4px}
   #hero .hero-layout--mobile .hero-benefits .benefit-card{padding:5px 4px;border-radius:9px}
   #hero .hero-layout--mobile .hero-benefits .benefit-icon{
     width:22px;height:22px;border-radius:7px;margin:0 auto 3px;font-size:11px
@@ -214,6 +214,26 @@ img{max-width:100%;display:block}
   #hero .hero-layout--mobile .hero-benefits .benefit-icon svg{width:13px;height:13px}
   #hero .hero-layout--mobile .hero-benefits .benefit-number{font-size:9px;margin-bottom:1px;line-height:1.1}
   #hero .hero-layout--mobile .hero-benefits .benefit-label{font-size:7.5px;line-height:1.2}
+  /* Одна полоса из 4 пунктов над кнопками: без рамок, в ряд */
+  #hero .hero-layout--mobile .hero-benefits-strip{
+    display:flex!important;flex-direction:row;flex-wrap:nowrap;justify-content:space-between;align-items:flex-start;gap:4px 6px;
+    width:100%;max-width:100%;margin:0;padding:0;animation:fadeInUp .8s ease-out .32s both
+  }
+  #hero .hero-layout--mobile .hero-benefits-strip .benefit-card{
+    flex:1 1 0;min-width:0;background:transparent!important;border:none!important;box-shadow:none!important;
+    padding:6px 2px!important;border-radius:0!important
+  }
+  #hero .hero-layout--mobile .hero-benefits-strip .benefit-card:hover{border:none!important;transform:none!important;box-shadow:none!important}
+  #hero .hero-layout--mobile .hero-benefits-strip .benefit-icon{
+    width:clamp(26px,7vw,34px);height:clamp(26px,7vw,34px);border-radius:10px;margin:0 auto 5px
+  }
+  #hero .hero-layout--mobile .hero-benefits-strip .benefit-icon svg{width:clamp(14px,4vw,18px);height:clamp(14px,4vw,18px)}
+  #hero .hero-layout--mobile .hero-benefits-strip .benefit-number{font-size:clamp(9px,2.4vw,11px);margin-bottom:2px;line-height:1.15}
+  #hero .hero-layout--mobile .hero-benefits-strip .benefit-label{font-size:clamp(7px,2vw,9px);line-height:1.2}
+  #hero .hero-layout--mobile .hero-benefits-strip .benefit-icon-purple{background:rgba(108,92,231,.12);color:var(--accent-light)}
+  #hero .hero-layout--mobile .hero-benefits-strip .benefit-icon-green{background:rgba(0,210,160,.1);color:var(--success)}
+  #hero .hero-layout--mobile .hero-benefits-strip .benefit-icon-blue{background:rgba(56,189,248,.1);color:#38bdf8}
+  #hero .hero-layout--mobile .hero-benefits-strip .benefit-icon-amber{background:rgba(251,191,36,.1);color:#fbbf24}
 }
 @media(max-width:768px){
   .proto-desktop-only{display:none!important}
@@ -318,25 +338,20 @@ img{max-width:100%;display:block}
 .site-reorder-mobile{display:contents}
 .stats-label-mobile{display:none}
 .showcase-mobile-layout{display:none}
-.showcase-m-tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:12px}
-.showcase-m-tile{
-  text-align:center;padding:10px 8px;border-radius:var(--radius-md);background:var(--surface);border:1px solid var(--border);
-  display:flex;flex-direction:column;align-items:center;gap:6px
-}
-.showcase-m-tile .benefit-icon{width:32px;height:32px;border-radius:10px}
-.showcase-m-tile .benefit-icon svg{width:18px;height:18px}
-.showcase-m-tile-title{font-size:clamp(11px,3.2vw,13px);font-weight:800;letter-spacing:-.03em;line-height:1.15}
 .phone-mockup--showcase{position:relative;flex-shrink:0;width:min(150px,42vw);max-width:160px}
 .phone-mockup--showcase .phone-frame{border-radius:24px}
-.showcase-m-body{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(10px,3vw,18px);align-items:end;margin-top:8px}
+.showcase-m-body{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(10px,3vw,16px);align-items:start;margin-top:8px}
 .showcase-m-head .section-label{margin-bottom:10px}
-.showcase-m-tile .benefit-icon{display:flex;align-items:center;justify-content:center}
-.showcase-m-tile .benefit-icon-purple{background:rgba(108,92,231,.12);color:var(--accent-light)}
-.showcase-m-tile .benefit-icon-green{background:rgba(0,210,160,.1);color:var(--success)}
-.showcase-m-tile .benefit-icon-blue{background:rgba(56,189,248,.1);color:#38bdf8}
-.showcase-m-tile .benefit-icon-amber{background:rgba(251,191,36,.1);color:#fbbf24}
+.showcase-m-features{display:flex;flex-direction:column;gap:clamp(9px,2.5vw,12px);min-width:0}
+.showcase-m-feature{display:flex;align-items:flex-start;gap:10px;padding:0;margin:0;border:none;background:transparent;box-shadow:none}
+.showcase-m-feature .showcase-feature-icon{width:30px;height:30px;border-radius:8px;flex-shrink:0}
+.showcase-m-feature-copy{min-width:0}
+.showcase-m-feature-copy h4{font-size:clamp(11px,3.1vw,13px);font-weight:600;margin:0 0 3px;line-height:1.25;color:var(--text)}
+.showcase-m-feature-copy p{font-size:clamp(9px,2.6vw,11px);color:var(--text-dim);line-height:1.45;margin:0}
 .footer-features-mobile{display:none!important}
 @media(max-width:900px){
+  .showcase-m-body{grid-template-columns:minmax(0,auto) minmax(0,1fr);align-items:start}
+  .showcase-m-phone{align-self:start}
   .site-reorder-mobile{display:flex;flex-direction:column}
   .site-reorder-mobile #security{order:1}
   .site-reorder-mobile #app{order:2}
@@ -350,6 +365,7 @@ img{max-width:100%;display:block}
   .showcase-m-head .section-label{justify-content:center}
   .footer-features-desktop{display:none!important}
   .footer-features-mobile{display:block!important}
+  #security{scroll-margin-top:clamp(72px,18vw,96px)}
 }
 
 /* Map */
@@ -506,7 +522,7 @@ img{max-width:100%;display:block}
   <div class="hero-layout hero-layout--desktop">
     <div class="hero-inner hero-inner--classic">
       <div class="hero-content">
-        <h1 data-en="Your Connection.<br><span class='gradient-text'>Your Rules.</span>" data-ru="Ваше соединение.<br><span class='gradient-text'>Ваши правила.</span>">Your Connection.<br><span class="gradient-text">Your Rules.</span></h1>
+        <h1 data-en="Your Connection.<br><span class='gradient-text'>Your Rules.</span>" data-ru="Ваш интернет.<br><span class='gradient-text'>Ваши правила.</span>">Your Connection.<br><span class="gradient-text">Your Rules.</span></h1>
         <p data-en="Fast, private VPN for iOS. Our servers worldwide, modern encryption, and 30 days free — no credit card required." data-ru="Быстрый и приватный VPN для iOS. Наши серверы по всему миру, современное шифрование и 30 дней бесплатно — без привязки карты.">Fast, private VPN for iOS. Our servers worldwide, modern encryption, and 30 days free — no credit card required.</p>
         <div class="hero-actions">
           <button class="btn-primary" onclick="smoothScrollTo('#cta')">
@@ -532,46 +548,12 @@ img{max-width:100%;display:block}
   <div class="hero-layout hero-layout--mobile">
     <div class="hero-inner">
       <div class="hero-top">
-        <h1 data-en="Your Connection.<br><span class='gradient-text'>Your Rules.</span>" data-ru="Ваше соединение.<br><span class='gradient-text'>Ваши правила.</span>">Your Connection.<br><span class="gradient-text">Your Rules.</span></h1>
+        <h1 data-en="Your Connection.<br><span class='gradient-text'>Your Rules.</span>" data-ru="Ваш интернет.<br><span class='gradient-text'>Ваши правила.</span>">Your Connection.<br><span class="gradient-text">Your Rules.</span></h1>
       </div>
       <div class="hero-mobile-below">
         <div class="hero-mobile-left">
           <div class="hero-benefits reveal">
             <h2 class="hero-benefits-title" data-en="Built for speed,<br><span class='gradient-text-accent'>designed for privacy.</span>" data-ru="Создан для скорости,<br><span class='gradient-text-accent'>спроектирован для приватности.</span>">Built for speed,<br><span class="gradient-text-accent">designed for privacy.</span></h2>
-            <div class="benefits-grid hero-benefits-grid">
-              <div class="benefit-card reveal-left delay-1">
-                <div class="benefit-icon benefit-icon-purple">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-                </div>
-                <div class="benefit-number gradient-text" data-en="10 Gbps" data-ru="10 Гбит/с">10 Gbps</div>
-                <div class="benefit-label" data-en="Speed" data-ru="Скорость">Speed</div>
-                <p class="benefit-hint" data-en="High-capacity backbone across regions." data-ru="Мощная магистраль между регионами.">High-capacity backbone across regions.</p>
-              </div>
-              <div class="benefit-card reveal-right delay-2">
-                <div class="benefit-icon benefit-icon-green">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                </div>
-                <div class="benefit-number gradient-text">TLS 1.3</div>
-                <div class="benefit-label" data-en="Security" data-ru="Безопасность">Security</div>
-                <p class="benefit-hint" data-en="Modern encryption for every session." data-ru="Современное шифрование для каждой сессии.">Modern encryption for every session.</p>
-              </div>
-              <div class="benefit-card reveal-left delay-3">
-                <div class="benefit-icon benefit-icon-blue">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
-                </div>
-                <div class="benefit-number gradient-text" data-en="No log" data-ru="No log">No log</div>
-                <div class="benefit-label" data-en="Privacy" data-ru="Приватность">Privacy</div>
-                <p class="benefit-hint" data-en="We don’t keep activity or connection logs." data-ru="Не ведём журналы активности и подключений.">We don’t keep activity or connection logs.</p>
-              </div>
-              <div class="benefit-card reveal-right delay-4">
-                <div class="benefit-icon benefit-icon-amber">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                </div>
-                <div class="benefit-number gradient-text">24/7</div>
-                <div class="benefit-label" data-en="Support" data-ru="Поддержка">Support</div>
-                <p class="benefit-hint" data-en="Help when you need it, any time." data-ru="Помощь тогда, когда она нужна.">Help when you need it, any time.</p>
-              </div>
-            </div>
           </div>
         </div>
         <div class="hero-visual hero-visual--mobile">
@@ -583,12 +565,46 @@ img{max-width:100%;display:block}
           </div>
         </div>
       </div>
+      <div class="benefits-grid hero-benefits-grid hero-benefits-strip reveal">
+        <div class="benefit-card reveal-left delay-1">
+          <div class="benefit-icon benefit-icon-purple">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          </div>
+          <div class="benefit-number gradient-text" data-en="10 Gbps" data-ru="10 Гбит/с">10 Gbps</div>
+          <div class="benefit-label" data-en="Speed" data-ru="Скорость">Speed</div>
+          <p class="benefit-hint" data-en="High-capacity backbone across regions." data-ru="Мощная магистраль между регионами.">High-capacity backbone across regions.</p>
+        </div>
+        <div class="benefit-card reveal-right delay-2">
+          <div class="benefit-icon benefit-icon-green">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <div class="benefit-number gradient-text">TLS 1.3</div>
+          <div class="benefit-label" data-en="Security" data-ru="Безопасность">Security</div>
+          <p class="benefit-hint" data-en="Modern encryption for every session." data-ru="Современное шифрование для каждой сессии.">Modern encryption for every session.</p>
+        </div>
+        <div class="benefit-card reveal-left delay-3">
+          <div class="benefit-icon benefit-icon-blue">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+          </div>
+          <div class="benefit-number gradient-text" data-en="No log" data-ru="No log">No log</div>
+          <div class="benefit-label" data-en="Privacy" data-ru="Приватность">Privacy</div>
+          <p class="benefit-hint" data-en="We don’t keep activity or connection logs." data-ru="Не ведём журналы активности и подключений.">We don’t keep activity or connection logs.</p>
+        </div>
+        <div class="benefit-card reveal-right delay-4">
+          <div class="benefit-icon benefit-icon-amber">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <div class="benefit-number gradient-text">24/7</div>
+          <div class="benefit-label" data-en="Support" data-ru="Поддержка">Support</div>
+          <p class="benefit-hint" data-en="Help when you need it, any time." data-ru="Помощь тогда, когда она нужна.">Help when you need it, any time.</p>
+        </div>
+      </div>
       <div class="hero-actions hero-mobile-actions">
         <button class="btn-primary" onclick="smoothScrollTo('#cta')">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
           <span data-en="Download for iOS" data-ru="Скачать для iOS">Download for iOS</span>
         </button>
-        <a href="#stats" class="btn-secondary">
+        <a href="#security" class="btn-secondary">
           <span data-en="Learn More" data-ru="Узнать больше">Learn More</span>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17l9.2-9.2M17 17V7.8H7.8"/></svg>
         </a>
@@ -792,31 +808,43 @@ img{max-width:100%;display:block}
             <div class="phone-glow"></div>
           </div>
         </div>
-        <div class="showcase-m-tiles-wrap">
-          <div class="showcase-m-tiles">
-            <div class="showcase-m-tile reveal-left delay-1">
-              <div class="benefit-icon benefit-icon-purple">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        <div class="showcase-m-features-wrap">
+          <div class="showcase-m-features">
+            <div class="showcase-m-feature reveal-left delay-1">
+              <div class="showcase-feature-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
               </div>
-              <div class="showcase-m-tile-title gradient-text" data-en="10 Gbps" data-ru="10 Гбит/с">10 Gbps</div>
+              <div class="showcase-m-feature-copy">
+                <h4 data-en="Smart Server Selection" data-ru="Умный выбор сервера">Smart Server Selection</h4>
+                <p data-en="Auto mode picks the fastest server. Or choose manually with real-time ping." data-ru="Авто-режим выбирает самый быстрый сервер. Или выберите вручную с пингом в реальном времени.">Auto mode picks the fastest server. Or choose manually with real-time ping.</p>
+              </div>
             </div>
-            <div class="showcase-m-tile reveal-right delay-2">
-              <div class="benefit-icon benefit-icon-green">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <div class="showcase-m-feature reveal-left delay-2">
+              <div class="showcase-feature-icon" style="background:rgba(0,210,160,.1);color:var(--success)">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
               </div>
-              <div class="showcase-m-tile-title gradient-text">TLS 1.3</div>
+              <div class="showcase-m-feature-copy">
+                <h4 data-en="Service Checker" data-ru="Проверка сервисов">Service Checker</h4>
+                <p data-en="Instantly verify access to YouTube, Instagram, Telegram, ChatGPT, and more." data-ru="Мгновенная проверка доступа к YouTube, Instagram, Telegram, ChatGPT и другим сервисам.">Instantly verify access to YouTube, Instagram, Telegram, ChatGPT, and more.</p>
+              </div>
             </div>
-            <div class="showcase-m-tile reveal-left delay-3">
-              <div class="benefit-icon benefit-icon-blue">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+            <div class="showcase-m-feature reveal-left delay-3">
+              <div class="showcase-feature-icon" style="background:rgba(56,189,248,.1);color:#38bdf8">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
               </div>
-              <div class="showcase-m-tile-title gradient-text" data-en="No log" data-ru="No log">No log</div>
+              <div class="showcase-m-feature-copy">
+                <h4 data-en="Multi-Protocol Support" data-ru="Мультипротокольность">Multi-Protocol Support</h4>
+                <p data-en="VLESS, VMess, Trojan, Shadowsocks — works with any modern configuration." data-ru="VLESS, VMess, Trojan, Shadowsocks — работает с любой современной конфигурацией.">VLESS, VMess, Trojan, Shadowsocks — works with any modern configuration.</p>
+              </div>
             </div>
-            <div class="showcase-m-tile reveal-right delay-4">
-              <div class="benefit-icon benefit-icon-amber">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            <div class="showcase-m-feature reveal-left delay-4">
+              <div class="showcase-feature-icon" style="background:rgba(251,191,36,.1);color:#fbbf24">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M12 18v-6"/><path d="M9 15l3-3 3 3"/></svg>
               </div>
-              <div class="showcase-m-tile-title gradient-text">24/7</div>
+              <div class="showcase-m-feature-copy">
+                <h4 data-en="Import Your Own Servers" data-ru="Импорт своих серверов">Import Your Own Servers</h4>
+                <p data-en="Paste any subscription URL or config — use Marshall as a client for your own infrastructure." data-ru="Вставьте любую ссылку подписки или конфиг — используйте Marshall как клиент для своей инфраструктуры.">Paste any subscription URL or config — use Marshall as a client for your own infrastructure.</p>
+              </div>
             </div>
           </div>
         </div>
