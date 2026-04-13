@@ -427,6 +427,7 @@ img{max-width:100%;display:block}
   #performance-benchmark.speed-section{padding:42px 0 52px}
   #performance-benchmark .perf-intro .section-title{font-size:clamp(24px,6.8vw,36px);padding:0 4px}
   #performance-benchmark .perf-intro .section-desc{font-size:clamp(14px,3.6vw,16px);max-width:100%!important;padding:0 8px}
+  #performance-benchmark .perf-intro-desc-desktop-only{display:none!important}
   #performance-benchmark .speed-inner{grid-template-columns:1fr;gap:clamp(22px,5vw,32px);margin-top:clamp(22px,5vw,36px)}
   #performance-benchmark .speed-inner>*{min-width:0}
   #performance-benchmark .speed-bar-value{font-size:clamp(17px,4.5vw,20px)}
@@ -539,6 +540,45 @@ img{max-width:100%;display:block}
 .btn-telegram{display:inline-flex;align-items:center;gap:10px;padding:14px 28px;border-radius:14px;font-size:15px;font-weight:600;background:rgba(0,136,204,.15);color:#29b6f6;border:1px solid rgba(0,136,204,.25);cursor:pointer;transition:all .3s}
 .btn-telegram:hover{background:rgba(0,136,204,.25);border-color:rgba(0,136,204,.4);transform:translateY(-2px)}
 
+/* iOS App Store — coming soon modal */
+.ios-soon-modal{position:fixed;inset:0;z-index:10050;display:none;align-items:center;justify-content:center;padding:20px;padding-bottom:max(20px,env(safe-area-inset-bottom));box-sizing:border-box}
+.ios-soon-modal.is-open{display:flex}
+.ios-soon-modal__backdrop{position:absolute;inset:0;background:rgba(6,6,10,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);cursor:pointer}
+.ios-soon-modal__panel{position:relative;z-index:1;width:100%;max-width:420px;border-radius:var(--radius-lg);padding:32px 28px 26px;background:linear-gradient(145deg,rgba(18,16,28,.96),rgba(10,10,15,.98));border:1px solid rgba(108,92,231,.22);box-shadow:0 0 0 1px rgba(255,255,255,.04),0 24px 80px rgba(0,0,0,.55),0 0 120px rgba(108,92,231,.12);animation:iosSoonPanelIn .45s cubic-bezier(.16,1,.3,1) both}
+@keyframes iosSoonPanelIn{from{opacity:0;transform:translateY(16px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+.ios-soon-modal__panel::before{content:'';position:absolute;inset:0;border-radius:inherit;background:radial-gradient(ellipse 90% 55% at 50% -10%,rgba(108,92,231,.14),transparent 55%);pointer-events:none}
+.ios-soon-modal__close{position:absolute;top:14px;right:14px;width:36px;height:36px;border-radius:10px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.04);color:var(--text-dim);font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s,color .2s,border-color .2s;z-index:2}
+.ios-soon-modal__close:hover{background:rgba(255,255,255,.08);color:var(--text);border-color:rgba(255,255,255,.12)}
+.ios-soon-visual{position:relative;height:132px;margin:0 auto 22px;display:flex;align-items:center;justify-content:center}
+.ios-soon-orbit{position:relative;width:112px;height:112px}
+.ios-soon-ring{position:absolute;inset:0;border-radius:50%;border:2px solid transparent;border-top-color:rgba(168,85,247,.85);border-right-color:rgba(0,210,160,.35);animation:iosSoonRingSpin 2.8s linear infinite}
+.ios-soon-ring--2{inset:8px;border-top-color:rgba(108,92,231,.75);border-right-color:rgba(168,85,247,.25);animation-direction:reverse;animation-duration:3.6s;opacity:.9}
+.ios-soon-core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:18px;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg,rgba(255,255,255,.08),rgba(255,255,255,.02));box-shadow:0 8px 32px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.12);overflow:hidden}
+.ios-soon-core img{width:40px;height:40px;border-radius:10px;object-fit:cover;animation:iosSoonCorePulse 2.2s ease-in-out infinite}
+@keyframes iosSoonRingSpin{to{transform:rotate(360deg)}}
+@keyframes iosSoonCorePulse{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
+.ios-soon-scan{position:absolute;inset:0;background:linear-gradient(180deg,transparent,rgba(168,85,247,.12),transparent);animation:iosSoonScan 2.5s ease-in-out infinite;pointer-events:none;border-radius:18px}
+@keyframes iosSoonScan{0%,100%{transform:translateY(-100%);opacity:0}15%{opacity:1}50%{transform:translateY(0);opacity:.85}85%{opacity:1}100%{transform:translateY(100%);opacity:0}}
+.ios-soon-dots{position:absolute;inset:-4px;pointer-events:none}
+.ios-soon-dot{position:absolute;width:6px;height:6px;border-radius:50%;background:var(--success);box-shadow:0 0 12px rgba(0,210,160,.6);animation:iosSoonDot 3s ease-in-out infinite}
+.ios-soon-dot:nth-child(1){left:0;top:50%;animation-delay:0s}
+.ios-soon-dot:nth-child(2){right:0;top:30%;animation-delay:.6s;background:var(--accent-light);box-shadow:0 0 12px rgba(168,85,247,.5)}
+.ios-soon-dot:nth-child(3){right:18%;bottom:0;animation-delay:1.2s}
+@keyframes iosSoonDot{0%,100%{opacity:.35;transform:scale(.85)}50%{opacity:1;transform:scale(1.15)}}
+.ios-soon-bar{height:4px;border-radius:4px;background:rgba(255,255,255,.06);margin:0 0 20px;overflow:hidden;position:relative}
+.ios-soon-bar::after{content:'';position:absolute;left:-40%;top:0;height:100%;width:45%;border-radius:4px;background:linear-gradient(90deg,transparent,rgba(108,92,231,.9),rgba(0,210,160,.85),transparent);animation:iosSoonShimmer 1.8s ease-in-out infinite}
+@keyframes iosSoonShimmer{0%{left:-45%}100%{left:105%}}
+.ios-soon-modal__panel h3{font-size:clamp(20px,4.5vw,24px);font-weight:800;letter-spacing:-.03em;line-height:1.2;margin-bottom:10px;text-align:center;position:relative;z-index:1}
+.ios-soon-modal__panel p{font-size:14px;color:var(--text-dim);line-height:1.65;text-align:center;margin-bottom:14px;position:relative;z-index:1}
+.ios-soon-date{display:block;font-size:13px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:rgba(168,85,247,.95);text-align:center;margin-bottom:4px;position:relative;z-index:1}
+.ios-soon-foot{font-size:12px;color:var(--text-muted);text-align:center;position:relative;z-index:1}
+@media(max-width:480px){.ios-soon-modal__panel{padding:28px 20px 22px}.ios-soon-visual{height:120px;margin-bottom:18px}}
+@media(prefers-reduced-motion:reduce){
+  .ios-soon-modal__panel{animation:none}
+  .ios-soon-ring,.ios-soon-ring--2,.ios-soon-core img,.ios-soon-scan,.ios-soon-dot,.ios-soon-bar::after{animation:none!important}
+  .ios-soon-bar::after{left:0;width:100%;opacity:.5}
+}
+
 /* Footer */
 .footer{position:relative;z-index:2;padding:48px 0 28px;border-top:1px solid var(--border)}
 .footer-inner{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;margin-bottom:36px}
@@ -621,7 +661,7 @@ img{max-width:100%;display:block}
         <h1 data-en="Your Connection.<br><span class='gradient-text'>Your Rules.</span>" data-ru="Ваш интернет.<br><span class='gradient-text'>Ваши правила.</span>">Your Connection.<br><span class="gradient-text">Your Rules.</span></h1>
         <p data-en="Fast, private VPN for iOS. Our servers worldwide, modern encryption, and 30 days free — no credit card required." data-ru="Быстрый и приватный VPN для iOS. Наши серверы по всему миру, современное шифрование и 30 дней бесплатно — без привязки карты.">Fast, private VPN for iOS. Our servers worldwide, modern encryption, and 30 days free — no credit card required.</p>
         <div class="hero-actions">
-          <button class="btn-primary" onclick="smoothScrollTo('#cta')">
+          <button type="button" class="btn-primary" onclick="openIosComingSoonModal()">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
             <span data-en="Download for iOS" data-ru="Скачать для iOS">Download for iOS</span>
           </button>
@@ -694,7 +734,7 @@ img{max-width:100%;display:block}
         </div>
       </div>
       <div class="hero-actions hero-mobile-actions">
-        <button class="btn-primary" onclick="smoothScrollTo('#cta')">
+        <button type="button" class="btn-primary" onclick="openIosComingSoonModal()">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
           <span data-en="Download for iOS" data-ru="Скачать для iOS">Download for iOS</span>
         </button>
@@ -1118,7 +1158,7 @@ img{max-width:100%;display:block}
     <div class="perf-intro reveal" style="text-align:center">
       <div class="section-label" style="justify-content:center" data-en="Performance" data-ru="Производительность">Performance</div>
       <h2 class="section-title" style="margin-left:auto;margin-right:auto;max-width:720px" data-en="Invisible doesn't mean <span class='gradient-text-accent'>slow.</span>" data-ru="Невидимый — не значит <span class='gradient-text-accent'>медленный.</span>">Invisible doesn't mean <span class="gradient-text-accent">slow.</span></h2>
-      <p class="section-desc" style="margin-left:auto;margin-right:auto;text-align:center;max-width:560px" data-en="XTLS Vision eliminates double encryption overhead. You get censorship resistance without sacrificing speed." data-ru="XTLS Vision устраняет двойное шифрование. Вы получаете защиту от цензуры без потери скорости.">XTLS Vision eliminates double encryption overhead. You get censorship resistance without sacrificing speed.</p>
+      <p class="section-desc perf-intro-desc-desktop-only" style="margin-left:auto;margin-right:auto;text-align:center;max-width:560px" data-en="XTLS Vision eliminates double encryption overhead. You get censorship resistance without sacrificing speed." data-ru="XTLS Vision устраняет двойное шифрование. Вы получаете защиту от цензуры без потери скорости.">XTLS Vision eliminates double encryption overhead. You get censorship resistance without sacrificing speed.</p>
     </div>
     <div class="speed-inner">
       <div class="speed-bars reveal-left">
@@ -1196,7 +1236,7 @@ img{max-width:100%;display:block}
       <h2 data-en="Ready to take control of your <span class='gradient-text'>connection</span>?" data-ru="Готовы взять контроль над <span class='gradient-text'>соединением</span>?">Ready to take control of your <span class="gradient-text">connection</span>?</h2>
       <p data-en="Download Marshall VPN and get 30 days of free access. No credit card required." data-ru="Скачайте Marshall VPN и получите 30 дней бесплатного доступа. Без привязки карты.">Download Marshall VPN and get 30 days of free access. No credit card required.</p>
       <div class="cta-buttons">
-        <button class="btn-primary" onclick="window.open('https://apps.apple.com','_blank')">
+        <button type="button" class="btn-primary" onclick="openIosComingSoonModal()">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
           <span data-en="Download for iOS" data-ru="Скачать для iOS">Download for iOS</span>
         </button>
@@ -1242,6 +1282,34 @@ img{max-width:100%;display:block}
   </div>
 </footer>
 
+<!-- iOS: App Store release pending -->
+<div class="ios-soon-modal" id="iosSoonModal" role="dialog" aria-modal="true" aria-labelledby="iosSoonTitle" aria-hidden="true">
+  <div class="ios-soon-modal__backdrop" onclick="closeIosComingSoonModal()" aria-hidden="true"></div>
+  <div class="ios-soon-modal__panel">
+    <button type="button" class="ios-soon-modal__close" onclick="closeIosComingSoonModal()" aria-label="Close" data-en="×" data-ru="×">×</button>
+    <div class="ios-soon-visual" aria-hidden="true">
+      <div class="ios-soon-orbit">
+        <div class="ios-soon-ring"></div>
+        <div class="ios-soon-ring ios-soon-ring--2"></div>
+        <div class="ios-soon-dots">
+          <span class="ios-soon-dot"></span>
+          <span class="ios-soon-dot"></span>
+          <span class="ios-soon-dot"></span>
+        </div>
+        <div class="ios-soon-core">
+          <div class="ios-soon-scan"></div>
+          <img src="assets/logo.png" alt="" width="40" height="40">
+        </div>
+      </div>
+    </div>
+    <div class="ios-soon-bar" aria-hidden="true"></div>
+    <h3 id="iosSoonTitle" data-en="Almost there — App Store release in progress" data-ru="Почти готово — релиз в App Store в процессе">Almost there — App Store release in progress</h3>
+    <p data-en="Marshall VPN for iOS is going through Apple’s review. When it’s approved, you’ll install it from the App Store in one tap — just like any trusted app." data-ru="Marshall VPN для iOS проходит проверку Apple. После одобрения вы установите приложение из App Store в одно касание — как любое проверенное приложение.">Marshall VPN for iOS is going through Apple’s review. When it’s approved, you’ll install it from the App Store in one tap — just like any trusted app.</p>
+    <span class="ios-soon-date" data-en="Target launch · May 1, 2026" data-ru="Ориентир запуска · 1 мая 2026">Target launch · May 1, 2026</span>
+    <p class="ios-soon-foot" data-en="We’re packaging the build for the store — thanks for waiting." data-ru="Собираем сборку для магазина — спасибо за ожидание.">We’re packaging the build for the store — thanks for waiting.</p>
+  </div>
+</div>
+
 <!-- ============ SCRIPTS ============ -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
 <script>
@@ -1260,6 +1328,7 @@ window.toggleLang=function(){
     const t=el.getAttribute('data-'+currentLang);
     if(t!==null){if(el.tagName==='INPUT'||el.tagName==='TEXTAREA')el.placeholder=t;else el.innerHTML=t}
   });
+  syncIosSoonModalAria();
   if(typeof updateMapLabels==='function')updateMapLabels();
   if(geo)renderMap();
 };
@@ -1269,6 +1338,29 @@ window.smoothScrollTo=function(sel){
   const el=document.querySelector(sel);
   if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
 };
+
+function syncIosSoonModalAria(){
+  const closeBtn=document.querySelector('#iosSoonModal .ios-soon-modal__close');
+  if(closeBtn)closeBtn.setAttribute('aria-label',currentLang==='en'?'Close':'Закрыть');
+}
+window.openIosComingSoonModal=function(){
+  const m=document.getElementById('iosSoonModal');
+  if(!m)return;
+  syncIosSoonModalAria();
+  m.classList.add('is-open');
+  m.setAttribute('aria-hidden','false');
+  document.body.style.overflow='hidden';
+};
+window.closeIosComingSoonModal=function(){
+  const m=document.getElementById('iosSoonModal');
+  if(!m)return;
+  m.classList.remove('is-open');
+  m.setAttribute('aria-hidden','true');
+  document.body.style.overflow='';
+};
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'&&document.getElementById('iosSoonModal')&&document.getElementById('iosSoonModal').classList.contains('is-open'))closeIosComingSoonModal();
+});
 
 /* ===== THEME (dark only — clear legacy preference) ===== */
 (function(){
