@@ -89,16 +89,37 @@ img{max-width:100%;display:block}
 .mobile-menu-close{position:absolute;top:20px;right:24px;font-size:28px;color:var(--text);background:none;border:none;cursor:pointer;z-index:1}
 @media(max-width:768px){.nav-links{display:none}.nav-mobile-right{display:flex}}
 
-/* Hero */
+/* Hero — desktop (classic 2-col) vs mobile (phone + benefit tiles) */
 .hero{position:relative;z-index:2;min-height:100vh;display:flex;align-items:center;padding:120px 24px 28px;overflow:hidden}
-.hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;width:100%}
-.hero-content{position:relative;z-index:2}
-.hero h1{font-size:clamp(38px,6vw,72px);font-weight:800;line-height:1.05;letter-spacing:-.03em;margin-bottom:20px;animation:fadeInUp .8s ease-out .1s both}
+.hero-layout--desktop{display:block}
+.hero-layout--mobile{display:none}
+@media(max-width:900px){
+  .hero-layout--desktop{display:none!important}
+  .hero-layout--mobile{display:block!important}
+}
+.hero-layout--desktop .hero-inner--classic{
+  max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;width:100%
+}
+.hero-layout--desktop .hero-content{position:relative;z-index:2}
+.hero-layout--desktop .hero-content h1{font-size:clamp(38px,6vw,72px);font-weight:800;line-height:1.05;letter-spacing:-.03em;margin-bottom:20px;animation:fadeInUp .8s ease-out .1s both}
+.hero-layout--desktop .hero-content p{font-size:clamp(15px,2vw,18px);color:var(--text-dim);line-height:1.7;max-width:520px;margin-bottom:32px;animation:fadeInUp .8s ease-out .2s both}
 .hero-phone-inline{display:none}
-.hero p{font-size:clamp(15px,2vw,18px);color:var(--text-dim);line-height:1.7;max-width:520px;margin-bottom:32px;animation:fadeInUp .8s ease-out .2s both}
 @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
-.hero-actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap;animation:fadeInUp .8s ease-out .3s both}
-.hero-visual{display:flex;justify-content:center;animation:fadeInUp .8s ease-out .4s both}
+.hero-layout--desktop .hero-actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap;animation:fadeInUp .8s ease-out .3s both}
+.hero-layout--desktop .hero-visual{display:flex;justify-content:center;animation:fadeInUp .8s ease-out .4s both}
+.hero-layout--mobile .hero-inner{max-width:1200px;margin:0 auto;display:flex;flex-direction:column;gap:clamp(28px,4vw,44px);width:100%}
+.hero-layout--mobile .hero-top{position:relative;z-index:2;text-align:left}
+.hero-layout--mobile .hero-top h1{font-size:clamp(38px,6vw,72px);font-weight:800;line-height:1.05;letter-spacing:-.03em;margin-bottom:clamp(18px,2.5vw,24px);animation:fadeInUp .8s ease-out .1s both}
+.hero-layout--mobile .hero-actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap;animation:fadeInUp .8s ease-out .25s both}
+.hero-layout--mobile .hero-split{display:grid;grid-template-columns:minmax(240px,.92fr) 1.08fr;gap:clamp(28px,4vw,52px);align-items:center;animation:fadeInUp .8s ease-out .35s both}
+.hero-layout--mobile .hero-visual{display:flex;justify-content:center;align-items:center}
+.hero-layout--mobile .hero-benefits{text-align:left;min-width:0}
+.hero-benefits-title{
+  font-size:clamp(22px,2.8vw,34px);font-weight:800;letter-spacing:-.03em;line-height:1.12;margin:0 0 clamp(14px,2vw,20px);
+  color:var(--text)
+}
+.hero-benefits-title .gradient-text-accent{display:inline}
+.hero-benefits-grid{margin-top:0}
 .btn-primary{display:inline-flex;align-items:center;gap:10px;padding:16px 36px;border-radius:14px;font-size:16px;font-weight:600;background:linear-gradient(135deg,var(--accent),var(--accent-light));color:#fff;border:none;cursor:pointer;transition:transform .3s,box-shadow .3s;position:relative;overflow:hidden}
 .btn-primary::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.15),transparent);opacity:0;transition:opacity .3s}
 .btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 60px rgba(108,92,231,.35)}
@@ -111,13 +132,11 @@ img{max-width:100%;display:block}
 .phone-frame img{width:100%;display:block}
 .phone-glow{position:absolute;bottom:-40px;left:50%;transform:translateX(-50%);width:200px;height:80px;background:radial-gradient(ellipse,rgba(108,92,231,.2),transparent 70%);filter:blur(20px);pointer-events:none}
 @media(max-width:900px){
-  .hero-inner{grid-template-columns:1fr;text-align:center}
-  .hero-content{order:1}
-  .hero-visual{order:0;display:none}
-  .hero p{display:block;margin-bottom:24px;margin-left:auto;margin-right:auto}
-  .hero h1{margin-bottom:14px}
-  .hero-actions{justify-content:center}
-  .phone-mockup{width:220px}
+  .hero-layout--mobile .hero-top{text-align:center}
+  .hero-layout--mobile .hero-split{grid-template-columns:1fr;gap:clamp(22px,4vw,32px)}
+  .hero-layout--mobile .hero-benefits{text-align:center}
+  .hero-layout--mobile .hero-actions{justify-content:center}
+  .hero-layout--mobile .phone-mockup{width:240px;max-width:min(280px,88vw)}
 }
 
 /* Section common */
@@ -129,7 +148,7 @@ img{max-width:100%;display:block}
 .section-desc{font-size:clamp(15px,1.6vw,17px);color:var(--text-dim);line-height:1.7;max-width:540px}
 .section-divider{width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--border-light),transparent)}
 
-/* Protocol comparison — desktop grid + mobile stacked cards */
+/* Protocol — desktop: table; mobile: Why Marshall tiles + table hidden, show tiles only (see media) */
 .proto-section{overflow:hidden}
 .proto-lead-mobile{display:none}
 .proto-head-mobile{display:none;text-align:center}
@@ -139,7 +158,22 @@ img{max-width:100%;display:block}
 .proto-mark{display:inline-flex;align-items:center;justify-content:center;min-width:32px;height:32px;padding:0 6px;border-radius:999px;font-size:15px;font-weight:800;line-height:1}
 .proto-mark--yes{background:rgba(0,210,160,.16);color:var(--success);box-shadow:0 0 0 1px rgba(0,210,160,.2)}
 .proto-mark--no{background:rgba(255,255,255,.04);color:rgba(255,255,255,.22);box-shadow:0 0 0 1px rgba(255,255,255,.06)}
-/* Why Marshall — 4 tiles (Old.html layout for phones; block is mobile-only in index) */
+/* Hero mobile — 4 tiles next to phone */
+#hero .hero-layout--mobile .hero-benefits-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+@media(max-width:520px){
+  #hero .hero-layout--mobile .hero-benefits-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+}
+#hero .hero-layout--mobile .hero-benefits .benefit-card{text-align:center;padding:14px 8px;border-radius:var(--radius-md);background:var(--surface);border:1px solid var(--border);transition:all .35s;position:relative;overflow:hidden}
+#hero .hero-layout--mobile .hero-benefits .benefit-card:hover{border-color:var(--border-light);transform:translateY(-2px);box-shadow:0 12px 36px rgba(0,0,0,.22)}
+#hero .hero-layout--mobile .hero-benefits .benefit-icon{width:36px;height:36px;border-radius:11px;display:flex;align-items:center;justify-content:center;margin:0 auto 6px;font-size:16px}
+#hero .hero-layout--mobile .hero-benefits .benefit-icon-purple{background:rgba(108,92,231,.12);color:var(--accent-light)}
+#hero .hero-layout--mobile .hero-benefits .benefit-icon-green{background:rgba(0,210,160,.1);color:var(--success)}
+#hero .hero-layout--mobile .hero-benefits .benefit-icon-blue{background:rgba(56,189,248,.1);color:#38bdf8}
+#hero .hero-layout--mobile .hero-benefits .benefit-icon-amber{background:rgba(251,191,36,.1);color:#fbbf24}
+#hero .hero-layout--mobile .hero-benefits .benefit-number{font-size:clamp(12px,2.4vw,15px);font-weight:800;letter-spacing:-.03em;margin-bottom:3px;line-height:1.15}
+#hero .hero-layout--mobile .hero-benefits .benefit-label{font-size:10px;color:var(--text-dim);line-height:1.25}
+#hero .hero-layout--mobile .hero-benefits .benefit-hint{display:none!important}
+/* #benefits — 4 tiles (mobile-only under protocol section) */
 #benefits .benefits-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin-top:28px}
 #benefits .benefit-card{text-align:center;padding:12px 6px;border-radius:var(--radius-md);background:var(--surface);border:1px solid var(--border);transition:all .35s;position:relative;overflow:hidden}
 #benefits .benefit-card:hover{border-color:var(--border-light);transform:translateY(-2px);box-shadow:0 12px 36px rgba(0,0,0,.22)}
@@ -420,6 +454,8 @@ img{max-width:100%;display:block}
 [data-theme="light"] .proto-badge--mid{background:rgba(217,119,6,.12);color:#b45309}
 [data-theme="light"] .proto-badge--bad{background:rgba(220,38,38,.1);color:#dc2626}
 [data-theme="light"] .proto-mark--no{background:rgba(22,20,42,.06);color:rgba(22,20,42,.28);box-shadow:0 0 0 1px rgba(72,58,110,.12)}
+[data-theme="light"] .hero-layout--desktop .hero-content p{color:rgba(22,20,42,.65)}
+[data-theme="light"] #hero .hero-layout--mobile .hero-benefits .benefit-card{background:rgba(255,255,255,.28);border-color:rgba(72,58,110,.12)}
 [data-theme="light"] #benefits .benefit-card{background:rgba(255,255,255,.28);border-color:rgba(72,58,110,.12)}
 [data-theme="light"] .stat-card{
   background:rgba(255,255,255,.35);border-color:rgba(72,58,110,.16);
@@ -517,7 +553,6 @@ img{max-width:100%;display:block}
   box-shadow:0 6px 20px rgba(0,120,180,.32);transform:translateY(-2px)
 }
 [data-theme="light"] .btn-telegram svg{opacity:.95}
-[data-theme="light"] .hero p{color:rgba(22,20,42,.65)}
 [data-theme="light"] .stats-section{background:linear-gradient(180deg,transparent,rgba(91,79,201,.12),transparent)}
 [data-theme="light"] .nav-lang,[data-theme="light"] .nav-mobile-lang{background:rgba(255,255,255,.22);border-color:rgba(72,58,110,.14);color:rgba(22,20,42,.55)}
 [data-theme="light"] .nav-lang:hover,[data-theme="light"] .nav-mobile-lang:hover{background:rgba(255,255,255,.38);color:var(--text)}
@@ -577,29 +612,95 @@ img{max-width:100%;display:block}
   <button class="btn-primary" onclick="toggleMobileMenu();smoothScrollTo('#cta')" data-en="Get Started" data-ru="Начать">Get Started</button>
 </div>
 
-<!-- ============ BLOCK 1: HERO ============ -->
+<!-- ============ BLOCK 1: HERO (desktop: classic 2-col | mobile: phone + tiles) ============ -->
 <section class="hero" id="hero">
-  <div class="hero-inner">
-    <div class="hero-content">
-      <h1 data-en="Your Connection.<br><span class='gradient-text'>Your Rules.</span>" data-ru="Ваше соединение.<br><span class='gradient-text'>Ваши правила.</span>">Your Connection.<br><span class="gradient-text">Your Rules.</span></h1>
-      <p data-en="Fast, private VPN for iOS. Our servers worldwide, modern encryption, and 30 days free — no credit card required." data-ru="Быстрый и приватный VPN для iOS. Наши серверы по всему миру, современное шифрование и 30 дней бесплатно — без привязки карты.">Fast, private VPN for iOS. Our servers worldwide, modern encryption, and 30 days free — no credit card required.</p>
-      <div class="hero-actions">
-        <button class="btn-primary" onclick="smoothScrollTo('#cta')">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-          <span data-en="Download for iOS" data-ru="Скачать для iOS">Download for iOS</span>
-        </button>
-        <a href="#stats" class="btn-secondary">
-          <span data-en="Learn More" data-ru="Узнать больше">Learn More</span>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17l9.2-9.2M17 17V7.8H7.8"/></svg>
-        </a>
+  <div class="hero-layout hero-layout--desktop">
+    <div class="hero-inner hero-inner--classic">
+      <div class="hero-content">
+        <h1 data-en="Your Connection.<br><span class='gradient-text'>Your Rules.</span>" data-ru="Ваше соединение.<br><span class='gradient-text'>Ваши правила.</span>">Your Connection.<br><span class="gradient-text">Your Rules.</span></h1>
+        <p data-en="Fast, private VPN for iOS. Our servers worldwide, modern encryption, and 30 days free — no credit card required." data-ru="Быстрый и приватный VPN для iOS. Наши серверы по всему миру, современное шифрование и 30 дней бесплатно — без привязки карты.">Fast, private VPN for iOS. Our servers worldwide, modern encryption, and 30 days free — no credit card required.</p>
+        <div class="hero-actions">
+          <button class="btn-primary" onclick="smoothScrollTo('#cta')">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+            <span data-en="Download for iOS" data-ru="Скачать для iOS">Download for iOS</span>
+          </button>
+          <a href="#stats" class="btn-secondary">
+            <span data-en="Learn More" data-ru="Узнать больше">Learn More</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17l9.2-9.2M17 17V7.8H7.8"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="phone-mockup">
+          <div class="phone-frame">
+            <img src="assets/screen-import.png" alt="Marshall VPN Connected" loading="eager">
+          </div>
+          <div class="phone-glow"></div>
+        </div>
       </div>
     </div>
-    <div class="hero-visual">
-      <div class="phone-mockup">
-        <div class="phone-frame">
-          <img src="assets/screen-import.png" alt="Marshall VPN Connected" loading="eager">
+  </div>
+  <div class="hero-layout hero-layout--mobile">
+    <div class="hero-inner">
+      <div class="hero-top">
+        <h1 data-en="Your Connection.<br><span class='gradient-text'>Your Rules.</span>" data-ru="Ваше соединение.<br><span class='gradient-text'>Ваши правила.</span>">Your Connection.<br><span class="gradient-text">Your Rules.</span></h1>
+        <div class="hero-actions">
+          <button class="btn-primary" onclick="smoothScrollTo('#cta')">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+            <span data-en="Download for iOS" data-ru="Скачать для iOS">Download for iOS</span>
+          </button>
+          <a href="#stats" class="btn-secondary">
+            <span data-en="Learn More" data-ru="Узнать больше">Learn More</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17l9.2-9.2M17 17V7.8H7.8"/></svg>
+          </a>
         </div>
-        <div class="phone-glow"></div>
+      </div>
+      <div class="hero-split">
+        <div class="hero-visual">
+          <div class="phone-mockup">
+            <div class="phone-frame">
+              <img src="assets/screen-import.png" alt="Marshall VPN Connected" loading="eager">
+            </div>
+            <div class="phone-glow"></div>
+          </div>
+        </div>
+        <div class="hero-benefits reveal">
+          <h2 class="hero-benefits-title" data-en="Built for speed,<br><span class='gradient-text-accent'>designed for privacy.</span>" data-ru="Создан для скорости,<br><span class='gradient-text-accent'>спроектирован для приватности.</span>">Built for speed,<br><span class="gradient-text-accent">designed for privacy.</span></h2>
+          <div class="benefits-grid hero-benefits-grid">
+            <div class="benefit-card reveal-left delay-1">
+              <div class="benefit-icon benefit-icon-purple">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+              </div>
+              <div class="benefit-number gradient-text" data-en="10 Gbps" data-ru="10 Гбит/с">10 Gbps</div>
+              <div class="benefit-label" data-en="Speed" data-ru="Скорость">Speed</div>
+              <p class="benefit-hint" data-en="High-capacity backbone across regions." data-ru="Мощная магистраль между регионами.">High-capacity backbone across regions.</p>
+            </div>
+            <div class="benefit-card reveal-right delay-2">
+              <div class="benefit-icon benefit-icon-green">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              </div>
+              <div class="benefit-number gradient-text">TLS 1.3</div>
+              <div class="benefit-label" data-en="Security" data-ru="Безопасность">Security</div>
+              <p class="benefit-hint" data-en="Modern encryption for every session." data-ru="Современное шифрование для каждой сессии.">Modern encryption for every session.</p>
+            </div>
+            <div class="benefit-card reveal-left delay-3">
+              <div class="benefit-icon benefit-icon-blue">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+              </div>
+              <div class="benefit-number gradient-text" data-en="No log" data-ru="No log">No log</div>
+              <div class="benefit-label" data-en="Privacy" data-ru="Приватность">Privacy</div>
+              <p class="benefit-hint" data-en="We don’t keep activity or connection logs." data-ru="Не ведём журналы активности и подключений.">We don’t keep activity or connection logs.</p>
+            </div>
+            <div class="benefit-card reveal-right delay-4">
+              <div class="benefit-icon benefit-icon-amber">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              </div>
+              <div class="benefit-number gradient-text">24/7</div>
+              <div class="benefit-label" data-en="Support" data-ru="Поддержка">Support</div>
+              <p class="benefit-hint" data-en="Help when you need it, any time." data-ru="Помощь тогда, когда она нужна.">Help when you need it, any time.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -636,17 +737,13 @@ img{max-width:100%;display:block}
 
 <div class="section-divider"></div>
 
-<!-- ============ BLOCK 3: PROTOCOL (desktop: yes/no table) | mobile: Why Marshall ============ -->
+<!-- ============ BLOCK 3: PROTOCOL COMPARISON ============ -->
 <section class="section proto-section" id="benefits">
   <div class="container">
     <div class="proto-head-desktop reveal" style="text-align:center">
       <div class="section-label" style="justify-content:center" data-en="Protocol" data-ru="Протокол">Protocol</div>
       <h2 class="section-title" style="margin-left:auto;margin-right:auto;max-width:720px" data-en="<span class='gradient-text-accent'>Marshall</span> vs other VPN stacks — yes or no" data-ru="<span class='gradient-text-accent'>Marshall</span> и другие VPN — да или нет"><span class="gradient-text-accent">Marshall</span> vs other VPN stacks — yes or no</h2>
       <p class="section-desc" style="margin:12px auto 0;max-width:560px;text-align:center" data-en="Same job — encrypt your traffic. These rows show what each stack actually gives you as a real VPN tunnel." data-ru="Задача одна — шифровать трафик. Строки показывают, что реально есть у каждого стека в роли VPN-туннеля.">Same job — encrypt your traffic. These rows show what each stack actually gives you as a real VPN tunnel.</p>
-    </div>
-    <div class="proto-head-mobile reveal" style="text-align:center">
-      <div class="section-label" style="justify-content:center" data-en="Why Marshall" data-ru="Почему Marshall">Why Marshall</div>
-      <h2 class="section-title" style="margin-left:auto;margin-right:auto;max-width:680px" data-en="Built for speed,<br><span class='gradient-text-accent'>designed for privacy.</span>" data-ru="Создан для скорости<br><span class='gradient-text-accent'>спроектирован для приватности.</span>">Built for speed,<br><span class="gradient-text-accent">designed for privacy.</span></h2>
     </div>
     <div class="proto-matrix proto-desktop-only reveal-scale">
       <div class="proto-cols">
@@ -718,6 +815,10 @@ img{max-width:100%;display:block}
           </div>
         </div>
       </div>
+    </div>
+    <div class="proto-head-mobile reveal" style="text-align:center">
+      <div class="section-label" style="justify-content:center" data-en="Why Marshall" data-ru="Почему Marshall">Why Marshall</div>
+      <h2 class="section-title" style="margin-left:auto;margin-right:auto;max-width:680px" data-en="Built for speed,<br><span class='gradient-text-accent'>designed for privacy.</span>" data-ru="Создан для скорости<br><span class='gradient-text-accent'>спроектирован для приватности.</span>">Built for speed,<br><span class="gradient-text-accent">designed for privacy.</span></h2>
     </div>
     <div class="proto-mobile-only">
       <div class="benefits-grid">
