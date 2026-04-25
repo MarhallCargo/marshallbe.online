@@ -11,9 +11,9 @@
   gtag('js', new Date());
   gtag('config', 'G-RGDQ35MMZB');
 </script>
-<meta name="description" content="Marshall VPN — Fast, private VPN for iOS and Android. Our servers worldwide, modern encryption, 30 days free.">
-<meta name="theme-color" content="#0A0A0F">
-<title>Marshall VPN — Your Connection. Your Rules.</title>
+<meta name="description" content="Marshall — Fast, private connectivity app for iOS and Android. Modern encryption, global server network, 30 days free.">
+<meta name="theme-color" content="#11111A">
+<title>Marshall — Your Connection. Your Rules.</title>
 <link rel="icon" type="image/png" href="assets/logo.png">
 <link rel="apple-touch-icon" href="assets/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,18 +22,18 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#0A0A0F;
-  --bg-alt:#0D0D16;
-  --surface:rgba(255,255,255,0.04);
-  --surface-hover:rgba(255,255,255,0.07);
-  --border:rgba(255,255,255,0.06);
-  --border-light:rgba(255,255,255,0.10);
-  --text:#E8E8ED;
-  --text-dim:rgba(255,255,255,0.45);
-  --text-muted:rgba(255,255,255,0.25);
+  --bg:#11111A;
+  --bg-alt:#161622;
+  --surface:rgba(255,255,255,0.06);
+  --surface-hover:rgba(255,255,255,0.09);
+  --border:rgba(255,255,255,0.08);
+  --border-light:rgba(255,255,255,0.13);
+  --text:#EDEDF2;
+  --text-dim:rgba(255,255,255,0.55);
+  --text-muted:rgba(255,255,255,0.32);
   --accent:#6C5CE7;
   --accent-light:#A855F7;
-  --accent-glow:rgba(108,92,231,0.3);
+  --accent-glow:rgba(108,92,231,0.32);
   --success:#00D2A0;
   --green:#00D67E;
   --radius-lg:20px;
@@ -63,16 +63,16 @@ img{max-width:100%;display:block}
 
 /* Background */
 .bg-glow{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
-.bg-glow .orb{position:absolute;border-radius:50%;filter:blur(120px);opacity:.15;animation:orbFloat 20s ease-in-out infinite}
+.bg-glow .orb{position:absolute;border-radius:50%;filter:blur(120px);opacity:.18;animation:orbFloat 20s ease-in-out infinite}
 .bg-glow .orb-1{width:600px;height:600px;background:#6C5CE7;top:-10%;left:-10%;animation-delay:0s}
 .bg-glow .orb-2{width:500px;height:500px;background:#A855F7;bottom:-10%;right:-10%;animation-delay:-7s}
-.bg-glow .orb-3{width:400px;height:400px;background:#00D2A0;top:40%;left:50%;animation-delay:-14s;opacity:.08}
+.bg-glow .orb-3{width:400px;height:400px;background:#00D2A0;top:40%;left:50%;animation-delay:-14s;opacity:.10}
 @keyframes orbFloat{0%,100%{transform:translate(0,0) scale(1)}25%{transform:translate(30px,-40px) scale(1.05)}50%{transform:translate(-20px,30px) scale(.95)}75%{transform:translate(40px,20px) scale(1.02)}}
 #particles{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1}
 
 /* Nav */
-.nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 0;background:rgba(10,10,15,.6);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.04);transition:all .4s}
-.nav.scrolled{padding:10px 0;background:rgba(10,10,15,.85);border-bottom-color:rgba(255,255,255,.06)}
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 0;background:rgba(17,17,26,.6);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.04);transition:all .4s}
+.nav.scrolled{padding:10px 0;background:rgba(17,17,26,.85);border-bottom-color:rgba(255,255,255,.06)}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:1200px;margin:0 auto;padding:0 24px}
 .nav-logo{display:flex;align-items:center;gap:10px;min-height:36px}
 .nav .nav-logo{gap:20px}
@@ -93,8 +93,8 @@ img{max-width:100%;display:block}
 .nav-mobile-right .nav-cta{height:32px;min-height:32px;padding:0 12px;font-size:11px;border-radius:20px;white-space:nowrap}
 @media(max-width:768px){.nav-links{display:none}.nav-mobile-right{display:flex}}
 @media(max-width:768px){
-  .nav{padding:11px 0;background:rgba(10,10,15,.42);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom-color:rgba(255,255,255,.03)}
-  .nav.scrolled{padding:8px 0;background:rgba(10,10,15,.62);border-bottom-color:rgba(255,255,255,.05)}
+  .nav{padding:11px 0;background:rgba(17,17,26,.42);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom-color:rgba(255,255,255,.03)}
+  .nav.scrolled{padding:8px 0;background:rgba(17,17,26,.62);border-bottom-color:rgba(255,255,255,.05)}
   .nav-inner{padding:0 20px}
   .nav-logo{min-height:32px}
   .nav-logo-mark{width:32px;height:32px}
@@ -498,7 +498,7 @@ img{max-width:100%;display:block}
 .map-legend-item{display:flex;align-items:center;gap:5px;font-size:10px;color:#5a7a9f;font-weight:500}
 .map-legend-dot{width:8px;height:8px;border-radius:3px}
 .map-legend-dot-round{border-radius:50%;width:7px;height:7px}
-.map-info-panel{position:absolute;left:18px;bottom:22px;width:min(290px,28%);background:rgba(10,15,25,.78);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(100,130,180,.13);border-radius:14px;padding:14px 16px 13px;z-index:10;box-shadow:0 12px 40px rgba(0,0,0,.35);opacity:0;visibility:hidden;transform:translateY(8px) scale(.985);transition:opacity .35s ease,transform .35s ease,visibility 0s linear .35s;pointer-events:none}
+.map-info-panel{position:absolute;left:18px;bottom:12px;width:min(290px,28%);background:rgba(10,15,25,.78);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(100,130,180,.13);border-radius:14px;padding:14px 16px 13px;z-index:10;box-shadow:0 12px 40px rgba(0,0,0,.35);opacity:0;visibility:hidden;transform:translateY(8px) scale(.985);transition:opacity .35s ease,transform .35s ease,visibility 0s linear .35s;pointer-events:none}
 .map-info-panel.is-visible{opacity:1;visibility:visible;transform:translateY(0) scale(1);pointer-events:auto;transition:opacity .35s ease,transform .35s ease,visibility 0s linear 0s}
 .map-info-panel-label{display:inline-flex;align-items:center;gap:6px;font-size:9.5px;font-weight:600;letter-spacing:1.6px;text-transform:uppercase;color:#00d67e;margin-bottom:8px}
 .map-info-panel-label::before{content:'';width:14px;height:1px;background:#00d67e;opacity:.7}
@@ -507,10 +507,11 @@ img{max-width:100%;display:block}
 .map-info-panel-divider{height:1px;background:linear-gradient(90deg,rgba(100,130,180,.18),rgba(100,130,180,.04));margin-bottom:10px}
 .map-info-panel-list{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(6,auto);grid-auto-flow:column;gap:5px 14px;list-style:none;padding:0;margin:0}
 .map-info-panel-list li{font-size:10.5px;color:#aab7cc;font-weight:500;display:flex;align-items:center;gap:7px;line-height:1.4}
-.map-info-panel-list li::before{content:'';width:3.5px;height:3.5px;border-radius:50%;background:#00d67e;flex-shrink:0;box-shadow:0 0 4px rgba(0,214,126,.55)}
+.map-info-panel-list .map-info-flag{width:18px;height:13px;object-fit:cover;border-radius:2px;flex-shrink:0;box-shadow:0 0 0 1px rgba(255,255,255,.1)}
+.map-info-panel-list .map-info-country{min-width:0}
 @media(max-width:768px){
   .map-info-panel{position:static;width:auto;left:auto;bottom:auto;margin:0 12px;transform:none;box-shadow:none;display:none}
-  .map-info-panel.is-visible{display:block;margin-top:10px}
+  .map-info-panel.is-visible{display:block;margin-top:5px}
 }
 @keyframes glowBorder{0%,100%{stroke:rgba(0,214,126,.10)}50%{stroke:rgba(0,214,126,.28)}}
 
@@ -581,7 +582,7 @@ img{max-width:100%;display:block}
 .ios-soon-modal{position:fixed;inset:0;z-index:10050;display:none;align-items:center;justify-content:center;padding:20px;padding-bottom:max(20px,env(safe-area-inset-bottom));box-sizing:border-box}
 .ios-soon-modal.is-open{display:flex}
 .ios-soon-modal__backdrop{position:absolute;inset:0;background:rgba(6,6,10,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);cursor:pointer}
-.ios-soon-modal__panel{position:relative;z-index:1;width:100%;max-width:420px;border-radius:var(--radius-lg);padding:32px 28px 26px;background:linear-gradient(145deg,rgba(18,16,28,.96),rgba(10,10,15,.98));border:1px solid rgba(108,92,231,.22);box-shadow:0 0 0 1px rgba(255,255,255,.04),0 24px 80px rgba(0,0,0,.55),0 0 120px rgba(108,92,231,.12);animation:iosSoonPanelIn .45s cubic-bezier(.16,1,.3,1) both}
+.ios-soon-modal__panel{position:relative;z-index:1;width:100%;max-width:420px;border-radius:var(--radius-lg);padding:32px 28px 26px;background:linear-gradient(145deg,rgba(18,16,28,.96),rgba(17,17,26,.98));border:1px solid rgba(108,92,231,.22);box-shadow:0 0 0 1px rgba(255,255,255,.04),0 24px 80px rgba(0,0,0,.55),0 0 120px rgba(108,92,231,.12);animation:iosSoonPanelIn .45s cubic-bezier(.16,1,.3,1) both}
 @keyframes iosSoonPanelIn{from{opacity:0;transform:translateY(16px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
 .ios-soon-modal__panel::before{content:'';position:absolute;inset:0;border-radius:inherit;background:radial-gradient(ellipse 90% 55% at 50% -10%,rgba(108,92,231,.14),transparent 55%);pointer-events:none}
 .ios-soon-modal__close{position:absolute;top:14px;right:14px;width:36px;height:36px;border-radius:10px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.04);color:var(--text-dim);font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s,color .2s,border-color .2s;z-index:2}
@@ -705,6 +706,7 @@ img{max-width:100%;display:block}
 @media(max-width:900px){
   .ss-desk-only{display:none}
   .ss-mob-only{display:block}
+  .ss-wire-tag--hide-on-mobile{display:none!important}
 }
 </style>
 </head>
@@ -738,7 +740,7 @@ img{max-width:100%;display:block}
     <div class="hero-inner hero-inner--classic">
       <div class="hero-content">
         <h1 data-en="Your Connection.<br><span class='gradient-text'>Your Rules.</span>" data-ru="Ваш интернет.<br><span class='gradient-text'>Ваши правила.</span>">Your Connection.<br><span class="gradient-text">Your Rules.</span></h1>
-        <p data-en="Fast, private VPN for iOS. Our servers worldwide, modern encryption, and 30 days free — no credit card required." data-ru="Быстрый и приватный VPN для iOS. Наши серверы по всему миру, современное шифрование и 30 дней бесплатно — без привязки карты.">Fast, private VPN for iOS. Our servers worldwide, modern encryption, and 30 days free — no credit card required.</p>
+        <p data-en="Fast, private connectivity for iOS and Android. A modern privacy app with global servers, end-to-end encryption, and 30 days free — no credit card required." data-ru="Быстрое и приватное соединение для iOS и Android. Современное privacy-приложение: глобальная серверная сеть, end-to-end шифрование, 30 дней бесплатно — без привязки карты.">Fast, private connectivity for iOS and Android. A modern privacy app with global servers, end-to-end encryption, and 30 days free — no credit card required.</p>
         <div class="hero-actions hero-actions--split">
           <div class="hero-download-row">
             <button type="button" class="btn-primary" onclick="openIosComingSoonModal()">
@@ -822,7 +824,7 @@ img{max-width:100%;display:block}
         <div class="hero-mobile-download-row">
           <button type="button" class="btn-primary" onclick="openIosComingSoonModal()">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" preserveAspectRatio="xMidYMid meet"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-            <span data-en="for iOS and macOS" data-ru="для iOS и macOS">for iOS and macOS</span>
+            <span data-en="for iOS" data-ru="для iOS">for iOS</span>
           </button>
           <button type="button" class="btn-primary" onclick="window.open('https://play.google.com/apps/testing/com.marshallvpn.app','_blank','noopener')">
             <svg class="icon-android" width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor" aria-hidden="true" focusable="false"><path d="M18.4395 5.5586c-.675 1.1664-1.352 2.3318-2.0274 3.498-.0366-.0155-.0742-.0286-.1113-.043-1.8249-.6957-3.484-.8-4.42-.787-1.8551.0185-3.3544.4643-4.2597.8203-.084-.1494-1.7526-3.021-2.0215-3.4864a1.1451 1.1451 0 0 0-.1406-.1914c-.3312-.364-.9054-.4859-1.379-.203-.475.282-.7136.9361-.3886 1.5019 1.9466 3.3696-.0966-.2158 1.9473 3.3593.0172.031-.4946.2642-1.3926 1.0177C2.8987 12.176.452 14.772 0 18.9902h24c-.119-1.1108-.3686-2.099-.7461-3.0683-.7438-1.9118-1.8435-3.2928-2.7402-4.1836a12.1048 12.1048 0 0 0-2.1309-1.6875c.6594-1.122 1.312-2.2559 1.9649-3.3848.2077-.3615.1886-.7956-.0079-1.1191a1.1001 1.1001 0 0 0-.8515-.5332c-.5225-.0536-.9392.3128-1.0488.5449zm-.0391 8.461c.3944.5926.324 1.3306-.1563 1.6503-.4799.3197-1.188.0985-1.582-.4941-.3944-.5927-.324-1.3307.1563-1.6504.4727-.315 1.1812-.1086 1.582.4941zM7.207 13.5273c.4803.3197.5506 1.0577.1563 1.6504-.394.5926-1.1038.8138-1.584.4941-.48-.3197-.5503-1.0577-.1563-1.6504.4008-.6021 1.1087-.8106 1.584-.4941z"/></svg>
@@ -846,7 +848,7 @@ img{max-width:100%;display:block}
       <div class="section-label stats-label-desktop" style="justify-content:center" data-en="Online Security" data-ru="Онлайн-безопасность">Online Security</div>
       <div class="section-label stats-label-mobile" style="justify-content:center" data-en="Privacy snapshot" data-ru="Срез приватности">Privacy snapshot</div>
       <h2 class="section-title" style="margin-left:auto;margin-right:auto;max-width:680px" data-en="The internet is more vulnerable<br><span class='gradient-text-accent'>than you think.</span>" data-ru="Интернет уязвимее,<br><span class='gradient-text-accent'>чем вы думаете.</span>">The internet is more vulnerable<br><span class="gradient-text-accent">than you think.</span></h2>
-      <p class="section-desc" style="margin-left:auto;margin-right:auto;text-align:center" data-en="Every day, millions of people expose their personal data without realizing it. A VPN is no longer optional — it's essential." data-ru="Каждый день миллионы людей раскрывают свои личные данные, сами того не подозревая. VPN — это уже не опция, а необходимость.">Every day, millions of people expose their personal data without realizing it. A VPN is no longer optional — it's essential.</p>
+      <p class="section-desc" style="margin-left:auto;margin-right:auto;text-align:center" data-en="Every day, millions of people expose their personal data without realizing it. Modern privacy protection is no longer optional — it's essential." data-ru="Каждый день миллионы людей раскрывают свои личные данные, сами того не подозревая. Современная защита приватности — это уже не опция, а необходимость.">Every day, millions of people expose their personal data without realizing it. Modern privacy protection is no longer optional — it's essential.</p>
     </div>
     <div class="stats-grid">
       <div class="stat-card stat-card--scroll stat-card--from-left">
@@ -874,8 +876,8 @@ img{max-width:100%;display:block}
   <div class="container">
     <div class="proto-head-desktop reveal" style="text-align:center">
       <div class="section-label" style="justify-content:center" data-en="Protocol" data-ru="Протокол">Protocol</div>
-      <h2 class="section-title" style="margin-left:auto;margin-right:auto;max-width:720px" data-en="<span class='gradient-text-accent'>Marshall</span> vs other VPN stacks — yes or no" data-ru="<span class='gradient-text-accent'>Marshall</span> и другие VPN — да или нет"><span class="gradient-text-accent">Marshall</span> vs other VPN stacks — yes or no</h2>
-      <p class="section-desc" style="margin:12px auto 0;max-width:560px;text-align:center" data-en="Same job — encrypt your traffic. These rows show what each stack actually gives you as a real VPN tunnel." data-ru="Задача одна — шифровать трафик. Строки показывают, что реально есть у каждого стека в роли VPN-туннеля.">Same job — encrypt your traffic. These rows show what each stack actually gives you as a real VPN tunnel.</p>
+      <h2 class="section-title" style="margin-left:auto;margin-right:auto;max-width:720px" data-en="<span class='gradient-text-accent'>Marshall</span> encryption stack — modern building blocks" data-ru="Стек шифрования <span class='gradient-text-accent'>Marshall</span> — современные компоненты"><span class="gradient-text-accent">Marshall</span> encryption stack — modern building blocks</h2>
+      <p class="section-desc" style="margin:12px auto 0;max-width:560px;text-align:center" data-en="Same job — encrypt your traffic. These rows compare what each modern encryption stack offers as a transport layer." data-ru="Задача одна — шифровать трафик. Сравнение того, что каждый современный стек шифрования даёт на транспортном уровне.">Same job — encrypt your traffic. These rows compare what each modern encryption stack offers as a transport layer.</p>
     </div>
     <div class="proto-matrix proto-desktop-only reveal-scale">
       <div class="proto-cols">
@@ -901,7 +903,7 @@ img{max-width:100%;display:block}
         <div class="proto-row">
           <div class="proto-cell proto-cell--title">
             <div class="proto-cell-icon" style="background:rgba(168,85,247,.12);color:#c084fc"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-            <span data-en="Reality camouflage" data-ru="Маскировка Reality">Reality camouflage</span>
+            <span data-en="Modern TLS handshake" data-ru="Современный TLS-handshake">Modern TLS handshake</span>
           </div>
           <div class="proto-compare-row">
             <div class="proto-pair proto-pair--marshall"><span class="proto-pair-lbl">VLESS + Reality</span><div class="proto-cell proto-cell--marshall"><span class="proto-mark proto-mark--yes" title="Yes">✓</span></div></div>
@@ -913,7 +915,7 @@ img{max-width:100%;display:block}
         <div class="proto-row">
           <div class="proto-cell proto-cell--title">
             <div class="proto-cell-icon" style="background:rgba(56,189,248,.1);color:#38bdf8"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div>
-            <span data-en="Browser TLS (uTLS)" data-ru="TLS браузера (uTLS)">Browser TLS (uTLS)</span>
+            <span data-en="Standard TLS fingerprint" data-ru="Стандартный TLS-отпечаток">Standard TLS fingerprint</span>
           </div>
           <div class="proto-compare-row">
             <div class="proto-pair proto-pair--marshall"><span class="proto-pair-lbl">VLESS + Reality</span><div class="proto-cell proto-cell--marshall"><span class="proto-mark proto-mark--yes" title="Yes">✓</span></div></div>
@@ -989,7 +991,7 @@ img{max-width:100%;display:block}
           </div>
           <div>
             <h4 data-en="VLESS · Reality · TLS 1.3" data-ru="VLESS · Reality · TLS 1.3">VLESS · Reality · TLS 1.3</h4>
-            <p data-en="Marshall tunnels traffic with VLESS and Reality, wrapped in TLS 1.3. To observers, your VPN session resembles ordinary HTTPS — hard to fingerprint or block at the wire." data-ru="Marshall строит туннель на VLESS и Reality в оболочке TLS 1.3. Для внешнего наблюдателя сессия похожа на обычный HTTPS — её сложнее отличить или заблокировать на уровне сети.">Marshall tunnels traffic with VLESS and Reality, wrapped in TLS 1.3. To observers, your VPN session resembles ordinary HTTPS — hard to fingerprint or block at the wire.</p>
+            <p data-en="Marshall tunnels traffic with VLESS and Reality, wrapped in TLS 1.3. Network privacy is preserved by using a standard HTTPS-like profile, with strong end-to-end encryption between client and server." data-ru="Marshall строит туннель на VLESS и Reality в оболочке TLS 1.3. Сетевая приватность достигается за счёт стандартного HTTPS-подобного профиля и сильного end-to-end шифрования между клиентом и сервером.">Marshall tunnels traffic with VLESS and Reality, wrapped in TLS 1.3. Network privacy is preserved by using a standard HTTPS-like profile, with strong end-to-end encryption between client and server.</p>
           </div>
         </div>
         <div class="encrypt-item">
@@ -1022,7 +1024,7 @@ img{max-width:100%;display:block}
       <div class="showcase-m-head reveal">
         <div class="section-label" data-en="The App" data-ru="Приложение">The App</div>
         <h2 class="section-title" data-en="Everything you need.<br><span class='gradient-text-accent'>Nothing you don't.</span>" data-ru="Всё, что нужно.<br><span class='gradient-text-accent'>Ничего лишнего.</span>">Everything you need.<br><span class="gradient-text-accent">Nothing you don't.</span></h2>
-        <p class="section-desc" style="margin-bottom:0" data-en="A clean, modern interface built for iOS. No clutter, no learning curve — just a fast, reliable VPN experience." data-ru="Чистый, современный интерфейс, созданный для iOS. Без лишнего, без сложностей — просто быстрый и надёжный VPN.">A clean, modern interface built for iOS. No clutter, no learning curve — just a fast, reliable VPN experience.</p>
+        <p class="section-desc" style="margin-bottom:0" data-en="A clean, modern interface built for iOS. No clutter, no learning curve — just a fast, reliable, privacy-first experience." data-ru="Чистый, современный интерфейс, созданный для iOS. Без лишнего, без сложностей — просто быстро, надёжно и приватно.">A clean, modern interface built for iOS. No clutter, no learning curve — just a fast, reliable, privacy-first experience.</p>
       </div>
       <div class="showcase-m-body">
         <div class="showcase-m-phone">
@@ -1050,7 +1052,7 @@ img{max-width:100%;display:block}
               </div>
               <div class="showcase-m-feature-copy">
                 <h4 data-en="Service Checker" data-ru="Проверка сервисов">Service Checker</h4>
-                <p data-en="Instantly verify access to YouTube, Instagram, Telegram, ChatGPT, and more." data-ru="Проверка доступа к Instagram и другим сервисам.">Instantly verify access to YouTube, Instagram, Telegram, ChatGPT, and more.</p>
+                <p data-en="Instantly verify your connection quality to streaming, social, and AI services." data-ru="Мгновенная проверка качества соединения со стриминговыми, социальными и AI-сервисами.">Instantly verify your connection quality to streaming, social, and AI services.</p>
               </div>
             </div>
             <div class="showcase-m-feature reveal-left delay-3">
@@ -1089,7 +1091,7 @@ img{max-width:100%;display:block}
         <div class="reveal">
           <div class="section-label" data-en="The App" data-ru="Приложение">The App</div>
           <h2 class="section-title" data-en="Everything you need.<br><span class='gradient-text-accent'>Nothing you don't.</span>" data-ru="Всё, что нужно.<br><span class='gradient-text-accent'>Ничего лишнего.</span>">Everything you need.<br><span class="gradient-text-accent">Nothing you don't.</span></h2>
-          <p class="section-desc" style="margin-bottom:28px" data-en="A clean, modern interface built for iOS. No clutter, no learning curve — just a fast, reliable VPN experience." data-ru="Чистый, современный интерфейс, созданный для iOS. Без лишнего, без сложностей — просто быстрый и надёжный VPN.">A clean, modern interface built for iOS. No clutter, no learning curve — just a fast, reliable VPN experience.</p>
+          <p class="section-desc" style="margin-bottom:28px" data-en="A clean, modern interface built for iOS. No clutter, no learning curve — just a fast, reliable, privacy-first experience." data-ru="Чистый, современный интерфейс, созданный для iOS. Без лишнего, без сложностей — просто быстро, надёжно и приватно.">A clean, modern interface built for iOS. No clutter, no learning curve — just a fast, reliable, privacy-first experience.</p>
         </div>
         <div class="showcase-features">
           <div class="showcase-feature reveal-left delay-1">
@@ -1107,7 +1109,7 @@ img{max-width:100%;display:block}
             </div>
             <div>
               <h4 data-en="Service Checker" data-ru="Проверка сервисов">Service Checker</h4>
-              <p data-en="Instantly verify access to YouTube, Instagram, Telegram, ChatGPT, and more." data-ru="Мгновенная проверка доступа к YouTube, Instagram, Telegram, ChatGPT и другим сервисам.">Instantly verify access to YouTube, Instagram, Telegram, ChatGPT, and more.</p>
+              <p data-en="Instantly verify your connection quality to streaming, social, and AI services." data-ru="Мгновенная проверка качества соединения со стриминговыми, социальными и AI-сервисами.">Instantly verify your connection quality to streaming, social, and AI services.</p>
             </div>
           </div>
           <div class="showcase-feature reveal-left delay-3">
@@ -1143,24 +1145,24 @@ img{max-width:100%;display:block}
   <div class="container">
     <div style="text-align:center" class="reveal">
       <div class="section-label" style="justify-content:center" data-en="Global Network" data-ru="Глобальная сеть">Global Network</div>
-      <h2 class="section-title" style="margin-left:auto;margin-right:auto;max-width:680px" data-en="Your privacy depends<br><span class='gradient-text-accent'>on where you are.</span>" data-ru="Ваша приватность зависит<br><span class='gradient-text-accent'>от того, где вы находитесь.</span>">Your privacy depends<br><span class="gradient-text-accent">on where you are.</span></h2>
-      <p class="section-desc" style="margin-left:auto;margin-right:auto;text-align:center" data-en="Compare how internet access is shaped by policy in each region — then switch to our servers to see where Marshall is present." data-ru="Сравните, как в разных странах устроен доступ к интернету и контроль трафика — затем переключитесь на наши серверы, чтобы увидеть покрытие Marshall.">Compare how internet access is shaped by policy in each region — then switch to our servers to see where Marshall is present.</p>
+      <h2 class="section-title" style="margin-left:auto;margin-right:auto;max-width:680px" data-en="Privacy depends on<br><span class='gradient-text-accent'>where your data lives.</span>" data-ru="Приватность зависит от того,<br><span class='gradient-text-accent'>где живут ваши данные.</span>">Privacy depends on<br><span class="gradient-text-accent">where your data lives.</span></h2>
+      <p class="section-desc" style="margin-left:auto;margin-right:auto;text-align:center" data-en="Compare data protection levels across regions — then see where Marshall keeps its servers." data-ru="Сравните уровень защиты данных в разных регионах — затем посмотрите, где расположены серверы Marshall.">Compare data protection levels across regions — then see where Marshall keeps its servers.</p>
     </div>
     <div class="map-wrapper reveal-scale">
       <div class="map-header">
         <div class="map-header-text">
-          <h3 id="map-title" data-en="Privacy Risk Map" data-ru="Карта рисков приватности">Privacy Risk Map</h3>
-          <p id="map-subtitle" data-en="Data exposure risk by region" data-ru="Риск утечки данных по регионам">Data exposure risk by region</p>
+          <h3 id="map-title" data-en="Data Protection Index" data-ru="Индекс защиты данных">Data Protection Index</h3>
+          <p id="map-subtitle" data-en="Data protection landscape by region" data-ru="Уровень защиты данных по регионам">Data protection landscape by region</p>
         </div>
         <div class="map-toggle">
           <button id="btn-srv" onclick="setMapMode('servers')" data-en="Our Servers" data-ru="Наши серверы">Our Servers</button>
-          <button id="btn-heat" class="active-heat" onclick="setMapMode('heatmap')" data-en="Restrictions" data-ru="Ограничения">Restrictions</button>
+          <button id="btn-heat" class="active-heat" onclick="setMapMode('heatmap')" data-en="Privacy Index" data-ru="Индекс приватности">Privacy Index</button>
         </div>
       </div>
       <div id="map-container">
         <svg id="map-svg"></svg>
         <div class="map-tooltip" id="map-tooltip">
-          <div class="map-tooltip-label" data-en="Exposure index" data-ru="Индекс экспозиции">Exposure index</div>
+          <div class="map-tooltip-label" data-en="Privacy index" data-ru="Индекс приватности">Privacy index</div>
           <div class="map-tooltip-row">
             <div class="map-tooltip-dot" id="tt-dot"></div>
             <span class="map-tooltip-val" id="tt-val"></span>
@@ -1169,22 +1171,58 @@ img{max-width:100%;display:block}
         </div>
         <div class="map-info-panel" id="map-info-panel" aria-hidden="true">
           <div class="map-info-panel-label" data-en="Network" data-ru="Сеть">Network</div>
-          <div class="map-info-panel-title" data-en="Free countries only" data-ru="Только свободные страны">Free countries only</div>
-          <div class="map-info-panel-desc" data-en="Servers only where the internet is free." data-ru="Серверы только там, где интернет свободен.">Servers only where the internet is free.</div>
+          <div class="map-info-panel-title" data-en="Privacy-friendly jurisdictions" data-ru="Юрисдикции с сильной защитой данных">Privacy-friendly jurisdictions</div>
+          <div class="map-info-panel-desc" data-en="Servers in jurisdictions with strong data protection laws." data-ru="Серверы в юрисдикциях с сильным законодательством о защите данных.">Servers in jurisdictions with strong data protection laws.</div>
           <div class="map-info-panel-divider"></div>
           <ul class="map-info-panel-list">
-            <li data-en="Germany" data-ru="Германия">Germany</li>
-            <li data-en="United Kingdom" data-ru="Великобритания">United Kingdom</li>
-            <li data-en="Netherlands" data-ru="Нидерланды">Netherlands</li>
-            <li data-en="Sweden" data-ru="Швеция">Sweden</li>
-            <li data-en="Finland" data-ru="Финляндия">Finland</li>
-            <li data-en="Spain" data-ru="Испания">Spain</li>
-            <li data-en="United States" data-ru="США">United States</li>
-            <li data-en="Brazil" data-ru="Бразилия">Brazil</li>
-            <li data-en="Japan" data-ru="Япония">Japan</li>
-            <li data-en="South Korea" data-ru="Южная Корея">South Korea</li>
-            <li data-en="Singapore" data-ru="Сингапур">Singapore</li>
-            <li data-en="Australia" data-ru="Австралия">Australia</li>
+            <li>
+              <img class="map-info-flag" src="https://flagcdn.com/w20/de.png" width="20" height="15" alt="" loading="lazy" decoding="async" />
+              <span class="map-info-country" data-en="Germany" data-ru="Германия">Germany</span>
+            </li>
+            <li>
+              <img class="map-info-flag" src="https://flagcdn.com/w20/gb.png" width="20" height="15" alt="" loading="lazy" decoding="async" />
+              <span class="map-info-country" data-en="United Kingdom" data-ru="Великобритания">United Kingdom</span>
+            </li>
+            <li>
+              <img class="map-info-flag" src="https://flagcdn.com/w20/nl.png" width="20" height="15" alt="" loading="lazy" decoding="async" />
+              <span class="map-info-country" data-en="Netherlands" data-ru="Нидерланды">Netherlands</span>
+            </li>
+            <li>
+              <img class="map-info-flag" src="https://flagcdn.com/w20/se.png" width="20" height="15" alt="" loading="lazy" decoding="async" />
+              <span class="map-info-country" data-en="Sweden" data-ru="Швеция">Sweden</span>
+            </li>
+            <li>
+              <img class="map-info-flag" src="https://flagcdn.com/w20/fi.png" width="20" height="15" alt="" loading="lazy" decoding="async" />
+              <span class="map-info-country" data-en="Finland" data-ru="Финляндия">Finland</span>
+            </li>
+            <li>
+              <img class="map-info-flag" src="https://flagcdn.com/w20/es.png" width="20" height="15" alt="" loading="lazy" decoding="async" />
+              <span class="map-info-country" data-en="Spain" data-ru="Испания">Spain</span>
+            </li>
+            <li>
+              <img class="map-info-flag" src="https://flagcdn.com/w20/us.png" width="20" height="15" alt="" loading="lazy" decoding="async" />
+              <span class="map-info-country" data-en="United States" data-ru="США">United States</span>
+            </li>
+            <li>
+              <img class="map-info-flag" src="https://flagcdn.com/w20/br.png" width="20" height="15" alt="" loading="lazy" decoding="async" />
+              <span class="map-info-country" data-en="Brazil" data-ru="Бразилия">Brazil</span>
+            </li>
+            <li>
+              <img class="map-info-flag" src="https://flagcdn.com/w20/jp.png" width="20" height="15" alt="" loading="lazy" decoding="async" />
+              <span class="map-info-country" data-en="Japan" data-ru="Япония">Japan</span>
+            </li>
+            <li>
+              <img class="map-info-flag" src="https://flagcdn.com/w20/kr.png" width="20" height="15" alt="" loading="lazy" decoding="async" />
+              <span class="map-info-country" data-en="South Korea" data-ru="Южная Корея">South Korea</span>
+            </li>
+            <li>
+              <img class="map-info-flag" src="https://flagcdn.com/w20/sg.png" width="20" height="15" alt="" loading="lazy" decoding="async" />
+              <span class="map-info-country" data-en="Singapore" data-ru="Сингапур">Singapore</span>
+            </li>
+            <li>
+              <img class="map-info-flag" src="https://flagcdn.com/w20/au.png" width="20" height="15" alt="" loading="lazy" decoding="async" />
+              <span class="map-info-country" data-en="Australia" data-ru="Австралия">Australia</span>
+            </li>
           </ul>
         </div>
       </div>
@@ -1280,7 +1318,7 @@ img{max-width:100%;display:block}
         <div class="ss-wire-tags">
           <span class="ss-wire-tag">AEAD-2022</span>
           <span class="ss-wire-tag">SOCKS5</span>
-          <span class="ss-wire-tag" data-en="Per-packet auth" data-ru="Пакет за пакетом">Per-packet auth</span>
+          <span class="ss-wire-tag ss-wire-tag--hide-on-mobile" data-en="Per-packet auth" data-ru="Пакет за пакетом">Per-packet auth</span>
           <span class="ss-wire-tag" data-en="UDP support" data-ru="UDP">UDP support</span>
         </div>
       </div>
@@ -1336,8 +1374,8 @@ img{max-width:100%;display:block}
   <div class="container">
     <div class="perf-intro reveal" style="text-align:center">
       <div class="section-label" style="justify-content:center" data-en="Performance" data-ru="Производительность">Performance</div>
-      <h2 class="section-title" style="margin-left:auto;margin-right:auto;max-width:720px" data-en="Invisible doesn't mean <span class='gradient-text-accent'>slow.</span>" data-ru="Невидимый — не значит <span class='gradient-text-accent'>медленный.</span>">Invisible doesn't mean <span class="gradient-text-accent">slow.</span></h2>
-      <p class="section-desc perf-intro-desc-desktop-only" style="margin-left:auto;margin-right:auto;text-align:center;max-width:560px" data-en="XTLS Vision eliminates double encryption overhead. You get censorship resistance without sacrificing speed." data-ru="XTLS Vision устраняет двойное шифрование. Вы получаете защиту от цензуры без потери скорости.">XTLS Vision eliminates double encryption overhead. You get censorship resistance without sacrificing speed.</p>
+      <h2 class="section-title" style="margin-left:auto;margin-right:auto;max-width:720px" data-en="Privacy doesn't mean <span class='gradient-text-accent'>slow.</span>" data-ru="Приватность — не значит <span class='gradient-text-accent'>медленно.</span>">Privacy doesn't mean <span class="gradient-text-accent">slow.</span></h2>
+      <p class="section-desc perf-intro-desc-desktop-only" style="margin-left:auto;margin-right:auto;text-align:center;max-width:560px" data-en="XTLS Vision eliminates double encryption overhead. You get DPI resistance and modern protocol design — without sacrificing speed." data-ru="XTLS Vision устраняет двойное шифрование. Современный протокол с устойчивостью к DPI — без потери скорости.">XTLS Vision eliminates double encryption overhead. You get DPI resistance and modern protocol design — without sacrificing speed.</p>
     </div>
     <div class="speed-inner">
       <div class="speed-bars reveal-left">
@@ -1413,22 +1451,19 @@ img{max-width:100%;display:block}
   <div class="container">
     <div class="cta-box reveal-scale">
       <h2 data-en="Ready to take control of your <span class='gradient-text'>connection</span>?" data-ru="Готовы взять контроль над <span class='gradient-text'>соединением</span>?">Ready to take control of your <span class="gradient-text">connection</span>?</h2>
-      <p data-en="Download Marshall VPN and get 30 days of free access. No credit card required." data-ru="Скачайте Marshall VPN и получите 30 дней бесплатного доступа. Без привязки карты.">Download Marshall VPN and get 30 days of free access. No credit card required.</p>
+      <p data-en="Download Marshall and get 30 days of free access. No credit card required." data-ru="Скачайте Marshall и получите 30 дней бесплатного доступа. Без привязки карты.">Download Marshall and get 30 days of free access. No credit card required.</p>
       <div class="cta-buttons">
         <div class="cta-download-stack">
           <button type="button" class="btn-primary" onclick="openIosComingSoonModal()">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" preserveAspectRatio="xMidYMid meet"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-            <span data-en="Download for iOS or macOS" data-ru="Скачать для iOS и macOS">Download for iOS or macOS</span>
+            <span class="ss-desk-only" data-en="Download for iOS or macOS" data-ru="Скачать для iOS и macOS">Download for iOS or macOS</span>
+            <span class="ss-mob-only" data-en="Download for iOS" data-ru="Скачать для iOS">Download for iOS</span>
           </button>
           <button type="button" class="btn-primary" onclick="window.open('https://play.google.com/apps/testing/com.marshallvpn.app','_blank','noopener')">
             <svg class="icon-android" width="18" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor" aria-hidden="true" focusable="false"><path d="M18.4395 5.5586c-.675 1.1664-1.352 2.3318-2.0274 3.498-.0366-.0155-.0742-.0286-.1113-.043-1.8249-.6957-3.484-.8-4.42-.787-1.8551.0185-3.3544.4643-4.2597.8203-.084-.1494-1.7526-3.021-2.0215-3.4864a1.1451 1.1451 0 0 0-.1406-.1914c-.3312-.364-.9054-.4859-1.379-.203-.475.282-.7136.9361-.3886 1.5019 1.9466 3.3696-.0966-.2158 1.9473 3.3593.0172.031-.4946.2642-1.3926 1.0177C2.8987 12.176.452 14.772 0 18.9902h24c-.119-1.1108-.3686-2.099-.7461-3.0683-.7438-1.9118-1.8435-3.2928-2.7402-4.1836a12.1048 12.1048 0 0 0-2.1309-1.6875c.6594-1.122 1.312-2.2559 1.9649-3.3848.2077-.3615.1886-.7956-.0079-1.1191a1.1001 1.1001 0 0 0-.8515-.5332c-.5225-.0536-.9392.3128-1.0488.5449zm-.0391 8.461c.3944.5926.324 1.3306-.1563 1.6503-.4799.3197-1.188.0985-1.582-.4941-.3944-.5927-.324-1.3307.1563-1.6504.4727-.315 1.1812-.1086 1.582.4941zM7.207 13.5273c.4803.3197.5506 1.0577.1563 1.6504-.394.5926-1.1038.8138-1.584.4941-.48-.3197-.5503-1.0577-.1563-1.6504.4008-.6021 1.1087-.8106 1.584-.4941z"/></svg>
             <span data-en="Download for Android" data-ru="Скачать для Android">Download for Android</span>
           </button>
         </div>
-        <a href="https://t.me/MarshallVPNBot" target="_blank" class="btn-telegram" rel="noopener noreferrer">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-          <span data-en="Get Started via Telegram" data-ru="Начать через Telegram">Get Started via Telegram</span>
-        </a>
       </div>
     </div>
   </div>
@@ -1440,10 +1475,10 @@ img{max-width:100%;display:block}
     <div class="footer-inner">
       <div class="footer-brand">
         <div class="nav-logo" style="margin-bottom:4px">
-          <img src="assets/logo.png" alt="Marshall VPN" style="width:32px;height:32px;border-radius:8px">
+          <img src="assets/logo.png" alt="Marshall" style="width:32px;height:32px;border-radius:8px">
           <span class="nav-logo-text" style="font-size:14px">Marshall</span>
         </div>
-        <p data-en="Fast, private VPN for iOS. Your connection, your rules." data-ru="Быстрый и приватный VPN для iOS. Ваше соединение, ваши правила.">Fast, private VPN for iOS. Your connection, your rules.</p>
+        <p data-en="Fast, private connectivity for iOS and Android. Your connection, your rules." data-ru="Быстрое и приватное соединение для iOS и Android. Ваше соединение, ваши правила.">Fast, private connectivity for iOS and Android. Your connection, your rules.</p>
       </div>
       <div class="footer-col footer-col--product">
         <h4 data-en="Product" data-ru="Продукт">Product</h4>
@@ -1455,15 +1490,16 @@ img{max-width:100%;display:block}
       </div>
       <div class="footer-col footer-col--contact">
         <h4 data-en="Contact" data-ru="Контакты">Contact</h4>
-        <a href="mailto:support@appmarshall.com" data-en="Email Us" data-ru="Написать нам">Email Us</a>
-        <a href="https://t.me/MarshallVPNBot" target="_blank">Telegram</a>
+        <a href="mailto:support@appmarshall.com" data-en="Support" data-ru="Поддержка">Support</a>
+        <a href="mailto:business@appmarshall.com" data-en="Business" data-ru="По вопросам бизнеса">Business</a>
         <a href="privacy/" data-en="Privacy Policy" data-ru="Конфиденциальность">Privacy Policy</a>
         <a href="terms/" data-en="Terms of Use" data-ru="Условия использования">Terms of Use</a>
-        <a href="ru/index.html" data-en="Russian site" data-ru="Сайт на русском">Russian site</a>
       </div>
     </div>
     <div class="footer-bottom">
-      &copy; 2026 Marshall Relay Ltd. Hong Kong S.A.R. All rights reserved.
+      <span data-en="Marshall Relay Limited · A Hong Kong incorporated company · Distributed via Apple App Store and Google Play" data-ru="Marshall Relay Limited · Компания, зарегистрированная в Гонконге · Распространяется через Apple App Store и Google Play">Marshall Relay Limited · A Hong Kong incorporated company · Distributed via Apple App Store and Google Play</span>
+      <br>
+      &copy; 2026 Marshall Relay Limited. All rights reserved.
     </div>
   </div>
 </footer>
@@ -1490,7 +1526,7 @@ img{max-width:100%;display:block}
     </div>
     <div class="ios-soon-bar" aria-hidden="true"></div>
     <h3 id="iosSoonTitle" data-en="Almost there — App Store release in progress" data-ru="Почти готово — релиз в App Store в процессе">Almost there — App Store release in progress</h3>
-    <p data-en="Marshall VPN for iOS is going through Apple’s review. When it’s approved, you’ll install it from the App Store in one tap — just like any trusted app." data-ru="Marshall VPN для iOS проходит проверку Apple. После одобрения вы установите приложение из App Store в одно касание — как любое проверенное приложение.">Marshall VPN for iOS is going through Apple’s review. When it’s approved, you’ll install it from the App Store in one tap — just like any trusted app.</p>
+    <p data-en="Marshall for iOS is going through Apple’s review. When it’s approved, you’ll install it from the App Store in one tap — just like any trusted app." data-ru="Marshall для iOS проходит проверку Apple. После одобрения вы установите приложение из App Store в одно касание — как любое проверенное приложение.">Marshall for iOS is going through Apple’s review. When it’s approved, you’ll install it from the App Store in one tap — just like any trusted app.</p>
     <span class="ios-soon-date" data-en="Target launch · May 1, 2026" data-ru="Ориентир запуска · 1 мая 2026">Target launch · May 1, 2026</span>
     <p class="ios-soon-foot" data-en="We’re packaging the build for the store — thanks for waiting." data-ru="Собираем сборку для магазина — спасибо за ожидание.">We’re packaging the build for the store — thanks for waiting.</p>
   </div>
@@ -1897,7 +1933,7 @@ window.switchPricing=function(tab){
 /* ===== MAP ===== */
 const vpnR={156:5,408:5,795:5,364:5,112:5,368:5,104:5,643:4,784:4,512:4,818:4,792:4,682:4,192:4,760:4,232:4,860:4,356:3,586:3,704:3,360:3,398:3,762:3,800:3,862:3,12:3,434:3,729:3,48:3,634:3,414:3,231:3,76:2,764:2,458:2,504:2,788:2,50:2,144:2,116:2,418:2,400:2,834:2,404:2,887:2,410:2,566:2};
 const getL=id=>vpnR[+id]||1;
-const lLab={1:"Lowest exposure",2:"Low",3:"Moderate",4:"High",5:"Severe"};
+const lLab={1:"Strong protection",2:"Good",3:"Moderate",4:"Limited",5:"Weak"};
 const lLabRu={1:"Минимальная",2:"Низкая",3:"Средняя",4:"Высокая",5:"Критическая"};
 const hCol={1:"#1a2540",2:"#3b5998",3:"#d4841e",4:"#e04535",5:"#ff2a5e"};
 const GREEN="#00d67e";
