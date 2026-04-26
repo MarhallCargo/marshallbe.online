@@ -3,2079 +3,509 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-RGDQ35MMZB"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-RGDQ35MMZB');
-</script>
-<meta name="description" content="Marshall — Fast, private connectivity app for iOS and Android. Modern encryption, global server network, 30 days free.">
-<meta name="theme-color" content="#11111A">
-<title>Marshall — Your Connection. Your Rules.</title>
+<meta name="description" content="Marshall Relay Limited — a Hong Kong technology company building privacy-first consumer software for individual users.">
+<meta name="theme-color" content="#FAFAFB">
+<meta name="robots" content="index,follow">
+<title>Marshall Relay Limited</title>
 <link rel="icon" type="image/png" href="assets/logo.png">
 <link rel="apple-touch-icon" href="assets/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#11111A;
-  --bg-alt:#161622;
-  --surface:rgba(255,255,255,0.06);
-  --surface-hover:rgba(255,255,255,0.09);
-  --border:rgba(255,255,255,0.08);
-  --border-light:rgba(255,255,255,0.13);
-  --text:#EDEDF2;
-  --text-dim:rgba(255,255,255,0.55);
-  --text-muted:rgba(255,255,255,0.32);
+  --bg:#FAFAFB;
+  --bg-soft:#F4F4F7;
+  --surface:#FFFFFF;
+  --surface-tint:rgba(108,92,231,0.035);
+  --border:rgba(20,20,30,0.08);
+  --border-light:rgba(20,20,30,0.05);
+  --border-strong:rgba(20,20,30,0.14);
+  --text:#16161D;
+  --text-secondary:#3D3D4A;
+  --text-dim:rgba(20,20,30,0.55);
+  --text-muted:rgba(20,20,30,0.42);
   --accent:#6C5CE7;
-  --accent-light:#A855F7;
-  --accent-glow:rgba(108,92,231,0.32);
-  --success:#00D2A0;
-  --green:#00D67E;
-  --radius-lg:20px;
-  --radius-md:14px;
+  --accent-light:#8B7CF0;
+  --accent-deep:#5347C7;
+  --accent-soft:rgba(108,92,231,0.08);
+  --teal:#10A674;
+  --radius-xl:24px;
+  --radius-lg:18px;
+  --radius-md:12px;
   --radius-sm:8px;
 }
 html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:clip;max-width:100%}
-body{background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,'Helvetica Neue',sans-serif;overflow-x:clip;line-height:1.6;max-width:100%;position:relative}
-a{color:var(--accent-light);text-decoration:none;transition:color .3s}
-a:hover{color:#c084fc}
+body{background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,'Helvetica Neue',sans-serif;overflow-x:clip;line-height:1.6;max-width:100%;position:relative;min-height:100vh}
+a{color:var(--accent);text-decoration:none;transition:color .25s}
+a:hover{color:var(--accent-deep)}
 img{max-width:100%;display:block}
-.container{max-width:1200px;margin:0 auto;padding:0 24px}
-.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
-.gradient-text{background:linear-gradient(135deg,#A855F7 0%,#6C5CE7 40%,#00D2A0 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.gradient-text-accent{background:linear-gradient(135deg,#6C5CE7 0%,#A855F7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.container{max-width:1080px;margin:0 auto;padding:0 28px}
+.serif{font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-style:italic;letter-spacing:-.5px}
 
-/* Animations */
-.reveal{opacity:0;transform:translateY(50px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
-.reveal.visible{opacity:1;transform:translateY(0)}
-.reveal-left{opacity:0;transform:translateX(-50px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
-.reveal-left.visible{opacity:1;transform:translateX(0)}
-.reveal-right{opacity:0;transform:translateX(50px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
-.reveal-right.visible{opacity:1;transform:translateX(0)}
-.reveal-scale{opacity:0;transform:scale(.92);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
-.reveal-scale.visible{opacity:1;transform:scale(1)}
-.delay-1{transition-delay:.1s}.delay-2{transition-delay:.2s}.delay-3{transition-delay:.3s}.delay-4{transition-delay:.4s}
+/* Background animation — geometric shapes */
+.bg-canvas{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;background:
+  radial-gradient(circle at 1px 1px, rgba(20,20,30,0.06) 1px, transparent 0) 0 0/32px 32px,
+  var(--bg)}
+.bg-shape{position:absolute;opacity:0;animation:fadeInShape 1.6s ease-out forwards;will-change:transform}
+.bg-shape svg{width:100%;height:100%;display:block}
+.bg-shape.s1{top:8%;left:6%;width:280px;height:280px;animation:fadeInShape 1.6s ease-out forwards,rotateSlow 64s linear infinite,driftA 22s ease-in-out infinite}
+.bg-shape.s2{top:14%;right:10%;width:200px;height:200px;animation:fadeInShape 1.6s .2s ease-out forwards,rotateReverse 78s linear infinite,driftB 28s ease-in-out infinite}
+.bg-shape.s3{top:42%;left:48%;width:340px;height:340px;animation:fadeInShape 1.6s .4s ease-out forwards,rotateSlow 96s linear infinite,driftC 34s ease-in-out infinite;transform:translateX(-50%)}
+.bg-shape.s4{bottom:18%;left:4%;width:220px;height:220px;animation:fadeInShape 1.6s .6s ease-out forwards,rotateReverse 70s linear infinite,driftD 26s ease-in-out infinite}
+.bg-shape.s5{bottom:10%;right:14%;width:260px;height:260px;animation:fadeInShape 1.6s .8s ease-out forwards,rotateSlow 86s linear infinite,driftA 30s ease-in-out infinite}
+.bg-shape.s6{top:62%;left:18%;width:140px;height:140px;animation:fadeInShape 1.6s 1s ease-out forwards,rotateReverse 58s linear infinite,driftB 24s ease-in-out infinite}
+.bg-shape svg path,.bg-shape svg polygon,.bg-shape svg circle,.bg-shape svg rect,.bg-shape svg line{stroke:#6C5CE7;stroke-width:.8;fill:none;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.bg-shape.tint-teal svg path,.bg-shape.tint-teal svg polygon,.bg-shape.tint-teal svg circle{stroke:#10A674}
+.bg-shape.tint-deep svg path,.bg-shape.tint-deep svg polygon,.bg-shape.tint-deep svg circle{stroke:#3D3D4A}
 
-/* Background */
-.bg-glow{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
-.bg-glow .orb{position:absolute;border-radius:50%;filter:blur(120px);opacity:.18;animation:orbFloat 20s ease-in-out infinite}
-.bg-glow .orb-1{width:600px;height:600px;background:#6C5CE7;top:-10%;left:-10%;animation-delay:0s}
-.bg-glow .orb-2{width:500px;height:500px;background:#A855F7;bottom:-10%;right:-10%;animation-delay:-7s}
-.bg-glow .orb-3{width:400px;height:400px;background:#00D2A0;top:40%;left:50%;animation-delay:-14s;opacity:.10}
-@keyframes orbFloat{0%,100%{transform:translate(0,0) scale(1)}25%{transform:translate(30px,-40px) scale(1.05)}50%{transform:translate(-20px,30px) scale(.95)}75%{transform:translate(40px,20px) scale(1.02)}}
-#particles{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1}
+@keyframes fadeInShape{from{opacity:0}to{opacity:.16}}
+.bg-shape.tint-teal{animation-name:fadeInShape,rotateSlow,driftC}
+.bg-shape.tint-deep{animation-name:fadeInShape,rotateReverse,driftD}
+@keyframes rotateSlow{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes rotateReverse{from{transform:rotate(360deg)}to{transform:rotate(0deg)}}
+@keyframes driftA{0%,100%{translate:0 0}50%{translate:30px -22px}}
+@keyframes driftB{0%,100%{translate:0 0}50%{translate:-26px 30px}}
+@keyframes driftC{0%,100%{translate:-50% 0}50%{translate:calc(-50% + 24px) 28px}}
+@keyframes driftD{0%,100%{translate:0 0}50%{translate:34px 24px}}
+
+/* For shapes with translate already (s3), need to combine */
+.bg-shape.s3{transform:translateX(-50%)}
+@media(prefers-reduced-motion:reduce){
+  .bg-shape{animation:none!important;opacity:.10!important}
+}
+
+/* Soft colour wash on top of grid */
+.bg-wash{position:fixed;inset:0;pointer-events:none;z-index:1;background:
+  radial-gradient(ellipse 80% 50% at 20% 0%, rgba(108,92,231,0.06), transparent 60%),
+  radial-gradient(ellipse 60% 50% at 90% 100%, rgba(16,166,116,0.04), transparent 60%)}
 
 /* Nav */
-.nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 0;background:rgba(17,17,26,.6);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.04);transition:all .4s}
-.nav.scrolled{padding:10px 0;background:rgba(17,17,26,.85);border-bottom-color:rgba(255,255,255,.06)}
-.nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:1200px;margin:0 auto;padding:0 24px}
-.nav-logo{display:flex;align-items:center;gap:10px;min-height:36px}
-.nav .nav-logo{gap:20px}
-/* Слот прежнего размера — строка не растягивается; картинка 1.5× визуально выступает */
-.nav-logo-mark{position:relative;width:36px;height:36px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
-.nav-logo-mark img{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:48px;height:auto;max-width:none;border-radius:12px;object-fit:contain}
-.nav-logo-text{font-size:15px;font-weight:700;letter-spacing:1.75px;text-transform:uppercase;color:var(--text);height:36px;display:inline-flex;align-items:center;line-height:1;box-sizing:border-box}
-.nav-links{display:flex;align-items:center;gap:24px}
-.nav-links a{font-size:13px;font-weight:500;color:var(--text-dim);transition:color .3s}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 0;background:rgba(250,250,251,.72);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid transparent;transition:all .35s}
+.nav.scrolled{padding:12px 0;background:rgba(250,250,251,.92);border-bottom-color:var(--border-light)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:1080px;margin:0 auto;padding:0 28px}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.nav-logo-mark{width:34px;height:34px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.nav-logo-mark img{width:34px;height:34px;border-radius:9px;object-fit:contain}
+.nav-logo-text{font-size:13px;font-weight:600;letter-spacing:1.6px;text-transform:uppercase;color:var(--text);line-height:1}
+.nav-links{display:flex;align-items:center;gap:30px}
+.nav-links a{font-size:13px;font-weight:500;color:var(--text-dim);transition:color .25s}
 .nav-links a:hover{color:var(--text)}
-.nav-cta{height:36px;min-height:36px;padding:0 16px;border-radius:20px;font-size:12px;font-weight:600;background:linear-gradient(135deg,var(--accent),var(--accent-light));color:#fff;border:none;cursor:pointer;transition:transform .3s,box-shadow .3s;display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;font-family:'Inter',sans-serif;white-space:nowrap}
-.nav-cta:hover{transform:translateY(-1px);box-shadow:0 8px 30px rgba(108,92,231,.3)}
-.nav-lang{height:36px;min-height:36px;padding:0 12px;border-radius:8px;font-size:11px;font-weight:600;background:var(--surface);color:var(--text-dim);border:1px solid var(--border-light);cursor:pointer;transition:all .3s;font-family:'Inter',sans-serif;letter-spacing:1px;display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box}
-.nav-lang:hover{background:var(--surface-hover);color:var(--text)}
-.nav-mobile-right{display:none;align-items:center;gap:10px}
-.nav-mobile-lang{height:32px;min-height:32px;padding:0 11px;border-radius:7px;font-size:10px;font-weight:600;background:rgba(255,255,255,.05);color:var(--text-dim);border:1px solid rgba(255,255,255,.12);cursor:pointer;transition:all .3s;font-family:'Inter',sans-serif;letter-spacing:1px;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box}
-.nav-mobile-lang:hover{background:rgba(255,255,255,.08);color:var(--text)}
-.nav-mobile-right .nav-cta{height:32px;min-height:32px;padding:0 12px;font-size:11px;border-radius:20px;white-space:nowrap}
-@media(max-width:768px){.nav-links{display:none}.nav-mobile-right{display:flex}}
-@media(max-width:768px){
-  .nav{padding:11px 0;background:rgba(17,17,26,.42);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom-color:rgba(255,255,255,.03)}
-  .nav.scrolled{padding:8px 0;background:rgba(17,17,26,.62);border-bottom-color:rgba(255,255,255,.05)}
-  .nav-inner{padding:0 20px}
-  .nav-logo{min-height:32px}
-  .nav-logo-mark{width:32px;height:32px}
-  .nav-logo-mark img{width:42px;height:auto;max-width:none;border-radius:11px}
-  .nav-logo-text{font-size:14px;letter-spacing:1.5px;height:32px}
-  .nav-mobile-lang{padding:0 9px}
-}
+.nav-cta{padding:9px 18px;border-radius:100px;font-size:12px;font-weight:600;background:var(--text);color:#fff;border:none;cursor:pointer;transition:transform .25s,background .25s;font-family:'Inter',sans-serif;letter-spacing:.3px;text-decoration:none}
+.nav-cta:hover{background:var(--accent);transform:translateY(-1px)}
+@media(max-width:740px){.nav-links{display:none}.nav-inner{padding:0 20px}}
 
-/* Hero — desktop (classic 2-col) vs mobile (phone + benefit tiles) */
-.hero{position:relative;z-index:2;min-height:100vh;display:flex;align-items:center;padding:120px 24px 28px;overflow:hidden}
-/* Desktop: больше воздуха слева, блок визуально ближе к центру экрана; скрин — к правому краю колонки */
-@media(min-width:901px){
-  .hero{padding:120px clamp(28px,4vw,64px) 28px clamp(56px,10vw,200px)}
-}
-.hero-layout--desktop{display:block}
-.hero-layout--mobile{display:none}
-@media(max-width:900px){
-  .hero-layout--desktop{display:none!important}
-  .hero-layout--mobile{display:block!important}
-}
-.hero-layout--desktop .hero-inner--classic{
-  max-width:1200px;margin:0 auto;display:grid;grid-template-columns:minmax(280px,1.05fr) minmax(260px,0.95fr);gap:clamp(48px,5vw,80px);align-items:center;width:100%;justify-items:stretch
-}
-.hero-layout--desktop .hero-content{position:relative;z-index:2;justify-self:end;max-width:560px;width:100%}
-.hero-layout--desktop .hero-content h1{font-size:clamp(38px,6vw,72px);font-weight:800;line-height:1.05;letter-spacing:-.03em;margin-bottom:20px;animation:fadeInUp .8s ease-out .1s both}
-.hero-layout--desktop .hero-content p{font-size:clamp(15px,2vw,18px);color:var(--text-dim);line-height:1.7;max-width:520px;margin-bottom:32px;animation:fadeInUp .8s ease-out .2s both}
-.hero-phone-inline{display:none}
-@keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
-.hero-layout--desktop .hero-actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap;animation:fadeInUp .8s ease-out .3s both}
-.hero-layout--desktop .hero-actions.hero-actions--split{flex-direction:column;align-items:stretch;gap:14px;max-width:100%}
-.hero-download-row{display:flex;gap:14px;align-items:stretch;width:100%;flex-wrap:wrap}
-.hero-download-row .btn-primary{flex:1;min-width:min(200px,100%);justify-content:center;box-sizing:border-box}
-.hero-layout--desktop .hero-actions--split .hero-learn-more{width:100%;justify-content:center;box-sizing:border-box}
-.hero-layout--desktop .hero-visual{display:flex;justify-content:flex-end;align-items:center;justify-self:end;animation:fadeInUp .8s ease-out .4s both;width:100%}
-.hero-layout--mobile .hero-inner{max-width:1200px;margin:0 auto;display:flex;flex-direction:column;gap:clamp(16px,3vw,28px);width:100%}
-.hero-layout--mobile .hero-top{position:relative;z-index:2;text-align:center}
-.hero-layout--mobile .hero-top h1{font-size:clamp(28px,8vw,44px);font-weight:800;line-height:1.05;letter-spacing:-.03em;margin-bottom:0;animation:fadeInUp .8s ease-out .1s both}
-.hero-layout--mobile .hero-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;animation:fadeInUp .8s ease-out .35s both}
-.hero-mobile-below{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:clamp(10px,3vw,20px);align-items:stretch;animation:fadeInUp .8s ease-out .22s both}
-.hero-mobile-left{min-width:0;display:flex;flex-direction:column;justify-content:flex-end;align-items:stretch;min-height:0}
-.hero-mobile-copy-block{display:flex;flex-direction:column;align-items:stretch;gap:clamp(8px,2.2vw,14px);width:100%}
-.hero-layout--mobile .hero-visual--mobile{display:flex;justify-content:flex-end;align-items:flex-end;padding-top:0}
-.hero-layout--mobile .hero-benefits{text-align:left;min-width:0}
-.hero-mobile-actions{margin-top:0}
-.phone-mockup--compact{width:min(132px,36vw);max-width:140px}
-.phone-mockup--compact .phone-frame{border-radius:22px}
-.phone-mockup--compact .phone-glow{bottom:-24px;width:120px;height:48px;opacity:.85}
-.hero-benefits-title{
-  font-size:clamp(22px,2.8vw,34px);font-weight:800;letter-spacing:-.03em;line-height:1.12;margin:0 0 clamp(14px,2vw,20px);
-  color:var(--text)
-}
-.hero-benefits-title .gradient-text-accent{display:inline}
-.hero-benefits-grid{margin-top:0}
-.btn-primary{display:inline-flex;align-items:center;gap:10px;padding:16px 36px;border-radius:14px;font-size:16px;font-weight:600;background:linear-gradient(135deg,var(--accent),var(--accent-light));color:#fff;border:none;cursor:pointer;transition:transform .3s,box-shadow .3s;position:relative;overflow:visible}
-.btn-primary > svg:first-of-type{flex:0 0 auto;width:20px;height:20px;min-width:20px;min-height:20px;max-width:20px;max-height:20px;align-self:center;display:block;overflow:visible}
-.btn-primary .icon-android{flex:0 0 auto;width:20px;height:20px;min-width:20px;min-height:20px;max-width:20px;max-height:20px}
-.btn-primary::before{content:'';position:absolute;inset:0;border-radius:inherit;background:linear-gradient(135deg,rgba(255,255,255,.15),transparent);opacity:0;transition:opacity .3s;pointer-events:none;z-index:0}
-.btn-primary > *{position:relative;z-index:1}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 60px rgba(108,92,231,.35)}
-.btn-primary:hover::before{opacity:1}
-.btn-secondary{display:inline-flex;align-items:center;gap:10px;padding:16px 36px;border-radius:14px;font-size:16px;font-weight:600;background:var(--surface);color:var(--text);border:1px solid var(--border-light);cursor:pointer;transition:all .3s}
-.btn-secondary:hover{background:var(--surface-hover);border-color:rgba(255,255,255,.15)}
-.phone-mockup{position:relative;flex-shrink:0;width:280px;transition:transform .6s cubic-bezier(.16,1,.3,1)}
-.phone-mockup:hover{transform:translateY(-8px)}
-.phone-frame{position:relative;border-radius:36px;overflow:hidden;background:#111;border:2px solid rgba(255,255,255,.08);box-shadow:0 0 0 1px rgba(255,255,255,.03),0 40px 80px rgba(0,0,0,.6),0 0 120px rgba(108,92,231,.08)}
-.phone-frame img{width:100%;display:block}
-.phone-glow{position:absolute;bottom:-40px;left:50%;transform:translateX(-50%);width:200px;height:80px;background:radial-gradient(ellipse,rgba(108,92,231,.2),transparent 70%);filter:blur(20px);pointer-events:none}
-/* Section common */
-.section{position:relative;z-index:2;padding:80px 0}
-#benefits.section{padding:clamp(16px,2.2vw,28px) 0 80px}
-.section-label{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--accent-light);margin-bottom:14px}
-.section-label::before{content:'';width:20px;height:1px;background:var(--accent-light)}
-.section-title{font-size:clamp(30px,4.5vw,48px);font-weight:800;letter-spacing:-.03em;line-height:1.1;margin-bottom:16px}
-.section-desc{font-size:clamp(15px,1.6vw,17px);color:var(--text-dim);line-height:1.7;max-width:540px}
-.section-divider{width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--border-light),transparent)}
+/* Reveal on scroll */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.delay-1{transition-delay:.08s}.delay-2{transition-delay:.16s}.delay-3{transition-delay:.24s}.delay-4{transition-delay:.32s}.delay-5{transition-delay:.40s}
 
-/* Protocol — desktop: table; mobile: same intro + table hidden */
-.proto-section{overflow:hidden}
-.proto-desktop-only{display:block}
-.proto-matrix{margin-top:40px;position:relative}
-.proto-mark{display:inline-flex;align-items:center;justify-content:center;min-width:32px;height:32px;padding:0 6px;border-radius:999px;font-size:15px;font-weight:800;line-height:1}
-.proto-mark--yes{background:rgba(0,210,160,.16);color:var(--success);box-shadow:0 0 0 1px rgba(0,210,160,.2)}
-.proto-mark--no{background:rgba(255,255,255,.04);color:rgba(255,255,255,.22);box-shadow:0 0 0 1px rgba(255,255,255,.06)}
-/* Hero mobile — 4 tiles (legacy grid beside phone; strip uses .hero-benefits-strip) */
-#hero .hero-layout--mobile .hero-benefits-grid:not(.hero-benefits-strip){display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
-@media(max-width:520px){
-  #hero .hero-layout--mobile .hero-benefits-grid:not(.hero-benefits-strip){grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
-}
-#hero .hero-layout--mobile .hero-benefits .benefit-card{text-align:center;padding:14px 8px;border-radius:var(--radius-md);background:var(--surface);border:1px solid var(--border);transition:all .35s;position:relative;overflow:hidden}
-#hero .hero-layout--mobile .hero-benefits .benefit-card:hover{border-color:var(--border-light);transform:translateY(-2px);box-shadow:0 12px 36px rgba(0,0,0,.22)}
-#hero .hero-layout--mobile .hero-benefits .benefit-icon{width:36px;height:36px;border-radius:11px;display:flex;align-items:center;justify-content:center;margin:0 auto 6px;font-size:16px}
-#hero .hero-layout--mobile .hero-benefits .benefit-icon-purple{background:rgba(108,92,231,.12);color:var(--accent-light)}
-#hero .hero-layout--mobile .hero-benefits .benefit-icon-green{background:rgba(0,210,160,.1);color:var(--success)}
-#hero .hero-layout--mobile .hero-benefits .benefit-icon-blue{background:rgba(56,189,248,.1);color:#38bdf8}
-#hero .hero-layout--mobile .hero-benefits .benefit-icon-amber{background:rgba(251,191,36,.1);color:#fbbf24}
-#hero .hero-layout--mobile .hero-benefits .benefit-number{font-size:clamp(12px,2.4vw,15px);font-weight:800;letter-spacing:-.03em;margin-bottom:3px;line-height:1.15}
-#hero .hero-layout--mobile .hero-benefits .benefit-label{font-size:10px;color:var(--text-dim);line-height:1.25}
-#hero .hero-layout--mobile .hero-benefits .benefit-hint{display:none!important}
-/* Mobile hero — overrides above; must follow base #hero tile rules */
-@media(max-width:900px){
-  .hero-layout--mobile .hero-inner{gap:clamp(14px,3.5vw,22px)}
-  .hero-mobile-below{grid-template-columns:minmax(0,1fr) auto;align-items:stretch}
-  .hero-layout--mobile .hero-inner{overflow-x:clip}
-  .hero-layout--mobile .hero-top{text-align:center}
-  .hero-layout--mobile .hero-top h1{
-    font-size:clamp(36px,10vw,54px);line-height:1.04;
-    padding:clamp(10px,2.8vw,18px) 0;margin:0
-  }
-  .hero-layout--mobile .hero-mobile-copy-block .hero-benefits{text-align:left;width:100%}
-  .hero-layout--mobile .hero-actions.hero-mobile-actions{
-    flex-direction:column;flex-wrap:nowrap;align-items:stretch;justify-content:flex-start;
-    gap:clamp(10px,2.5vw,14px);width:100%;max-width:min(400px,100%);margin:0 auto;
-    animation:fadeInUp .8s ease-out .4s both
-  }
-  .hero-mobile-download-row{display:flex;gap:10px;align-items:stretch;width:100%}
-  .hero-layout--mobile .hero-mobile-download-row .btn-primary{
-    flex:1;min-width:0;width:auto;justify-content:center;box-sizing:border-box;
-    padding:clamp(14px,3.5vw,18px) clamp(10px,3vw,16px);font-size:clamp(12px,3.2vw,15px);font-weight:600;
-    border-radius:14px;gap:8px;min-height:0
-  }
-  .hero-layout--mobile .hero-mobile-download-row .btn-primary svg{width:20px;height:20px;flex-shrink:0}
-  .hero-layout--mobile .hero-mobile-actions > .btn-secondary{
-    width:100%;justify-content:center;box-sizing:border-box;
-    padding:clamp(16px,4vw,20px) clamp(20px,5vw,28px);font-size:clamp(14px,3.8vw,16px);font-weight:600;
-    border-radius:14px;gap:10px;min-height:0
-  }
-  .hero-layout--mobile .hero-mobile-actions .btn-secondary svg{width:18px;height:18px;flex-shrink:0}
-  #hero .hero-layout--mobile .hero-mobile-copy-block .hero-benefits-title{
-    font-size:clamp(20px,5.2vw,26px);margin-bottom:0;line-height:1.18
-  }
-  #hero .hero-layout--mobile .hero-benefits-grid:not(.hero-benefits-strip){gap:4px}
-  #hero .hero-layout--mobile .hero-benefits .benefit-card{padding:5px 4px;border-radius:9px}
-  #hero .hero-layout--mobile .hero-benefits .benefit-icon{
-    width:22px;height:22px;border-radius:7px;margin:0 auto 3px;font-size:11px
-  }
-  #hero .hero-layout--mobile .hero-benefits .benefit-icon svg{width:13px;height:13px}
-  #hero .hero-layout--mobile .hero-benefits .benefit-number{font-size:9px;margin-bottom:1px;line-height:1.1}
-  #hero .hero-layout--mobile .hero-benefits .benefit-label{font-size:7.5px;line-height:1.2}
-  /* Полоса из 4 пунктов: равномерно; колонка — иконка по центру над строками текста, без тени у квадратов */
-  #hero .hero-layout--mobile .hero-benefits-strip{
-    display:flex!important;flex-direction:row;flex-wrap:nowrap;justify-content:space-between;align-items:stretch;gap:clamp(2px,1.2vw,8px);
-    width:100%;max-width:100%;margin:0;padding:0;align-self:stretch;animation:fadeInUp .8s ease-out .32s both
-  }
-  #hero .hero-layout--mobile .hero-benefits-strip .benefit-card{
-    flex:1 1 0;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;text-align:center;
-    background:transparent!important;border:none!important;box-shadow:none!important;
-    padding:4px 1px 6px!important;border-radius:0!important
-  }
-  #hero .hero-layout--mobile .hero-benefits-strip .benefit-card:hover{border:none!important;transform:none!important;box-shadow:none!important}
-  /* Только контур SVG, без цветного квадрата / «тени»; крупнее и ниже по отношению к подписи */
-  #hero .hero-layout--mobile .hero-benefits-strip .benefit-icon{
-    display:flex;align-items:center;justify-content:center;
-    width:auto;height:auto;min-width:clamp(34px,9vw,48px);min-height:clamp(34px,9vw,48px);
-    margin:clamp(8px,2.4vw,16px) 0 clamp(3px,1vw,6px);padding:0;border-radius:0;flex-shrink:0;
-    background:transparent!important;border:none!important;box-shadow:none!important;filter:none!important;
-    box-sizing:content-box
-  }
-  #hero .hero-layout--mobile .hero-benefits-strip .benefit-icon svg{
-    width:clamp(20px,5.2vw,28px);height:clamp(20px,5.2vw,28px);display:block
-  }
-  #hero .hero-layout--mobile .hero-benefits-strip .benefit-icon-purple{color:var(--accent-light)}
-  #hero .hero-layout--mobile .hero-benefits-strip .benefit-icon-green{color:var(--success)}
-  #hero .hero-layout--mobile .hero-benefits-strip .benefit-icon-blue{color:#38bdf8}
-  #hero .hero-layout--mobile .hero-benefits-strip .benefit-icon-amber{color:#fbbf24}
-  #hero .hero-layout--mobile .hero-benefits-strip .benefit-number{
-    font-size:clamp(8px,2.2vw,11px);margin-bottom:2px;line-height:1.2;width:100%;text-align:center
-  }
-  #hero .hero-layout--mobile .hero-benefits-strip .benefit-label{
-    font-size:clamp(7px,1.9vw,9px);color:var(--text-dim);line-height:1.2;font-weight:500;margin:0;width:100%;text-align:center
-  }
-}
-@media(max-width:768px){
-  .proto-desktop-only{display:none!important}
-}
-.proto-cols{display:grid;grid-template-columns:1.45fr repeat(4,1fr);gap:0;border-radius:var(--radius-lg) var(--radius-lg) 0 0;overflow:hidden;border:1px solid var(--border);border-bottom:none}
-.proto-body{border-radius:0 0 var(--radius-lg) var(--radius-lg);overflow:hidden;border:1px solid var(--border);border-top:none}
-.proto-row{display:grid;grid-template-columns:1.45fr repeat(4,1fr);gap:0;transition:background .25s}
-.proto-compare-row{display:contents}
-.proto-row:hover{background:rgba(255,255,255,.025)}
-.proto-row:nth-child(even){background:rgba(255,255,255,.018)}
-.proto-row:nth-child(even):hover{background:rgba(255,255,255,.04)}
-.proto-col-header{padding:20px 14px;text-align:center;font-size:12px;font-weight:700;border-bottom:2px solid var(--border);background:var(--surface);line-height:1.25}
-.proto-col-header:first-child{text-align:left;padding-left:22px;font-size:10px;letter-spacing:1.4px;text-transform:uppercase;color:var(--text-muted);font-weight:600}
-.proto-col-header--marshall{background:linear-gradient(180deg,rgba(108,92,231,.14),rgba(108,92,231,.05));color:var(--accent-light);position:relative}
-.proto-col-header--marshall::after{content:'';position:absolute;bottom:0;left:12%;right:12%;height:2px;background:linear-gradient(90deg,transparent,var(--accent-light),transparent)}
-.proto-col-header--wg{color:#38bdf8}
-.proto-col-header--ovpn{color:#22c55e}
-.proto-col-header--ike{color:#f59e0b}
-.proto-logo{font-size:9px;font-weight:500;color:var(--text-muted);margin-top:4px;letter-spacing:.2px;line-height:1.3}
-.proto-cell{padding:13px 12px;display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--border);font-size:12px;text-align:center;line-height:1.35}
-.proto-row:last-child .proto-pair{border-bottom:none}
-.proto-cell--title{justify-content:flex-start;padding-left:22px;font-weight:500;color:var(--text);gap:10px;text-align:left}
-.proto-cell--marshall{background:rgba(108,92,231,.04)}
-.proto-pair{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:13px 10px;border-bottom:1px solid var(--border);min-height:52px;gap:6px}
-.proto-pair-lbl{display:none;font-size:9px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted);line-height:1.2;text-align:center}
-.proto-pair--marshall .proto-pair-lbl{color:var(--accent-light)}
-.proto-pair--wg .proto-pair-lbl{color:#38bdf8}
-.proto-pair--ovpn .proto-pair-lbl{color:#22c55e}
-.proto-pair--ike .proto-pair-lbl{color:#f59e0b}
-.proto-pair .proto-cell{padding:0;border:none;min-height:0;background:transparent!important}
-.proto-cell--title{border-bottom:1px solid var(--border)}
-@media(min-width:701px){
-  .proto-row:last-child .proto-cell--title{border-bottom:none}
-}
-.proto-cell-icon{width:26px;height:26px;border-radius:7px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
-.proto-badge{display:inline-flex;align-items:center;justify-content:center;padding:4px 8px;border-radius:6px;font-size:10px;font-weight:600;letter-spacing:.2px;line-height:1.25;max-width:100%}
-.proto-badge--best{background:rgba(0,210,160,.12);color:var(--success)}
-.proto-badge--good{background:rgba(56,189,248,.1);color:#38bdf8}
-.proto-badge--mid{background:rgba(251,191,36,.1);color:#fbbf24}
-.proto-badge--bad{background:rgba(255,77,106,.1);color:#FF4D6A}
-@media(max-width:860px){
-  .proto-col-header{padding:14px 8px;font-size:11px}
-  .proto-badge{font-size:9px;padding:3px 6px}
-  .proto-cell,.proto-pair{font-size:11px}
-  .proto-cell--title{padding-left:14px}
-}
-@media(min-width:701px){
-  #benefits.section{padding-top:clamp(8px,1.2vw,16px)}
-}
-/* Stats (online security) — distinct from benefit tiles */
-.stats-section{position:relative;z-index:2;padding:70px 0;background:linear-gradient(180deg,transparent,rgba(108,92,231,.04),transparent);overflow-x:clip}
-.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:48px}
-.stat-card{
-  position:relative;text-align:left;padding:26px 20px 28px 22px;border-radius:14px;
-  background:rgba(8,10,18,.72);border:1px solid rgba(255,255,255,.07);
-  border-left:4px solid rgba(100,120,180,.35);transition:all .35s;box-shadow:inset 0 1px 0 rgba(255,255,255,.04)
-}
-.stats-grid .stat-card:nth-child(1){border-left-color:rgba(168,85,247,.55)}
-.stats-grid .stat-card:nth-child(2){border-left-color:rgba(108,92,231,.55)}
-.stats-grid .stat-card:nth-child(3){border-left-color:rgba(0,210,160,.45)}
-.stats-grid .stat-card:nth-child(4){border-left-color:rgba(251,191,36,.45)}
-.stat-card--scroll{
-  opacity:var(--stat-op,.35);
-  transform:translateX(var(--stat-tx,0px)) scale(var(--stat-sc,.88));
-  transform-origin:center center;
-  transition:box-shadow .35s,border-color .35s
-}
-.stat-card--scroll:hover{
-  transform:translateX(var(--stat-tx,0px)) translateY(-3px) scale(var(--stat-sc,1));
-  box-shadow:0 16px 40px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.06);
-  border-color:rgba(255,255,255,.1)
-}
-.stat-card:not(.stat-card--scroll):hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.06);border-color:rgba(255,255,255,.1)}
-.stat-number{font-size:clamp(32px,3.5vw,44px);font-weight:800;letter-spacing:-.03em;line-height:1;margin-bottom:12px;font-variant-numeric:tabular-nums}
-.stat-suffix{font-size:.5em;font-weight:600}
-.stat-label{font-size:13px;color:var(--text-dim);line-height:1.45;max-width:none;margin:0}
-@media(max-width:900px){.stats-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:500px){.stats-grid{gap:12px}.stat-card{padding:22px 16px 24px 18px}.stat-label{font-size:12px}}
+/* Hero — compact, content-dense */
+.hero{position:relative;z-index:2;padding:140px 0 72px}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;padding:7px 14px 7px 11px;background:var(--surface);border:1px solid var(--border);border-radius:100px;font-size:12px;font-weight:500;color:var(--text-secondary);letter-spacing:.4px;margin-bottom:32px}
+.hero-eyebrow-pulse{position:relative;width:7px;height:7px;border-radius:50%;background:var(--teal)}
+.hero-eyebrow-pulse::after{content:'';position:absolute;inset:-3px;border-radius:50%;background:var(--teal);opacity:.35;animation:pulse 2.4s ease-out infinite}
+@keyframes pulse{0%{transform:scale(.6);opacity:.5}100%{transform:scale(2);opacity:0}}
+.hero h1{font-size:clamp(38px,5.4vw,62px);font-weight:600;line-height:1.04;letter-spacing:-1.6px;margin-bottom:22px;max-width:920px;color:var(--text)}
+.hero h1 .accent{color:var(--accent);font-weight:600}
+.hero h1 em{font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-style:italic;letter-spacing:-.5px;color:var(--text-secondary)}
+.hero-sub{font-size:clamp(16px,1.5vw,18px);color:var(--text-secondary);max-width:620px;line-height:1.6;font-weight:400}
 
-/* App showcase */
-.showcase{position:relative;z-index:2;padding:80px 0;overflow-x:clip}
-.showcase-inner{display:grid;grid-template-columns:1fr;gap:0;align-items:start;max-width:720px;margin:0 auto}
-.showcase-features{display:flex;flex-direction:column;gap:11px}
-.showcase-feature{
-  display:flex;align-items:flex-start;gap:11px;padding:11px 13px;border-radius:var(--radius-md);
-  background:rgba(255,255,255,.035);border:1px solid rgba(108,92,231,.22);transition:background .25s;
-  box-shadow:0 0 0 1px rgba(108,92,231,.06),0 0 14px rgba(108,92,231,.05);
-  animation:showcaseFramePulse 5s ease-in-out infinite
-}
-.showcase-feature:nth-child(2){animation-delay:-1.1s}
-.showcase-feature:nth-child(3){animation-delay:-2.2s}
-.showcase-feature:nth-child(4){animation-delay:-3.3s}
-@keyframes showcaseFramePulse{
-  0%,100%{box-shadow:0 0 0 1px rgba(108,92,231,.12),0 0 10px rgba(108,92,231,.04);border-color:rgba(108,92,231,.2)}
-  50%{box-shadow:0 0 0 1px rgba(168,85,247,.35),0 0 22px rgba(108,92,231,.14);border-color:rgba(168,85,247,.32)}
-}
-.showcase-feature:hover{background:var(--surface-hover);border-color:rgba(168,85,247,.4)}
-.showcase-feature-icon{width:34px;height:34px;border-radius:9px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:15px;background:rgba(108,92,231,.1);color:var(--accent-light)}
-.showcase-feature h4{font-size:13px;font-weight:600;margin-bottom:2px}
-.showcase-feature p{font-size:11px;color:var(--text-dim);line-height:1.45}
-@media(min-width:901px){
-  .showcase-desktop-block .showcase-inner{
-    max-width:1200px;
-    grid-template-columns:260px minmax(0,1fr);
-    gap:clamp(28px,4vw,52px);
-    align-items:center
-  }
-  .showcase-desktop-block .showcase-desktop-phone{
-    justify-self:start;
-    width:260px;
-    max-width:260px;
-    min-width:0
-  }
-  .showcase-desktop-block .phone-mockup--desktop-app{
-    position:relative;
-    flex-shrink:0;
-    width:260px;
-    max-width:260px;
-    margin:0
-  }
-  .showcase-desktop-block .phone-mockup--desktop-app .phone-frame{
-    border-radius:32px;
-    width:100%;
-    max-width:260px
-  }
-  .showcase-desktop-block .phone-mockup--desktop-app .phone-frame img{
-    width:100%;
-    height:auto;
-    object-fit:contain;
-    vertical-align:top
-  }
-  .showcase-desktop-block .phone-mockup--desktop-app .phone-glow{bottom:-32px;width:200px;height:72px;left:50%;transform:translateX(-50%)}
-}
-@media(max-width:900px){.showcase-inner{max-width:none}}
-.site-reorder-mobile{display:contents}
-.stats-label-mobile{display:none}
-.showcase-mobile-layout{display:none}
-.phone-mockup--showcase{position:relative;flex-shrink:0;width:min(150px,42vw);max-width:160px}
-.phone-mockup--showcase .phone-frame{border-radius:24px}
-.showcase-m-body{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(10px,3vw,16px);align-items:start;margin-top:8px}
-.showcase-m-head .section-label{margin-bottom:10px}
-.showcase-m-features{display:flex;flex-direction:column;gap:clamp(9px,2.5vw,12px);min-width:0}
-.showcase-m-feature{display:flex;align-items:flex-start;gap:10px;padding:0;margin:0;border:none;background:transparent;box-shadow:none}
-.showcase-m-feature .showcase-feature-icon{width:30px;height:30px;border-radius:8px;flex-shrink:0}
-.showcase-m-feature-copy{min-width:0}
-.showcase-m-feature-copy h4{font-size:clamp(11px,3.1vw,13px);font-weight:600;margin:0 0 3px;line-height:1.25;color:var(--text)}
-.showcase-m-feature-copy p{font-size:clamp(9px,2.6vw,11px);color:var(--text-dim);line-height:1.45;margin:0}
-.footer-features-mobile{display:none!important}
-@media(max-width:900px){
-  .showcase-m-body{grid-template-columns:minmax(0,auto) minmax(0,1fr);align-items:start}
-  .showcase-m-phone{align-self:start}
-  .site-reorder-mobile{display:flex;flex-direction:column}
-  .site-reorder-mobile #security{order:1}
-  .site-reorder-mobile #app{order:2}
-  .site-reorder-mobile #stats{order:3}
-  .site-reorder-mobile #benefits{display:none!important}
-  .stats-section .stats-label-desktop{display:none!important}
-  .stats-section .stats-label-mobile{display:inline-flex!important;justify-content:center}
-  .showcase-desktop-block{display:none!important}
-  .showcase-mobile-layout{display:block}
-  .showcase-m-head{text-align:center}
-  .showcase-m-head .section-label{justify-content:center}
-  .footer-features-desktop{display:none!important}
-  .footer-features-mobile{display:block!important}
-  #security{scroll-margin-top:clamp(72px,18vw,96px)}
-}
+/* Bento — manifesto + principles together */
+.section{position:relative;z-index:2;padding:64px 0}
+.section-head{margin-bottom:36px;display:flex;align-items:flex-end;justify-content:space-between;gap:32px;flex-wrap:wrap}
+.section-eyebrow{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1.8px;color:var(--accent);margin-bottom:10px;display:block}
+.section-title{font-size:clamp(26px,3.4vw,36px);font-weight:600;line-height:1.15;letter-spacing:-.7px;max-width:560px;color:var(--text)}
+.section-side{font-size:14px;color:var(--text-dim);max-width:300px;line-height:1.6}
 
-/* Performance benchmark (под Pricing, перед CTA — десктоп + мобильная вёрстка) */
-#performance-benchmark.speed-section{padding:56px 0 72px;position:relative;z-index:2;overflow-x:clip}
-#performance-benchmark .perf-intro{margin-bottom:0}
-#performance-benchmark .perf-intro .section-label{justify-content:center}
-#performance-benchmark .speed-inner{
-  display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,5vw,60px);align-items:center;
-  margin-top:clamp(28px,4vw,48px)
+.bento{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+@media(max-width:880px){.bento{grid-template-columns:repeat(2,1fr)}}
+.bento-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px 26px;position:relative;transition:border-color .3s,transform .3s}
+.bento-card:hover{border-color:var(--border-strong)}
+.bento-card-num{font-size:11px;font-weight:600;letter-spacing:1.4px;color:var(--text-muted);font-variant-numeric:tabular-nums;margin-bottom:14px;display:block}
+.bento-card-title{font-size:15px;font-weight:600;color:var(--text);letter-spacing:-.2px;margin-bottom:10px;line-height:1.3}
+.bento-card-text{font-size:13.5px;color:var(--text-secondary);line-height:1.7}
+
+/* Manifesto card — wide, distinguished */
+.bento-manifesto{grid-column:span 6;padding:40px 36px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-xl);position:relative;overflow:hidden}
+@media(max-width:880px){.bento-manifesto{grid-column:span 2;padding:30px 26px}}
+.bento-manifesto::before{content:'';position:absolute;top:-30%;right:-10%;width:380px;height:380px;background:radial-gradient(circle,var(--accent-soft),transparent 70%);pointer-events:none}
+.bento-manifesto-mark{font-family:'Instrument Serif',Georgia,serif;font-size:64px;line-height:.8;color:var(--accent);opacity:.55;margin-bottom:8px;font-style:italic;display:block}
+.bento-manifesto p{font-size:clamp(17px,1.7vw,20px);color:var(--text);line-height:1.55;font-weight:400;letter-spacing:-.2px;max-width:780px;position:relative}
+.bento-manifesto p .em-serif{font-family:'Instrument Serif',Georgia,serif;font-style:italic;color:var(--accent-deep);font-size:1.05em;letter-spacing:-.3px}
+
+/* Principles cards */
+.bento-principle{grid-column:span 3}
+@media(max-width:880px){.bento-principle{grid-column:span 2}}
+.bento-icon{width:36px;height:36px;border-radius:9px;background:var(--accent-soft);color:var(--accent);display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+.bento-icon svg{width:18px;height:18px;stroke-width:1.7}
+
+/* Focus areas — horizontal compact */
+.focus-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:740px){.focus-grid{grid-template-columns:1fr}}
+.focus-card{padding:24px 24px 26px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);transition:border-color .3s}
+.focus-card:hover{border-color:var(--border-strong)}
+.focus-marker{font-size:11px;font-weight:600;letter-spacing:1.4px;color:var(--accent);margin-bottom:12px;display:flex;align-items:center;gap:8px;font-variant-numeric:tabular-nums}
+.focus-marker::before{content:'';width:14px;height:1.5px;background:var(--accent);display:block}
+.focus-card h3{font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px;letter-spacing:-.2px;line-height:1.3}
+.focus-card p{font-size:13.5px;color:var(--text-secondary);line-height:1.7}
+
+/* Governance — compact bento */
+.gov-bento{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:880px){.gov-bento{grid-template-columns:repeat(2,1fr)}}
+.gov-card{padding:22px 20px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);transition:border-color .3s}
+.gov-card:hover{border-color:var(--border-strong)}
+.gov-card h3{font-size:13px;font-weight:600;color:var(--text);margin-bottom:8px;letter-spacing:-.2px;line-height:1.3}
+.gov-card p{font-size:12.5px;color:var(--text-dim);line-height:1.65}
+
+.gov-disclaimer{margin-top:18px;padding:22px 26px;background:var(--surface-tint);border-left:2px solid var(--accent);border-radius:0 var(--radius-md) var(--radius-md) 0}
+.gov-disclaimer p{font-size:13px;color:var(--text-secondary);line-height:1.7}
+.gov-disclaimer strong{color:var(--text);font-weight:600}
+
+/* Company info — list/table style */
+.company-table{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden}
+.company-row{display:grid;grid-template-columns:240px 1fr;padding:18px 28px;border-bottom:1px solid var(--border-light);align-items:start;gap:24px}
+.company-row:last-child{border-bottom:none}
+@media(max-width:680px){
+  .company-row{grid-template-columns:1fr;gap:6px;padding:16px 20px}
 }
-@media(max-width:900px){
-  #performance-benchmark{scroll-margin-top:clamp(72px,18vw,96px)}
-  #performance-benchmark.speed-section{padding:42px 0 52px}
-  #performance-benchmark .perf-intro .section-title{font-size:clamp(24px,6.8vw,36px);padding:0 4px}
-  #performance-benchmark .perf-intro .section-desc{font-size:clamp(14px,3.6vw,16px);max-width:100%!important;padding:0 8px}
-  #performance-benchmark .perf-intro-desc-desktop-only{display:none!important}
-  #performance-benchmark .speed-inner{grid-template-columns:1fr;gap:clamp(22px,5vw,32px);margin-top:clamp(22px,5vw,36px)}
-  #performance-benchmark .speed-inner>*{min-width:0}
-  #performance-benchmark .speed-bar-value{font-size:clamp(17px,4.5vw,20px)}
-  #performance-benchmark .speed-info{padding:0}
-  #performance-benchmark .speed-info h3{font-size:clamp(16px,4.2vw,18px)}
-  #performance-benchmark .speed-info p{font-size:clamp(13px,3.4vw,15px)}
-  #performance-benchmark .speed-info-item{font-size:clamp(12px,3.2vw,14px)}
-}
-.speed-bars{display:flex;flex-direction:column;gap:28px}
-.speed-bar-group{position:relative}
-.speed-bar-label{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
-.speed-bar-name{font-size:13px;font-weight:600;color:var(--text);display:flex;align-items:center;gap:8px}
-.speed-bar-name-icon{width:28px;height:28px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;font-size:13px}
-.speed-bar-value{font-size:22px;font-weight:800;letter-spacing:-.02em}
-.speed-bar-track{height:10px;border-radius:5px;background:rgba(255,255,255,.06);overflow:hidden;position:relative}
-.speed-bar-fill{height:100%;border-radius:5px;width:0;transition:width 1.8s cubic-bezier(.16,1,.3,1)}
-.speed-bar-fill--latency{background:linear-gradient(90deg,#6C5CE7,#A855F7)}
-.speed-bar-fill--download{background:linear-gradient(90deg,#A855F7,#00D2A0)}
-.speed-bar-fill--overhead{background:linear-gradient(90deg,#00D2A0,#00d67e)}
-.speed-bar-shimmer{position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,.15) 50%,transparent 100%);transform:translateX(-100%);animation:perfShimmer 2.5s ease-in-out infinite}
-@keyframes perfShimmer{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
-.speed-info{padding:0 8px}
-.speed-info h3{font-size:clamp(17px,1.8vw,20px);font-weight:700;margin-bottom:12px;line-height:1.3;color:var(--text)}
-.speed-info p{font-size:14px;color:var(--text-dim);line-height:1.7;margin-bottom:16px}
-.speed-info-list{list-style:none;display:flex;flex-direction:column;gap:10px}
-.speed-info-item{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-dim)}
-.speed-info-item svg{flex-shrink:0;color:var(--success)}
+.company-row-label{font-size:12px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:1.3px;padding-top:2px}
+.company-row-value{font-size:14.5px;font-weight:500;color:var(--text);line-height:1.55;font-variant-numeric:tabular-nums}
+.company-row-value .mono{font-family:'SFMono-Regular',Menlo,Consolas,monospace;font-size:13.5px;letter-spacing:.2px;background:var(--bg-soft);padding:3px 8px;border-radius:5px;display:inline-block}
+.company-row-value a{font-weight:500;color:var(--text);border-bottom:1px solid var(--border-strong);transition:border-color .25s}
+.company-row-value a:hover{border-color:var(--accent)}
+.company-row-value-secondary{font-size:12px;color:var(--text-dim);margin-top:4px;font-weight:400;letter-spacing:0}
 
-/* Map */
-.map-section{position:relative;z-index:2;padding:80px 0 60px}
-.map-wrapper{margin-top:40px;border-radius:var(--radius-lg);overflow:hidden;background:linear-gradient(180deg,#0a0f1a,#0f1628,#0a0f1a);border:1px solid var(--border);box-shadow:0 40px 80px rgba(0,0,0,.4)}
-.map-header{padding:10px 24px 0;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px}
-.map-header-text{display:none}
-.map-header h3{margin:0;font-size:18px;font-weight:700;letter-spacing:-.02em;color:#f0f4f8}
-.map-header p{margin:4px 0 0;font-size:11px;color:#5a7a9f;letter-spacing:.03em}
-.map-toggle{display:flex;gap:3px;background:rgba(15,22,40,.8);border-radius:10px;padding:3px;border:1px solid rgba(100,130,180,.08)}
-.map-toggle button{padding:7px 14px;font-size:11px;font-weight:500;border:none;border-radius:8px;cursor:pointer;transition:all .3s;color:#5a7a9f;background:transparent;font-family:'Inter',sans-serif}
-.map-toggle button.active-srv{background:linear-gradient(135deg,#0a7a44,#00d67e);color:#fff}
-.map-toggle button.active-heat{background:linear-gradient(135deg,#6C5CE7,#A855F7);color:#fff}
-#map-container{padding:4px 12px 0;position:relative}
-#map-svg{width:100%;display:block}
-.map-tooltip{position:absolute;background:rgba(10,15,25,.92);backdrop-filter:blur(14px);border-radius:9px;padding:8px 12px;pointer-events:none;z-index:100;display:none}
-.map-tooltip-label{font-size:10px;color:#6a84a5;text-transform:uppercase;letter-spacing:.08em;font-weight:500;margin-bottom:3px}
-.map-tooltip-row{display:flex;align-items:center;gap:6px}
-.map-tooltip-dot{width:7px;height:7px;border-radius:50%}
-.map-tooltip-val{font-size:13px;font-weight:600;color:#e8edf3}
-.map-tooltip-bar{margin-top:6px;height:2.5px;border-radius:2px;background:#1a2030;overflow:hidden}
-.map-tooltip-bar-fill{height:100%;border-radius:2px}
-.map-legend{padding:4px 24px 8px;display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap}
-.map-legend-item{display:flex;align-items:center;gap:5px;font-size:10px;color:#5a7a9f;font-weight:500}
-.map-legend-dot{width:8px;height:8px;border-radius:3px}
-.map-legend-dot-round{border-radius:50%;width:7px;height:7px}
-.map-info-panel{position:absolute;left:18px;bottom:12px;width:min(290px,28%);background:rgba(10,15,25,.78);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(100,130,180,.13);border-radius:14px;padding:14px 16px 13px;z-index:10;box-shadow:0 12px 40px rgba(0,0,0,.35);opacity:0;visibility:hidden;transform:translateY(8px) scale(.985);transition:opacity .35s ease,transform .35s ease,visibility 0s linear .35s;pointer-events:none}
-.map-info-panel.is-visible{opacity:1;visibility:visible;transform:translateY(0) scale(1);pointer-events:auto;transition:opacity .35s ease,transform .35s ease,visibility 0s linear 0s}
-.map-info-panel-label{display:inline-flex;align-items:center;gap:6px;font-size:9.5px;font-weight:600;letter-spacing:1.6px;text-transform:uppercase;color:#00d67e;margin-bottom:8px}
-.map-info-panel-label::before{content:'';width:14px;height:1px;background:#00d67e;opacity:.7}
-.map-info-panel-title{font-size:13px;font-weight:600;color:#e8edf3;line-height:1.3;margin-bottom:5px;letter-spacing:-.005em}
-.map-info-panel-desc{font-size:10.5px;color:#6a84a5;line-height:1.5;margin-bottom:11px}
-.map-info-panel-divider{height:1px;background:linear-gradient(90deg,rgba(100,130,180,.18),rgba(100,130,180,.04));margin-bottom:10px}
-.map-info-panel-list{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(6,auto);grid-auto-flow:column;gap:5px 14px;list-style:none;padding:0;margin:0}
-.map-info-panel-list li{font-size:10.5px;color:#aab7cc;font-weight:500;display:flex;align-items:center;gap:7px;line-height:1.4}
-.map-info-panel-list .map-info-flag{width:18px;height:13px;object-fit:cover;border-radius:2px;flex-shrink:0;box-shadow:0 0 0 1px rgba(255,255,255,.1)}
-.map-info-panel-list .map-info-country{min-width:0}
-@media(max-width:768px){
-  .map-info-panel{position:static;width:auto;left:auto;bottom:auto;margin:0 12px;transform:none;box-shadow:none;display:none}
-  .map-info-panel.is-visible{display:block;margin-top:5px}
-}
-@keyframes glowBorder{0%,100%{stroke:rgba(0,214,126,.10)}50%{stroke:rgba(0,214,126,.28)}}
-
-/* Pricing */
-.pricing-section{position:relative;z-index:2;padding:80px 0}
-.pricing-tabs{display:flex;justify-content:center;gap:4px;margin-bottom:40px;background:var(--surface);border-radius:14px;padding:4px;max-width:400px;margin-left:auto;margin-right:auto;border:1px solid var(--border)}
-.pricing-tab{flex:1;padding:10px 20px;border:none;border-radius:11px;font-size:14px;font-weight:600;cursor:pointer;transition:all .3s;background:transparent;color:var(--text-dim);font-family:'Inter',sans-serif}
-.pricing-tab.active{background:linear-gradient(135deg,var(--accent),var(--accent-light));color:#fff}
-.pricing-tab:hover:not(.active){color:var(--text)}
-.pricing-panel{display:none}
-.pricing-panel.active{display:block}
-.pricing-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;max-width:800px;margin:0 auto}
-.pricing-card{padding:28px 18px;border-radius:var(--radius-lg);background:var(--surface);border:1px solid var(--border);text-align:center;transition:all .4s;position:relative}
-.pricing-card:hover{border-color:var(--border-light);transform:translateY(-3px);box-shadow:0 16px 48px rgba(0,0,0,.3)}
-.pricing-card.featured{border-color:rgba(168,85,247,.3);background:linear-gradient(135deg,rgba(108,92,231,.08),rgba(168,85,247,.05))}
-.pricing-badge{position:absolute;top:-10px;right:12px;padding:3px 10px;border-radius:6px;font-size:10px;font-weight:700;background:linear-gradient(135deg,var(--accent),var(--accent-light));color:#fff;letter-spacing:.5px}
-.pricing-price{font-size:clamp(28px,3.5vw,36px);font-weight:800;letter-spacing:-.03em;margin-bottom:2px}
-.pricing-period{font-size:12px;color:var(--text-dim);margin-bottom:4px}
-.pricing-name{font-size:11px;color:var(--text-muted);font-weight:500}
-.pricing-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:420px;margin:0 auto}
-.pricing-card-alt{padding:28px 18px;border-radius:var(--radius-lg);background:var(--surface);border:1px solid var(--border);text-align:center;transition:all .4s;position:relative}
-.pricing-card-alt:hover{border-color:var(--border-light);transform:translateY(-3px);box-shadow:0 16px 48px rgba(0,0,0,.3)}
-.pricing-card-alt.featured-alt{border-color:rgba(251,191,36,.3);background:linear-gradient(135deg,rgba(251,191,36,.06),rgba(251,146,20,.04))}
-.pricing-badge-alt{position:absolute;top:-10px;right:12px;padding:3px 10px;border-radius:6px;font-size:10px;font-weight:700;background:linear-gradient(135deg,#f59e0b,#fbbf24);color:#000;letter-spacing:.5px}
-.pricing-price-alt{font-size:32px;font-weight:800;letter-spacing:-.03em;margin-bottom:2px;color:#fbbf24}
-.pricing-trial{margin-top:24px;text-align:center;font-size:14px;color:var(--text-dim)}
-.pricing-trial strong{color:var(--text);font-weight:600}
-@media(max-width:700px){.pricing-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:420px){.pricing-grid{grid-template-columns:1fr 1fr;gap:10px}.pricing-card{padding:22px 12px}}
-
-/* Encryption animation (matrix stream + flow labels) */
-.encrypt-section{position:relative;z-index:2;padding:80px 0;overflow-x:clip}
-.encrypt-card{margin-top:40px;padding:0;border-radius:var(--radius-lg);background:linear-gradient(135deg,rgba(108,92,231,.06),rgba(0,210,160,.03));border:1px solid rgba(108,92,231,.12);position:relative;overflow:hidden}
-.encrypt-visual{position:relative;height:200px;overflow:hidden;border-radius:var(--radius-lg) var(--radius-lg) 0 0;padding:0}
-.encrypt-matrix-wrap{position:relative;width:100%;height:100%;background:linear-gradient(165deg,rgba(12,8,28,.95) 0%,rgba(8,12,22,.98) 50%,rgba(6,14,18,.96) 100%);min-height:0}
-.encrypt-matrix-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:1}
-.encrypt-matrix-ui{position:absolute;inset:0;z-index:2;display:flex;align-items:center;justify-content:space-between;padding:0 10px;pointer-events:none}
-.encrypt-matrix-node{padding:6px 12px;border-radius:8px;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);white-space:nowrap;max-width:28%}
-.encrypt-matrix-node--left{background:rgba(168,85,247,.14);color:#c084fc;border:1px solid rgba(168,85,247,.22)}
-.encrypt-matrix-node--right{background:rgba(0,210,160,.12);color:#00D2A0;border:1px solid rgba(0,210,160,.2)}
-.encrypt-matrix-core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);text-align:center;z-index:3;max-width:min(92%,420px);padding:0 8px}
-.encrypt-matrix-title{font-size:clamp(13px,2.8vw,17px);font-weight:700;letter-spacing:-.02em;line-height:1.25;margin:0}
-.encrypt-matrix-sub{font-size:11px;color:rgba(224,224,232,.55);margin-top:6px;font-weight:500;letter-spacing:.02em}
-.encrypt-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;padding:28px 32px 32px}
-.encrypt-item{display:flex;align-items:flex-start;gap:12px;padding:12px;border-radius:var(--radius-md);background:rgba(0,0,0,.2)}
-.encrypt-item-icon{width:32px;height:32px;border-radius:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:14px;background:rgba(0,210,160,.1);color:var(--success)}
-.encrypt-item h4{font-size:13px;font-weight:600;margin-bottom:2px}
-.encrypt-item p{font-size:11px;color:var(--text-dim);line-height:1.5}
-@media(max-width:700px){.encrypt-section .encrypt-card{margin-top:28px}.encrypt-grid{grid-template-columns:1fr;padding:8px 14px 16px;gap:10px}.encrypt-visual{height:148px;min-height:0}.encrypt-item{padding:10px}.encrypt-item h4{font-size:12px}.encrypt-item p{font-size:10px}.encrypt-matrix-node{font-size:8px;padding:4px 8px;letter-spacing:.06em;max-width:26%}.encrypt-matrix-title{font-size:11px}.encrypt-matrix-sub{font-size:9px;margin-top:4px}}
-@media(max-width:480px){.encrypt-visual{height:152px}.encrypt-matrix-core{max-width:96%}.encrypt-matrix-title{font-size:10px;line-height:1.2}.encrypt-matrix-node{max-width:30%}}
-
-/* CTA */
-.cta-section{position:relative;z-index:2;padding:60px 0;text-align:center}
-.cta-box{padding:52px 32px;border-radius:20px;background:linear-gradient(135deg,rgba(108,92,231,.08),rgba(168,85,247,.05));border:1px solid rgba(108,92,231,.15);position:relative;overflow:hidden}
-.cta-box::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at top,rgba(108,92,231,.1),transparent 60%);pointer-events:none}
-.cta-box h2{font-size:clamp(26px,4vw,38px);font-weight:800;letter-spacing:-.03em;margin-bottom:12px;position:relative;z-index:1}
-.cta-box p{font-size:16px;color:var(--text-dim);max-width:460px;margin:0 auto 28px;position:relative;z-index:1}
-.cta-buttons{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;position:relative;z-index:1;width:100%}
-.cta-download-stack{display:flex;flex-direction:column;align-items:stretch;width:100%;max-width:400px;gap:12px}
-.cta-download-stack .btn-primary{width:100%;justify-content:center;box-sizing:border-box}
-.cta-download-stack .btn-primary > svg:first-of-type{width:18px;height:18px;min-width:18px;min-height:18px;max-width:18px;max-height:18px}
-.cta-download-stack .btn-primary .icon-android{width:18px;height:18px;min-width:18px;min-height:18px;max-width:18px;max-height:18px}
-.cta-buttons .btn-telegram{width:100%;max-width:400px;justify-content:center;box-sizing:border-box}
-.btn-telegram{display:inline-flex;align-items:center;gap:10px;padding:14px 28px;border-radius:14px;font-size:15px;font-weight:600;background:rgba(0,136,204,.15);color:#29b6f6;border:1px solid rgba(0,136,204,.25);cursor:pointer;transition:all .3s}
-.btn-telegram:hover{background:rgba(0,136,204,.25);border-color:rgba(0,136,204,.4);transform:translateY(-2px)}
-
-/* iOS App Store — coming soon modal */
-.ios-soon-modal{position:fixed;inset:0;z-index:10050;display:none;align-items:center;justify-content:center;padding:20px;padding-bottom:max(20px,env(safe-area-inset-bottom));box-sizing:border-box}
-.ios-soon-modal.is-open{display:flex}
-.ios-soon-modal__backdrop{position:absolute;inset:0;background:rgba(6,6,10,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);cursor:pointer}
-.ios-soon-modal__panel{position:relative;z-index:1;width:100%;max-width:420px;border-radius:var(--radius-lg);padding:32px 28px 26px;background:linear-gradient(145deg,rgba(18,16,28,.96),rgba(17,17,26,.98));border:1px solid rgba(108,92,231,.22);box-shadow:0 0 0 1px rgba(255,255,255,.04),0 24px 80px rgba(0,0,0,.55),0 0 120px rgba(108,92,231,.12);animation:iosSoonPanelIn .45s cubic-bezier(.16,1,.3,1) both}
-@keyframes iosSoonPanelIn{from{opacity:0;transform:translateY(16px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
-.ios-soon-modal__panel::before{content:'';position:absolute;inset:0;border-radius:inherit;background:radial-gradient(ellipse 90% 55% at 50% -10%,rgba(108,92,231,.14),transparent 55%);pointer-events:none}
-.ios-soon-modal__close{position:absolute;top:14px;right:14px;width:36px;height:36px;border-radius:10px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.04);color:var(--text-dim);font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s,color .2s,border-color .2s;z-index:2}
-.ios-soon-modal__close:hover{background:rgba(255,255,255,.08);color:var(--text);border-color:rgba(255,255,255,.12)}
-.ios-soon-visual{position:relative;height:132px;margin:0 auto 22px;display:flex;align-items:center;justify-content:center}
-.ios-soon-orbit{position:relative;width:112px;height:112px}
-.ios-soon-ring{position:absolute;inset:0;border-radius:50%;border:2px solid transparent;border-top-color:rgba(168,85,247,.85);border-right-color:rgba(0,210,160,.35);animation:iosSoonRingSpin 2.8s linear infinite}
-.ios-soon-ring--2{inset:8px;border-top-color:rgba(108,92,231,.75);border-right-color:rgba(168,85,247,.25);animation-direction:reverse;animation-duration:3.6s;opacity:.9}
-.ios-soon-core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:18px;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg,rgba(255,255,255,.08),rgba(255,255,255,.02));box-shadow:0 8px 32px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.12);overflow:hidden}
-.ios-soon-core img{width:40px;height:40px;border-radius:10px;object-fit:cover;animation:iosSoonCorePulse 2.2s ease-in-out infinite}
-@keyframes iosSoonRingSpin{to{transform:rotate(360deg)}}
-@keyframes iosSoonCorePulse{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
-.ios-soon-scan{position:absolute;inset:0;background:linear-gradient(180deg,transparent,rgba(168,85,247,.12),transparent);animation:iosSoonScan 2.5s ease-in-out infinite;pointer-events:none;border-radius:18px}
-@keyframes iosSoonScan{0%,100%{transform:translateY(-100%);opacity:0}15%{opacity:1}50%{transform:translateY(0);opacity:.85}85%{opacity:1}100%{transform:translateY(100%);opacity:0}}
-.ios-soon-dots{position:absolute;inset:-4px;pointer-events:none}
-.ios-soon-dot{position:absolute;width:6px;height:6px;border-radius:50%;background:var(--success);box-shadow:0 0 12px rgba(0,210,160,.6);animation:iosSoonDot 3s ease-in-out infinite}
-.ios-soon-dot:nth-child(1){left:0;top:50%;animation-delay:0s}
-.ios-soon-dot:nth-child(2){right:0;top:30%;animation-delay:.6s;background:var(--accent-light);box-shadow:0 0 12px rgba(168,85,247,.5)}
-.ios-soon-dot:nth-child(3){right:18%;bottom:0;animation-delay:1.2s}
-@keyframes iosSoonDot{0%,100%{opacity:.35;transform:scale(.85)}50%{opacity:1;transform:scale(1.15)}}
-.ios-soon-bar{height:4px;border-radius:4px;background:rgba(255,255,255,.06);margin:0 0 20px;overflow:hidden;position:relative}
-.ios-soon-bar::after{content:'';position:absolute;left:-40%;top:0;height:100%;width:45%;border-radius:4px;background:linear-gradient(90deg,transparent,rgba(108,92,231,.9),rgba(0,210,160,.85),transparent);animation:iosSoonShimmer 1.8s ease-in-out infinite}
-@keyframes iosSoonShimmer{0%{left:-45%}100%{left:105%}}
-.ios-soon-modal__panel h3{font-size:clamp(20px,4.5vw,24px);font-weight:800;letter-spacing:-.03em;line-height:1.2;margin-bottom:10px;text-align:center;position:relative;z-index:1}
-.ios-soon-modal__panel p{font-size:14px;color:var(--text-dim);line-height:1.65;text-align:center;margin-bottom:14px;position:relative;z-index:1}
-.ios-soon-date{display:block;font-size:13px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:rgba(168,85,247,.95);text-align:center;margin-bottom:4px;position:relative;z-index:1}
-.ios-soon-foot{font-size:12px;color:var(--text-muted);text-align:center;position:relative;z-index:1}
-.android-soon-apk{margin-top:18px;padding-top:18px;border-top:1px solid rgba(255,255,255,.08);text-align:center;position:relative;z-index:1}
-.ios-soon-modal__panel .android-soon-apk__note{font-size:12px;color:var(--text-muted);line-height:1.65;text-align:center;margin:0 0 14px}
-.ios-soon-modal__panel .android-soon-apk__btn{width:100%;justify-content:center;box-sizing:border-box;text-decoration:none;color:#fff}
-.ios-soon-modal__panel .android-soon-apk__btn:hover{color:#fff}
-@media(max-width:480px){.ios-soon-modal__panel{padding:28px 20px 22px}.ios-soon-visual{height:120px;margin-bottom:18px}}
-@media(prefers-reduced-motion:reduce){
-  .ios-soon-modal__panel{animation:none}
-  .ios-soon-ring,.ios-soon-ring--2,.ios-soon-core img,.ios-soon-scan,.ios-soon-dot,.ios-soon-bar::after{animation:none!important}
-  .ios-soon-bar::after{left:0;width:100%;opacity:.5}
-}
+/* Closing CTA — small */
+.closing{padding:64px 0 32px;text-align:center;position:relative;z-index:2}
+.closing-mark{font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-size:36px;color:var(--accent);opacity:.55;line-height:1;margin-bottom:18px}
+.closing h2{font-size:clamp(22px,2.6vw,30px);font-weight:600;letter-spacing:-.5px;line-height:1.25;color:var(--text);margin-bottom:14px;max-width:560px;margin-left:auto;margin-right:auto}
+.closing p{font-size:14px;color:var(--text-dim);max-width:420px;margin:0 auto 26px;line-height:1.65}
+.closing-cta{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;background:var(--text);color:#fff;border-radius:100px;font-size:13px;font-weight:600;letter-spacing:.3px;transition:transform .25s,background .25s}
+.closing-cta:hover{background:var(--accent);transform:translateY(-1px);color:#fff}
+.closing-cta svg{width:14px;height:14px}
 
 /* Footer */
-.footer{position:relative;z-index:2;padding:48px 0 28px;border-top:1px solid var(--border)}
-.footer-inner{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;margin-bottom:36px}
-.footer-brand p{font-size:13px;color:var(--text-dim);line-height:1.7;margin-top:14px;max-width:300px}
-.footer-col h4{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:2px;color:var(--text-muted);margin-bottom:14px}
-.footer-col a{display:block;font-size:13px;color:var(--text-dim);margin-bottom:9px;transition:color .3s}
-.footer-col a:hover{color:var(--text)}
-.footer-bottom{padding-top:20px;border-top:1px solid var(--border);font-size:11px;color:var(--text-muted);line-height:1.6}
-@media(max-width:768px){.footer-inner{grid-template-columns:1fr 1fr;gap:28px}.footer-brand{grid-column:1/-1}}
-@media(max-width:500px){
-  .footer{padding:32px 0 16px}
-  .footer-inner{grid-template-columns:1fr 1fr;gap:18px 16px;align-items:start;margin-bottom:18px}
-  .footer-brand{display:none}
-  .footer-col--product{grid-column:1;grid-row:1}
-  .footer-col--contact{grid-column:2;grid-row:1}
-  .footer-bottom{padding-top:12px}
-}
+.footer{position:relative;z-index:2;padding:48px 0 28px;border-top:1px solid var(--border-light);margin-top:32px}
+.footer-inner{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}
+.footer-brand{display:flex;align-items:center;gap:12px}
+.footer-brand img{width:28px;height:28px;border-radius:7px}
+.footer-brand-text{font-size:12px;font-weight:600;letter-spacing:1.4px;text-transform:uppercase;color:var(--text)}
+.footer-meta{font-size:12px;color:var(--text-muted);line-height:1.6}
+.footer-meta a{color:var(--text-dim);transition:color .25s}
+.footer-meta a:hover{color:var(--text)}
+.footer-divider{display:inline-block;margin:0 8px;color:var(--text-muted)}
+.footer-bottom{margin-top:28px;padding-top:18px;border-top:1px solid var(--border-light);font-size:11px;color:var(--text-muted);letter-spacing:.2px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 
-/* Responsive */
-@media(max-width:768px){
-  .hero{padding:90px 20px 28px;min-height:auto}
-  #benefits.section{padding-top:14px}
-  .section{padding:60px 0}
-  .map-section{padding:60px 0 40px}
-  .pricing-section{padding:60px 0}
-  .encrypt-section{padding:60px 0}
-  .cta-section{padding:40px 0}
-  .showcase{padding:60px 0}
-  .stats-section{padding:50px 0}
-}
-/* Мобильная вёрстка: меньше зазоров hero → Security → App; слабее сдвиг reveal (без «уезжания» влево при pinch) */
-@media(max-width:900px){
-  #hero.hero{padding-bottom:10px}
-  .encrypt-section{padding-top:36px!important;padding-bottom:52px!important}
-  .showcase{padding-top:32px!important}
-  .site-reorder-mobile{overflow-x:clip}
-  .reveal-left:not(.visible){transform:translate3d(-18px,0,0)}
-  .reveal-right:not(.visible){transform:translate3d(18px,0,0)}
-}
-
-/* ---------- SHADOWSOCKS A: "Disguise" — wire inspector ---------- */
-.ss-wire-section{position:relative;z-index:2;padding:80px 0;overflow-x:clip}
-.ss-wire-grid{margin-top:40px;display:grid;grid-template-columns:1.05fr 1.1fr;gap:48px;align-items:center}
-.ss-wire-copy h3{font-size:clamp(22px,2.6vw,30px);font-weight:800;letter-spacing:-.02em;line-height:1.22;margin-bottom:16px}
-.ss-wire-copy h3 .accent{color:var(--success)}
-.ss-wire-copy p{font-size:15px;color:var(--text-dim);line-height:1.7;margin-bottom:14px;max-width:480px}
-.ss-wire-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
-.ss-wire-tag{font-family:'JetBrains Mono','SFMono-Regular',ui-monospace,monospace;font-size:11px;letter-spacing:.05em;padding:6px 10px;border-radius:6px;background:rgba(0,210,160,.06);color:var(--success);border:1px solid rgba(0,210,160,.18)}
-.ss-wire{position:relative;border-radius:var(--radius-lg);background:radial-gradient(ellipse at top right,rgba(0,210,160,.08),transparent 55%),linear-gradient(160deg,#070b14 0%,#0a0f1a 60%,#08111a 100%);border:1px solid rgba(0,210,160,.14);overflow:hidden;padding:18px 18px 16px;min-height:340px;box-shadow:0 30px 80px rgba(0,0,0,.45),0 0 0 1px rgba(255,255,255,.02) inset}
-.ss-wire::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0 2px,rgba(255,255,255,.014) 2px 3px);pointer-events:none;mix-blend-mode:overlay}
-.ss-wire-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px;font-family:'JetBrains Mono','SFMono-Regular',ui-monospace,monospace;position:relative;z-index:1}
-.ss-wire-dots{display:flex;gap:6px}
-.ss-wire-dots span{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.14)}
-.ss-wire-dots span:nth-child(1){background:#ff5f56}.ss-wire-dots span:nth-child(2){background:#ffbd2e}.ss-wire-dots span:nth-child(3){background:#27c93f}
-.ss-wire-htitle{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.34)}
-.ss-wire-status{font-size:10px;color:var(--success);display:inline-flex;align-items:center;gap:6px;letter-spacing:.05em}
-.ss-wire-status::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--success);box-shadow:0 0 8px var(--success);animation:ssDotPulse 1.6s ease-in-out infinite}
-@keyframes ssDotPulse{0%,100%{opacity:.55}50%{opacity:1}}
-.ss-wire-rows{display:flex;flex-direction:column;gap:7px;font-family:'JetBrains Mono','SFMono-Regular',ui-monospace,monospace;font-size:11.5px;line-height:1.5;position:relative;z-index:1}
-.ss-wire-row{display:grid;grid-template-columns:54px 1fr 64px;gap:10px;align-items:center;padding:7px 10px;border-radius:8px;background:rgba(255,255,255,.018);border:1px solid rgba(255,255,255,.03);overflow:hidden}
-.ss-wire-time{color:rgba(255,255,255,.32);font-size:10.5px;font-variant-numeric:tabular-nums}
-.ss-wire-stream{color:rgba(255,255,255,.46);overflow:hidden;white-space:nowrap;letter-spacing:.02em;position:relative}
-.ss-wire-stream span{display:inline-block;padding-right:30px;animation:ssStreamShift 9s linear infinite}
-.ss-wire-row:nth-child(2) .ss-wire-stream span{animation-duration:11s;animation-delay:-2s}
-.ss-wire-row:nth-child(3) .ss-wire-stream span{animation-duration:13s;animation-delay:-5s}
-.ss-wire-row:nth-child(4) .ss-wire-stream span{animation-duration:10s;animation-delay:-3.5s}
-.ss-wire-row:nth-child(5) .ss-wire-stream span{animation-duration:12s;animation-delay:-7s}
-@keyframes ssStreamShift{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.ss-wire-tagm{font-size:9.5px;font-weight:700;letter-spacing:.08em;padding:3px 7px;border-radius:5px;text-transform:uppercase;text-align:center;justify-self:end}
-.ss-wire-tagm--https{background:rgba(0,210,160,.14);color:var(--success);box-shadow:inset 0 0 0 1px rgba(0,210,160,.22)}
-.ss-wire-tagm--unknown{background:rgba(255,255,255,.05);color:rgba(255,255,255,.45);box-shadow:inset 0 0 0 1px rgba(255,255,255,.06)}
-.ss-wire-foot{margin-top:14px;display:flex;justify-content:space-between;align-items:center;font-family:'JetBrains Mono','SFMono-Regular',ui-monospace,monospace;font-size:10px;color:rgba(255,255,255,.4);letter-spacing:.08em;text-transform:uppercase;position:relative;z-index:1}
-.ss-wire-verdict{color:var(--success);font-weight:700;display:inline-flex;align-items:center;gap:6px}
-.ss-wire-verdict svg{width:11px;height:11px}
-@media(max-width:900px){.ss-wire-grid{grid-template-columns:1fr;gap:30px}.ss-wire{min-height:300px}.ss-wire-row{grid-template-columns:48px 1fr 56px}}
-
-@media(max-width:600px){
-  .ss-wire-section{padding:56px 0}
-}
-
-/* shared mobile/desktop visibility helpers for the SS block */
-.ss-mob-only{display:none}
-@media(max-width:900px){
-  .ss-desk-only{display:none}
-  .ss-mob-only{display:block}
-  .ss-wire-tag--hide-on-mobile{display:none!important}
+/* Mobile spacing */
+@media(max-width:740px){
+  .hero{padding:120px 0 56px}
+  .section{padding:52px 0}
+  .container{padding:0 22px}
 }
 </style>
 </head>
 <body>
 
-<!-- Background -->
-<div class="bg-glow"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div></div>
-<canvas id="particles"></canvas>
+<div class="bg-canvas" aria-hidden="true">
+  <div class="bg-shape s1">
+    <svg viewBox="0 0 100 100" preserveAspectRatio="none">
+      <polygon points="50,5 93,28 93,72 50,95 7,72 7,28"/>
+      <polygon points="50,18 80,34 80,66 50,82 20,66 20,34"/>
+    </svg>
+  </div>
+  <div class="bg-shape s2 tint-teal">
+    <svg viewBox="0 0 100 100" preserveAspectRatio="none">
+      <circle cx="50" cy="50" r="45"/>
+      <polygon points="50,12 76,30 76,60 50,78 24,60 24,30"/>
+    </svg>
+  </div>
+  <div class="bg-shape s3">
+    <svg viewBox="0 0 100 100" preserveAspectRatio="none">
+      <rect x="22" y="22" width="56" height="56" transform="rotate(15 50 50)"/>
+      <rect x="14" y="14" width="72" height="72" transform="rotate(-15 50 50)"/>
+      <circle cx="50" cy="50" r="28"/>
+    </svg>
+  </div>
+  <div class="bg-shape s4 tint-deep">
+    <svg viewBox="0 0 100 100" preserveAspectRatio="none">
+      <polygon points="50,8 92,84 8,84"/>
+      <polygon points="50,32 76,76 24,76"/>
+    </svg>
+  </div>
+  <div class="bg-shape s5">
+    <svg viewBox="0 0 100 100" preserveAspectRatio="none">
+      <polygon points="29,5 71,5 95,29 95,71 71,95 29,95 5,71 5,29"/>
+      <circle cx="50" cy="50" r="24"/>
+    </svg>
+  </div>
+  <div class="bg-shape s6 tint-teal">
+    <svg viewBox="0 0 100 100" preserveAspectRatio="none">
+      <polygon points="50,8 61,38 92,38 67,57 76,88 50,69 24,88 33,57 8,38 39,38"/>
+    </svg>
+  </div>
+</div>
+<div class="bg-wash" aria-hidden="true"></div>
 
-<!-- Nav -->
 <nav class="nav" id="nav">
   <div class="nav-inner">
     <a href="#" class="nav-logo">
-      <span class="nav-logo-mark"><img src="assets/logo.png" alt="Marshall VPN"></span>
-      <span class="nav-logo-text">Marshall</span>
+      <div class="nav-logo-mark"><img src="assets/logo.png" alt=""></div>
+      <span class="nav-logo-text">Marshall Relay</span>
     </a>
     <div class="nav-links">
-      <button class="nav-cta" onclick="smoothScrollTo('#cta')" data-en="Get Started" data-ru="Начать">Get Started</button>
-      <button class="nav-lang" onclick="toggleLang()" id="langBtn">RU</button>
+      <a href="#manifesto">Manifesto</a>
+      <a href="#principles">Principles</a>
+      <a href="#focus">Focus</a>
+      <a href="#governance">Governance</a>
+      <a href="#company">Company</a>
     </div>
-    <div class="nav-mobile-right">
-      <button type="button" class="nav-cta" onclick="smoothScrollTo('#cta')" data-en="Get Started" data-ru="Начать">Get Started</button>
-      <button class="nav-mobile-lang" onclick="toggleLang()" id="langBtnMobile">RU</button>
-    </div>
+    <a href="mailto:support@appmarshall.com" class="nav-cta">Get in touch</a>
   </div>
 </nav>
 
-<!-- ============ BLOCK 1: HERO (desktop: classic 2-col | mobile: phone + tiles) ============ -->
-<section class="hero" id="hero">
-  <div class="hero-layout hero-layout--desktop">
-    <div class="hero-inner hero-inner--classic">
-      <div class="hero-content">
-        <h1 data-en="Your Connection.<br><span class='gradient-text'>Your Rules.</span>" data-ru="Ваш интернет.<br><span class='gradient-text'>Ваши правила.</span>">Your Connection.<br><span class="gradient-text">Your Rules.</span></h1>
-        <p data-en="Fast, private connectivity for iOS and Android. A modern privacy app with global servers, end-to-end encryption, and 30 days free — no credit card required." data-ru="Быстрое и приватное соединение для iOS и Android. Современное privacy-приложение: глобальная серверная сеть, end-to-end шифрование, 30 дней бесплатно — без привязки карты.">Fast, private connectivity for iOS and Android. A modern privacy app with global servers, end-to-end encryption, and 30 days free — no credit card required.</p>
-        <div class="hero-actions hero-actions--split">
-          <div class="hero-download-row">
-            <button type="button" class="btn-primary" onclick="openIosComingSoonModal()">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" preserveAspectRatio="xMidYMid meet"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-              <span data-en="Download for iOS" data-ru="Скачать для iOS">Download for iOS</span>
-            </button>
-            <button type="button" class="btn-primary" onclick="window.open('https://play.google.com/apps/testing/com.marshallvpn.app','_blank','noopener')">
-              <svg class="icon-android" width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor" aria-hidden="true" focusable="false"><path d="M18.4395 5.5586c-.675 1.1664-1.352 2.3318-2.0274 3.498-.0366-.0155-.0742-.0286-.1113-.043-1.8249-.6957-3.484-.8-4.42-.787-1.8551.0185-3.3544.4643-4.2597.8203-.084-.1494-1.7526-3.021-2.0215-3.4864a1.1451 1.1451 0 0 0-.1406-.1914c-.3312-.364-.9054-.4859-1.379-.203-.475.282-.7136.9361-.3886 1.5019 1.9466 3.3696-.0966-.2158 1.9473 3.3593.0172.031-.4946.2642-1.3926 1.0177C2.8987 12.176.452 14.772 0 18.9902h24c-.119-1.1108-.3686-2.099-.7461-3.0683-.7438-1.9118-1.8435-3.2928-2.7402-4.1836a12.1048 12.1048 0 0 0-2.1309-1.6875c.6594-1.122 1.312-2.2559 1.9649-3.3848.2077-.3615.1886-.7956-.0079-1.1191a1.1001 1.1001 0 0 0-.8515-.5332c-.5225-.0536-.9392.3128-1.0488.5449zm-.0391 8.461c.3944.5926.324 1.3306-.1563 1.6503-.4799.3197-1.188.0985-1.582-.4941-.3944-.5927-.324-1.3307.1563-1.6504.4727-.315 1.1812-.1086 1.582.4941zM7.207 13.5273c.4803.3197.5506 1.0577.1563 1.6504-.394.5926-1.1038.8138-1.584.4941-.48-.3197-.5503-1.0577-.1563-1.6504.4008-.6021 1.1087-.8106 1.584-.4941z"/></svg>
-              <span data-en="Download for Android" data-ru="Скачать для Android">Download for Android</span>
-            </button>
-          </div>
-          <a href="#stats" class="btn-secondary hero-learn-more">
-            <span data-en="Learn More" data-ru="Узнать больше">Learn More</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17l9.2-9.2M17 17V7.8H7.8"/></svg>
-          </a>
-        </div>
-      </div>
-      <div class="hero-visual">
-        <div class="phone-mockup">
-          <div class="phone-frame">
-            <img src="assets/screen-import.png" alt="Marshall VPN Connected" loading="eager">
-          </div>
-          <div class="phone-glow"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="hero-layout hero-layout--mobile">
-    <div class="hero-inner">
-      <div class="hero-top">
-        <h1 data-en="Your Connection.<br><span class='gradient-text'>Your Rules.</span>" data-ru="Ваш интернет.<br><span class='gradient-text'>Ваши правила.</span>">Your Connection.<br><span class="gradient-text">Your Rules.</span></h1>
-      </div>
-      <div class="hero-mobile-below">
-        <div class="hero-mobile-left">
-          <div class="hero-mobile-copy-block">
-            <div class="hero-benefits reveal">
-              <h2 class="hero-benefits-title" data-en="Built for speed,<br><span class='gradient-text-accent'>designed for privacy.</span>" data-ru="Создан для скорости,<br><span class='gradient-text-accent'>спроектирован для приватности.</span>">Built for speed,<br><span class="gradient-text-accent">designed for privacy.</span></h2>
-            </div>
-            <div class="benefits-grid hero-benefits-grid hero-benefits-strip reveal">
-              <div class="benefit-card">
-                <div class="benefit-icon benefit-icon-purple">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-                </div>
-                <div class="benefit-number gradient-text" data-en="10 Gbps" data-ru="10 Гбит/с">10 Gbps</div>
-                <div class="benefit-label" data-en="Speed" data-ru="скорость">Speed</div>
-              </div>
-              <div class="benefit-card">
-                <div class="benefit-icon benefit-icon-green">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                </div>
-                <div class="benefit-number gradient-text">TLS 1.3</div>
-                <div class="benefit-label" data-en="Security" data-ru="безопасность">Security</div>
-              </div>
-              <div class="benefit-card">
-                <div class="benefit-icon benefit-icon-blue">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
-                </div>
-                <div class="benefit-number gradient-text" data-en="No log" data-ru="No log">No log</div>
-                <div class="benefit-label" data-en="Privacy" data-ru="приватность">Privacy</div>
-              </div>
-              <div class="benefit-card">
-                <div class="benefit-icon benefit-icon-amber">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                </div>
-                <div class="benefit-number gradient-text">24/7</div>
-                <div class="benefit-label" data-en="Support" data-ru="поддержка">Support</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="hero-visual hero-visual--mobile">
-          <div class="phone-mockup phone-mockup--compact">
-            <div class="phone-frame">
-              <img src="assets/screen-import.png" alt="Marshall VPN Connected" loading="eager">
-            </div>
-            <div class="phone-glow"></div>
-          </div>
-        </div>
-      </div>
-      <div class="hero-actions hero-mobile-actions">
-        <div class="hero-mobile-download-row">
-          <button type="button" class="btn-primary" onclick="openIosComingSoonModal()">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" preserveAspectRatio="xMidYMid meet"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-            <span data-en="for iOS" data-ru="для iOS">for iOS</span>
-          </button>
-          <button type="button" class="btn-primary" onclick="window.open('https://play.google.com/apps/testing/com.marshallvpn.app','_blank','noopener')">
-            <svg class="icon-android" width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor" aria-hidden="true" focusable="false"><path d="M18.4395 5.5586c-.675 1.1664-1.352 2.3318-2.0274 3.498-.0366-.0155-.0742-.0286-.1113-.043-1.8249-.6957-3.484-.8-4.42-.787-1.8551.0185-3.3544.4643-4.2597.8203-.084-.1494-1.7526-3.021-2.0215-3.4864a1.1451 1.1451 0 0 0-.1406-.1914c-.3312-.364-.9054-.4859-1.379-.203-.475.282-.7136.9361-.3886 1.5019 1.9466 3.3696-.0966-.2158 1.9473 3.3593.0172.031-.4946.2642-1.3926 1.0177C2.8987 12.176.452 14.772 0 18.9902h24c-.119-1.1108-.3686-2.099-.7461-3.0683-.7438-1.9118-1.8435-3.2928-2.7402-4.1836a12.1048 12.1048 0 0 0-2.1309-1.6875c.6594-1.122 1.312-2.2559 1.9649-3.3848.2077-.3615.1886-.7956-.0079-1.1191a1.1001 1.1001 0 0 0-.8515-.5332c-.5225-.0536-.9392.3128-1.0488.5449zm-.0391 8.461c.3944.5926.324 1.3306-.1563 1.6503-.4799.3197-1.188.0985-1.582-.4941-.3944-.5927-.324-1.3307.1563-1.6504.4727-.315 1.1812-.1086 1.582.4941zM7.207 13.5273c.4803.3197.5506 1.0577.1563 1.6504-.394.5926-1.1038.8138-1.584.4941-.48-.3197-.5503-1.0577-.1563-1.6504.4008-.6021 1.1087-.8106 1.584-.4941z"/></svg>
-            <span data-en="for Android" data-ru="для Android">for Android</span>
-          </button>
-        </div>
-        <a href="#security" class="btn-secondary">
-          <span data-en="Learn More" data-ru="Узнать больше">Learn More</span>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17l9.2-9.2M17 17V7.8H7.8"/></svg>
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="site-reorder-mobile">
-<!-- ============ BLOCK 2: ONLINE SECURITY STATS (context before technical protocol block) ============ -->
-<section class="stats-section" id="stats">
+<header class="hero">
   <div class="container">
-    <div style="text-align:center" class="reveal">
-      <div class="section-label stats-label-desktop" style="justify-content:center" data-en="Online Security" data-ru="Онлайн-безопасность">Online Security</div>
-      <div class="section-label stats-label-mobile" style="justify-content:center" data-en="Privacy snapshot" data-ru="Срез приватности">Privacy snapshot</div>
-      <h2 class="section-title" style="margin-left:auto;margin-right:auto;max-width:680px" data-en="The internet is more vulnerable<br><span class='gradient-text-accent'>than you think.</span>" data-ru="Интернет уязвимее,<br><span class='gradient-text-accent'>чем вы думаете.</span>">The internet is more vulnerable<br><span class="gradient-text-accent">than you think.</span></h2>
-      <p class="section-desc" style="margin-left:auto;margin-right:auto;text-align:center" data-en="Every day, millions of people expose their personal data without realizing it. Modern privacy protection is no longer optional — it's essential." data-ru="Каждый день миллионы людей раскрывают свои личные данные, сами того не подозревая. Современная защита приватности — это уже не опция, а необходимость.">Every day, millions of people expose their personal data without realizing it. Modern privacy protection is no longer optional — it's essential.</p>
+    <div class="reveal">
+      <span class="hero-eyebrow">
+        <span class="hero-eyebrow-pulse"></span>
+        Hong Kong S.A.R. &middot; Incorporated 16 April 2026
+      </span>
     </div>
-    <div class="stats-grid">
-      <div class="stat-card stat-card--scroll stat-card--from-left">
-        <div class="stat-number gradient-text"><span class="counter" data-target="73">0</span><span class="stat-suffix">%</span></div>
-        <div class="stat-label" data-en="have already faced an online attack or fraud" data-ru="уже сталкивались с онлайн-атакой или мошенничеством">have already faced an online attack or fraud</div>
-      </div>
-      <div class="stat-card stat-card--scroll stat-card--from-right">
-        <div class="stat-number gradient-text"><span class="counter" data-target="80">0</span><span class="stat-suffix">%</span></div>
-        <div class="stat-label" data-en="of users are concerned about their online privacy" data-ru="пользователей обеспокоены своей конфиденциальностью в сети">of users are concerned about their online privacy</div>
-      </div>
-      <div class="stat-card stat-card--scroll stat-card--from-left">
-        <div class="stat-number gradient-text"><span class="counter" data-target="43">0</span><span class="stat-suffix">%</span></div>
-        <div class="stat-label" data-en="of cyberattacks target individuals on public networks" data-ru="кибератак нацелены на пользователей публичных сетей">of cyberattacks target individuals on public networks</div>
-      </div>
-      <div class="stat-card stat-card--scroll stat-card--from-right">
-        <div class="stat-number gradient-text"><span class="counter" data-target="29">0</span><span class="stat-suffix">%</span></div>
-        <div class="stat-label" data-en="have lost access to a personal account at least once" data-ru="хотя бы раз теряли доступ к личному аккаунту">have lost access to a personal account at least once</div>
-      </div>
-    </div>
+    <h1 class="reveal delay-1">
+      A small technology company<br>
+      building software with <em>quiet</em><br>
+      <span class="accent">care for its users.</span>
+    </h1>
+    <p class="hero-sub reveal delay-2">
+      Marshall Relay Limited is a Hong Kong incorporated company developing privacy-first consumer software. We work in service of one idea — that the people who use technology deserve tools designed in their interest, not against it.
+    </p>
   </div>
-</section>
+</header>
 
-<!-- ============ BLOCK 3: PROTOCOL COMPARISON ============ -->
-<section class="section proto-section" id="benefits">
+<section id="manifesto" class="section">
   <div class="container">
-    <div class="proto-head-desktop reveal" style="text-align:center">
-      <div class="section-label" style="justify-content:center" data-en="Protocol" data-ru="Протокол">Protocol</div>
-      <h2 class="section-title" style="margin-left:auto;margin-right:auto;max-width:720px" data-en="<span class='gradient-text-accent'>Marshall</span> encryption stack — modern building blocks" data-ru="Стек шифрования <span class='gradient-text-accent'>Marshall</span> — современные компоненты"><span class="gradient-text-accent">Marshall</span> encryption stack — modern building blocks</h2>
-      <p class="section-desc" style="margin:12px auto 0;max-width:560px;text-align:center" data-en="Same job — encrypt your traffic. These rows compare what each modern encryption stack offers as a transport layer." data-ru="Задача одна — шифровать трафик. Сравнение того, что каждый современный стек шифрования даёт на транспортном уровне.">Same job — encrypt your traffic. These rows compare what each modern encryption stack offers as a transport layer.</p>
-    </div>
-    <div class="proto-matrix proto-desktop-only reveal-scale">
-      <div class="proto-cols">
-        <div class="proto-col-header" data-en="Feature" data-ru="Критерий">Feature</div>
-        <div class="proto-col-header proto-col-header--marshall">VLESS + Reality</div>
-        <div class="proto-col-header proto-col-header--wg">WireGuard</div>
-        <div class="proto-col-header proto-col-header--ovpn">OpenVPN</div>
-        <div class="proto-col-header proto-col-header--ike">IKEv2</div>
-      </div>
-      <div class="proto-body">
-        <div class="proto-row">
-          <div class="proto-cell proto-cell--title">
-            <div class="proto-cell-icon" style="background:rgba(108,92,231,.12);color:var(--accent-light)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/></svg></div>
-            <span data-en="HTTPS-style tunnel" data-ru="Туннель как HTTPS">HTTPS-style tunnel</span>
-          </div>
-          <div class="proto-compare-row">
-            <div class="proto-pair proto-pair--marshall"><span class="proto-pair-lbl">VLESS + Reality</span><div class="proto-cell proto-cell--marshall"><span class="proto-mark proto-mark--yes" title="Yes">✓</span></div></div>
-            <div class="proto-pair proto-pair--wg"><span class="proto-pair-lbl">WireGuard</span><div class="proto-cell"><span class="proto-mark proto-mark--no" title="No">✕</span></div></div>
-            <div class="proto-pair proto-pair--ovpn"><span class="proto-pair-lbl">OpenVPN</span><div class="proto-cell"><span class="proto-mark proto-mark--no" title="No">✕</span></div></div>
-            <div class="proto-pair proto-pair--ike"><span class="proto-pair-lbl">IKEv2</span><div class="proto-cell"><span class="proto-mark proto-mark--no" title="No">✕</span></div></div>
-          </div>
-        </div>
-        <div class="proto-row">
-          <div class="proto-cell proto-cell--title">
-            <div class="proto-cell-icon" style="background:rgba(168,85,247,.12);color:#c084fc"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-            <span data-en="Modern TLS handshake" data-ru="Современный TLS-handshake">Modern TLS handshake</span>
-          </div>
-          <div class="proto-compare-row">
-            <div class="proto-pair proto-pair--marshall"><span class="proto-pair-lbl">VLESS + Reality</span><div class="proto-cell proto-cell--marshall"><span class="proto-mark proto-mark--yes" title="Yes">✓</span></div></div>
-            <div class="proto-pair proto-pair--wg"><span class="proto-pair-lbl">WireGuard</span><div class="proto-cell"><span class="proto-mark proto-mark--no" title="No">✕</span></div></div>
-            <div class="proto-pair proto-pair--ovpn"><span class="proto-pair-lbl">OpenVPN</span><div class="proto-cell"><span class="proto-mark proto-mark--no" title="No">✕</span></div></div>
-            <div class="proto-pair proto-pair--ike"><span class="proto-pair-lbl">IKEv2</span><div class="proto-cell"><span class="proto-mark proto-mark--no" title="No">✕</span></div></div>
-          </div>
-        </div>
-        <div class="proto-row">
-          <div class="proto-cell proto-cell--title">
-            <div class="proto-cell-icon" style="background:rgba(56,189,248,.1);color:#38bdf8"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div>
-            <span data-en="Standard TLS fingerprint" data-ru="Стандартный TLS-отпечаток">Standard TLS fingerprint</span>
-          </div>
-          <div class="proto-compare-row">
-            <div class="proto-pair proto-pair--marshall"><span class="proto-pair-lbl">VLESS + Reality</span><div class="proto-cell proto-cell--marshall"><span class="proto-mark proto-mark--yes" title="Yes">✓</span></div></div>
-            <div class="proto-pair proto-pair--wg"><span class="proto-pair-lbl">WireGuard</span><div class="proto-cell"><span class="proto-mark proto-mark--no" title="No">✕</span></div></div>
-            <div class="proto-pair proto-pair--ovpn"><span class="proto-pair-lbl">OpenVPN</span><div class="proto-cell"><span class="proto-mark proto-mark--no" title="No">✕</span></div></div>
-            <div class="proto-pair proto-pair--ike"><span class="proto-pair-lbl">IKEv2</span><div class="proto-cell"><span class="proto-mark proto-mark--no" title="No">✕</span></div></div>
-          </div>
-        </div>
-        <div class="proto-row">
-          <div class="proto-cell proto-cell--title">
-            <div class="proto-cell-icon" style="background:rgba(251,191,36,.1);color:#fbbf24"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
-            <span data-en="Speed for streaming &amp; large downloads" data-ru="Скорость для стриминга и больших файлов">Speed for streaming &amp; large downloads</span>
-          </div>
-          <div class="proto-compare-row">
-            <div class="proto-pair proto-pair--marshall"><span class="proto-pair-lbl">VLESS + Reality</span><div class="proto-cell proto-cell--marshall"><span class="proto-mark proto-mark--yes" title="Yes">✓</span></div></div>
-            <div class="proto-pair proto-pair--wg"><span class="proto-pair-lbl">WireGuard</span><div class="proto-cell"><span class="proto-mark proto-mark--no" title="No">✕</span></div></div>
-            <div class="proto-pair proto-pair--ovpn"><span class="proto-pair-lbl">OpenVPN</span><div class="proto-cell"><span class="proto-mark proto-mark--no" title="No">✕</span></div></div>
-            <div class="proto-pair proto-pair--ike"><span class="proto-pair-lbl">IKEv2</span><div class="proto-cell"><span class="proto-mark proto-mark--no" title="No">✕</span></div></div>
-          </div>
-        </div>
-        <div class="proto-row">
-          <div class="proto-cell proto-cell--title">
-            <div class="proto-cell-icon" style="background:rgba(0,210,160,.1);color:var(--success)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M12 18v-6"/><path d="M9 15l3-3 3 3"/></svg></div>
-            <span data-en="Open-source client" data-ru="Открытый код клиента">Open-source client</span>
-          </div>
-          <div class="proto-compare-row">
-            <div class="proto-pair proto-pair--marshall"><span class="proto-pair-lbl">VLESS + Reality</span><div class="proto-cell proto-cell--marshall"><span class="proto-mark proto-mark--yes" title="Yes">✓</span></div></div>
-            <div class="proto-pair proto-pair--wg"><span class="proto-pair-lbl">WireGuard</span><div class="proto-cell"><span class="proto-mark proto-mark--yes" title="Yes">✓</span></div></div>
-            <div class="proto-pair proto-pair--ovpn"><span class="proto-pair-lbl">OpenVPN</span><div class="proto-cell"><span class="proto-mark proto-mark--yes" title="Yes">✓</span></div></div>
-            <div class="proto-pair proto-pair--ike"><span class="proto-pair-lbl">IKEv2</span><div class="proto-cell"><span class="proto-mark proto-mark--no" title="No">✕</span></div></div>
-          </div>
-        </div>
+    <div class="bento">
+      <div class="bento-manifesto reveal">
+        <span class="bento-manifesto-mark">&#8220;</span>
+        <p>
+          Our work is grounded in a simple conviction: good software is, fundamentally, an act of <span class="em-serif">care</span> for the people who use it. We build with privacy as a foundation rather than a feature, and we hold ourselves to standards we'd want any product in our lives to meet &mdash; quiet, reliable, and aligned with the user's interests.
+        </p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ BLOCK: SECURITY (after stats) ============ -->
-<section class="encrypt-section" id="security">
+<section id="principles" class="section">
   <div class="container">
-    <div style="text-align:center" class="reveal">
-      <div class="section-label" style="justify-content:center" data-en="Security" data-ru="Безопасность">Security</div>
-      <h2 class="section-title" style="margin-left:auto;margin-right:auto;max-width:680px" data-en="Your traffic, fully<br><span class='gradient-text-accent'>encrypted.</span>" data-ru="Ваш трафик полностью<br><span class='gradient-text-accent'>зашифрован.</span>">Your traffic, fully<br><span class="gradient-text-accent">encrypted.</span></h2>
-      <p class="section-desc" style="margin-left:auto;margin-right:auto;text-align:center" data-en="Your tunnel uses industry-standard building blocks — details below." data-ru="Ваш туннель строится на проверенных технологиях — подробности ниже.">Your tunnel uses industry-standard building blocks — details below.</p>
-    </div>
-    <div class="encrypt-card reveal-scale">
-      <div class="encrypt-visual">
-        <div class="encrypt-matrix-wrap">
-          <canvas class="encrypt-matrix-canvas" id="encryptMatrixCanvas" aria-hidden="true"></canvas>
-          <div class="encrypt-matrix-ui">
-            <span class="encrypt-matrix-node encrypt-matrix-node--left" data-en="Your Device" data-ru="Телефон">Your Device</span>
-            <span class="encrypt-matrix-node encrypt-matrix-node--right" data-en="Internet" data-ru="Интернет">Internet</span>
-          </div>
-          <div class="encrypt-matrix-core">
-            <p class="encrypt-matrix-title gradient-text" data-en="TLS 1.3 + XTLS · Vision" data-ru="TLS 1.3 + XTLS · Vision">TLS 1.3 + XTLS · Vision</p>
-            <p class="encrypt-matrix-sub" data-en="End-to-end" data-ru="Сквозное шифрование">End-to-end</p>
-          </div>
-        </div>
+    <div class="section-head reveal">
+      <div>
+        <span class="section-eyebrow">Principles</span>
+        <h2 class="section-title">Four ideas that shape how we work.</h2>
       </div>
-      <div class="encrypt-grid">
-        <div class="encrypt-item">
-          <div class="encrypt-item-icon">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          </div>
-          <div>
-            <h4 data-en="No Logs. Ever." data-ru="Без логов. Никогда.">No Logs. Ever.</h4>
-            <p data-en="Zero analytics, zero tracking. We don't record your activity, traffic, or connections." data-ru="Ноль аналитики, ноль отслеживания. Мы не записываем вашу активность, трафик или подключения.">Zero analytics, zero tracking. We don't record your activity, traffic, or connections.</p>
-          </div>
+      <p class="section-side">These aren't marketing values. They're commitments we make to ourselves about the work we ship and the people we ship it for.</p>
+    </div>
+    <div class="bento">
+      <div class="bento-card bento-principle reveal">
+        <span class="bento-card-num">01 &middot; Foundation</span>
+        <div class="bento-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         </div>
-        <div class="encrypt-item">
-          <div class="encrypt-item-icon">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-          </div>
-          <div>
-            <h4 data-en="VLESS · Reality · TLS 1.3" data-ru="VLESS · Reality · TLS 1.3">VLESS · Reality · TLS 1.3</h4>
-            <p data-en="Marshall tunnels traffic with VLESS and Reality, wrapped in TLS 1.3. Network privacy is preserved by using a standard HTTPS-like profile, with strong end-to-end encryption between client and server." data-ru="Marshall строит туннель на VLESS и Reality в оболочке TLS 1.3. Сетевая приватность достигается за счёт стандартного HTTPS-подобного профиля и сильного end-to-end шифрования между клиентом и сервером.">Marshall tunnels traffic with VLESS and Reality, wrapped in TLS 1.3. Network privacy is preserved by using a standard HTTPS-like profile, with strong end-to-end encryption between client and server.</p>
-          </div>
+        <h3 class="bento-card-title">Privacy as foundation</h3>
+        <p class="bento-card-text">We engineer for privacy from the first commit. Not as a feature added later for marketing, but as a structural property of how the software is built.</p>
+      </div>
+      <div class="bento-card bento-principle reveal delay-1">
+        <span class="bento-card-num">02 &middot; Alignment</span>
+        <div class="bento-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0 1 16 0v1"/></svg>
         </div>
-        <div class="encrypt-item">
-          <div class="encrypt-item-icon">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-          </div>
-          <div>
-            <h4 data-en="iOS Keychain" data-ru="iOS Keychain">iOS Keychain</h4>
-            <p data-en="Credentials stored in Apple's hardware-encrypted keychain. Even we can't access them." data-ru="Учётные данные хранятся в аппаратно зашифрованном хранилище Apple. Даже мы не имеем к ним доступа.">Credentials stored in Apple's hardware-encrypted keychain. Even we can't access them.</p>
-          </div>
+        <h3 class="bento-card-title">User-aligned, always</h3>
+        <p class="bento-card-text">The people who use our products are not our product. We don't sell their data, profile their behaviour, or treat them as a metric to be optimised against.</p>
+      </div>
+      <div class="bento-card bento-principle reveal">
+        <span class="bento-card-num">03 &middot; Craft</span>
+        <div class="bento-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6"/><path d="M10 20H4v-6"/><path d="M20 4 14 10"/><path d="m4 20 6-6"/></svg>
         </div>
-        <div class="encrypt-item">
-          <div class="encrypt-item-icon">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
-          </div>
-          <div>
-            <h4 data-en="Open-Source Engine" data-ru="Открытый движок">Open-Source Engine</h4>
-            <p data-en="Built on sing-box — fully open-source, community-audited, and transparent." data-ru="Построен на sing-box — полностью открытый, проверенный сообществом и прозрачный.">Built on sing-box — fully open-source, community-audited, and transparent.</p>
-          </div>
+        <h3 class="bento-card-title">Engineering integrity</h3>
+        <p class="bento-card-text">We hold ourselves to standards that exceed what's required. We ship work we'd be comfortable defending in any room, and we revisit our own decisions often.</p>
+      </div>
+      <div class="bento-card bento-principle reveal delay-1">
+        <span class="bento-card-num">04 &middot; Tone</span>
+        <div class="bento-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9"/><path d="M21 12a9 9 0 0 1-9 9"/><circle cx="12" cy="12" r="3"/></svg>
         </div>
+        <h3 class="bento-card-title">Quiet excellence</h3>
+        <p class="bento-card-text">We work without noise. We care about details that aren't immediately visible. We let the product, not the marketing, speak for the company.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ BLOCK 4: APP SHOWCASE ============ -->
-<section class="showcase" id="app">
+<section id="focus" class="section">
   <div class="container">
-    <div class="showcase-mobile-layout">
-      <div class="showcase-m-head reveal">
-        <div class="section-label" data-en="The App" data-ru="Приложение">The App</div>
-        <h2 class="section-title" data-en="Everything you need.<br><span class='gradient-text-accent'>Nothing you don't.</span>" data-ru="Всё, что нужно.<br><span class='gradient-text-accent'>Ничего лишнего.</span>">Everything you need.<br><span class="gradient-text-accent">Nothing you don't.</span></h2>
-        <p class="section-desc" style="margin-bottom:0" data-en="A clean, modern interface built for iOS. No clutter, no learning curve — just a fast, reliable, privacy-first experience." data-ru="Чистый, современный интерфейс, созданный для iOS. Без лишнего, без сложностей — просто быстро, надёжно и приватно.">A clean, modern interface built for iOS. No clutter, no learning curve — just a fast, reliable, privacy-first experience.</p>
+    <div class="section-head reveal">
+      <div>
+        <span class="section-eyebrow">Focus</span>
+        <h2 class="section-title">What we work on.</h2>
       </div>
-      <div class="showcase-m-body">
-        <div class="showcase-m-phone">
-          <div class="phone-mockup phone-mockup--showcase">
-            <div class="phone-frame">
-              <img src="assets/screen-home.png" alt="Marshall VPN app" loading="lazy" onerror="this.src='assets/screen-import.png'">
-            </div>
-            <div class="phone-glow"></div>
-          </div>
-        </div>
-        <div class="showcase-m-features-wrap">
-          <div class="showcase-m-features">
-            <div class="showcase-m-feature reveal-left delay-1">
-              <div class="showcase-feature-icon">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-              </div>
-              <div class="showcase-m-feature-copy">
-                <h4 data-en="Smart Server Selection" data-ru="Умный выбор сервера">Smart Server Selection</h4>
-                <p data-en="Auto mode picks the fastest server. Or choose manually with real-time ping." data-ru="Авто-режим выбирает самый быстрый сервер.">Auto mode picks the fastest server. Or choose manually with real-time ping.</p>
-              </div>
-            </div>
-            <div class="showcase-m-feature reveal-left delay-2">
-              <div class="showcase-feature-icon" style="background:rgba(0,210,160,.1);color:var(--success)">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
-              </div>
-              <div class="showcase-m-feature-copy">
-                <h4 data-en="Service Checker" data-ru="Проверка сервисов">Service Checker</h4>
-                <p data-en="Instantly verify your connection quality to streaming, social, and AI services." data-ru="Мгновенная проверка качества соединения со стриминговыми, социальными и AI-сервисами.">Instantly verify your connection quality to streaming, social, and AI services.</p>
-              </div>
-            </div>
-            <div class="showcase-m-feature reveal-left delay-3">
-              <div class="showcase-feature-icon" style="background:rgba(56,189,248,.1);color:#38bdf8">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
-              </div>
-              <div class="showcase-m-feature-copy">
-                <h4 data-en="Multi-Protocol Support" data-ru="Мультипротокольность">Multi-Protocol Support</h4>
-                <p data-en="VLESS, VMess, Trojan, Shadowsocks — works with any modern configuration." data-ru="VLESS, VMess, Trojan, Shadowsocks — работает с любой конфигурацией.">VLESS, VMess, Trojan, Shadowsocks — works with any modern configuration.</p>
-              </div>
-            </div>
-            <div class="showcase-m-feature reveal-left delay-4">
-              <div class="showcase-feature-icon" style="background:rgba(251,191,36,.1);color:#fbbf24">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M12 18v-6"/><path d="M9 15l3-3 3 3"/></svg>
-              </div>
-              <div class="showcase-m-feature-copy">
-                <h4 data-en="Import Your Own Servers" data-ru="Импорт своих серверов">Import Your Own Servers</h4>
-                <p data-en="Paste any subscription URL or config — use Marshall as a client for your own infrastructure." data-ru="Ссылка подписки или конфиг — Marshall как клиент для вашей инфраструктуры.">Paste any subscription URL or config — use Marshall as a client for your own infrastructure.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <p class="section-side">We focus narrowly. Our work centres on consumer software for individual users, distributed through reputable platforms.</p>
     </div>
-    <div class="showcase-desktop-block">
-    <div class="showcase-inner">
-      <div class="showcase-desktop-phone reveal-scale">
-        <div class="phone-mockup phone-mockup--desktop-app">
-          <div class="phone-frame">
-            <img src="assets/screen-home.png" alt="Marshall VPN app" loading="lazy" width="560" height="1218" onerror="this.src='assets/screen-import.png'">
-          </div>
-          <div class="phone-glow"></div>
-        </div>
+    <div class="focus-grid">
+      <div class="focus-card reveal">
+        <div class="focus-marker">01</div>
+        <h3>Privacy-first mobile applications</h3>
+        <p>Native iOS and Android software designed for individual users, with privacy and data minimisation treated as engineering requirements rather than optional features.</p>
       </div>
-      <div class="showcase-desktop-copy">
-        <div class="reveal">
-          <div class="section-label" data-en="The App" data-ru="Приложение">The App</div>
-          <h2 class="section-title" data-en="Everything you need.<br><span class='gradient-text-accent'>Nothing you don't.</span>" data-ru="Всё, что нужно.<br><span class='gradient-text-accent'>Ничего лишнего.</span>">Everything you need.<br><span class="gradient-text-accent">Nothing you don't.</span></h2>
-          <p class="section-desc" style="margin-bottom:28px" data-en="A clean, modern interface built for iOS. No clutter, no learning curve — just a fast, reliable, privacy-first experience." data-ru="Чистый, современный интерфейс, созданный для iOS. Без лишнего, без сложностей — просто быстро, надёжно и приватно.">A clean, modern interface built for iOS. No clutter, no learning curve — just a fast, reliable, privacy-first experience.</p>
-        </div>
-        <div class="showcase-features">
-          <div class="showcase-feature reveal-left delay-1">
-            <div class="showcase-feature-icon">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-            </div>
-            <div>
-              <h4 data-en="Smart Server Selection" data-ru="Умный выбор сервера">Smart Server Selection</h4>
-              <p data-en="Auto mode picks the fastest server. Or choose manually with real-time ping." data-ru="Авто-режим выбирает самый быстрый сервер. Или выберите вручную с пингом в реальном времени.">Auto mode picks the fastest server. Or choose manually with real-time ping.</p>
-            </div>
-          </div>
-          <div class="showcase-feature reveal-left delay-2">
-            <div class="showcase-feature-icon" style="background:rgba(0,210,160,.1);color:var(--success)">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
-            </div>
-            <div>
-              <h4 data-en="Service Checker" data-ru="Проверка сервисов">Service Checker</h4>
-              <p data-en="Instantly verify your connection quality to streaming, social, and AI services." data-ru="Мгновенная проверка качества соединения со стриминговыми, социальными и AI-сервисами.">Instantly verify your connection quality to streaming, social, and AI services.</p>
-            </div>
-          </div>
-          <div class="showcase-feature reveal-left delay-3">
-            <div class="showcase-feature-icon" style="background:rgba(56,189,248,.1);color:#38bdf8">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
-            </div>
-            <div>
-              <h4 data-en="Multi-Protocol Support" data-ru="Мультипротокольность">Multi-Protocol Support</h4>
-              <p data-en="VLESS, VMess, Trojan, Shadowsocks — works with any modern configuration." data-ru="VLESS, VMess, Trojan, Shadowsocks — работает с любой современной конфигурацией.">VLESS, VMess, Trojan, Shadowsocks — works with any modern configuration.</p>
-            </div>
-          </div>
-          <div class="showcase-feature reveal-left delay-4">
-            <div class="showcase-feature-icon" style="background:rgba(251,191,36,.1);color:#fbbf24">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M12 18v-6"/><path d="M9 15l3-3 3 3"/></svg>
-            </div>
-            <div>
-              <h4 data-en="Import Your Own Servers" data-ru="Импорт своих серверов">Import Your Own Servers</h4>
-              <p data-en="Paste any subscription URL or config — use Marshall as a client for your own infrastructure." data-ru="Вставьте любую ссылку подписки или конфиг — используйте Marshall как клиент для своей инфраструктуры.">Paste any subscription URL or config — use Marshall as a client for your own infrastructure.</p>
-            </div>
-          </div>
-        </div>
+      <div class="focus-card reveal delay-1">
+        <div class="focus-marker">02</div>
+        <h3>Connectivity infrastructure</h3>
+        <p>Cloud and network systems that support our applications &mdash; sourced from established commercial providers across multiple international regions, operated to a high standard.</p>
       </div>
-    </div>
+      <div class="focus-card reveal delay-2">
+        <div class="focus-marker">03</div>
+        <h3>Subscription products</h3>
+        <p>Honest, simple subscription pricing distributed through Apple App Store and Google Play. No dark patterns, no hidden fees, no advertising, no data resale.</p>
+      </div>
     </div>
   </div>
 </section>
-</div>
 
-<div class="section-divider"></div>
-
-<!-- ============ BLOCK 5: SERVER NETWORK MAP ============ -->
-<section class="map-section" id="network">
+<section id="governance" class="section">
   <div class="container">
-    <div style="text-align:center" class="reveal">
-      <div class="section-label" style="justify-content:center" data-en="Global Network" data-ru="Глобальная сеть">Global Network</div>
-      <h2 class="section-title" style="margin-left:auto;margin-right:auto;max-width:680px" data-en="Privacy depends on<br><span class='gradient-text-accent'>where your data lives.</span>" data-ru="Приватность зависит от того,<br><span class='gradient-text-accent'>где живут ваши данные.</span>">Privacy depends on<br><span class="gradient-text-accent">where your data lives.</span></h2>
-      <p class="section-desc" style="margin-left:auto;margin-right:auto;text-align:center" data-en="Compare data protection levels across regions — then see where Marshall keeps its servers." data-ru="Сравните уровень защиты данных в разных регионах — затем посмотрите, где расположены серверы Marshall.">Compare data protection levels across regions — then see where Marshall keeps its servers.</p>
+    <div class="section-head reveal">
+      <div>
+        <span class="section-eyebrow">Governance &amp; compliance</span>
+        <h2 class="section-title">Operating responsibly under Hong Kong law.</h2>
+      </div>
     </div>
-    <div class="map-wrapper reveal-scale">
-      <div class="map-header">
-        <div class="map-header-text">
-          <h3 id="map-title" data-en="Data Protection Index" data-ru="Индекс защиты данных">Data Protection Index</h3>
-          <p id="map-subtitle" data-en="Data protection landscape by region" data-ru="Уровень защиты данных по регионам">Data protection landscape by region</p>
-        </div>
-        <div class="map-toggle">
-          <button id="btn-srv" onclick="setMapMode('servers')" data-en="Our Servers" data-ru="Наши серверы">Our Servers</button>
-          <button id="btn-heat" class="active-heat" onclick="setMapMode('heatmap')" data-en="Privacy Index" data-ru="Индекс приватности">Privacy Index</button>
-        </div>
+    <div class="gov-bento">
+      <div class="gov-card reveal">
+        <h3>Statutory compliance</h3>
+        <p>Annual returns filed with the Hong Kong Companies Registry. Business registration maintained with the Inland Revenue Department.</p>
       </div>
-      <div id="map-container">
-        <svg id="map-svg"></svg>
-        <div class="map-tooltip" id="map-tooltip">
-          <div class="map-tooltip-label" data-en="Privacy index" data-ru="Индекс приватности">Privacy index</div>
-          <div class="map-tooltip-row">
-            <div class="map-tooltip-dot" id="tt-dot"></div>
-            <span class="map-tooltip-val" id="tt-val"></span>
-          </div>
-          <div class="map-tooltip-bar"><div class="map-tooltip-bar-fill" id="tt-bar"></div></div>
-        </div>
-        <div class="map-info-panel" id="map-info-panel" aria-hidden="true">
-          <div class="map-info-panel-label" data-en="Network" data-ru="Сеть">Network</div>
-          <div class="map-info-panel-title" data-en="Privacy-friendly jurisdictions" data-ru="Юрисдикции с сильной защитой данных">Privacy-friendly jurisdictions</div>
-          <div class="map-info-panel-desc" data-en="Servers in jurisdictions with strong data protection laws." data-ru="Серверы в юрисдикциях с сильным законодательством о защите данных.">Servers in jurisdictions with strong data protection laws.</div>
-          <div class="map-info-panel-divider"></div>
-          <ul class="map-info-panel-list">
-            <li>
-              <img class="map-info-flag" src="https://flagcdn.com/w20/de.png" width="20" height="15" alt="" loading="lazy" decoding="async" />
-              <span class="map-info-country" data-en="Germany" data-ru="Германия">Germany</span>
-            </li>
-            <li>
-              <img class="map-info-flag" src="https://flagcdn.com/w20/gb.png" width="20" height="15" alt="" loading="lazy" decoding="async" />
-              <span class="map-info-country" data-en="United Kingdom" data-ru="Великобритания">United Kingdom</span>
-            </li>
-            <li>
-              <img class="map-info-flag" src="https://flagcdn.com/w20/nl.png" width="20" height="15" alt="" loading="lazy" decoding="async" />
-              <span class="map-info-country" data-en="Netherlands" data-ru="Нидерланды">Netherlands</span>
-            </li>
-            <li>
-              <img class="map-info-flag" src="https://flagcdn.com/w20/se.png" width="20" height="15" alt="" loading="lazy" decoding="async" />
-              <span class="map-info-country" data-en="Sweden" data-ru="Швеция">Sweden</span>
-            </li>
-            <li>
-              <img class="map-info-flag" src="https://flagcdn.com/w20/fi.png" width="20" height="15" alt="" loading="lazy" decoding="async" />
-              <span class="map-info-country" data-en="Finland" data-ru="Финляндия">Finland</span>
-            </li>
-            <li>
-              <img class="map-info-flag" src="https://flagcdn.com/w20/es.png" width="20" height="15" alt="" loading="lazy" decoding="async" />
-              <span class="map-info-country" data-en="Spain" data-ru="Испания">Spain</span>
-            </li>
-            <li>
-              <img class="map-info-flag" src="https://flagcdn.com/w20/us.png" width="20" height="15" alt="" loading="lazy" decoding="async" />
-              <span class="map-info-country" data-en="United States" data-ru="США">United States</span>
-            </li>
-            <li>
-              <img class="map-info-flag" src="https://flagcdn.com/w20/br.png" width="20" height="15" alt="" loading="lazy" decoding="async" />
-              <span class="map-info-country" data-en="Brazil" data-ru="Бразилия">Brazil</span>
-            </li>
-            <li>
-              <img class="map-info-flag" src="https://flagcdn.com/w20/jp.png" width="20" height="15" alt="" loading="lazy" decoding="async" />
-              <span class="map-info-country" data-en="Japan" data-ru="Япония">Japan</span>
-            </li>
-            <li>
-              <img class="map-info-flag" src="https://flagcdn.com/w20/kr.png" width="20" height="15" alt="" loading="lazy" decoding="async" />
-              <span class="map-info-country" data-en="South Korea" data-ru="Южная Корея">South Korea</span>
-            </li>
-            <li>
-              <img class="map-info-flag" src="https://flagcdn.com/w20/sg.png" width="20" height="15" alt="" loading="lazy" decoding="async" />
-              <span class="map-info-country" data-en="Singapore" data-ru="Сингапур">Singapore</span>
-            </li>
-            <li>
-              <img class="map-info-flag" src="https://flagcdn.com/w20/au.png" width="20" height="15" alt="" loading="lazy" decoding="async" />
-              <span class="map-info-country" data-en="Australia" data-ru="Австралия">Australia</span>
-            </li>
-          </ul>
-        </div>
+      <div class="gov-card reveal delay-1">
+        <h3>Audit &amp; reporting</h3>
+        <p>Annual statutory audit by a licensed Hong Kong CPA in accordance with the Companies Ordinance (Cap. 622).</p>
       </div>
-      <div class="map-legend" id="map-legend"></div>
+      <div class="gov-card reveal delay-2">
+        <h3>Tax compliance</h3>
+        <p>Profits Tax Returns filed with the Inland Revenue Department under Hong Kong's territorial source principle.</p>
+      </div>
+      <div class="gov-card reveal delay-3">
+        <h3>Platform compliance</h3>
+        <p>Operates under the Apple Developer Program Licence Agreement and the Google Play Developer Distribution Agreement.</p>
+      </div>
+    </div>
+    <div class="gov-disclaimer reveal delay-4">
+      <p><strong>Restricted activities.</strong> Marshall Relay Limited does not, and will not, engage in: cryptocurrency or virtual asset activities; money transfer, remittance, or payment processing for third parties; gambling; activities involving sanctioned persons or jurisdictions; supply of arms, dual-use technology, or services subject to export controls; or any other regulated financial activities. The company has no operations, customers, suppliers, or banking relationships in the Russian Federation.</p>
     </div>
   </div>
 </section>
 
-<div class="section-divider"></div>
-
-<!-- ============ BLOCK 6: PRICING ============ -->
-<section class="pricing-section" id="pricing">
+<section id="company" class="section">
   <div class="container">
-    <div style="text-align:center" class="reveal">
-      <div class="section-label" style="justify-content:center" data-en="Pricing" data-ru="Тарифы">Pricing</div>
-      <h2 class="section-title" style="margin-left:auto;margin-right:auto;max-width:680px" data-en="Simple, transparent<br><span class='gradient-text-accent'>pricing.</span>" data-ru="Простые, прозрачные<br><span class='gradient-text-accent'>тарифы.</span>">Simple, transparent<br><span class="gradient-text-accent">pricing.</span></h2>
+    <div class="section-head reveal">
+      <div>
+        <span class="section-eyebrow">Company information</span>
+        <h2 class="section-title">Registered details.</h2>
+      </div>
+      <p class="section-side">Public information available through the Hong Kong Companies Registry. Provided here for reference and verification.</p>
     </div>
-
-    <div class="pricing-tabs reveal">
-      <button class="pricing-tab active" onclick="switchPricing('marshall')" id="tab-marshall" data-en="Marshall VPN" data-ru="Marshall VPN">Marshall VPN</button>
-      <button class="pricing-tab" onclick="switchPricing('byos')" id="tab-byos" data-en="Your Servers" data-ru="Свои серверы">Your Servers</button>
-    </div>
-
-    <!-- Marshall VPN Pricing -->
-    <div class="pricing-panel active" id="panel-marshall">
-      <div class="pricing-grid reveal-scale">
-        <div class="pricing-card">
-          <div class="pricing-price">$2.99</div>
-          <div class="pricing-period" data-en="/ month" data-ru="/ мес">/ month</div>
-          <div class="pricing-name" data-en="Basic" data-ru="Базовый">Basic</div>
-        </div>
-        <div class="pricing-card">
-          <div class="pricing-badge">-11%</div>
-          <div class="pricing-price">$7.99</div>
-          <div class="pricing-period" data-en="/ 3 months" data-ru="/ 3 мес">/ 3 months</div>
-          <div class="pricing-name" data-en="Save 11%" data-ru="Выгода 11%">Save 11%</div>
-        </div>
-        <div class="pricing-card">
-          <div class="pricing-badge">-39%</div>
-          <div class="pricing-price">$10.99</div>
-          <div class="pricing-period" data-en="/ 6 months" data-ru="/ 6 мес">/ 6 months</div>
-          <div class="pricing-name" data-en="Most popular" data-ru="Популярный">Most popular</div>
-        </div>
-        <div class="pricing-card featured">
-          <div class="pricing-badge">-55%</div>
-          <div class="pricing-price">$15.99</div>
-          <div class="pricing-period" data-en="/ year" data-ru="/ год">/ year</div>
-          <div class="pricing-name" data-en="Best value" data-ru="Лучшая цена">Best value</div>
+    <div class="company-table reveal delay-1">
+      <div class="company-row">
+        <div class="company-row-label">Legal name</div>
+        <div class="company-row-value">Marshall Relay Limited</div>
+      </div>
+      <div class="company-row">
+        <div class="company-row-label">Company number</div>
+        <div class="company-row-value"><span class="mono">80211853</span></div>
+      </div>
+      <div class="company-row">
+        <div class="company-row-label">Legal form</div>
+        <div class="company-row-value">Private company limited by shares
+          <div class="company-row-value-secondary">Body corporate &middot; Hong Kong Companies Ordinance (Cap. 622)</div>
         </div>
       </div>
-      <div class="pricing-trial reveal" data-en="Start with <strong>30 days free</strong> — subscribe anytime inside the app." data-ru="Начните с <strong>30 бесплатных дней</strong> — подписка оформляется внутри приложения.">Start with <strong>30 days free</strong> — subscribe anytime inside the app.</div>
-    </div>
-
-    <!-- BYOS Pricing -->
-    <div class="pricing-panel" id="panel-byos">
-      <div style="text-align:center;margin-bottom:20px" class="reveal">
-        <p class="section-desc" style="margin-left:auto;margin-right:auto;text-align:center" data-en="Already have your own servers or subscription links? Use Marshall as a universal VPN client." data-ru="Уже есть свои серверы или ссылки подписки? Используйте Marshall как универсальный VPN-клиент.">Already have your own servers or subscription links? Use Marshall as a universal VPN client.</p>
+      <div class="company-row">
+        <div class="company-row-label">Date of incorporation</div>
+        <div class="company-row-value">16 April 2026</div>
       </div>
-      <div class="pricing-grid-2 reveal-scale">
-        <div class="pricing-card-alt">
-          <div class="pricing-price" style="color:var(--text)">$0.99</div>
-          <div class="pricing-period" data-en="/ month" data-ru="/ мес">/ month</div>
-          <div class="pricing-name" data-en="Monthly" data-ru="Помесячно">Monthly</div>
-        </div>
-        <div class="pricing-card-alt featured-alt">
-          <div class="pricing-badge-alt">BEST VALUE</div>
-          <div class="pricing-price-alt">$2.99</div>
-          <div class="pricing-period" style="color:rgba(251,191,36,.6)" data-en="one-time" data-ru="навсегда">one-time</div>
-          <div class="pricing-name" style="color:rgba(251,191,36,.4)" data-en="Lifetime" data-ru="Навсегда">Lifetime</div>
-        </div>
+      <div class="company-row">
+        <div class="company-row-label">Registered office</div>
+        <div class="company-row-value">Unit 2904&ndash;05, 29/F, Universal Trade Centre,<br>3 Arbuthnot Road, Central, Hong Kong S.A.R.</div>
       </div>
-      <div class="pricing-trial reveal" data-en="<strong>14-day free trial</strong> included. All app features work without limits." data-ru="<strong>14 дней бесплатно</strong>. Все функции приложения работают без ограничений."><strong>14-day free trial</strong> included. All app features work without limits.</div>
+      <div class="company-row">
+        <div class="company-row-label">Jurisdiction</div>
+        <div class="company-row-value">Hong Kong Special Administrative Region</div>
+      </div>
+      <div class="company-row">
+        <div class="company-row-label">Status</div>
+        <div class="company-row-value">Active &middot; in good standing</div>
+      </div>
+      <div class="company-row">
+        <div class="company-row-label">General contact</div>
+        <div class="company-row-value"><a href="mailto:support@appmarshall.com">support@appmarshall.com</a></div>
+      </div>
     </div>
   </div>
 </section>
 
-<div class="section-divider"></div>
-
-<!-- ============ BLOCK 6.5: SHADOWSOCKS — wire inspector ============ -->
-<section class="ss-wire-section" id="protocol-disguise">
+<section class="closing">
   <div class="container">
-    <div style="text-align:center" class="reveal">
-      <div class="section-label" style="justify-content:center" data-en="Protocol · Shadowsocks" data-ru="Протокол · Shadowsocks">Protocol · Shadowsocks</div>
-      <h2 class="section-title" style="margin-left:auto;margin-right:auto;max-width:760px" data-en="Encrypted tunneling with <span class='gradient-text-accent'>modern ciphers.</span>" data-ru="Зашифрованный туннель на <span class='gradient-text-accent'>современных шифрах.</span>">Encrypted tunneling with <span class="gradient-text-accent">modern ciphers.</span></h2>
-      <p class="section-desc ss-desk-only" style="margin-left:auto;margin-right:auto;text-align:center" data-en="Shadowsocks uses AEAD to protect the tunnel between your device and Marshall. Your data is encrypted in transit; we pair it on our own infrastructure with VLESS and Reality in TLS 1.3 — a stack focused on confidentiality, integrity, and a lean, auditable design." data-ru="Shadowsocks использует AEAD, чтобы защищать туннель между устройством и Marshall. Данные шифруются в пути; на собственной инфраструктуре это сочетается с VLESS и Reality в оболочке TLS 1.3 — с упором на конфиденциальность, целостность и прозрачный, обозримый стек.">Shadowsocks uses AEAD to protect the tunnel between your device and Marshall. Your data is encrypted in transit; we pair it on our own infrastructure with VLESS and Reality in TLS 1.3 — a stack focused on confidentiality, integrity, and a lean, auditable design.</p>
-      <p class="section-desc ss-mob-only" style="margin-left:auto;margin-right:auto;text-align:center" data-en="AEAD protects your data in transit. On our servers it runs alongside VLESS, Reality, and TLS 1.3 — for confidentiality and integrity." data-ru="AEAD защищает данные в пути. На наших серверах — вместе с VLESS, Reality и TLS 1.3, с упором на конфиденциальность и целостность.">AEAD protects your data in transit. On our servers it runs alongside VLESS, Reality, and TLS 1.3 — for confidentiality and integrity.</p>
-    </div>
-    <div class="ss-wire-grid">
-      <div class="ss-wire-copy reveal-left">
-        <h3 data-en="Per-packet authentication. <span class='accent'>No logs by design.</span>" data-ru="Попакетная аутентификация. <span class='accent'>Без логов в архитектуре.</span>">Per-packet authentication. <span class="accent">No logs by design.</span></h3>
-        <p class="ss-desk-only" data-en="SOCKS5 transport with ChaCha20-Poly1305 and AES-256-GCM: each frame is cryptographically signed so replays and tampering are caught before your traffic is handled. The protocol keeps encryption and authentication in one place, which helps reduce metadata exposure and keep your side of the path private." data-ru="SOCKS5 с ChaCha20-Poly1305 и AES-256-GCM: каждая единица трафика аутентифицируется, повторы и вмешательства отсекаются до дальнейшей обработки. Шифрование и проверка целостности собраны в одном месте — так меньше утечек сопутствующих сведений и сильнее приватность на стороне клиента.">SOCKS5 transport with ChaCha20-Poly1305 and AES-256-GCM: each frame is cryptographically signed so replays and tampering are caught before your traffic is handled. The protocol keeps encryption and authentication in one place, which helps reduce metadata exposure and keep your side of the path private.</p>
-        <p class="ss-mob-only" data-en="ChaCha20-Poly1305 / AES-GCM: per-packet auth, replays and tampering dropped at the edge. One place for crypto + integrity." data-ru="ChaCha20-Poly1305 / AES-GCM: аутентификация пакетов, повторы и подлог отсекаются на границе. Шифрование и целостность в одном слое.">ChaCha20-Poly1305 / AES-GCM: per-packet auth, replays and tampering dropped at the edge. One place for crypto + integrity.</p>
-        <div class="ss-wire-tags">
-          <span class="ss-wire-tag">AEAD-2022</span>
-          <span class="ss-wire-tag">SOCKS5</span>
-          <span class="ss-wire-tag ss-wire-tag--hide-on-mobile" data-en="Per-packet auth" data-ru="Пакет за пакетом">Per-packet auth</span>
-          <span class="ss-wire-tag" data-en="UDP support" data-ru="UDP">UDP support</span>
-        </div>
-      </div>
-      <div class="ss-wire reveal-right">
-        <div class="ss-wire-head">
-          <div class="ss-wire-dots"><span></span><span></span><span></span></div>
-          <span class="ss-wire-htitle" data-en="channel · live" data-ru="канал · live">channel · live</span>
-          <span class="ss-wire-status">LIVE</span>
-        </div>
-        <div class="ss-wire-rows">
-          <div class="ss-wire-row">
-            <span class="ss-wire-time">04:21.118</span>
-            <span class="ss-wire-stream"><span>a8 7f 3e b2 c1 09 4d ff 11 e0 8a 6c d4 7b 22 91 0e f3 5d 8b a4 17 c9 26 6f 0b 4a 8e ··· a8 7f 3e b2 c1 09 4d ff 11 e0 8a 6c d4 7b 22 91 0e f3 5d 8b ···</span></span>
-            <span class="ss-wire-tagm ss-wire-tagm--https">HTTPS</span>
-          </div>
-          <div class="ss-wire-row">
-            <span class="ss-wire-time">04:21.124</span>
-            <span class="ss-wire-stream"><span>3c 91 e7 ad 5b 22 6f c4 88 d1 0a 7e 95 32 fe b8 4c 09 71 ee a3 5d 1c 80 6b ff 23 a7 ··· 3c 91 e7 ad 5b 22 6f c4 88 d1 0a 7e 95 32 fe b8 4c 09 71 ee ···</span></span>
-            <span class="ss-wire-tagm ss-wire-tagm--unknown">UNK</span>
-          </div>
-          <div class="ss-wire-row">
-            <span class="ss-wire-time">04:21.131</span>
-            <span class="ss-wire-stream"><span>e2 04 b8 7d 33 9c 5f a1 6d 80 c7 11 4e 0b a9 26 f5 dd 18 4b 92 0a 6c 78 ee 33 b1 4f ··· e2 04 b8 7d 33 9c 5f a1 6d 80 c7 11 4e 0b a9 26 f5 dd 18 4b ···</span></span>
-            <span class="ss-wire-tagm ss-wire-tagm--https">HTTPS</span>
-          </div>
-          <div class="ss-wire-row">
-            <span class="ss-wire-time">04:21.139</span>
-            <span class="ss-wire-stream"><span>5a c0 19 fb 6e 27 d8 84 39 b2 7c e1 03 9d 5e ab 11 6f 24 70 cc 89 02 33 a5 e9 4d 16 ··· 5a c0 19 fb 6e 27 d8 84 39 b2 7c e1 03 9d 5e ab 11 6f 24 70 ···</span></span>
-            <span class="ss-wire-tagm ss-wire-tagm--unknown">UNK</span>
-          </div>
-          <div class="ss-wire-row">
-            <span class="ss-wire-time">04:21.147</span>
-            <span class="ss-wire-stream"><span>d3 7a 14 ee 88 5b 02 c9 6d 4e f2 91 06 b7 28 30 79 a4 cd 1f 8e 35 60 b1 0c 4a 9d 22 ··· d3 7a 14 ee 88 5b 02 c9 6d 4e f2 91 06 b7 28 30 79 a4 cd 1f ···</span></span>
-            <span class="ss-wire-tagm ss-wire-tagm--https">HTTPS</span>
-          </div>
-        </div>
-        <div class="ss-wire-foot">
-          <span data-en="aead-2022 · gcm" data-ru="aead-2022 · gcm">aead-2022 · gcm</span>
-          <span class="ss-wire-verdict">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-            <span data-en="Integrity protected" data-ru="Целостность защищена">Integrity protected</span>
-          </span>
-        </div>
-      </div>
+    <div class="reveal">
+      <span class="closing-mark">&mdash;</span>
+      <h2>Working with us, or just want to talk.</h2>
+      <p>We don't have a sales team. Email reaches the people who actually do the work.</p>
+      <a href="mailto:support@appmarshall.com" class="closing-cta">
+        support@appmarshall.com
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+      </a>
     </div>
   </div>
 </section>
 
-<div class="section-divider"></div>
-
-<!-- Performance: шапка + метрики + XTLS (как в new-blocks.html) — под Pricing, перед CTA; адаптив -->
-<section class="speed-section" id="performance-benchmark">
-  <div class="container">
-    <div class="perf-intro reveal" style="text-align:center">
-      <div class="section-label" style="justify-content:center" data-en="Performance" data-ru="Производительность">Performance</div>
-      <h2 class="section-title" style="margin-left:auto;margin-right:auto;max-width:720px" data-en="Privacy doesn't mean <span class='gradient-text-accent'>slow.</span>" data-ru="Приватность — не значит <span class='gradient-text-accent'>медленно.</span>">Privacy doesn't mean <span class="gradient-text-accent">slow.</span></h2>
-      <p class="section-desc perf-intro-desc-desktop-only" style="margin-left:auto;margin-right:auto;text-align:center;max-width:560px" data-en="XTLS Vision eliminates double encryption overhead. You get DPI resistance and modern protocol design — without sacrificing speed." data-ru="XTLS Vision устраняет двойное шифрование. Современный протокол с устойчивостью к DPI — без потери скорости.">XTLS Vision eliminates double encryption overhead. You get DPI resistance and modern protocol design — without sacrificing speed.</p>
-    </div>
-    <div class="speed-inner">
-      <div class="speed-bars reveal-left">
-        <div class="speed-bar-group" data-fill="88">
-          <div class="speed-bar-label">
-            <div class="speed-bar-name">
-              <span class="speed-bar-name-icon" style="background:rgba(108,92,231,.12);color:var(--accent-light)">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-              </span>
-              <span data-en="Latency" data-ru="Задержка">Latency</span>
-            </div>
-            <div class="speed-bar-value gradient-text">&lt; 15ms</div>
-          </div>
-          <div class="speed-bar-track">
-            <div class="speed-bar-fill speed-bar-fill--latency"><div class="speed-bar-shimmer"></div></div>
-          </div>
-        </div>
-        <div class="speed-bar-group" data-fill="95">
-          <div class="speed-bar-label">
-            <div class="speed-bar-name">
-              <span class="speed-bar-name-icon" style="background:rgba(168,85,247,.1);color:#A855F7">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-              </span>
-              <span data-en="Backbone" data-ru="Магистраль">Backbone</span>
-            </div>
-            <div class="speed-bar-value gradient-text">10 Gbps</div>
-          </div>
-          <div class="speed-bar-track">
-            <div class="speed-bar-fill speed-bar-fill--download"><div class="speed-bar-shimmer"></div></div>
-          </div>
-        </div>
-        <div class="speed-bar-group" data-fill="96">
-          <div class="speed-bar-label">
-            <div class="speed-bar-name">
-              <span class="speed-bar-name-icon" style="background:rgba(0,210,160,.1);color:var(--success)">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
-              </span>
-              <span data-en="Protocol Efficiency" data-ru="Эффективность протокола">Protocol Efficiency</span>
-            </div>
-            <div class="speed-bar-value gradient-text">~0%</div>
-          </div>
-          <div class="speed-bar-track">
-            <div class="speed-bar-fill speed-bar-fill--overhead"><div class="speed-bar-shimmer"></div></div>
-          </div>
-        </div>
-      </div>
-      <div class="speed-info reveal-right">
-        <h3 data-en="XTLS Vision eliminates<br>redundant encryption." data-ru="XTLS Vision устраняет<br>избыточное шифрование.">XTLS Vision eliminates<br>redundant encryption.</h3>
-        <p data-en="Traditional VPN protocols encrypt already-encrypted HTTPS traffic, wasting CPU and adding latency. VLESS with XTLS Vision detects TLS-in-TLS and passes the inner layer through directly — zero overhead on already-secure connections." data-ru="Традиционные VPN-протоколы шифруют уже зашифрованный HTTPS-трафик, тратя ресурсы процессора и увеличивая задержку. VLESS с XTLS Vision определяет TLS-в-TLS и пропускает внутренний слой напрямую — нулевые потери на уже защищённых соединениях.">Traditional VPN protocols encrypt already-encrypted HTTPS traffic, wasting CPU and adding latency. VLESS with XTLS Vision detects TLS-in-TLS and passes the inner layer through directly — zero overhead on already-secure connections.</p>
-        <ul class="speed-info-list">
-          <li class="speed-info-item">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
-            <span data-en="No double encryption on HTTPS traffic" data-ru="Без двойного шифрования HTTPS-трафика">No double encryption on HTTPS traffic</span>
-          </li>
-          <li class="speed-info-item">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
-            <span data-en="Lower CPU usage = better battery life" data-ru="Меньше нагрузка на процессор = дольше батарея">Lower CPU usage = better battery life</span>
-          </li>
-          <li class="speed-info-item">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
-            <span data-en="Zero speed throttling by design" data-ru="Нулевое ограничение скорости по архитектуре">Zero speed throttling by design</span>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="section-divider"></div>
-
-<!-- ============ BLOCK 8: CTA ============ -->
-<section class="cta-section" id="cta">
-  <div class="container">
-    <div class="cta-box reveal-scale">
-      <h2 data-en="Ready to take control of your <span class='gradient-text'>connection</span>?" data-ru="Готовы взять контроль над <span class='gradient-text'>соединением</span>?">Ready to take control of your <span class="gradient-text">connection</span>?</h2>
-      <p data-en="Download Marshall and get 30 days of free access. No credit card required." data-ru="Скачайте Marshall и получите 30 дней бесплатного доступа. Без привязки карты.">Download Marshall and get 30 days of free access. No credit card required.</p>
-      <div class="cta-buttons">
-        <div class="cta-download-stack">
-          <button type="button" class="btn-primary" onclick="openIosComingSoonModal()">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" preserveAspectRatio="xMidYMid meet"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-            <span class="ss-desk-only" data-en="Download for iOS or macOS" data-ru="Скачать для iOS и macOS">Download for iOS or macOS</span>
-            <span class="ss-mob-only" data-en="Download for iOS" data-ru="Скачать для iOS">Download for iOS</span>
-          </button>
-          <button type="button" class="btn-primary" onclick="window.open('https://play.google.com/apps/testing/com.marshallvpn.app','_blank','noopener')">
-            <svg class="icon-android" width="18" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor" aria-hidden="true" focusable="false"><path d="M18.4395 5.5586c-.675 1.1664-1.352 2.3318-2.0274 3.498-.0366-.0155-.0742-.0286-.1113-.043-1.8249-.6957-3.484-.8-4.42-.787-1.8551.0185-3.3544.4643-4.2597.8203-.084-.1494-1.7526-3.021-2.0215-3.4864a1.1451 1.1451 0 0 0-.1406-.1914c-.3312-.364-.9054-.4859-1.379-.203-.475.282-.7136.9361-.3886 1.5019 1.9466 3.3696-.0966-.2158 1.9473 3.3593.0172.031-.4946.2642-1.3926 1.0177C2.8987 12.176.452 14.772 0 18.9902h24c-.119-1.1108-.3686-2.099-.7461-3.0683-.7438-1.9118-1.8435-3.2928-2.7402-4.1836a12.1048 12.1048 0 0 0-2.1309-1.6875c.6594-1.122 1.312-2.2559 1.9649-3.3848.2077-.3615.1886-.7956-.0079-1.1191a1.1001 1.1001 0 0 0-.8515-.5332c-.5225-.0536-.9392.3128-1.0488.5449zm-.0391 8.461c.3944.5926.324 1.3306-.1563 1.6503-.4799.3197-1.188.0985-1.582-.4941-.3944-.5927-.324-1.3307.1563-1.6504.4727-.315 1.1812-.1086 1.582.4941zM7.207 13.5273c.4803.3197.5506 1.0577.1563 1.6504-.394.5926-1.1038.8138-1.584.4941-.48-.3197-.5503-1.0577-.1563-1.6504.4008-.6021 1.1087-.8106 1.584-.4941z"/></svg>
-            <span data-en="Download for Android" data-ru="Скачать для Android">Download for Android</span>
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ FOOTER ============ -->
 <footer class="footer">
   <div class="container">
     <div class="footer-inner">
       <div class="footer-brand">
-        <div class="nav-logo" style="margin-bottom:4px">
-          <img src="assets/logo.png" alt="Marshall" style="width:32px;height:32px;border-radius:8px">
-          <span class="nav-logo-text" style="font-size:14px">Marshall</span>
-        </div>
-        <p data-en="Fast, private connectivity for iOS and Android. Your connection, your rules." data-ru="Быстрое и приватное соединение для iOS и Android. Ваше соединение, ваши правила.">Fast, private connectivity for iOS and Android. Your connection, your rules.</p>
+        <img src="assets/logo.png" alt="">
+        <span class="footer-brand-text">Marshall Relay</span>
       </div>
-      <div class="footer-col footer-col--product">
-        <h4 data-en="Product" data-ru="Продукт">Product</h4>
-        <a href="#benefits" class="footer-features-desktop" data-en="Features" data-ru="Возможности">Features</a>
-        <a href="#app" class="footer-features-mobile" data-en="Features" data-ru="Возможности">Features</a>
-        <a href="#pricing" data-en="Pricing" data-ru="Тарифы">Pricing</a>
-        <a href="#network" data-en="Network" data-ru="Сеть">Network</a>
-        <a href="#cta" data-en="Download" data-ru="Скачать">Download</a>
-      </div>
-      <div class="footer-col footer-col--contact">
-        <h4 data-en="Contact" data-ru="Контакты">Contact</h4>
-        <a href="mailto:support@appmarshall.com" data-en="Support" data-ru="Поддержка">Support</a>
-        <a href="mailto:business@appmarshall.com" data-en="Business" data-ru="По вопросам бизнеса">Business</a>
-        <a href="privacy/" data-en="Privacy Policy" data-ru="Конфиденциальность">Privacy Policy</a>
-        <a href="terms/" data-en="Terms of Use" data-ru="Условия использования">Terms of Use</a>
+      <div class="footer-meta">
+        Hong Kong S.A.R.
+        <span class="footer-divider">&middot;</span>
+        <a href="privacy/">Privacy policy</a>
+        <span class="footer-divider">&middot;</span>
+        <a href="mailto:support@appmarshall.com">Contact</a>
       </div>
     </div>
     <div class="footer-bottom">
-      <span data-en="Marshall Relay Limited · A Hong Kong incorporated company · Distributed via Apple App Store and Google Play" data-ru="Marshall Relay Limited · Компания, зарегистрированная в Гонконге · Распространяется через Apple App Store и Google Play">Marshall Relay Limited · A Hong Kong incorporated company · Distributed via Apple App Store and Google Play</span>
-      <br>
-      &copy; 2026 Marshall Relay Limited. All rights reserved.
+      <span>&copy; 2026 Marshall Relay Limited. All rights reserved.</span>
+      <span>Company no. 80211853</span>
     </div>
   </div>
 </footer>
 
-<!-- iOS: App Store release pending -->
-<div class="ios-soon-modal" id="iosSoonModal" role="dialog" aria-modal="true" aria-labelledby="iosSoonTitle" aria-hidden="true">
-  <div class="ios-soon-modal__backdrop" onclick="closeIosComingSoonModal()" aria-hidden="true"></div>
-  <div class="ios-soon-modal__panel">
-    <button type="button" class="ios-soon-modal__close" onclick="closeIosComingSoonModal()" aria-label="Close" data-en="×" data-ru="×">×</button>
-    <div class="ios-soon-visual" aria-hidden="true">
-      <div class="ios-soon-orbit">
-        <div class="ios-soon-ring"></div>
-        <div class="ios-soon-ring ios-soon-ring--2"></div>
-        <div class="ios-soon-dots">
-          <span class="ios-soon-dot"></span>
-          <span class="ios-soon-dot"></span>
-          <span class="ios-soon-dot"></span>
-        </div>
-        <div class="ios-soon-core">
-          <div class="ios-soon-scan"></div>
-          <img src="assets/logo.png" alt="" width="40" height="40">
-        </div>
-      </div>
-    </div>
-    <div class="ios-soon-bar" aria-hidden="true"></div>
-    <h3 id="iosSoonTitle" data-en="Almost there — App Store release in progress" data-ru="Почти готово — релиз в App Store в процессе">Almost there — App Store release in progress</h3>
-    <p data-en="Marshall for iOS is going through Apple’s review. When it’s approved, you’ll install it from the App Store in one tap — just like any trusted app." data-ru="Marshall для iOS проходит проверку Apple. После одобрения вы установите приложение из App Store в одно касание — как любое проверенное приложение.">Marshall for iOS is going through Apple’s review. When it’s approved, you’ll install it from the App Store in one tap — just like any trusted app.</p>
-    <span class="ios-soon-date" data-en="Target launch · May 1, 2026" data-ru="Ориентир запуска · 1 мая 2026">Target launch · May 1, 2026</span>
-    <p class="ios-soon-foot" data-en="We’re packaging the build for the store — thanks for waiting." data-ru="Собираем сборку для магазина — спасибо за ожидание.">We’re packaging the build for the store — thanks for waiting.</p>
-  </div>
-</div>
-
-<!-- Android: Google Play release pending -->
-<div class="ios-soon-modal" id="androidSoonModal" role="dialog" aria-modal="true" aria-labelledby="androidSoonTitle" aria-hidden="true">
-  <div class="ios-soon-modal__backdrop" onclick="closeAndroidComingSoonModal()" aria-hidden="true"></div>
-  <div class="ios-soon-modal__panel">
-    <button type="button" class="ios-soon-modal__close" onclick="closeAndroidComingSoonModal()" aria-label="Close" data-en="×" data-ru="×">×</button>
-    <div class="ios-soon-visual" aria-hidden="true">
-      <div class="ios-soon-orbit">
-        <div class="ios-soon-ring"></div>
-        <div class="ios-soon-ring ios-soon-ring--2"></div>
-        <div class="ios-soon-dots">
-          <span class="ios-soon-dot"></span>
-          <span class="ios-soon-dot"></span>
-          <span class="ios-soon-dot"></span>
-        </div>
-        <div class="ios-soon-core">
-          <div class="ios-soon-scan"></div>
-          <img src="assets/logo.png" alt="" width="40" height="40">
-        </div>
-      </div>
-    </div>
-    <div class="ios-soon-bar" aria-hidden="true"></div>
-    <h3 id="androidSoonTitle" data-en="Almost there — Google Play release in progress" data-ru="Почти готово — релиз в Google Play в процессе">Almost there — Google Play release in progress</h3>
-    <span class="ios-soon-date" data-en="Target launch May 1st 2026" data-ru="Ориентир запуска — 1 мая 2026">Target launch May 1st 2026</span>
-    <div class="android-soon-apk">
-      <p class="android-soon-apk__note" data-en="While Google Play review is in progress, you can install the same build via APK if you’re comfortable sideloading. Once the app is on Play, you can install or reinstall from the store in one tap." data-ru="Пока идёт проверка в Google Play, при желании можно установить ту же сборку через APK. После выхода в магазине установите или переустановите приложение из Play в одно нажатие.">While Google Play review is in progress, you can install the same build via APK if you’re comfortable sideloading. Once the app is on Play, you can install or reinstall from the store in one tap.</p>
-      <a class="btn-primary android-soon-apk__btn" href="assets/appmarshall.apk" download="appmarshall.apk" rel="noopener" data-en="Download the Android app" data-ru="Скачать приложение для Android">Download the Android app</a>
-    </div>
-  </div>
-</div>
-
-<!-- ============ SCRIPTS ============ -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
 <script>
-(function(){
-'use strict';
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 12) nav.classList.add('scrolled');
+  else nav.classList.remove('scrolled');
+}, { passive: true });
 
-const MARSHALL_APK_URL='https://marshallcargo.pythonanywhere.com/static/appmarshall.apk';
-(function(){
-  const u=(MARSHALL_APK_URL&&MARSHALL_APK_URL.trim())||'assets/appmarshall.apk';
-  const a=document.querySelector('#androidSoonModal .android-soon-apk__btn');
-  if(a)a.href=u;
-})();
-
-/* ===== LANGUAGE ===== */
-let currentLang=(function(){try{return localStorage.getItem('mvpn-lang')||'en';}catch(e){return'en';}}());
-function applyLang(l){
-  currentLang=l;
-  try{localStorage.setItem('mvpn-lang',l);}catch(e){}
-  const btn=l==='en'?'RU':'EN';
-  const lb=document.getElementById('langBtn'),lm=document.getElementById('langBtnMobile');
-  if(lb)lb.textContent=btn;if(lm)lm.textContent=btn;
-  document.documentElement.lang=l;
-  document.querySelectorAll('[data-en][data-ru]').forEach(el=>{
-    const t=el.getAttribute('data-'+l);
-    if(t!==null){if(el.tagName==='INPUT'||el.tagName==='TEXTAREA')el.placeholder=t;else el.innerHTML=t}
-  });
-  syncIosSoonModalAria();
-  syncAndroidSoonModalAria();
-  if(typeof updateMapLabels==='function')updateMapLabels();
-  try{if(geo)renderMap();}catch(e){}
-}
-window.toggleLang=function(){applyLang(currentLang==='en'?'ru':'en');};
-applyLang(currentLang);
-
-/* ===== SCROLL TO ===== */
-window.smoothScrollTo=function(sel){
-  const el=document.querySelector(sel);
-  if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
-};
-
-function syncIosSoonModalAria(){
-  const closeBtn=document.querySelector('#iosSoonModal .ios-soon-modal__close');
-  if(closeBtn)closeBtn.setAttribute('aria-label',currentLang==='en'?'Close':'Закрыть');
-}
-function syncAndroidSoonModalAria(){
-  const closeBtn=document.querySelector('#androidSoonModal .ios-soon-modal__close');
-  if(closeBtn)closeBtn.setAttribute('aria-label',currentLang==='en'?'Close':'Закрыть');
-}
-window.openIosComingSoonModal=function(){
-  const a=document.getElementById('androidSoonModal');
-  if(a&&a.classList.contains('is-open'))closeAndroidComingSoonModal();
-  const m=document.getElementById('iosSoonModal');
-  if(!m)return;
-  syncIosSoonModalAria();
-  m.classList.add('is-open');
-  m.setAttribute('aria-hidden','false');
-  document.body.style.overflow='hidden';
-};
-window.closeIosComingSoonModal=function(){
-  const m=document.getElementById('iosSoonModal');
-  if(!m)return;
-  m.classList.remove('is-open');
-  m.setAttribute('aria-hidden','true');
-  document.body.style.overflow='';
-};
-window.openAndroidComingSoonModal=function(){
-  const i=document.getElementById('iosSoonModal');
-  if(i&&i.classList.contains('is-open'))closeIosComingSoonModal();
-  const m=document.getElementById('androidSoonModal');
-  if(!m)return;
-  syncAndroidSoonModalAria();
-  m.classList.add('is-open');
-  m.setAttribute('aria-hidden','false');
-  document.body.style.overflow='hidden';
-};
-window.closeAndroidComingSoonModal=function(){
-  const m=document.getElementById('androidSoonModal');
-  if(!m)return;
-  m.classList.remove('is-open');
-  m.setAttribute('aria-hidden','true');
-  document.body.style.overflow='';
-};
-document.addEventListener('keydown',function(e){
-  if(e.key!=='Escape')return;
-  if(document.getElementById('iosSoonModal')&&document.getElementById('iosSoonModal').classList.contains('is-open'))closeIosComingSoonModal();
-  else if(document.getElementById('androidSoonModal')&&document.getElementById('androidSoonModal').classList.contains('is-open'))closeAndroidComingSoonModal();
-});
-
-/* ===== THEME (dark only — clear legacy preference) ===== */
-(function(){
-  try{localStorage.removeItem('mvpn-theme');}catch(e){}
-  document.documentElement.removeAttribute('data-theme');
-  const m=document.querySelector('meta[name="theme-color"]');
-  if(m)m.setAttribute('content','#0A0A0F');
-})();
-
-/* ===== PARTICLES ===== */
-const canvas=document.getElementById('particles'),ctx=canvas.getContext('2d');
-let parts=[];
-function rC(){canvas.width=innerWidth;canvas.height=innerHeight}
-rC();addEventListener('resize',rC);
-const pColors=[()=>'108,92,231',()=>'168,85,247',()=>'0,210,160'];
-class P{constructor(){this.r()}r(){this.x=Math.random()*canvas.width;this.y=Math.random()*canvas.height;this.s=Math.random()*1.5+.5;this.dx=(Math.random()-.5)*.3;this.dy=(Math.random()-.5)*.3;this.o=Math.random()*.3+.08;this.ci=Math.floor(Math.random()*pColors.length)}u(){this.x+=this.dx;this.y+=this.dy;if(this.x<0||this.x>canvas.width||this.y<0||this.y>canvas.height)this.r()}d(){ctx.beginPath();ctx.arc(this.x,this.y,this.s,0,Math.PI*2);ctx.fillStyle=`rgba(${pColors[this.ci]()},${this.o})`;ctx.fill()}}
-for(let i=0;i<60;i++)parts.push(new P());
-(function aP(){ctx.clearRect(0,0,canvas.width,canvas.height);parts.forEach(p=>{p.u();p.d()});requestAnimationFrame(aP)})();
-
-/* ===== SCROLL ANIMATIONS ===== */
-const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:.15,rootMargin:'0px 0px -50px 0px'});
-document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.reveal-scale').forEach(el=>obs.observe(el));
-
-const counterObserver=new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      const el=e.target;
-      const target=parseFloat(el.dataset.target);
-      const decimals=parseInt(el.dataset.decimals||'0',10);
-      const duration=2000;
-      const start=performance.now();
-      function step(now){
-        const progress=Math.min((now-start)/duration,1);
-        const eased=1-Math.pow(1-progress,4);
-        el.textContent=(target*eased).toFixed(decimals);
-        if(progress<1)requestAnimationFrame(step);
-        else el.textContent=target.toFixed(decimals);
-      }
-      requestAnimationFrame(step);
-      counterObserver.unobserve(el);
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
     }
   });
-},{threshold:.5});
-document.querySelectorAll('.counter').forEach(el=>counterObserver.observe(el));
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
-/* ===== Security block: matrix + vertical columns + drifting lines (cipher style) ===== */
-(function(){
-  const cvs=document.getElementById('encryptMatrixCanvas');
-  if(!cvs)return;
-  const wrap=cvs.closest('.encrypt-matrix-wrap');
-  const ctx=cvs.getContext('2d');
-  let W=0,H=0,dpr=1,running=false,rafId=0;
-  const chars='0123456789ABCDEFabcdef';
-  const streams=[];
-  const denseStreams=[];
-  let plainParts=[];
-  let cipherParts=[];
-  function streamCount(){
-    return Math.max(28,Math.min(48,Math.floor((W||innerWidth)/18)));
-  }
-  function denseCount(){
-    return Math.max(18,Math.min(36,Math.floor((W||innerWidth)/22)));
-  }
-  function initPlainCipher(){
-    plainParts=[];cipherParts=[];
-    if(W<8)return;
-    const plainT=['GET /index.html','Host: cdn.example','TLS_AES_256_GCM','ClientHello','Cookie: session=','User-Agent: Chrome','X-Forwarded-For:'];
-    for(let i=0;i<8;i++){
-      plainParts.push({
-        x:W*0.02+Math.random()*W*0.34,y:Math.random()*H,text:plainT[i%plainT.length],
-        alpha:0.07+Math.random()*0.07,speed:0.18+Math.random()*0.38
-      });
-    }
-    for(let i=0;i<8;i++){
-      let t='';for(let j=0;j<20;j++)t+=chars[Math.floor(Math.random()*chars.length)];
-      cipherParts.push({
-        x:W*0.58+Math.random()*W*0.38,y:Math.random()*H,text:t,
-        alpha:0.07+Math.random()*0.06,speed:0.16+Math.random()*0.34
-      });
-    }
-  }
-  function initStreams(){
-    streams.length=0;
-    denseStreams.length=0;
-    const n=streamCount();
-    for(let i=0;i<n;i++){
-      streams.push({
-        x:0,y:0,speed:0,chars:[],len:0,
-        reset(){
-          if(W<8)return;
-          this.x=Math.random()*W;
-          this.y=-Math.random()*H*0.55;
-          this.speed=0.28+Math.random()*0.95;
-          this.len=6+Math.floor(Math.random()*12);
-          this.chars=[];
-          for(let j=0;j<this.len;j++)this.chars.push(chars[Math.floor(Math.random()*chars.length)]);
-        }
-      });
-    }
-    streams.forEach(s=>s.reset());
-    const dn=denseCount();
-    const step=W/(dn+1);
-    for(let i=0;i<dn;i++){
-      denseStreams.push({
-        x:step*(i+1)+(Math.random()-0.5)*8,y:0,speed:0,chars:[],len:0,
-        reset(){
-          if(W<8)return;
-          this.x=Math.max(4,Math.min(W-4,step*(i+1)+(Math.random()-0.5)*10));
-          this.y=-Math.random()*H*0.7;
-          this.speed=0.45+Math.random()*1.15;
-          this.len=8+Math.floor(Math.random()*14);
-          this.chars=[];
-          for(let j=0;j<this.len;j++)this.chars.push(chars[Math.floor(Math.random()*chars.length)]);
-        }
-      });
-    }
-    denseStreams.forEach(s=>s.reset());
-    initPlainCipher();
-  }
-  function resize(){
-    if(!wrap)return;
-    const r=wrap.getBoundingClientRect();
-    dpr=window.devicePixelRatio||1;
-    W=r.width;H=r.height;
-    if(W<2||H<2)return;
-    cvs.width=W*dpr;cvs.height=H*dpr;
-    cvs.style.width=W+'px';cvs.style.height=H+'px';
-    ctx.setTransform(dpr,0,0,dpr,0,0);
-    initStreams();
-  }
-  function drawFrame(){
-    if(W<2)return;
-    ctx.clearRect(0,0,W,H);
-    const grd=ctx.createLinearGradient(0,0,W,0);
-    grd.addColorStop(0,'rgba(168,85,247,0.035)');
-    grd.addColorStop(0.5,'rgba(108,92,231,0.045)');
-    grd.addColorStop(1,'rgba(0,210,160,0.035)');
-    ctx.fillStyle=grd;ctx.fillRect(0,0,W,H);
-    ctx.font='500 9px ui-monospace,Menlo,Consolas,monospace';
-    plainParts.forEach(p=>{
-      p.y+=p.speed;
-      if(p.y>H+24){p.y=-14;p.x=W*0.02+Math.random()*W*0.34}
-      ctx.fillStyle=`rgba(168,130,230,${p.alpha})`;
-      ctx.fillText(p.text,p.x,p.y);
-    });
-    cipherParts.forEach(p=>{
-      p.y+=p.speed;
-      if(p.y>H+24){
-        p.y=-14;p.x=W*0.58+Math.random()*W*0.38;
-        let t='';for(let j=0;j<20;j++)t+=chars[Math.floor(Math.random()*chars.length)];p.text=t;
-      }
-      ctx.fillStyle=`rgba(0,200,155,${p.alpha})`;
-      ctx.fillText(p.text,p.x,p.y);
-    });
-    const my=H*0.5;
-    const beam=ctx.createLinearGradient(W*0.08,0,W*0.92,0);
-    beam.addColorStop(0,'rgba(168,85,247,0.22)');
-    beam.addColorStop(0.5,'rgba(108,92,231,0.42)');
-    beam.addColorStop(1,'rgba(0,210,160,0.28)');
-    ctx.strokeStyle=beam;ctx.lineWidth=1.25;ctx.beginPath();
-    ctx.moveTo(W*0.08,my);ctx.lineTo(W*0.92,my);ctx.stroke();
-    ctx.font='500 11px ui-monospace,Menlo,Consolas,"Courier New",monospace';
-    streams.forEach(s=>{
-      s.y+=s.speed;
-      if(s.y>H+s.len*14)s.reset();
-      s.chars.forEach((ch,j)=>{
-        const cy=s.y+j*14;
-        if(cy<-14||cy>H+14)return;
-        const headDist=j/Math.max(1,s.len-1);
-        const alpha=j===0?0.5:Math.max(0,0.26-headDist*0.3);
-        const isLeft=s.x<W/2;
-        ctx.fillStyle=isLeft?`rgba(145,125,235,${alpha})`:`rgba(0,205,158,${alpha})`;
-        ctx.fillText(ch,s.x,cy);
-      });
-      if(Math.random()<0.055)s.chars[0]=chars[Math.floor(Math.random()*chars.length)];
-    });
-    ctx.font='500 9px ui-monospace,Menlo,Consolas,monospace';
-    denseStreams.forEach(s=>{
-      s.y+=s.speed;
-      if(s.y>H+s.len*11)s.reset();
-      s.chars.forEach((ch,j)=>{
-        const cy=s.y+j*11;
-        if(cy<-11||cy>H+11)return;
-        const headDist=j/Math.max(1,s.len-1);
-        const alpha=j===0?0.42:Math.max(0,0.2-headDist*0.28);
-        const isLeft=s.x<W/2;
-        ctx.fillStyle=isLeft?`rgba(155,135,240,${alpha})`:`rgba(0,195,150,${alpha})`;
-        ctx.fillText(ch,s.x,cy);
-      });
-      if(Math.random()<0.06)s.chars[0]=chars[Math.floor(Math.random()*chars.length)];
-    });
-  }
-  function loop(){
-    if(!running)return;
-    drawFrame();
-    rafId=requestAnimationFrame(loop);
-  }
-  resize();
-  window.addEventListener('resize',()=>{resize();});
-  const io=new IntersectionObserver(entries=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting){
-        running=true;
-        resize();
-        if(!rafId)rafId=requestAnimationFrame(loop);
-      }else{
-        running=false;
-        if(rafId){cancelAnimationFrame(rafId);rafId=0;}
-      }
-    });
-  },{threshold:0.08,rootMargin:'60px'});
-  if(wrap)io.observe(wrap);
-})();
-
-/* ===== STATS: scroll-linked slide-in (keeps counter observer on .counter) ===== */
-(function(){
-  const statsSec=document.getElementById('stats');
-  if(!statsSec)return;
-  const cards=statsSec.querySelectorAll('.stat-card--scroll');
-  let raf=null;
-  function updateStatsScroll(){
-    const rect=statsSec.getBoundingClientRect();
-    const grid=statsSec.querySelector('.stats-grid');
-    const gr=grid?grid.getBoundingClientRect():rect;
-    const vh=window.innerHeight;
-    const vc=vh*0.5;
-    const gc=gr.top+gr.height*0.45;
-    const focus=Math.max(0,1-Math.min(1,Math.abs(gc-vc)/(vh*0.42)));
-    const start=vh*0.92;
-    const end=vh*0.18;
-    let t;
-    if(rect.bottom<0||rect.top>vh+48)t=rect.bottom<0?1:0;
-    else{
-      const t0=Math.max(0,Math.min(1,(start-rect.top)/(start-end)));
-      t=Math.max(0,Math.min(1,t0*0.55+focus*0.52));
-    }
-    cards.forEach((card,i)=>{
-      const dir=card.classList.contains('stat-card--from-right')?1:-1;
-      const s=i*0.11;
-      let u=Math.max(0,Math.min(1,(t-s)/(1-s+1e-6)));
-      u=u*u*(3-2*u);
-      const dist=window.innerWidth<=900?58:110;
-      card.style.setProperty('--stat-tx',((1-u)*dist*dir)+'px');
-      card.style.setProperty('--stat-op',String(0.06+0.94*u));
-      card.style.setProperty('--stat-sc',String(0.76+0.24*u));
-    });
-  }
-  function schedule(){if(raf)return;raf=requestAnimationFrame(()=>{raf=null;updateStatsScroll()})}
-  addEventListener('scroll',schedule,{passive:true});
-  addEventListener('resize',updateStatsScroll);
-  updateStatsScroll();
-})();
-
-/* ===== Performance benchmark bars (desktop section) ===== */
-(function(){
-  const root=document.querySelector('#performance-benchmark');
-  if(!root)return;
-  const groups=root.querySelectorAll('.speed-bar-group');
-  const barObs=new IntersectionObserver(es=>{
-    es.forEach(e=>{
-      if(e.isIntersecting){
-        const fill=e.target.querySelector('.speed-bar-fill');
-        const pct=e.target.dataset.fill||'80';
-        if(fill)fill.style.width=pct+'%';
-        barObs.unobserve(e.target);
-      }
-    });
-  },{threshold:.35});
-  groups.forEach(g=>barObs.observe(g));
-})();
-
-/* ===== NAV ===== */
-addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('scrolled',scrollY>50)});
-/* ===== PRICING TABS ===== */
-window.switchPricing=function(tab){
-  document.querySelectorAll('.pricing-tab').forEach(t=>t.classList.remove('active'));
-  document.querySelectorAll('.pricing-panel').forEach(p=>p.classList.remove('active'));
-  document.getElementById('tab-'+tab).classList.add('active');
-  document.getElementById('panel-'+tab).classList.add('active');
-};
-
-/* ===== MAP ===== */
-const vpnR={156:5,408:5,795:5,364:5,112:5,368:5,104:5,643:4,784:4,512:4,818:4,792:4,682:4,192:4,760:4,232:4,860:4,356:3,586:3,704:3,360:3,398:3,762:3,800:3,862:3,12:3,434:3,729:3,48:3,634:3,414:3,231:3,76:2,764:2,458:2,504:2,788:2,50:2,144:2,116:2,418:2,400:2,834:2,404:2,887:2,410:2,566:2};
-const getL=id=>vpnR[+id]||1;
-const lLab={1:"Strong protection",2:"Good",3:"Moderate",4:"Limited",5:"Weak"};
-const lLabRu={1:"Минимальная",2:"Низкая",3:"Средняя",4:"Высокая",5:"Критическая"};
-const hCol={1:"#1a2540",2:"#3b5998",3:"#d4841e",4:"#e04535",5:"#ff2a5e"};
-const GREEN="#00d67e";
-const ORANGE="#f97316";
-
-const servers=[
-  {lat:49.45,lon:11.08},{lat:60.17,lon:24.94},{lat:1.35,lon:103.82},
-  {lat:39.04,lon:-77.49},{lat:35.68,lon:139.65},{lat:-23.55,lon:-46.63},
-  {lat:-33.87,lon:151.21},{lat:51.51,lon:-0.13},{lat:59.33,lon:18.07},
-  {lat:45.52,lon:-122.99},{lat:37.57,lon:126.98},{lat:52.37,lon:4.90},
-  {lat:40.42,lon:-3.70}
-];
-const futureServers=[
-  {lat:-26.20,lon:28.05},{lat:41.72,lon:44.79},{lat:19.43,lon:-99.13}
-];
-function topoF(t,n){
-  const o=t.objects[n],tf=t.transform;
-  function dA(ai){const a=t.arcs[ai<0?~ai:ai],c=[];let x=0,y=0;for(let i=0;i<a.length;i++){x+=a[i][0];y+=a[i][1];c.push([x*tf.scale[0]+tf.translate[0],y*tf.scale[1]+tf.translate[1]])}if(ai<0)c.reverse();return c}
-  function dR(arcs){let c=[];for(const ai of arcs){const d=dA(ai);c=c.concat(d.slice(c.length>0?1:0))}return c}
-  function dG(g){if(g.type==="Polygon")return{type:"Polygon",coordinates:g.arcs.map(dR)};if(g.type==="MultiPolygon")return{type:"MultiPolygon",coordinates:g.arcs.map(p=>p.map(dR))};return g}
-  return{type:"FeatureCollection",features:o.geometries.map(g=>({type:"Feature",id:g.id,properties:g.properties||{},geometry:dG(g)}))};
-}
-
-let mapMode="heatmap",geo=null;
-const svg=d3.select("#map-svg");
-const cont=document.getElementById("map-container");
-const tooltip=document.getElementById("map-tooltip");
-
-window.updateMapLabels=function(){
-  const mt=document.getElementById("map-title"),ms=document.getElementById("map-subtitle");
-  if(mt)mt.textContent="";
-  if(ms)ms.textContent="";
-};
-
-function renderMap(){
-  const w=cont.clientWidth,h=Math.max(w*.46,280);
-  svg.attr("viewBox",`0 0 ${w} ${h}`);svg.selectAll("*").remove();
-  if(!geo)return;
-  const isH=mapMode==="heatmap",L=currentLang;
-  const proj=d3.geoNaturalEarth1().fitSize([w-14,h-14],{type:"Sphere"}).translate([w/2,h/2]);
-  const path=d3.geoPath().projection(proj);
-  const defs=svg.append("defs");
-  defs.append("radialGradient").attr("id","ocean").attr("cx","50%").attr("cy","42%").html('<stop offset="0%" stop-color="#111d30"/><stop offset="100%" stop-color="#0a1020"/>');
-  defs.append("filter").attr("id","gl").html('<feGaussianBlur stdDeviation="1.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>');
-  defs.append("linearGradient").attr("id","cFill").attr("x1","0%").attr("y1","0%").attr("x2","100%").attr("y2","100%").html('<stop offset="0%" stop-color="#1a2a45"/><stop offset="100%" stop-color="#152238"/>');
-  const sphereStroke=isH?'#1c1525':'#1e3050';
-  svg.append("path").attr("d",path({type:"Sphere"})).attr("fill","url(#ocean)").attr("stroke",sphereStroke).attr("stroke-width",.5);
-  const gratStroke=isH?'rgba(255,255,255,.01)':'rgba(100,160,220,.025)';
-  svg.append("path").attr("d",path(d3.geoGraticule10())).attr("fill","none").attr("stroke",gratStroke).attr("stroke-width",.3);
-
-  const countryStrokeH='#0c1018';
-  const countryStrokeS='rgba(40,60,95,.2)';
-  geo.features.forEach(f=>{
-    const d=path(f);if(!d)return;
-    const lv=getL(f.id);
-    let fill=isH?hCol[lv]:"url(#cFill)";
-    const p=svg.append("path").attr("d",d).attr("fill",fill).attr("stroke",isH?countryStrokeH:countryStrokeS).attr("stroke-width",isH?.2:.15).style("transition","fill .3s");
-    if(isH){
-      const labelsMap=L==='ru'?lLabRu:lLab;
-      const hoverStroke='rgba(255,255,255,.35)';
-      p.style("cursor","pointer")
-        .on("mouseenter",function(ev){
-          d3.select(this).attr("stroke",hoverStroke).attr("stroke-width",.8);
-          const col=hCol[lv];tooltip.style.display="block";tooltip.style.borderColor=col+"44";
-          document.getElementById("tt-dot").style.background=col;
-          document.getElementById("tt-dot").style.boxShadow=`0 0 5px ${col}88`;
-          document.getElementById("tt-val").textContent=labelsMap[lv];
-          document.getElementById("tt-bar").style.width=`${lv*20}%`;
-          document.getElementById("tt-bar").style.background=`linear-gradient(90deg,${col}88,${col})`;
-        })
-        .on("mousemove",function(ev){const r=cont.getBoundingClientRect();tooltip.style.left=Math.min(ev.clientX-r.left+14,w-140)+"px";tooltip.style.top=(ev.clientY-r.top-8)+"px"})
-        .on("mouseleave",function(){d3.select(this).attr("stroke",countryStrokeH).attr("stroke-width",.2);tooltip.style.display="none"});
-    }else{
-      const hFill='#1e3555';
-      p.on("mouseenter",function(){d3.select(this).attr("fill",hFill).attr("stroke",'rgba(100,160,220,.4)').attr("stroke-width",.6)})
-       .on("mouseleave",function(){d3.select(this).attr("fill","url(#cFill)").attr("stroke",countryStrokeS).attr("stroke-width",.15)});
-    }
-  });
-
-  const dotBg='#0a1020';
-  if(!isH){
-    servers.forEach((s,i)=>{
-      const[px,py]=proj([s.lon,s.lat]);const g=svg.append("g");
-      const pr=g.append("circle").attr("cx",px).attr("cy",py).attr("r",7).attr("fill","none").attr("stroke",GREEN).attr("stroke-width",.42).attr("opacity",.32);
-      pr.append("animate").attr("attributeName","r").attr("values","3;12;3").attr("dur",(2.4+i*.18)+"s").attr("repeatCount","indefinite");
-      pr.append("animate").attr("attributeName","opacity").attr("values",".4;.06;.4").attr("dur",(2.4+i*.18)+"s").attr("repeatCount","indefinite");
-      const glow=g.append("circle").attr("cx",px).attr("cy",py).attr("r",5.5).attr("fill",GREEN).attr("opacity",.12).attr("filter","url(#gl)");
-      glow.append("animate").attr("attributeName","opacity").attr("values",".1;.2;.1").attr("dur",(1.8+i*.15)+"s").attr("repeatCount","indefinite");
-      const core=g.append("circle").attr("cx",px).attr("cy",py).attr("r",2.8).attr("fill",GREEN).attr("stroke",dotBg).attr("stroke-width",.85);
-      core.append("animate").attr("attributeName","r").attr("values","2.5;3.2;2.5").attr("dur",(1.5+i*.12)+"s").attr("repeatCount","indefinite");
-    });
-    futureServers.forEach((s,i)=>{
-      const[px,py]=proj([s.lon,s.lat]);const g=svg.append("g");
-      const pr=g.append("circle").attr("cx",px).attr("cy",py).attr("r",3.5).attr("fill","none").attr("stroke",ORANGE).attr("stroke-width",.38).attr("opacity",.32);
-      pr.append("animate").attr("attributeName","r").attr("values","2.4;6.2;2.4").attr("dur",(2.7+i*.22)+"s").attr("repeatCount","indefinite");
-      pr.append("animate").attr("attributeName","opacity").attr("values",".38;.08;.38").attr("dur",(2.7+i*.22)+"s").attr("repeatCount","indefinite");
-      g.append("circle").attr("cx",px).attr("cy",py).attr("r",2.8).attr("fill",ORANGE).attr("opacity",.14).attr("filter","url(#gl)");
-      const core=g.append("circle").attr("cx",px).attr("cy",py).attr("r",1.5).attr("fill",ORANGE).attr("stroke",dotBg).attr("stroke-width",.6);
-      core.append("animate").attr("attributeName","r").attr("values","1.35;1.85;1.35").attr("dur",(1.6+i*.2)+"s").attr("repeatCount","indefinite");
-    });
-  }
-
-  if(isH){
-    geo.features.forEach(f=>{
-      if(getL(f.id)<5)return;const c=path.centroid(f);if(!c||isNaN(c[0]))return;
-      const ci=svg.append("circle").attr("cx",c[0]).attr("cy",c[1]).attr("r",3).attr("fill","rgba(255,42,94,.55)").attr("filter","url(#gl)").style("pointer-events","none");
-      ci.append("animate").attr("attributeName","r").attr("values","2;4;2").attr("dur","3s").attr("repeatCount","indefinite");
-      ci.append("animate").attr("attributeName","opacity").attr("values",".5;.9;.5").attr("dur","3s").attr("repeatCount","indefinite");
-    });
-  }
-
-  const leg=document.getElementById("map-legend");const labelsMap=L==='ru'?lLabRu:lLab;
-  if(isH){
-    leg.innerHTML=[2,3,4,5].map(lv=>`<div class="map-legend-item"><div class="map-legend-dot" style="background:${hCol[lv]}"></div>${labelsMap[lv]}</div>`).join("");
-  }else{
-    const srvText=L==='ru'?"Активные серверы":"Active servers";
-    const futText=L==='ru'?"Скоро":"Coming soon";
-    leg.innerHTML=`<div class="map-legend-item"><div class="map-legend-dot map-legend-dot-round" style="background:${GREEN};box-shadow:0 0 5px rgba(0,214,126,.4)"></div>${srvText}</div>`+
-      `<div class="map-legend-item"><div class="map-legend-dot map-legend-dot-round" style="background:${ORANGE};box-shadow:0 0 5px rgba(249,115,22,.45);width:5px;height:5px"></div>${futText}</div>`;
-  }
-  updateMapLabels();
-}
-
-window.setMapMode=function(m){
-  mapMode=m;
-  document.getElementById("btn-srv").className=m==="servers"?"active-srv":"";
-  document.getElementById("btn-heat").className=m==="heatmap"?"active-heat":"";
-  const ip=document.getElementById("map-info-panel");
-  if(ip){ip.classList.toggle("is-visible",m==="servers");ip.setAttribute("aria-hidden",m==="servers"?"false":"true");}
-  tooltip.style.display="none";renderMap();
-};
-
-fetch("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json")
-  .then(r=>r.json()).then(topo=>{geo=topoF(topo,"countries");renderMap()});
-addEventListener("resize",()=>{if(geo)renderMap()});
-
-/* ===== SMOOTH ANCHOR ===== */
-document.querySelectorAll('a[href^="#"]').forEach(a=>{
-  a.addEventListener('click',function(e){const t=document.querySelector(this.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}});
-});
-
-})();
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
+
 </body>
 </html>
