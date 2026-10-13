@@ -1,4 +1,4 @@
-/* Marshall Relay — shared site styles (home + privacy) */
+/* Marshall Relay вЂ” shared site styles (home + privacy) */
 
 @font-face{font-family:'Inter';font-style:normal;font-weight:400 700;font-display:swap;src:url(fronts/inter-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
 @font-face{font-family:'Inter';font-style:normal;font-weight:400 700;font-display:swap;src:url(fronts/inter-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
@@ -48,7 +48,7 @@ h1,h2,h3{text-wrap:balance}
 .skip-link:focus{top:14px}
 .eyebrow{display:inline-block;font-size:12.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
 
-/* ── Buttons (brand pills: navy, outlined, white; green arrows) ── */
+/* в”Ђв”Ђ Buttons (brand pills: navy, outlined, white; green arrows) в”Ђв”Ђ */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:50px;padding:0 26px;border-radius:999px;font-size:15px;font-weight:600;letter-spacing:-.01em;white-space:nowrap;transition:transform .3s var(--ease),background-color .2s,border-color .2s,box-shadow .3s var(--ease)}
 .btn svg{width:18px;height:18px;flex:none}
 .btn-primary{background:var(--navy);color:#fff}
@@ -65,7 +65,7 @@ h1,h2,h3{text-wrap:balance}
 .btn-sm{min-height:40px;padding:0 18px;font-size:14px;gap:9px}
 .btn-sm svg{width:15px;height:15px}
 
-/* ── Navigation ──────────────────────────────── */
+/* в”Ђв”Ђ Navigation в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */
 .nav{position:fixed;inset:0 0 auto;z-index:100;background:rgba(255,255,255,.9);-webkit-backdrop-filter:saturate(1.8) blur(16px);backdrop-filter:saturate(1.8) blur(16px);border-bottom:1px solid transparent;transition:border-color .3s,box-shadow .3s}
 .nav.is-scrolled,.nav.menu-open{border-bottom-color:var(--line);box-shadow:0 1px 12px rgba(14,23,38,.04)}
 .nav-in{display:flex;align-items:center;justify-content:space-between;gap:24px;height:var(--nav-h)}
@@ -91,12 +91,12 @@ h1,h2,h3{text-wrap:balance}
   .menu-open .mobile-menu{display:block}
 }
 
-/* ── Reveal on scroll (only while JS runs) ───── */
+/* в”Ђв”Ђ Reveal on scroll (only while JS runs) в”Ђв”Ђв”Ђв”Ђв”Ђ */
 .js .rv{opacity:0;transform:translateY(16px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
 .js .rv.in{opacity:1;transform:none}
 .js .d1{transition-delay:.08s}.js .d2{transition-delay:.16s}
 
-/* ── Hero ────────────────────────────────────── */
+/* в”Ђв”Ђ Hero в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */
 .hero{position:relative;padding:calc(var(--nav-h) + 72px) 0 84px;overflow:hidden;isolation:isolate}
 /* Brand glyph as a pale watermark behind the right side of the hero */
 .hero-mark{position:absolute;z-index:-1;right:1%;top:5%;height:110%;width:auto;pointer-events:none;fill:var(--accent-bright);opacity:.08}
@@ -128,7 +128,7 @@ h1,h2,h3{text-wrap:balance}
   .hero-actions .btn{flex:1 1 100%}
 }
 
-/* ── Sections ────────────────────────────────── */
+/* в”Ђв”Ђ Sections в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */
 .section{position:relative;padding:96px 0}
 .section--soft{background:var(--bg-soft)}
 .head{max-width:720px;margin:0 auto 48px;text-align:center}
@@ -136,7 +136,7 @@ h1,h2,h3{text-wrap:balance}
 .head p{margin:14px auto 0;max-width:560px;text-wrap:balance;font-size:17px;line-height:1.65;color:var(--ink-2)}
 @media (max-width:640px){.section{padding:64px 0}.head{margin-bottom:32px}}
 
-/* ── Products ────────────────────────────────── */
+/* в”Ђв”Ђ Products в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */
 /* Each product: info on the left, a screenshot gallery on the right that runs off the card edge */
 .products{display:grid;grid-template-columns:minmax(0,1fr);gap:24px}
 .product{--pad:40px;--gap:14px;display:grid;grid-template-columns:minmax(0,330px) minmax(0,1fr);gap:56px;align-items:center;padding:var(--pad) 0 var(--pad) var(--pad);background:#fff;border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow-sm);overflow:hidden;scroll-margin-top:calc(var(--nav-h) + 20px)}
@@ -223,7 +223,7 @@ h1,h2,h3{text-wrap:balance}
 }
 @media (max-width:380px){.product-actions{grid-template-columns:1fr}}
 
-/* ── Company ─────────────────────────────────── */
+/* в”Ђв”Ђ Company в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */
 .company{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px;align-items:start}
 .split-head p{margin-top:16px;font-size:17px;line-height:1.7;color:var(--ink-2);max-width:50ch}
 .points{margin-top:30px;display:grid;gap:20px}
@@ -250,7 +250,7 @@ h1,h2,h3{text-wrap:balance}
   .reg-row{grid-template-columns:1fr;gap:3px;padding:13px 20px}
 }
 
-/* ── Contact band ────────────────────────────── */
+/* в”Ђв”Ђ Contact band в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */
 /* Navy band with the brand pattern (assets/brand/pattern.svg) */
 .contact{margin-top:56px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px 40px;padding:40px 44px;border-radius:var(--r-xl);color:#fff;background:var(--navy) url(brand/pattern.svg) center/360px;box-shadow:0 24px 50px -30px rgba(15,33,64,.6);scroll-margin-top:calc(var(--nav-h) + 24px)}
 .contact .eyebrow{color:var(--accent-bright)}
@@ -258,9 +258,9 @@ h1,h2,h3{text-wrap:balance}
 .contact p{margin-top:8px;max-width:52ch;font-size:16px;line-height:1.65;color:rgba(255,255,255,.76)}
 @media (max-width:640px){.contact{margin-top:40px;padding:30px 22px}.contact .btn{width:100%}}
 
-/* ── Footer ──────────────────────────────────── */
+/* в”Ђв”Ђ Footer в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */
 .footer{padding:40px 0 30px;background:#fff}
-/* Brand divider: line — glyph — line */
+/* Brand divider: line вЂ” glyph вЂ” line */
 .divider{display:flex;align-items:center;gap:22px;margin-bottom:48px}
 .divider span{flex:1;height:2px;border-radius:2px;background:var(--navy)}
 .divider svg{height:36px;width:auto;flex:none;fill:var(--accent-bright)}
@@ -276,7 +276,7 @@ h1,h2,h3{text-wrap:balance}
 @media (max-width:860px){.footer-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.footer-about{grid-column:1/-1}}
 @media (max-width:520px){.footer{padding-top:32px}.divider{gap:16px;margin-bottom:36px}.divider svg{height:30px}.footer-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 20px}}
 
-/* ── Legal document (privacy) ────────────────── */
+/* в”Ђв”Ђ Legal document (privacy) в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */
 .doc-hero{padding:calc(var(--nav-h) + 56px) 0 40px;background:var(--bg-soft);border-bottom:1px solid var(--line)}
 .doc-hero h1{margin-top:12px;font-size:clamp(36px,4.6vw,54px);font-weight:700;line-height:1.05;letter-spacing:-.045em}
 .doc-lead{margin-top:16px;max-width:62ch;font-size:17.5px;line-height:1.65;color:var(--ink-2)}
