@@ -149,19 +149,6 @@ h1,h2,h3{text-wrap:balance}
 .product-desc{margin-top:14px;font-size:15.5px;line-height:1.65;color:var(--ink-2)}
 .product-actions{margin-top:24px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .product-note{margin-top:10px;font-size:13px;color:var(--muted)}
-/* App still in development: dashed placeholder icon + skeleton phones instead of a gallery */
-.product-icon--soon{display:flex;align-items:center;justify-content:center;gap:5px;background:var(--bg-soft);border:1.5px dashed var(--line-2);box-shadow:none}
-.product-icon--soon i{width:7px;height:7px;border-radius:50%;background:var(--faint)}
-.soon-panel{display:flex;padding-top:8px;overflow:hidden}
-.soon-phones{position:relative;display:flex;gap:var(--gap)}
-.soon-phone{flex:none;width:189px;height:410px;border-radius:18px;border:1.5px dashed var(--line-2);background:
-  linear-gradient(var(--line),var(--line)) 50% 22px/40% 8px no-repeat,
-  linear-gradient(var(--line),var(--line)) 50% 56px/76% 112px no-repeat,
-  linear-gradient(var(--line),var(--line)) 50% 194px/76% 10px no-repeat,
-  linear-gradient(var(--line),var(--line)) 50% 216px/60% 10px no-repeat,
-  linear-gradient(var(--line),var(--line)) 50% 238px/70% 10px no-repeat,
-  linear-gradient(var(--line),var(--line)) 50% 276px/76% 72px no-repeat,var(--bg-soft)}
-.soon-label{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);padding:9px 16px;border-radius:999px;background:#fff;border:1px solid var(--line-2);box-shadow:var(--shadow-sm);font-size:13.5px;font-weight:600;color:var(--ink-2);white-space:nowrap}
 .badges{display:flex;flex-wrap:wrap;gap:8px}
 .badge{display:inline-flex;align-items:center;gap:7px;padding:4px 10px;border-radius:8px;background:var(--bg-soft);border:1px solid var(--line);font-size:12.5px;font-weight:600;color:var(--ink-2)}
 .badge--live::before,.badge--soon::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--accent-bright)}
@@ -210,13 +197,11 @@ h1,h2,h3{text-wrap:balance}
   .gallery-list{padding-left:var(--pad)}
   .gallery-ui{padding:0 var(--pad)}
   .gallery--wide .gallery-item{width:min(78%,560px)}
-  .soon-phone:nth-child(3){display:none}
 }
 @media (max-width:640px){
   .product{--pad:20px;--gap:12px;border-radius:20px}
   .product-icon{width:60px;height:60px}
   .product-title{font-size:22px}
-  .soon-phone{width:149px;height:324px;border-radius:16px}
   .gallery--tall .gallery-item{height:360px;border-radius:16px}
   .gallery--wide .gallery-item{width:84%;border-radius:12px}
   .gallery-ui{margin-top:20px}
